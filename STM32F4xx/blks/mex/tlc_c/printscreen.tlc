@@ -1,0 +1,158 @@
+%% $RCSfile: printscreen.tlc,v $
+%% $Revision: 1.0 $
+%% $Date: 2012/01/26 $
+%%
+%% Abstract: printscreen 
+%%    Print STM3240G LCD screen with JVM 
+%%
+%% Copyright 1990-2009 The MathWorks, Inc.
+%assign CodeFormat = "Embedded-C"
+%implements printscreen "C"
+
+
+%%Get simulation type. 1= PIL or 0= not PIL
+%assign  simMode = FEVAL("getpref","STM32F4xx","stm32f4PilMode")
+%warning PrintScreen_simMode value is %<simMode> 
+	
+	
+%if (ISEQUAL(simMode, 1))	
+
+
+%if !EXISTS(::CreatePrintScreen)
+    %assign ::CreatePrintScreen  = TLC_TRUE
+%endif
+
+%if !EXISTS(::InsertInitHeader)
+    %assign ::InsertInitHeader  = TLC_TRUE
+%endif
+%if !EXISTS(::InsertIncludes)
+    %assign ::InsertIncludes  = TLC_TRUE
+%endif 
+
+    %assign ::CreatePrintScreen  = TLC_TRUE
+
+
+%% Create function for Timers:
+%if EXISTS(CreatePrintScreen) && (CreatePrintScreen == TLC_TRUE)
+
+    %%assign ::CreatePrintScreen = TLC_FALSE
+
+	
+%% Code for system initialization:
+    %function Start(block,system) Output
+        %openfile printscreen_Buf
+        %if EXISTS(::InsertInitHeader) && (::InsertInitHeader == TLC_TRUE)
+            %assign ::InsertInitHeader = TLC_FALSE
+            /******************************************************
+                    Print screen JVM demo CONFIGURATION
+            *******************************************************/
+        %endif
+        /* print screen demo Configuration */
+        printScreen_Configuration();
+        %closefile printscreen_Buf
+		%<LibMdlStartCustomCode(printscreen_Buf,"trailer")>;		
+    %endfunction
+
+
+%% Code for Timers configuration call:
+    %function BlockTypeSetup(block, system) void
+%%    %function BlockInstanceSetup(block, system) void
+        %assign SrcBaseName = LibGetMdlSrcBaseName()
+        %assign modelH      = LibCreateSourceFile("Header", "Simulink", SrcBaseName)
+        %assign modelC      = LibCreateSourceFile("Source", "Simulink", SrcBaseName)
+
+        %openfile printscreen_Buf
+        /*******************************************************************************
+        * Function Name  : printScreen_Configuration
+        * Description    : Configuration to send data to JVM to print on STM3240G-EVAL board
+        * Input          : -
+        *******************************************************************************/
+        void printScreen_Configuration(void)
+        {
+        }
+        %closefile printscreen_Buf
+        %<LibSetSourceFileSection(modelC,"Functions",printscreen_Buf)>
+
+        %openfile printscreen_Buf
+		static void write_SP(ShieldedPlug* database, int ID_num,jint value ) {
+			SP_write(database,ID_num,&value); 	
+			while (!SP_isPending(database,ID_num));
+		}
+        %closefile printscreen_Buf
+        %<LibSetSourceFileSection(modelC,"Functions",printscreen_Buf)>
+
+%% Code for the function's declaration:
+        %openfile printscreen_Buf
+			static void write_SP(ShieldedPlug*, int,jint);
+            /* Function Declaration for print screen Configuration */
+            void printScreen_Configuration(void);		
+        %closefile printscreen_Buf
+        %<LibSetSourceFileSection(modelC,"Declarations",printscreen_Buf)>
+
+%% Code for the necessary variable definition:
+        %openfile printscreen_Buf
+			#define ID 0
+			#define PW1 0
+			#define PW2 1
+			#define PW3 2
+			#define SPEED 3
+			#define CMD 4			
+			typedef signed long int jint ;
+			typedef unsigned char jchar ;
+        %closefile printscreen_Buf
+        %<LibSetSourceFileSection(modelC,"Definitions",printscreen_Buf)>
+
+%% Code for required timers includes:
+        %if EXISTS(::InsertIncludes) && (::InsertIncludes == TLC_TRUE)
+            %assign ::InsertIncludes    = TLC_FALSE	
+            %openfile printscreen_Buf
+				#include <RTL.h>
+				#include "stm32f4xx.h"
+				#include "sp.h"				
+            %closefile printscreen_Buf
+            %<LibSetSourceFileSection(modelH,"Includes",printscreen_Buf)>
+        %endif
+
+    %endfunction
+%else
+%% ERROR Timers INIT MUST BE CALLED ONCE ONLY 
+   %trace ERROR Timers INIT MUST BE CALLED ONCE ONLY 
+
+%endif 
+
+%% Function: Outputs ==========================================
+%% Abstract:
+%% Timers input value depending on pin config
+%%
+    %function Outputs(block, system) Output
+/* %<Type> Block: %<Name> */          
+        %openfile Timers_Buf 
+		ShieldedPlug* DataBase = SP_getDatabase(ID);	
+        %closefile Timers_Buf
+        %<LibSystemOutputCustomCode(system,Timers_Buf,"header")>
+		
+        %openfile Timers_Buf 
+  	    %assign  pw1 = LibBlockInputSignal(0, "", "", 0) 
+  	    %assign  pw2 = LibBlockInputSignal(1, "", "", 0) 
+  	    %assign  pw3 = LibBlockInputSignal(2, "", "", 0) 
+  	    %assign  speed = LibBlockInputSignal(3, "", "", 0) 
+  	    %assign  cmd = LibBlockInputSignal(4, "", "", 0) 
+		write_SP(DataBase,PW1,%<pw1>);			
+		write_SP(DataBase,PW2,%<pw2>);	
+		write_SP(DataBase,PW3,%<pw3>);	
+		write_SP(DataBase,SPEED,%<speed>);	
+		write_SP(DataBase,CMD,%<cmd>);	
+		os_itv_wait();  
+        %closefile Timers_Buf
+        %<LibSystemOutputCustomCode(system,Timers_Buf,"trailer")>
+   %endfunction
+
+%endif
+
+%% [EOF] printscreen.tlc
+
+
+
+
+
+

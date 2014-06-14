@@ -1,0 +1,616 @@
+%% $RCSfile: IT_Config.tlc,v $
+%% $Revision: 1.0 $
+%% $Date: 2012/01/26 $
+%%
+%% Abstract: Interrupt Configuration
+%%    STM32F4xx Interrupt configuration. Interrupt settings and function call
+%%    Generated code is based on STM32 Library files.
+%%
+%% Copyright 1990-2009 The MathWorks, Inc.
+
+%implements IT_Config "C"
+
+
+%if !EXISTS(::CreateIT_ADC_Config)
+    %assign ::CreateIT_ADC_Config  = TLC_TRUE
+%endif
+%if !EXISTS(::CreateIT_EXTI_Config)
+    %assign ::CreateIT_EXTI_Config  = TLC_TRUE
+%endif
+%if !EXISTS(::CreateIT_SYSTICK_Config)
+    %assign ::CreateIT_SYSTICK_Config  = TLC_TRUE
+%endif
+
+%if !EXISTS(::InsertInitHeader)
+    %assign ::InsertInitHeader  = TLC_TRUE
+%endif
+%if !EXISTS(::InsertIncludes)
+    %assign ::InsertIncludes  = TLC_TRUE
+%endif 
+
+	
+%% Code for Interrupt configuration call:
+    %function BlockInstanceSetup(block, system) void
+        %assign SrcBaseName = LibGetMdlSrcBaseName()
+        %assign modelH      = LibCreateSourceFile("Header", "Simulink", SrcBaseName)
+        %assign modelC      = LibCreateSourceFile("Source", "Simulink", SrcBaseName)
+        %if EXISTS(::InsertInitHeader) && (::InsertInitHeader == TLC_TRUE)
+            %assign ::InsertInitHeader    = TLC_FALSE
+            /******************************************************
+                              Interrupt  Definition
+            *******************************************************/
+        %endif
+		%assign  Periph = SFcnParamSettings.Peripheral_name
+		%assign  IRQid = SFcnParamSettings.Peripheral_IRQid
+		%assign  ADC1_en = SFcnParamSettings.ADC1_en
+		%assign  ADC2_en = SFcnParamSettings.ADC2_en
+		%assign  ADC3_en = SFcnParamSettings.ADC3_en
+		%assign  ADC_EOC = SFcnParamSettings.ADC_EOC
+		%assign  ADC_JEOC = SFcnParamSettings.ADC_JEOC
+		%assign  ADC_AWD = SFcnParamSettings.ADC_AWD
+		%assign  ADC_OVR = SFcnParamSettings.ADC_OVR		
+		%assign  EXTI_port = SFcnParamSettings.EXTI_port
+		%assign  EXTI_line = SFcnParamSettings.EXTI_line
+		%assign  EXTI_trig = SFcnParamSettings.EXTI_trig		
+		%assign  DefHandler = SFcnParamSettings.Def_handler
+		%assign  Handler = SFcnParamSettings.Cust_handler
+		%assign  GroupPrio = SFcnParamSettings.Group_prio
+		%assign  Pre0Prio = SFcnParamSettings.Pre0_prio
+		%assign  Sub0Prio = SFcnParamSettings.Sub0_prio
+		%assign  Pre1Prio = SFcnParamSettings.Pre1_prio
+		%assign  Sub1Prio = SFcnParamSettings.Sub1_prio
+		%assign  Pre2Prio = SFcnParamSettings.Pre2_prio
+		%assign  Sub2Prio = SFcnParamSettings.Sub2_prio
+		%assign  Pre3Prio = SFcnParamSettings.Pre3_prio
+		%assign  Sub3Prio = SFcnParamSettings.Sub3_prio
+		%assign  Pre4Prio = SFcnParamSettings.Pre4_prio
+		%assign  Sub4Prio = SFcnParamSettings.Sub4_prio
+    %%Verify Interrupt output is connected to function call model
+		%foreach callIdx = NumSFcnSysOutputCalls
+			%if LibIsEqual(SFcnSystemOutputCall[callIdx].BlockToCall, "unconnected")
+				%% The element is not connected to anything
+				%assign wrnTxt = "No code will be generated for ISR %<Periph> "\
+				"since it is not connected to a system."
+				%<LibReportWarning(wrnTxt)>
+				%continue
+			%endif
+		%endforeach
+	
+		%% Select Periph interrupt to configure
+		%% Code for the necessary variable definition, IF NOT ALREADY DONE
+		%switch(Periph)
+			%case "ADC"
+				%if EXISTS(::CreateIT_ADC_Config) && (::CreateIT_ADC_Config == TLC_TRUE)
+				%assign ::CreateIT_ADC_Config    = TLC_FALSE		
+				 %openfile IT_Config_Buf
+				 /* Global Variable Definition for ADC Interrupt priority definition */
+				 NVIC_InitTypeDef NVIC_ADC_InitStructure;
+				 %closefile IT_Config_Buf
+				 %<LibSetSourceFileSection(modelC,"Definitions",IT_Config_Buf)>
+				%endif
+			%break
+			%case "EXTint"
+				%if EXISTS(::CreateIT_EXTI_Config) && (::CreateIT_EXTI_Config == TLC_TRUE)
+				%assign ::CreateIT_EXTI_Config    = TLC_FALSE		
+				 %openfile IT_Config_Buf
+				 /* Global Variable Definition for EXTI Interrupt setting */
+				 EXTI_InitTypeDef   EXTI_InitStructure;		
+				 /* Global Variable Definition for EXTI Interrupt priority definition */
+				 NVIC_InitTypeDef NVIC_EXTI_InitStructure;
+				 %closefile IT_Config_Buf
+				 %<LibSetSourceFileSection(modelC,"Definitions",IT_Config_Buf)>
+				%endif
+			%break
+			%case "SysTick"
+			%break
+		%endswitch
+
+	
+%% Code for the function's declaration:
+        %openfile IT_Config_Buf
+            /* Interrupt function Declaration for %<Handler> */
+            void %<Handler>(void);
+        %closefile IT_Config_Buf
+        %<LibSetSourceFileSection(modelC,"Declarations",IT_Config_Buf)>
+			
+		
+%%Code for required Interrupt includes:
+        %if EXISTS(::InsertIncludes) && (::InsertIncludes == TLC_TRUE)
+            %assign ::InsertIncludes    = TLC_FALSE		
+            %openfile IT_Config_Buf
+				#include "stm32f4xx.h"
+            %closefile IT_Config_Buf
+            %<LibSetSourceFileSection(modelH,"Includes",IT_Config_Buf)>
+        %endif
+    %endfunction
+
+
+%% Code for handler generation:
+	%function Outputs(block, system) Output
+    %assign SrcBaseName = LibGetMdlSrcBaseName()
+    %assign modelH      = LibCreateSourceFile("Header", "Simulink", SrcBaseName)
+    %assign modelC      = LibCreateSourceFile("Source", "Simulink", SrcBaseName)
+		%assign  Periph = SFcnParamSettings.Peripheral_name
+		%assign  IRQid = SFcnParamSettings.Peripheral_IRQid
+		%assign  ADC1_en = SFcnParamSettings.ADC1_en
+		%assign  ADC2_en = SFcnParamSettings.ADC2_en
+		%assign  ADC3_en = SFcnParamSettings.ADC3_en
+		%assign  ADC_EOC = SFcnParamSettings.ADC_EOC
+		%assign  ADC_JEOC = SFcnParamSettings.ADC_JEOC
+		%assign  ADC_AWD = SFcnParamSettings.ADC_AWD
+		%assign  ADC_OVR = SFcnParamSettings.ADC_OVR				
+		%assign  EXTI_port = SFcnParamSettings.EXTI_port
+		%assign  EXTI_line = SFcnParamSettings.EXTI_line
+		%assign  EXTI_trig = SFcnParamSettings.EXTI_trig		
+		%assign  DefHandler = SFcnParamSettings.Def_handler
+		%assign  Handler = SFcnParamSettings.Cust_handler
+		%assign  GroupPrio = SFcnParamSettings.Group_prio
+		%assign  Pre0Prio = SFcnParamSettings.Pre0_prio
+		%assign  Sub0Prio = SFcnParamSettings.Sub0_prio
+		%assign  Pre1Prio = SFcnParamSettings.Pre1_prio
+		%assign  Sub1Prio = SFcnParamSettings.Sub1_prio
+		%assign  Pre2Prio = SFcnParamSettings.Pre2_prio
+		%assign  Sub2Prio = SFcnParamSettings.Sub2_prio
+		%assign  Pre3Prio = SFcnParamSettings.Pre3_prio
+		%assign  Sub3Prio = SFcnParamSettings.Sub3_prio
+		%assign  Pre4Prio = SFcnParamSettings.Pre4_prio
+		%assign  Sub4Prio = SFcnParamSettings.Sub4_prio
+		%assign  ADC_it_port_num = 0
+	%% IT function 
+        %openfile IT_Config_Buf
+        /*******************************************************************************
+        * Function Name  : %<Handler>
+        * Description    : Interrupt Handler
+        * Input          : -
+        *******************************************************************************/
+        void %<Handler>(void)
+        {
+		%% Select Periph interrupt to process
+		%switch(Periph)
+			%case "ADC"
+				%if (ISEQUAL(ADC1_en,"on"))
+					%if(ISEQUAL(ADC_EOC,"on"))
+				if(ADC_GetITStatus(ADC1, ADC_IT_EOC) == SET)
+				{
+					/* Clear ADC1 EOC interrupt pending bit */
+					ADC_ClearITPendingBit(ADC1, ADC_IT_EOC);
+					%foreach callIdx = NumSFcnSysOutputCalls
+						%if (ISEQUAL(callIdx, 0))				
+							%if LibIsEqual(SFcnSystemOutputCall[callIdx].BlockToCall,"unconnected")
+								%assign wrnTxt = "No code will be generated for ADC1 EOC IRQ  "\
+								"since it is not connected to a system."
+								%<LibReportWarning(wrnTxt)>
+								%continue
+							%endif
+							%% call the downstream system
+							%<LibBlockExecuteFcnCall(block, callIdx)>\
+						%endif
+					%endforeach
+				}
+				%assign  ADC_it_port_num = %<ADC_it_port_num> + 1
+					%endif
+					%if(ISEQUAL(ADC_JEOC,"on"))
+				if(ADC_GetITStatus(ADC1, ADC_IT_JEOC) == SET)
+				{
+					/* Clear ADC1 JEOC interrupt pending bit */
+					ADC_ClearITPendingBit(ADC1, ADC_IT_JEOC);
+					%foreach callIdx = NumSFcnSysOutputCalls
+						%if (ISEQUAL(callIdx, 0))				
+							%if LibIsEqual(SFcnSystemOutputCall[callIdx].BlockToCall,"unconnected")
+								%assign wrnTxt = "No code will be generated for ADC1 JEOC IRQ  "\
+								"since it is not connected to a system."
+								%<LibReportWarning(wrnTxt)>
+								%continue
+							%endif
+							%% call the downstream system
+							%<LibBlockExecuteFcnCall(block, callIdx)>\
+						%endif
+					%endforeach
+				}
+				%assign  ADC_it_port_num = %<ADC_it_port_num> + 1
+					%endif
+					%if(ISEQUAL(ADC_AWD,"on"))
+				if(ADC_GetITStatus(ADC1, ADC_IT_AWD) == SET)
+				{
+					/* Clear ADC1 AWD interrupt pending bit */
+					ADC_ClearITPendingBit(ADC1, ADC_IT_AWD);
+					%foreach callIdx = NumSFcnSysOutputCalls
+						%if (ISEQUAL(callIdx, 0))				
+							%if LibIsEqual(SFcnSystemOutputCall[callIdx].BlockToCall,"unconnected")
+								%assign wrnTxt = "No code will be generated for ADC1 AWD IRQ  "\
+								"since it is not connected to a system."
+								%<LibReportWarning(wrnTxt)>
+								%continue
+							%endif
+							%% call the downstream system
+							%<LibBlockExecuteFcnCall(block, callIdx)>\
+						%endif
+					%endforeach
+				}
+				%assign  ADC_it_port_num = %<ADC_it_port_num> + 1
+					%endif
+					%if(ISEQUAL(ADC_OVR,"on"))
+				if(ADC_GetITStatus(ADC1, ADC_IT_OVR) == SET)
+				{
+					/* Clear ADC1 OVR interrupt pending bit */
+					ADC_ClearITPendingBit(ADC1, ADC_IT_OVR);
+					%foreach callIdx = NumSFcnSysOutputCalls
+						%if (ISEQUAL(callIdx, 0))				
+							%if LibIsEqual(SFcnSystemOutputCall[callIdx].BlockToCall,"unconnected")
+								%assign wrnTxt = "No code will be generated for ADC1 OVR IRQ  "\
+								"since it is not connected to a system."
+								%<LibReportWarning(wrnTxt)>
+								%continue
+							%endif
+							%% call the downstream system
+							%<LibBlockExecuteFcnCall(block, callIdx)>\
+						%endif
+					%endforeach
+				}
+				%assign  ADC_it_port_num = %<ADC_it_port_num> + 1
+					%endif
+				%endif
+				%if (ISEQUAL(ADC2_en,"on"))
+					%if(ISEQUAL(ADC_EOC,"on"))
+				if(ADC_GetITStatus(ADC2, ADC_IT_EOC) == SET)
+				{
+					/* Clear ADC2 EOC interrupt pending bit */
+					ADC_ClearITPendingBit(ADC2, ADC_IT_EOC);
+					%foreach callIdx = NumSFcnSysOutputCalls
+						%if (ISEQUAL(callIdx, %<ADC_it_port_num>))				
+							%if LibIsEqual(SFcnSystemOutputCall[callIdx].BlockToCall,"unconnected")
+								%assign wrnTxt = "No code will be generated for ADC2 EOC IRQ  "\
+								"since it is not connected to a system."
+								%<LibReportWarning(wrnTxt)>
+								%continue
+							%endif
+							%% call the downstream system
+							%<LibBlockExecuteFcnCall(block, callIdx)>\
+						%endif
+					%endforeach
+				}
+				%assign  ADC_it_port_num = %<ADC_it_port_num> + 1
+					%endif
+					%if(ISEQUAL(ADC_JEOC,"on"))
+				if(ADC_GetITStatus(ADC2, ADC_IT_JEOC) == SET)
+				{
+					/* Clear ADC2 JEOC interrupt pending bit */
+					ADC_ClearITPendingBit(ADC2, ADC_IT_JEOC);
+					%foreach callIdx = NumSFcnSysOutputCalls
+						%if (ISEQUAL(callIdx, %<ADC_it_port_num>))				
+							%if LibIsEqual(SFcnSystemOutputCall[callIdx].BlockToCall,"unconnected")
+								%assign wrnTxt = "No code will be generated for ADC2 JEOC IRQ  "\
+								"since it is not connected to a system."
+								%<LibReportWarning(wrnTxt)>
+								%continue
+							%endif
+							%% call the downstream system
+							%<LibBlockExecuteFcnCall(block, callIdx)>\
+						%endif
+					%endforeach
+				}
+				%assign  ADC_it_port_num = %<ADC_it_port_num> + 1
+					%endif
+					%if(ISEQUAL(ADC_AWD,"on"))
+				if(ADC_GetITStatus(ADC2, ADC_IT_AWD) == SET)
+				{
+					/* Clear ADC2 AWD interrupt pending bit */
+					ADC_ClearITPendingBit(ADC2, ADC_IT_AWD);
+					%foreach callIdx = NumSFcnSysOutputCalls
+						%if (ISEQUAL(callIdx, %<ADC_it_port_num>))				
+							%if LibIsEqual(SFcnSystemOutputCall[callIdx].BlockToCall,"unconnected")
+								%assign wrnTxt = "No code will be generated for ADC2 AWD IRQ  "\
+								"since it is not connected to a system."
+								%<LibReportWarning(wrnTxt)>
+								%continue
+							%endif
+							%% call the downstream system
+							%<LibBlockExecuteFcnCall(block, callIdx)>\
+						%endif
+					%endforeach
+				}
+				%assign  ADC_it_port_num = %<ADC_it_port_num> + 1
+					%endif
+					%if(ISEQUAL(ADC_OVR,"on"))
+				if(ADC_GetITStatus(ADC2, ADC_IT_OVR) == SET)
+				{
+					/* Clear ADC2 OVR interrupt pending bit */
+					ADC_ClearITPendingBit(ADC2, ADC_IT_OVR);
+					%foreach callIdx = NumSFcnSysOutputCalls
+						%if (ISEQUAL(callIdx, %<ADC_it_port_num>))				
+							%if LibIsEqual(SFcnSystemOutputCall[callIdx].BlockToCall,"unconnected")
+								%assign wrnTxt = "No code will be generated for ADC2 OVR IRQ  "\
+								"since it is not connected to a system."
+								%<LibReportWarning(wrnTxt)>
+								%continue
+							%endif
+							%% call the downstream system
+							%<LibBlockExecuteFcnCall(block, callIdx)>\
+						%endif
+					%endforeach
+				}
+				%assign  ADC_it_port_num = %<ADC_it_port_num> + 1
+					%endif
+				%endif
+				%if (ISEQUAL(ADC3_en,"on"))
+					%if(ISEQUAL(ADC_EOC,"on"))
+				if(ADC_GetITStatus(ADC3, ADC_IT_EOC) == SET)
+				{
+					/* Clear ADC3 EOC interrupt pending bit */
+					ADC_ClearITPendingBit(ADC3, ADC_IT_EOC);
+					%foreach callIdx = NumSFcnSysOutputCalls
+						%if (ISEQUAL(callIdx, %<ADC_it_port_num>))				
+							%if LibIsEqual(SFcnSystemOutputCall[callIdx].BlockToCall,"unconnected")
+								%assign wrnTxt = "No code will be generated for ADC3 EOC IRQ  "\
+								"since it is not connected to a system."
+								%<LibReportWarning(wrnTxt)>
+								%continue
+							%endif
+							%% call the downstream system
+							%<LibBlockExecuteFcnCall(block, callIdx)>\
+						%endif
+					%endforeach
+				}
+				%assign  ADC_it_port_num = %<ADC_it_port_num> + 1
+					%endif
+					%if(ISEQUAL(ADC_JEOC,"on"))
+				if(ADC_GetITStatus(ADC3, ADC_IT_JEOC) == SET)
+				{
+					/* Clear ADC3 JEOC interrupt pending bit */
+					ADC_ClearITPendingBit(ADC3, ADC_IT_JEOC);
+					%foreach callIdx = NumSFcnSysOutputCalls
+						%if (ISEQUAL(callIdx, %<ADC_it_port_num>))				
+							%if LibIsEqual(SFcnSystemOutputCall[callIdx].BlockToCall,"unconnected")
+								%assign wrnTxt = "No code will be generated for ADC3 JEOC IRQ  "\
+								"since it is not connected to a system."
+								%<LibReportWarning(wrnTxt)>
+								%continue
+							%endif
+							%% call the downstream system
+							%<LibBlockExecuteFcnCall(block, callIdx)>\
+						%endif
+					%endforeach
+				}
+				%assign  ADC_it_port_num = %<ADC_it_port_num> + 1
+					%endif
+					%if(ISEQUAL(ADC_AWD,"on"))
+				if(ADC_GetITStatus(ADC3, ADC_IT_AWD) == SET)
+				{
+					/* Clear ADC3 AWD interrupt pending bit */
+					ADC_ClearITPendingBit(ADC3, ADC_IT_AWD);
+					%foreach callIdx = NumSFcnSysOutputCalls
+						%if (ISEQUAL(callIdx, %<ADC_it_port_num>))				
+							%if LibIsEqual(SFcnSystemOutputCall[callIdx].BlockToCall,"unconnected")
+								%assign wrnTxt = "No code will be generated for ADC3 AWD IRQ  "\
+								"since it is not connected to a system."
+								%<LibReportWarning(wrnTxt)>
+								%continue
+							%endif
+							%% call the downstream system
+							%<LibBlockExecuteFcnCall(block, callIdx)>\
+						%endif
+					%endforeach
+				}
+				%assign  ADC_it_port_num = %<ADC_it_port_num> + 1
+					%endif
+					%if(ISEQUAL(ADC_OVR,"on"))
+				if(ADC_GetITStatus(ADC3, ADC_IT_OVR) == SET)
+				{
+					/* Clear ADC3 OVR interrupt pending bit */
+					ADC_ClearITPendingBit(ADC3, ADC_IT_OVR);
+					%foreach callIdx = NumSFcnSysOutputCalls
+						%if (ISEQUAL(callIdx, %<ADC_it_port_num>))				
+							%if LibIsEqual(SFcnSystemOutputCall[callIdx].BlockToCall,"unconnected")
+								%assign wrnTxt = "No code will be generated for ADC3 OVR IRQ  "\
+								"since it is not connected to a system."
+								%<LibReportWarning(wrnTxt)>
+								%continue
+							%endif
+							%% call the downstream system
+							%<LibBlockExecuteFcnCall(block, callIdx)>\
+						%endif
+					%endforeach
+				}
+				%assign  ADC_it_port_num = %<ADC_it_port_num> + 1
+					%endif
+				%endif
+			%break
+			%case "EXTint"
+				if(EXTI_GetITStatus(EXTI_Line%<EXTI_line>) != RESET)
+				{
+					/* Clear the EXTI line 0 pending bit */
+					EXTI_ClearITPendingBit(EXTI_Line%<EXTI_line>);
+					%foreach callIdx = NumSFcnSysOutputCalls
+						%if LibIsEqual(SFcnSystemOutputCall[callIdx].BlockToCall,"unconnected")
+							%assign wrnTxt = "No code will be generated for EXTI_Line%<EXTI_line>  "\
+							"since it is not connected to a system."
+							%<LibReportWarning(wrnTxt)>
+							%continue
+						%endif
+						%% call the downstream system
+						%<LibBlockExecuteFcnCall(block, callIdx)>\
+					%endforeach
+				}			
+			%break
+			%case "SysTick"
+			%break
+		%endswitch
+		}
+       %closefile IT_Config_Buf
+       %<LibSetSourceFileSection(modelC,"Functions",IT_Config_Buf)>
+	%endfunction
+
+
+%% Code for initialization:
+    %function Start(block,system) Output
+		%assign  Periph = SFcnParamSettings.Peripheral_name
+		%assign  TimeBase = SFcnParamSettings.Time_base
+		%assign  ADC1_en = SFcnParamSettings.ADC1_en
+		%assign  ADC2_en = SFcnParamSettings.ADC2_en
+		%assign  ADC3_en = SFcnParamSettings.ADC3_en
+		%assign  ADC_EOC = SFcnParamSettings.ADC_EOC
+		%assign  ADC_JEOC = SFcnParamSettings.ADC_JEOC
+		%assign  ADC_AWD = SFcnParamSettings.ADC_AWD
+		%assign  ADC_OVR = SFcnParamSettings.ADC_OVR				
+		%assign  EXTI_port = SFcnParamSettings.EXTI_port
+		%assign  EXTI_line = SFcnParamSettings.EXTI_line
+		%assign  EXTI_trig = SFcnParamSettings.EXTI_trig		
+		%assign  GroupPrio = SFcnParamSettings.Group_prio
+		%assign  Pre0Prio = SFcnParamSettings.Pre0_prio
+		%assign  Sub0Prio = SFcnParamSettings.Sub0_prio
+		%assign  Pre1Prio = SFcnParamSettings.Pre1_prio
+		%assign  Sub1Prio = SFcnParamSettings.Sub1_prio
+		%assign  Pre2Prio = SFcnParamSettings.Pre2_prio
+		%assign  Sub2Prio = SFcnParamSettings.Sub2_prio
+		%assign  Pre3Prio = SFcnParamSettings.Pre3_prio
+		%assign  Sub3Prio = SFcnParamSettings.Sub3_prio
+		%assign  Pre4Prio = SFcnParamSettings.Pre4_prio
+		%assign  Sub4Prio = SFcnParamSettings.Sub4_prio
+		%assign  EXTI_line_num = CAST("Real", EXTI_line)
+		
+        %openfile IT_Config_Buf
+ 		
+        %if EXISTS(::InsertInitHeader) && (::InsertInitHeader == TLC_TRUE)
+            %assign ::InsertInitHeader    = TLC_FALSE
+            /******************************************************
+							Interrupt  Configuration
+            *******************************************************/
+        %endif
+		
+		%% Select Periph interrupt to configure
+		%switch(Periph)
+			%case "ADC"
+				%if (ISEQUAL(GroupPrio, "NVIC_PriorityGroup_0"))	
+				NVIC_ADC_InitStructure.NVIC_IRQChannelPreemptionPriority = %<Pre0Prio>;
+				NVIC_ADC_InitStructure.NVIC_IRQChannelSubPriority = %<Sub0Prio>;
+				%elseif (ISEQUAL(GroupPrio, "NVIC_PriorityGroup_1"))
+				NVIC_ADC_InitStructure.NVIC_IRQChannelPreemptionPriority = %<Pre1Prio>;
+				NVIC_ADC_InitStructure.NVIC_IRQChannelSubPriority = %<Sub1Prio>;
+				%elseif (ISEQUAL(GroupPrio, "NVIC_PriorityGroup_2"))
+				NVIC_ADC_InitStructure.NVIC_IRQChannelPreemptionPriority = %<Pre2Prio>;
+				NVIC_ADC_InitStructure.NVIC_IRQChannelSubPriority = %<Sub2Prio>;
+				%elseif (ISEQUAL(GroupPrio, "NVIC_PriorityGroup_3"))
+				NVIC_ADC_InitStructure.NVIC_IRQChannelPreemptionPriority = %<Pre3Prio>;
+				NVIC_ADC_InitStructure.NVIC_IRQChannelSubPriority = %<Sub3Prio>;
+				%else
+				NVIC_ADC_InitStructure.NVIC_IRQChannelPreemptionPriority = %<Pre4Prio>;
+				NVIC_ADC_InitStructure.NVIC_IRQChannelSubPriority = %<Sub4Prio>;
+				%endif
+				NVIC_ADC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
+				NVIC_ADC_InitStructure.NVIC_IRQChannel = ADC_IRQn;
+				NVIC_Init(&NVIC_ADC_InitStructure);     
+				%if (ISEQUAL(ADC1_en,"on"))
+					%if(ISEQUAL(ADC_EOC,"on"))
+				/* Enable ADC1 EOC interrupt */
+				ADC_ITConfig(ADC1, ADC_IT_EOC, ENABLE);
+					%endif
+					%if(ISEQUAL(ADC_JEOC,"on"))
+				/* Enable ADC1 JEOC interrupt */
+				ADC_ITConfig(ADC1, ADC_IT_JEOC, ENABLE);
+					%endif
+					%if(ISEQUAL(ADC_AWD,"on"))
+				/* Enable ADC1 AWD interrupt */
+				ADC_ITConfig(ADC1, ADC_IT_AWD, ENABLE);
+					%endif
+					%if(ISEQUAL(ADC_OVR,"on"))
+				/* Enable ADC1 OVR interrupt */
+				ADC_ITConfig(ADC1, ADC_IT_OVR, ENABLE);
+					%endif
+				%endif
+				%if (ISEQUAL(ADC2_en,"on"))
+					%if(ISEQUAL(ADC_EOC,"on"))
+				/* Enable ADC2 EOC interrupt */
+				ADC_ITConfig(ADC2, ADC_IT_EOC, ENABLE);
+					%endif
+					%if(ISEQUAL(ADC_JEOC,"on"))
+				/* Enable ADC2 JEOC interrupt */
+				ADC_ITConfig(ADC2, ADC_IT_JEOC, ENABLE);
+					%endif
+					%if(ISEQUAL(ADC_AWD,"on"))
+				/* Enable ADC2 AWD interrupt */
+				ADC_ITConfig(ADC2, ADC_IT_AWD, ENABLE);
+					%endif
+					%if(ISEQUAL(ADC_OVR,"on"))
+				/* Enable ADC2 OVR interrupt */
+				ADC_ITConfig(ADC2, ADC_IT_OVR, ENABLE);
+					%endif
+				%endif
+				%if (ISEQUAL(ADC3_en,"on"))
+					%if(ISEQUAL(ADC_EOC,"on"))
+				/* Enable ADC3 EOC interrupt */
+				ADC_ITConfig(ADC3, ADC_IT_EOC, ENABLE);
+					%endif
+					%if(ISEQUAL(ADC_JEOC,"on"))
+				/* Enable ADC3 JEOC interrupt */
+				ADC_ITConfig(ADC3, ADC_IT_JEOC, ENABLE);
+					%endif
+					%if(ISEQUAL(ADC_AWD,"on"))
+				/* Enable ADC3 AWD interrupt */
+				ADC_ITConfig(ADC3, ADC_IT_AWD, ENABLE);
+					%endif
+					%if(ISEQUAL(ADC_OVR,"on"))
+				/* Enable ADC3 OVR interrupt */
+				ADC_ITConfig(ADC3, ADC_IT_OVR, ENABLE);
+					%endif
+				%endif				
+			%break
+			%case "EXTint"
+				/* Connect EXTI%<EXTI_line> Line to %<EXTI_port>%<EXTI_line> pin */
+				SYSCFG_EXTILineConfig(EXTI_PortSource%<EXTI_port>, EXTI_PinSource%<EXTI_line>);
+
+				/* Configure EXTI%<EXTI_line> line */
+				EXTI_InitStructure.EXTI_Line = EXTI_Line%<EXTI_line>;
+				EXTI_InitStructure.EXTI_Mode = EXTI_Mode_Interrupt;
+				EXTI_InitStructure.EXTI_Trigger = EXTI_Trigger_%<EXTI_trig>;
+				EXTI_InitStructure.EXTI_LineCmd = ENABLE;
+				EXTI_Init(&EXTI_InitStructure);
+
+				%if (%<EXTI_line_num> < 5)
+				/* Enable and set EXTI%<EXTI_line> Interrupt to the requested priority */
+				NVIC_EXTI_InitStructure.NVIC_IRQChannel = EXTI%<EXTI_line>_IRQn;
+				%elseif (%<EXTI_line_num> < 10)
+				/* Enable and set EXTI9_5 Interrupt to the requested priority */
+				NVIC_EXTI_InitStructure.NVIC_IRQChannel = EXTI9_5_IRQn;
+				%else
+				/* Enable and set EXTI10_15 Interrupt to the requested priority */
+				NVIC_EXTI_InitStructure.NVIC_IRQChannel = EXTI10_15_IRQn;
+				%endif				
+				%if (ISEQUAL(GroupPrio, "NVIC_PriorityGroup_0"))	
+				NVIC_EXTI_InitStructure.NVIC_IRQChannelPreemptionPriority = %<Pre0Prio>;
+				NVIC_EXTI_InitStructure.NVIC_IRQChannelSubPriority = %<Sub0Prio>;
+				%elseif (ISEQUAL(GroupPrio, "NVIC_PriorityGroup_1"))
+				NVIC_EXTI_InitStructure.NVIC_IRQChannelPreemptionPriority = %<Pre1Prio>;
+				NVIC_EXTI_InitStructure.NVIC_IRQChannelSubPriority = %<Sub1Prio>;
+				%elseif (ISEQUAL(GroupPrio, "NVIC_PriorityGroup_2"))
+				NVIC_EXTI_InitStructure.NVIC_IRQChannelPreemptionPriority = %<Pre2Prio>;
+				NVIC_EXTI_InitStructure.NVIC_IRQChannelSubPriority = %<Sub2Prio>;
+				%elseif (ISEQUAL(GroupPrio, "NVIC_PriorityGroup_3"))
+				NVIC_EXTI_InitStructure.NVIC_IRQChannelPreemptionPriority = %<Pre3Prio>;
+				NVIC_EXTI_InitStructure.NVIC_IRQChannelSubPriority = %<Sub3Prio>;
+				%else
+				NVIC_EXTI_InitStructure.NVIC_IRQChannelPreemptionPriority = %<Pre4Prio>;
+				NVIC_EXTI_InitStructure.NVIC_IRQChannelSubPriority = %<Sub4Prio>;
+				%endif
+				NVIC_EXTI_InitStructure.NVIC_IRQChannelCmd = ENABLE;
+				NVIC_Init(&NVIC_EXTI_InitStructure);     
+			%break
+			%case "SysTick"
+				if (SysTick_Config((uint32_t)(SystemCoreClock * %<TimeBase>)))
+				{ 
+				  /* Capture error */ 
+				  while (1);
+				}		
+			%break
+		%endswitch
+		%closefile IT_Config_Buf
+		%<LibMdlStartCustomCode(IT_Config_Buf,"trailer")>;
+	%endfunction
+	
+	
+%% [EOF] IT_Config.tlc
+
+
+
+
+
+

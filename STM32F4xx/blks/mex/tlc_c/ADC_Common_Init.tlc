@@ -1,0 +1,196 @@
+%% $RCSfile: ADC_Common_Init.tlc,v $
+%% $Revision: 1.0 $
+%% $Date: 2012/01/26 $
+%%
+%% Abstract: ADC configuration
+%%    STM32F4xx ADC configuration code generation.
+%%    Generated code is based on STM32 Library files.
+%%
+%% Copyright 1990-2009 The MathWorks, Inc.
+
+%implements ADC_Common_Init "C"
+
+%if !EXISTS(::CreateADC_Common_Init)
+    %assign ::CreateADC_Common_Init  = TLC_TRUE
+%endif
+
+%if !EXISTS(::InsertInitHeader)
+    %assign ::InsertInitHeader  = TLC_TRUE
+%endif
+%if !EXISTS(::InsertIncludes)
+    %assign ::InsertIncludes  = TLC_TRUE
+%endif 
+
+    %assign ::CreateADC_Common_Init  = TLC_TRUE
+
+%trace CreateADC_Common_Init  %<CreateADC_Common_Init>
+
+
+%% Create function for ADC configuration:
+%if EXISTS(CreateADC_Common_Init) && (CreateADC_Common_Init == TLC_TRUE)
+
+    %%assign ::CreateADC_Common_Init = TLC_FALSE
+
+%% Code for system initialization:
+    %function Start(block,system) Output
+        %openfile ADC_Buf
+        %if EXISTS(::InsertInitHeader) && (::InsertInitHeader == TLC_TRUE)
+            %assign ::InsertInitHeader    = TLC_FALSE
+            /******************************************************
+                            ADC INITIALIZATION
+            *******************************************************/
+        %endif
+        #if ( defined (ADC_USE_DMA) || defined (ADC1_USE_DMA) || defined (ADC2_USE_DMA) || defined (ADC3_USE_DMA) )
+		/*ADC common DMA configuration*/
+		ADC_DMA_Common_Init();
+		#endif
+        /* ADC Initialization */
+        ADC_Common_Init();
+        %closefile ADC_Buf
+		%<LibMdlStartCustomCode(ADC_Buf,"execution")>;
+    %endfunction
+
+%% Code for ADC configuration call:
+    %function BlockTypeSetup(block, system) void
+        %assign SrcBaseName = LibGetMdlSrcBaseName()
+        %assign modelH      = LibCreateSourceFile("Header", "Simulink", SrcBaseName)
+        %assign modelC      = LibCreateSourceFile("Source", "Simulink", SrcBaseName)
+
+		%assign ADC_Mode = SFcnParamSettings.ADC_Mode
+		%assign ADC_Prescaler = SFcnParamSettings.ADC_Prescaler
+		%assign ADC_DMAAccessMode = SFcnParamSettings.ADC_DMAAccessMode
+		%assign ADC_TwoSamplingDelay = SFcnParamSettings.ADC_TwoSamplingDelay
+
+        %openfile ADC_Buf
+        #if ( defined (ADC_USE_DMA) || defined (ADC1_USE_DMA) || defined (ADC2_USE_DMA) || defined (ADC3_USE_DMA) )
+       /*******************************************************************************
+        * Function Name  : ADC_DMA_Common_Init
+        * Description    : DMA configuration for ADC 
+        * Input          : -
+        *******************************************************************************/		
+        void ADC_DMA_Common_Init(void)
+        {	
+			/* Enable DMA2 peripheral clocks for ADCs*/
+			RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_DMA2, ENABLE);
+			/* DMA2 configuration */
+			ADC_DMA2_InitStructure.DMA_Channel = DMA2_CHANNEL_DEF;  
+			ADC_DMA2_InitStructure.DMA_PeripheralBaseAddr = (uint32_t)ADC_DR_CCR_ADDRESS;
+			ADC_DMA2_InitStructure.DMA_Memory0BaseAddr = (uint32_t)&ADC_DMA_BUFFER;
+			ADC_DMA2_InitStructure.DMA_DIR = DMA_DIR_PeripheralToMemory;
+			ADC_DMA2_InitStructure.DMA_BufferSize = ADC_NUMBER_OF_CHANNELS;
+			ADC_DMA2_InitStructure.DMA_PeripheralInc = DMA_PeripheralInc_Disable;
+			if(ADC_NUMBER_OF_CHANNELS <= 1) {
+				ADC_DMA2_InitStructure.DMA_MemoryInc = DMA_MemoryInc_Disable;
+			} else {
+				ADC_DMA2_InitStructure.DMA_MemoryInc = DMA_MemoryInc_Enable;
+			}
+			%if (ISEQUAL(ADC_DMAAccessMode, "ADC_DMAAccessMode_2"))
+			ADC_DMA2_InitStructure.DMA_PeripheralDataSize = DMA_PeripheralDataSize_Word;
+			ADC_DMA2_InitStructure.DMA_MemoryDataSize = DMA_MemoryDataSize_Word;
+			%else
+			ADC_DMA2_InitStructure.DMA_PeripheralDataSize = DMA_PeripheralDataSize_HalfWord;
+			ADC_DMA2_InitStructure.DMA_MemoryDataSize = DMA_MemoryDataSize_HalfWord;
+			%endif
+			ADC_DMA2_InitStructure.DMA_Mode = DMA_Mode_Circular;
+			ADC_DMA2_InitStructure.DMA_Priority = DMA_Priority_High;
+			ADC_DMA2_InitStructure.DMA_FIFOMode = DMA_FIFOMode_Disable;
+			ADC_DMA2_InitStructure.DMA_FIFOThreshold = DMA_FIFOThreshold_HalfFull;
+			ADC_DMA2_InitStructure.DMA_MemoryBurst = DMA_MemoryBurst_Single;
+			ADC_DMA2_InitStructure.DMA_PeripheralBurst = DMA_PeripheralBurst_Single;
+			DMA_Init(DMA2_STREAM_DEF, &ADC_DMA2_InitStructure);
+				
+			/* DMA2 enable */
+			DMA_Cmd(DMA2_STREAM_DEF, ENABLE);		
+		}
+		#endif
+        /*******************************************************************************
+        * Function Name  : ADC_Common_Init
+        * Description    : Parameter Initialisation for all ADCs
+        * Input          : -
+        *******************************************************************************/		
+        void ADC_Common_Init(void)
+        {	
+			/* ADC Common Init */
+			ADC_CommonInitStructure.ADC_Mode = %<ADC_Mode>;
+			ADC_CommonInitStructure.ADC_Prescaler = %<ADC_Prescaler>;
+			ADC_CommonInitStructure.ADC_DMAAccessMode = %<ADC_DMAAccessMode>;
+			ADC_CommonInitStructure.ADC_TwoSamplingDelay = %<ADC_TwoSamplingDelay>;
+			ADC_CommonInit(&ADC_CommonInitStructure);
+        }
+        %closefile ADC_Buf
+        %<LibSetSourceFileSection(modelC,"Functions",ADC_Buf)>
+	
+%% Code for the function's declaration:
+        %openfile ADC_Buf
+            /* Function Declaration for DMA Configuration used for ADC*/
+	        void ADC_DMA_Common_Init(void);
+            /* Function Declaration for ADC Common Configuration */
+            void ADC_Common_Init(void);
+		%closefile ADC_Buf
+        %<LibSetSourceFileSection(modelC,"Declarations",ADC_Buf)>
+
+%% Code for the necessary variable definition:
+        %openfile ADC_Buf
+			/* Global Variable Definition for ADC Configuration */
+			ADC_CommonInitTypeDef ADC_CommonInitStructure;
+			DMA_InitTypeDef ADC_DMA2_InitStructure;
+			/* ADC mode definition is used to know DMA channel to use */
+			#define ADC_COMMON_MODE %<ADC_Mode>
+			/* DMA access mode definition is used to know data size */
+			#define ADC_DMA2_ACCESS_MODE %<ADC_DMAAccessMode>
+			/* ADC1/2/3 DR address and common CCR address */
+			#define ADC1_DR_ADDRESS    ((uint32_t)0x4001204C)
+			#define ADC2_DR_ADDRESS    ((uint32_t)0x4001214C)
+			#define ADC3_DR_ADDRESS    ((uint32_t)0x4001224C)
+			#define ADC_CCR_ADDRESS    ((uint32_t)0x40012308)
+			%if (!ISEQUAL(ADC_Mode, "ADC_Mode_Independent"))
+			/* ADC not indep mode : CCR Register is used  with channel0 stream0 */
+			#ifdef ADC_DR_CCR_ADDRESS
+			#undef ADC_DR_CCR_ADDRESS
+			#endif
+			#define ADC_DR_CCR_ADDRESS  ADC_CCR_ADDRESS
+			#ifdef DMA2_CHANNEL_DEF
+			#undef DMA2_CHANNEL_DEF
+			#endif
+			#define DMA2_CHANNEL_DEF DMA_Channel_0
+			#ifdef DMA2_STREAM_DEF
+			#undef DMA2_STREAM_DEF
+			#endif
+			#define DMA2_STREAM_DEF DMA2_Stream0
+			#define ADC_USE_DMA 1
+			/* DMA2 Number of ADC channels to scan */
+			#define ADC_NUMBER_OF_CHANNELS (ADC1_NB_CH + ADC2_NB_CH + ADC3_NB_CH) 
+			/* ADC DMA Acquisition buffer */
+			%if (ISEQUAL(ADC_DMAAccessMode, "ADC_DMAAccessMode_2"))
+			uint32_t ADCConvertedValue[ADC_NUMBER_OF_CHANNELS];
+			%elseif (!ISEQUAL(ADC_DMAAccessMode,"ADC_DMAAccessMode_Disabled"))
+			uint16_t ADCConvertedValue[ADC_NUMBER_OF_CHANNELS];			
+			%endif	
+			#define ADC_DMA_BUFFER ADCConvertedValue
+			%endif
+		%closefile ADC_Buf
+        %<LibSetSourceFileSection(modelC,"Definitions",ADC_Buf)>
+
+%% Code for required ADC includes:
+        %if EXISTS(::InsertIncludes) && (::InsertIncludes == TLC_TRUE)
+            %assign ::InsertIncludes    = TLC_FALSE
+            %openfile ADC_Buf
+				#include "stm32f4xx.h"
+            %closefile ADC_Buf
+            %<LibSetSourceFileSection(modelH,"Includes",ADC_Buf)>
+        %endif
+
+    %endfunction
+%else
+%% ERROR ADC COMMON INIT MUST BE CALLED ONCE ONLY 
+   %trace ERROR ADC COMMON INIT MUST BE CALLED ONCE ONLY 
+
+%endif 
+
+%% [EOF] ADC_Common_Init.tlc
+
+
+
+
+
+

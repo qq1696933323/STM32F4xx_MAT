@@ -1,0 +1,2238 @@
+Model {
+  Name			  "STM32_Timers"
+  Version		  8.2
+  MdlSubVersion		  0
+  SavedCharacterEncoding  "windows-1252"
+  GraphicalInterface {
+    NumRootInports	    0
+    NumRootOutports	    0
+    ParameterArgumentNames  ""
+    ComputedModelVersion    "1.270"
+    NumModelReferences	    0
+    NumTestPointedSignals   0
+  }
+  SaveDefaultBlockParams  on
+  ScopeRefreshTime	  0.035000
+  OverrideScopeRefreshTime on
+  DisableAllScopes	  off
+  DataTypeOverride	  "UseLocalSettings"
+  DataTypeOverrideAppliesTo "AllNumericTypes"
+  MinMaxOverflowLogging	  "UseLocalSettings"
+  MinMaxOverflowArchiveMode "Overwrite"
+  FPTRunName		  "Run 1"
+  MaxMDLFileLineLength	  120
+  Object {
+    $PropName		    "BdWindowsInfo"
+    $ObjectID		    1
+    $ClassName		    "Simulink.BDWindowsInfo"
+    Object {
+      $PropName		      "WindowsInfo"
+      $ObjectID		      2
+      $ClassName	      "Simulink.WindowInfo"
+      IsActive		      [1]
+      Location		      [4.0, 3.0, 595.0, 471.0]
+      Object {
+	$PropName		"ModelBrowserInfo"
+	$ObjectID		3
+	$ClassName		"Simulink.ModelBrowserInfo"
+	Visible			[0]
+	DockPosition		"Left"
+	Width			[50]
+	Height			[50]
+	Filter			[9]
+      }
+      Object {
+	$PropName		"ExplorerBarInfo"
+	$ObjectID		4
+	$ClassName		"Simulink.ExplorerBarInfo"
+	Visible			[1]
+      }
+      Object {
+	$PropName		"EditorsInfo"
+	$ObjectID		5
+	$ClassName		"Simulink.EditorInfo"
+	IsActive		[1]
+	ViewObjType		"SimulinkTopLevel"
+	LoadSaveID		"0"
+	Extents			[553.0, 304.0]
+	ZoomFactor		[1.0]
+	Offset			[0.0, 0.0]
+      }
+    }
+  }
+  Created		  "Wed Jan 04 18:03:16 2012"
+  Creator		  "reynaudp"
+  UpdateHistory		  "UpdateHistoryNever"
+  ModifiedByFormat	  "%<Auto>"
+  LastModifiedBy	  "reynaudp"
+  ModifiedDateFormat	  "%<Auto>"
+  LastModifiedDate	  "Tue Sep 24 18:02:24 2013"
+  RTWModifiedTimeStamp	  301946539
+  ModelVersionFormat	  "1.%<AutoIncrement:270>"
+  ConfigurationManager	  "none"
+  SampleTimeColors	  off
+  SampleTimeAnnotations	  off
+  LibraryLinkDisplay	  "disabled"
+  WideLines		  off
+  ShowLineDimensions	  off
+  ShowPortDataTypes	  on
+  ShowDesignRanges	  off
+  ShowLoopsOnError	  on
+  IgnoreBidirectionalLines off
+  ShowStorageClass	  off
+  ShowTestPointIcons	  on
+  ShowSignalResolutionIcons on
+  ShowViewerIcons	  on
+  SortedOrder		  off
+  ExecutionContextIcon	  off
+  ShowLinearizationAnnotations on
+  BlockNameDataTip	  off
+  BlockParametersDataTip  on
+  BlockDescriptionStringDataTip	off
+  ToolBar		  on
+  StatusBar		  on
+  BrowserShowLibraryLinks off
+  BrowserLookUnderMasks	  off
+  SimulationMode	  "external"
+  PauseTimes		  "5"
+  NumberOfSteps		  1
+  SnapshotBufferSize	  10
+  SnapshotInterval	  10
+  NumberOfLastSnapshots	  0
+  LinearizationMsg	  "none"
+  Profile		  off
+  ParamWorkspaceSource	  "MATLABWorkspace"
+  AccelSystemTargetFile	  "accel.tlc"
+  AccelTemplateMakefile	  "accel_default_tmf"
+  AccelMakeCommand	  "make_rtw"
+  TryForcingSFcnDF	  off
+  Object {
+    $PropName		    "DataLoggingOverride"
+    $ObjectID		    6
+    $ClassName		    "Simulink.SimulationData.ModelLoggingInfo"
+    model_		    "STM32_Timers"
+    overrideMode_	    [0.0]
+    Array {
+      Type		      "Cell"
+      Dimension		      1
+      Cell		      "STM32_Timers"
+      PropName		      "logAsSpecifiedByModels_"
+    }
+    Array {
+      Type		      "Cell"
+      Dimension		      1
+      Cell		      []
+      PropName		      "logAsSpecifiedByModelsSSIDs_"
+    }
+  }
+  RecordCoverage	  off
+  CovPath		  "/"
+  CovSaveName		  "covdata"
+  CovMetricSettings	  "dw"
+  CovNameIncrementing	  off
+  CovHtmlReporting	  on
+  CovForceBlockReductionOff on
+  CovEnableCumulative	  on
+  covSaveCumulativeToWorkspaceVar on
+  CovSaveSingleToWorkspaceVar on
+  CovCumulativeVarName	  "covCumulativeData"
+  CovCumulativeReport	  off
+  CovReportOnPause	  on
+  CovModelRefEnable	  "Off"
+  CovExternalEMLEnable	  off
+  ExtModeBatchMode	  off
+  ExtModeEnableFloating	  on
+  ExtModeTrigType	  "manual"
+  ExtModeTrigMode	  "normal"
+  ExtModeTrigPort	  "1"
+  ExtModeTrigElement	  "any"
+  ExtModeTrigDuration	  1000
+  ExtModeTrigDurationFloating "auto"
+  ExtModeTrigHoldOff	  0
+  ExtModeTrigDelay	  0
+  ExtModeTrigDirection	  "rising"
+  ExtModeTrigLevel	  0
+  ExtModeArchiveMode	  "off"
+  ExtModeAutoIncOneShot	  off
+  ExtModeIncDirWhenArm	  off
+  ExtModeAddSuffixToVar	  off
+  ExtModeWriteAllDataToWs off
+  ExtModeArmWhenConnect	  on
+  ExtModeSkipDownloadWhenConnect off
+  ExtModeLogAll		  on
+  ExtModeAutoUpdateStatusClock on
+  BufferReuse		  on
+  ShowModelReferenceBlockVersion off
+  ShowModelReferenceBlockIO on
+  Array {
+    Type		    "Handle"
+    Dimension		    1
+    Simulink.ConfigSet {
+      $ObjectID		      7
+      Version		      "1.13.1"
+      Array {
+	Type			"Handle"
+	Dimension		8
+	Simulink.SolverCC {
+	  $ObjectID		  8
+	  Version		  "1.13.1"
+	  StartTime		  "0.0"
+	  StopTime		  "10.0"
+	  AbsTol		  "auto"
+	  FixedStep		  "auto"
+	  InitialStep		  "auto"
+	  MaxNumMinSteps	  "-1"
+	  MaxOrder		  5
+	  ZcThreshold		  "auto"
+	  ConsecutiveZCsStepRelTol "10*128*eps"
+	  MaxConsecutiveZCs	  "1000"
+	  ExtrapolationOrder	  4
+	  NumberNewtonIterations  1
+	  MaxStep		  "auto"
+	  MinStep		  "auto"
+	  MaxConsecutiveMinStep	  "1"
+	  RelTol		  "1e-3"
+	  SolverMode		  "Auto"
+	  EnableConcurrentExecution off
+	  ConcurrentTasks	  off
+	  Solver		  "ode45"
+	  SolverName		  "ode45"
+	  SolverJacobianMethodControl "auto"
+	  ShapePreserveControl	  "DisableAll"
+	  ZeroCrossControl	  "UseLocalSettings"
+	  ZeroCrossAlgorithm	  "Nonadaptive"
+	  AlgebraicLoopSolver	  "TrustRegion"
+	  SolverResetMethod	  "Fast"
+	  PositivePriorityOrder	  off
+	  AutoInsertRateTranBlk	  off
+	  SampleTimeConstraint	  "Unconstrained"
+	  InsertRTBMode		  "Whenever possible"
+	}
+	Simulink.DataIOCC {
+	  $ObjectID		  9
+	  Version		  "1.13.1"
+	  Decimation		  "1"
+	  ExternalInput		  "[t, u]"
+	  FinalStateName	  "xFinal"
+	  InitialState		  "xInitial"
+	  LimitDataPoints	  on
+	  MaxDataPoints		  "1000"
+	  LoadExternalInput	  off
+	  LoadInitialState	  off
+	  SaveFinalState	  off
+	  SaveCompleteFinalSimState off
+	  SaveFormat		  "Array"
+	  SignalLoggingSaveFormat "ModelDataLogs"
+	  SaveOutput		  on
+	  SaveState		  off
+	  SignalLogging		  on
+	  DSMLogging		  on
+	  InspectSignalLogs	  off
+	  SaveTime		  on
+	  ReturnWorkspaceOutputs  off
+	  StateSaveName		  "xout"
+	  TimeSaveName		  "tout"
+	  OutputSaveName	  "yout"
+	  SignalLoggingName	  "logsout"
+	  DSMLoggingName	  "dsmout"
+	  OutputOption		  "RefineOutputTimes"
+	  OutputTimes		  "[]"
+	  ReturnWorkspaceOutputsName "out"
+	  Refine		  "1"
+	}
+	Simulink.OptimizationCC {
+	  $ObjectID		  10
+	  Version		  "1.13.1"
+	  BlockReduction	  on
+	  BooleanDataType	  on
+	  ConditionallyExecuteInputs on
+	  InlineParams		  off
+	  UseIntDivNetSlope	  off
+	  UseFloatMulNetSlope	  off
+	  DefaultUnderspecifiedDataType	"double"
+	  UseSpecifiedMinMax	  off
+	  InlineInvariantSignals  off
+	  OptimizeBlockIOStorage  on
+	  BufferReuse		  on
+	  EnhancedBackFolding	  off
+	  StrengthReduction	  off
+	  ExpressionFolding	  on
+	  BooleansAsBitfields	  off
+	  BitfieldContainerType	  "uint_T"
+	  EnableMemcpy		  on
+	  MemcpyThreshold	  64
+	  PassReuseOutputArgsAs	  "Structure reference"
+	  ExpressionDepthLimit	  2147483647
+	  FoldNonRolledExpr	  on
+	  LocalBlockOutputs	  on
+	  RollThreshold		  5
+	  SystemCodeInlineAuto	  off
+	  StateBitsets		  off
+	  DataBitsets		  off
+	  ActiveStateOutputEnumStorageType "Native Integer"
+	  UseTempVars		  off
+	  ZeroExternalMemoryAtStartup on
+	  ZeroInternalMemoryAtStartup on
+	  InitFltsAndDblsToZero	  off
+	  NoFixptDivByZeroProtection off
+	  EfficientFloat2IntCast  off
+	  EfficientMapNaN2IntZero on
+	  OptimizeModelRefInitCode on
+	  LifeSpan		  "1"
+	  MaxStackSize		  "Inherit from target"
+	  BufferReusableBoundary  on
+	  SimCompilerOptimization "Off"
+	  AccelVerboseBuild	  off
+	  ParallelExecutionInRapidAccelerator on
+	}
+	Simulink.DebuggingCC {
+	  $ObjectID		  11
+	  Version		  "1.13.1"
+	  RTPrefix		  "error"
+	  ConsistencyChecking	  "none"
+	  ArrayBoundsChecking	  "none"
+	  SignalInfNanChecking	  "none"
+	  SignalRangeChecking	  "none"
+	  ReadBeforeWriteMsg	  "UseLocalSettings"
+	  WriteAfterWriteMsg	  "UseLocalSettings"
+	  WriteAfterReadMsg	  "UseLocalSettings"
+	  AlgebraicLoopMsg	  "warning"
+	  ArtificialAlgebraicLoopMsg "warning"
+	  SaveWithDisabledLinksMsg "warning"
+	  SaveWithParameterizedLinksMsg	"warning"
+	  CheckSSInitialOutputMsg on
+	  UnderspecifiedInitializationDetection	"Classic"
+	  MergeDetectMultiDrivingBlocksExec "none"
+	  CheckExecutionContextPreStartOutputMsg off
+	  CheckExecutionContextRuntimeOutputMsg	off
+	  SignalResolutionControl "UseLocalSettings"
+	  BlockPriorityViolationMsg "warning"
+	  MinStepSizeMsg	  "warning"
+	  TimeAdjustmentMsg	  "none"
+	  MaxConsecutiveZCsMsg	  "error"
+	  MaskedZcDiagnostic	  "warning"
+	  IgnoredZcDiagnostic	  "warning"
+	  SolverPrmCheckMsg	  "warning"
+	  InheritedTsInSrcMsg	  "warning"
+	  DiscreteInheritContinuousMsg "warning"
+	  MultiTaskDSMMsg	  "error"
+	  MultiTaskCondExecSysMsg "error"
+	  MultiTaskRateTransMsg	  "error"
+	  SingleTaskRateTransMsg  "none"
+	  TasksWithSamePriorityMsg "warning"
+	  SigSpecEnsureSampleTimeMsg "warning"
+	  CheckMatrixSingularityMsg "none"
+	  IntegerOverflowMsg	  "warning"
+	  Int32ToFloatConvMsg	  "warning"
+	  ParameterDowncastMsg	  "error"
+	  ParameterOverflowMsg	  "error"
+	  ParameterUnderflowMsg	  "none"
+	  ParameterPrecisionLossMsg "warning"
+	  ParameterTunabilityLossMsg "warning"
+	  FixptConstUnderflowMsg  "none"
+	  FixptConstOverflowMsg	  "none"
+	  FixptConstPrecisionLossMsg "none"
+	  UnderSpecifiedDataTypeMsg "none"
+	  UnnecessaryDatatypeConvMsg "none"
+	  VectorMatrixConversionMsg "none"
+	  InvalidFcnCallConnMsg	  "error"
+	  FcnCallInpInsideContextMsg "EnableAllAsWarning"
+	  SignalLabelMismatchMsg  "none"
+	  UnconnectedInputMsg	  "warning"
+	  UnconnectedOutputMsg	  "warning"
+	  UnconnectedLineMsg	  "warning"
+	  SFcnCompatibilityMsg	  "none"
+	  FrameProcessingCompatibilityMsg "warning"
+	  UniqueDataStoreMsg	  "none"
+	  BusObjectLabelMismatch  "warning"
+	  RootOutportRequireBusObject "warning"
+	  AssertControl		  "UseLocalSettings"
+	  EnableOverflowDetection off
+	  ModelReferenceIOMsg	  "none"
+	  ModelReferenceMultiInstanceNormalModeStructChecksumCheck "error"
+	  ModelReferenceVersionMismatchMessage "none"
+	  ModelReferenceIOMismatchMessage "none"
+	  ModelReferenceCSMismatchMessage "none"
+	  UnknownTsInhSupMsg	  "warning"
+	  ModelReferenceDataLoggingMessage "warning"
+	  ModelReferenceSymbolNameMessage "warning"
+	  ModelReferenceExtraNoncontSigs "error"
+	  StateNameClashWarn	  "warning"
+	  SimStateInterfaceChecksumMismatchMsg "warning"
+	  SimStateOlderReleaseMsg "error"
+	  InitInArrayFormatMsg	  "warning"
+	  StrictBusMsg		  "ErrorOnBusTreatedAsVector"
+	  BusNameAdapt		  "WarnAndRepair"
+	  NonBusSignalsTreatedAsBus "none"
+	  LoggingUnavailableSignals "error"
+	  BlockIODiagnostic	  "none"
+	  SFUnusedDataAndEventsDiag "warning"
+	  SFUnexpectedBacktrackingDiag "warning"
+	  SFInvalidInputDataAccessInChartInitDiag "warning"
+	  SFNoUnconditionalDefaultTransitionDiag "warning"
+	  SFTransitionOutsideNaturalParentDiag "warning"
+	  SFUnconditionalTransitionShadowingDiag "warning"
+	  SFUndirectedBroadcastEventsDiag "warning"
+	  SFTransitionActionBeforeConditionDiag	"warning"
+	}
+	Simulink.HardwareCC {
+	  $ObjectID		  12
+	  Version		  "1.13.1"
+	  ProdBitPerChar	  8
+	  ProdBitPerShort	  16
+	  ProdBitPerInt		  32
+	  ProdBitPerLong	  32
+	  ProdBitPerLongLong	  64
+	  ProdBitPerFloat	  32
+	  ProdBitPerDouble	  64
+	  ProdBitPerPointer	  32
+	  ProdLargestAtomicInteger "Integer"
+	  ProdLargestAtomicFloat  "Float"
+	  ProdIntDivRoundTo	  "Zero"
+	  ProdEndianess		  "LittleEndian"
+	  ProdWordSize		  32
+	  ProdShiftRightIntArith  on
+	  ProdLongLongMode	  off
+	  ProdHWDeviceType	  "STMicroelectronics->STM32F4xx 32-bit Cortex-M4"
+	  TargetBitPerChar	  8
+	  TargetBitPerShort	  16
+	  TargetBitPerInt	  32
+	  TargetBitPerLong	  32
+	  TargetBitPerLongLong	  64
+	  TargetBitPerFloat	  32
+	  TargetBitPerDouble	  64
+	  TargetBitPerPointer	  32
+	  TargetLargestAtomicInteger "Char"
+	  TargetLargestAtomicFloat "None"
+	  TargetShiftRightIntArith on
+	  TargetLongLongMode	  off
+	  TargetIntDivRoundTo	  "Undefined"
+	  TargetEndianess	  "Unspecified"
+	  TargetWordSize	  32
+	  TargetTypeEmulationWarnSuppressLevel 0
+	  TargetPreprocMaxBitsSint 32
+	  TargetPreprocMaxBitsUint 32
+	  TargetHWDeviceType	  "Specified"
+	  TargetUnknown		  off
+	  ProdEqTarget		  on
+	}
+	Simulink.ModelReferenceCC {
+	  $ObjectID		  13
+	  Version		  "1.13.1"
+	  UpdateModelReferenceTargets "IfOutOfDateOrStructuralChange"
+	  CheckModelReferenceTargetMessage "error"
+	  EnableParallelModelReferenceBuilds off
+	  ParallelModelReferenceErrorOnInvalidPool on
+	  ParallelModelReferenceMATLABWorkerInit "None"
+	  ModelReferenceNumInstancesAllowed "Multi"
+	  PropagateVarSize	  "Infer from blocks in model"
+	  ModelReferencePassRootInputsByReference on
+	  ModelReferenceMinAlgLoopOccurrences off
+	  PropagateSignalLabelsOutOfModel off
+	  SupportModelReferenceSimTargetCustomCode off
+	}
+	Simulink.SFSimCC {
+	  $ObjectID		  14
+	  Version		  "1.13.1"
+	  SFSimEnableDebug	  on
+	  SFSimOverflowDetection  on
+	  SFSimEcho		  on
+	  SimBlas		  on
+	  SimCtrlC		  on
+	  SimExtrinsic		  on
+	  SimIntegrity		  on
+	  SimUseLocalCustomCode	  off
+	  SimParseCustomCode	  on
+	  SimBuildMode		  "sf_incremental_build"
+	  SimGenImportedTypeDefs  off
+	}
+	Simulink.RTWCC {
+	  $BackupClass		  "Simulink.RTWCC"
+	  $ObjectID		  15
+	  Version		  "1.13.1"
+	  Array {
+	    Type		    "Cell"
+	    Dimension		    12
+	    Cell		    "TargetLang"
+	    Cell		    "TLCOptions"
+	    Cell		    "GenerateMakefile"
+	    Cell		    "MakeCommand"
+	    Cell		    "CustomHeaderCode"
+	    Cell		    "CustomInclude"
+	    Cell		    "CustomInitializer"
+	    Cell		    "CustomLibrary"
+	    Cell		    "CustomSource"
+	    Cell		    "CustomSourceCode"
+	    Cell		    "CustomTerminator"
+	    Cell		    "IncludeERTFirstTime"
+	    PropName		    "DisabledProps"
+	  }
+	  SystemTargetFile	  "stm32F4xx.tlc"
+	  TLCOptions		  ""
+	  GenCodeOnly		  off
+	  MakeCommand		  "make_rtw"
+	  GenerateMakefile	  on
+	  PackageGeneratedCodeAndArtifacts off
+	  PackageName		  ""
+	  TemplateMakefile	  "stm32F4xx.tmf"
+	  PostCodeGenCommand	  ""
+	  Description		  "stm32F4xx (Embedded Target)"
+	  GenerateReport	  off
+	  SaveLog		  off
+	  RTWVerbose		  on
+	  RetainRTWFile		  off
+	  ProfileTLC		  off
+	  TLCDebug		  off
+	  TLCCoverage		  off
+	  TLCAssert		  off
+	  ProcessScriptMode	  "Default"
+	  ConfigurationMode	  "Optimized"
+	  ProcessScript		  "stm32F4xx_make_rtw_hook"
+	  ConfigurationScript	  ""
+	  ConfigAtBuild		  off
+	  RTWUseLocalCustomCode	  off
+	  RTWUseSimCustomCode	  off
+	  CustomSourceCode	  ""
+	  CustomHeaderCode	  ""
+	  CustomInclude		  ""
+	  CustomSource		  ""
+	  CustomLibrary		  ""
+	  CustomInitializer	  ""
+	  CustomTerminator	  ""
+	  Toolchain		  "Automatically locate an installed toolchain"
+	  BuildConfiguration	  "Faster Builds"
+	  IncludeHyperlinkInReport off
+	  LaunchReport		  off
+	  PortableWordSizes	  off
+	  GenerateErtSFunction	  off
+	  CreateSILPILBlock	  "PIL"
+	  CodeExecutionProfiling  off
+	  CodeExecutionProfileVariable "executionProfile"
+	  CodeProfilingSaveOptions "SummaryOnly"
+	  CodeProfilingInstrumentation off
+	  SILDebugging		  off
+	  TargetLang		  "C"
+	  IncludeBusHierarchyInRTWFileBlockHierarchyMap	off
+	  IncludeERTFirstTime	  off
+	  GenerateTraceInfo	  off
+	  GenerateTraceReport	  off
+	  GenerateTraceReportSl	  off
+	  GenerateTraceReportSf	  off
+	  GenerateTraceReportEml  off
+	  GenerateCodeInfo	  off
+	  GenerateWebview	  off
+	  GenerateCodeMetricsReport off
+	  GenerateCodeReplacementReport	off
+	  RTWCompilerOptimization "Off"
+	  RTWCustomCompilerOptimizations ""
+	  CheckMdlBeforeBuild	  "Off"
+	  CustomRebuildMode	  "OnUpdate"
+	  DataInitializer	  ""
+	  SharedConstantsCachingThreshold 1024
+	  Array {
+	    Type		    "Handle"
+	    Dimension		    2
+	    Simulink.CodeAppCC {
+	      $ObjectID		      16
+	      Version		      "1.13.1"
+	      Array {
+		Type			"Cell"
+		Dimension		1
+		Cell			"IgnoreCustomStorageClasses"
+		PropName		"DisabledProps"
+	      }
+	      ForceParamTrailComments off
+	      GenerateComments	      on
+	      IgnoreCustomStorageClasses off
+	      IgnoreTestpoints	      off
+	      IncHierarchyInIds	      off
+	      MaxIdLength	      31
+	      PreserveName	      off
+	      PreserveNameWithParent  off
+	      ShowEliminatedStatement off
+	      OperatorAnnotations     off
+	      IncAutoGenComments      off
+	      SimulinkDataObjDesc     off
+	      SFDataObjDesc	      off
+	      MATLABFcnDesc	      off
+	      IncDataTypeInIds	      off
+	      MangleLength	      1
+	      CustomSymbolStrGlobalVar "$R$N$M"
+	      CustomSymbolStrType     "$N$R$M"
+	      CustomSymbolStrField    "$N$M"
+	      CustomSymbolStrFcn      "$R$N$M$F"
+	      CustomSymbolStrFcnArg   "rt$I$N$M"
+	      CustomSymbolStrBlkIO    "rtb_$N$M"
+	      CustomSymbolStrTmpVar   "$N$M"
+	      CustomSymbolStrMacro    "$R$N$M"
+	      CustomSymbolStrUtil     "$N$C"
+	      DefineNamingRule	      "None"
+	      ParamNamingRule	      "None"
+	      SignalNamingRule	      "None"
+	      InsertBlockDesc	      off
+	      InsertPolySpaceComments off
+	      SimulinkBlockComments   on
+	      MATLABSourceComments    off
+	      EnableCustomComments    off
+	      InternalIdentifier      "Classic"
+	      InlinedPrmAccess	      "Literals"
+	      ReqsInCode	      off
+	      UseSimReservedNames     off
+	    }
+	    Simulink.STFCustomTargetCC {
+	      $BackupClass	      "Simulink.TargetCC"
+	      $ObjectID		      17
+	      Version		      "1.13.1"
+	      Array {
+		Type			"Cell"
+		Dimension		13
+		Cell			"Target_Inst_path"
+		Cell			"PurelyIntegerCode"
+		Cell			"SupportNonFinite"
+		Cell			"SupportComplex"
+		Cell			"SupportContinuousTime"
+		Cell			"SupportNonInlinedSFcns"
+		Cell			"SupportAbsoluteTime"
+		Cell			"CombineOutputUpdateFcns"
+		Cell			"GenerateErtSFunction"
+		Cell			"PortableWordSizes"
+		Cell			"MatFileLogging"
+		Cell			"GenerateSampleERTMain"
+		Cell			"CompilerPath"
+		PropName		"DisabledProps"
+	      }
+	      TargetFcnLib	      "ansi_tfl_table_tmw.mat"
+	      TargetLibSuffix	      ""
+	      TargetPreCompLibLocation ""
+	      CodeReplacementLibrary  "ANSI_C"
+	      UtilityFuncGeneration   "Auto"
+	      ERTMultiwordTypeDef     "System defined"
+	      ERTMultiwordLength      256
+	      MultiwordLength	      2048
+	      GenerateFullHeader      on
+	      GenerateSampleERTMain   off
+	      GenerateTestInterfaces  off
+	      IsPILTarget	      off
+	      ModelReferenceCompliant off
+	      ParMdlRefBuildCompliant off
+	      CompOptLevelCompliant   off
+	      ConcurrentExecutionCompliant off
+	      IncludeMdlTerminateFcn  off
+	      GeneratePreprocessorConditionals "Use local settings"
+	      CombineOutputUpdateFcns on
+	      CombineSignalStateStructs	off
+	      SuppressErrorStatus     on
+	      ERTFirstTimeCompliant   on
+	      IncludeFileDelimiter    "Auto"
+	      ERTCustomFileBanners    on
+	      SupportAbsoluteTime     off
+	      LogVarNameModifier      "rt_"
+	      MatFileLogging	      off
+	      MultiInstanceERTCode    off
+	      SupportNonFinite	      off
+	      SupportComplex	      off
+	      PurelyIntegerCode	      off
+	      SupportContinuousTime   off
+	      SupportNonInlinedSFcns  off
+	      SupportVariableSizeSignals off
+	      EnableShiftOperators    on
+	      ParenthesesLevel	      "Nominal"
+	      MATLABClassNameForMDSCustomization "Simulink.SoftwareTarget.ERTCustomization"
+	      ModelStepFunctionPrototypeControlCompliant off
+	      CPPClassGenCompliant    off
+	      AutosarCompliant	      off
+	      GRTInterface	      off
+	      GenerateAllocFcn	      off
+	      SystemTargetFile	      "stm32F4xx.tlc"
+	      DialogCategory	      0
+	      Array {
+		Type			"Handle"
+		Dimension		1
+		Simulink.ERTTargetCC {
+		  $BackupClass		  "Simulink.TargetCC"
+		  $ObjectID		  18
+		  Version		  "1.13.1"
+		  Array {
+		    Type		    "Cell"
+		    Dimension		    15
+		    Cell		    "PurelyIntegerCode"
+		    Cell		    "SupportNonFinite"
+		    Cell		    "SupportComplex"
+		    Cell		    "SupportContinuousTime"
+		    Cell		    "SupportNonInlinedSFcns"
+		    Cell		    "SupportAbsoluteTime"
+		    Cell		    "CombineOutputUpdateFcns"
+		    Cell		    "GenerateErtSFunction"
+		    Cell		    "PortableWordSizes"
+		    Cell		    "MatFileLogging"
+		    Cell		    "RTWCAPIParams"
+		    Cell		    "RTWCAPISignals"
+		    Cell		    "ExtMode"
+		    Cell		    "GenerateASAP2"
+		    Cell		    "GenerateSampleERTMain"
+		    PropName		    "DisabledProps"
+		  }
+		  TargetFcnLib		  "ansi_tfl_table_tmw.mat"
+		  TargetLibSuffix	  ""
+		  TargetPreCompLibLocation ""
+		  CodeReplacementLibrary  "ANSI_C"
+		  UtilityFuncGeneration	  "Auto"
+		  ERTMultiwordTypeDef	  "System defined"
+		  ERTMultiwordLength	  256
+		  MultiwordLength	  2048
+		  GenerateFullHeader	  on
+		  GenerateSampleERTMain	  off
+		  GenerateTestInterfaces  off
+		  IsPILTarget		  off
+		  ModelReferenceCompliant off
+		  ParMdlRefBuildCompliant off
+		  CompOptLevelCompliant	  off
+		  ConcurrentExecutionCompliant off
+		  IncludeMdlTerminateFcn  off
+		  GeneratePreprocessorConditionals "Use local settings"
+		  CombineOutputUpdateFcns on
+		  CombineSignalStateStructs off
+		  SuppressErrorStatus	  on
+		  ERTFirstTimeCompliant	  on
+		  IncludeFileDelimiter	  "Auto"
+		  ERTCustomFileBanners	  on
+		  SupportAbsoluteTime	  off
+		  LogVarNameModifier	  "rt_"
+		  MatFileLogging	  off
+		  MultiInstanceERTCode	  off
+		  SupportNonFinite	  off
+		  SupportComplex	  off
+		  PurelyIntegerCode	  off
+		  SupportContinuousTime	  off
+		  SupportNonInlinedSFcns  off
+		  SupportVariableSizeSignals off
+		  EnableShiftOperators	  on
+		  ParenthesesLevel	  "Nominal"
+		  MATLABClassNameForMDSCustomization "Simulink.SoftwareTarget.ERTCustomization"
+		  ModelStepFunctionPrototypeControlCompliant off
+		  CPPClassGenCompliant	  off
+		  AutosarCompliant	  off
+		  GRTInterface		  off
+		  GenerateAllocFcn	  off
+		  GenerateASAP2		  off
+		  ExtMode		  off
+		  ExtModeTransport	  0
+		  ExtModeStaticAlloc	  off
+		  ExtModeStaticAllocSize  1000000
+		  ExtModeTesting	  off
+		  ExtModeMexFile	  "noextcomm"
+		  ExtModeIntrfLevel	  "Level1"
+		  InlinedParameterPlacement "NonHierarchical"
+		  TargetOS		  "BareBoardExample"
+		  MultiInstanceErrorCode  "Error"
+		  RateGroupingCode	  on
+		  RootIOFormat		  "Individual arguments"
+		  RTWCAPISignals	  off
+		  RTWCAPIParams		  off
+		  RTWCAPIStates		  off
+		  RTWCAPIRootIO		  off
+		  ERTSrcFileBannerTemplate "sourceFileTemplate.cgt"
+		  ERTHdrFileBannerTemplate "sourceFileTemplate.cgt"
+		  ERTDataSrcFileTemplate  "sourceFileTemplate.cgt"
+		  ERTDataHdrFileTemplate  "sourceFileTemplate.cgt"
+		  ERTCustomFileTemplate	  "customRoutineProcess.tlc"
+		  EnableDataOwnership	  off
+		  SignalDisplayLevel	  10
+		  ParamTuneLevel	  10
+		  GlobalDataDefinition	  "Auto"
+		  DataDefinitionFile	  "global.c"
+		  GlobalDataReference	  "Auto"
+		  ERTFilePackagingFormat  "Modular"
+		  DataReferenceFile	  "global.h"
+		  PreserveExpressionOrder off
+		  PreserveIfCondition	  off
+		  ConvertIfToSwitch	  off
+		  PreserveExternInFcnDecls on
+		  SuppressUnreachableDefaultCases off
+		  IndentStyle		  "K&R"
+		  IndentSize		  "2"
+		  EnableUserReplacementTypes off
+		  Array {
+		    Type		    "Struct"
+		    Dimension		    1
+		    MATStruct {
+		    double		    ""
+		    single		    ""
+		    int32		    ""
+		    int16		    ""
+		    int8		    ""
+		    uint32		    ""
+		    uint16		    ""
+		    uint8		    ""
+		    boolean		    ""
+		    int			    ""
+		    uint		    ""
+		    char		    ""
+		    }
+		    PropName		    "ReplacementTypes"
+		  }
+		  MemSecPackage		  "--- None ---"
+		  MemSecDataConstants	  "Default"
+		  MemSecDataIO		  "Default"
+		  MemSecDataInternal	  "Default"
+		  MemSecDataParameters	  "Default"
+		  MemSecFuncInitTerm	  "Default"
+		  MemSecFuncExecute	  "Default"
+		  MemSecFuncSharedUtil	  "Default"
+		}
+		PropName		"Components"
+	      }
+	      CustomProperty {
+		DataType		"RTWOptions_EnumType_C__Matlab_STM32F4xx_rtw_stm32F4xx_1stm32Target"
+		EnumStrPairs {
+		  Value			  0
+		  String		  "STM32F4xxx"
+		}
+		Name			"stm32Target"
+		Value			"STM32F4xxx"
+	      }
+	      CustomProperty {
+		DataType		"RTWOptions_EnumType_C__Matlab_STM32F4xx_rtw_stm32F4xx_1ToolChain"
+		EnumStrPairs {
+		  Value			  0
+		  String		  "IAR"
+		  Value			  1
+		  String		  "KEIL"
+		  Value			  2
+		  String		  "ATOLLIC"
+		}
+		Name			"ToolChain"
+		Value			"IAR"
+	      }
+	      CustomProperty {
+		DataType		"slbool"
+		Name			"ToolPathFromRegistry"
+		Value			on
+	      }
+	      CustomProperty {
+		DataType		"string"
+		Name			"CompilerPath"
+		Value			"C:\\Program Files\\IAR Systems\\Embedded Workbench 6.0_2\\arm\\bin"
+	      }
+	      CustomProperty {
+		DataType		"RTWOptions_EnumType_C__Matlab_STM32F4xx_rtw_stm32F4xx_1Dongle"
+		EnumStrPairs {
+		  Value			  0
+		  String		  "J-Link"
+		  Value			  1
+		  String		  "STLinkV2"
+		  Value			  2
+		  String		  "ULINK2"
+		}
+		Name			"Dongle"
+		Value			"J-Link"
+	      }
+	      CustomProperty {
+		DataType		"RTWOptions_EnumType_C__Matlab_STM32F4xx_rtw_stm32F4xx_1flashRam"
+		EnumStrPairs {
+		  Value			  0
+		  String		  "FLASH"
+		  Value			  1
+		  String		  "RAM"
+		}
+		Name			"flashRam"
+		Value			"FLASH"
+	      }
+	      CustomProperty {
+		DataType		"string"
+		Name			"CompilerSettings"
+		Value			"--cpu Cortex-M3 --debug -D STM32F4XX -D SYSCLK_PLL -D USE_STDPERIPH_DRIVER --endian=little"
+	      }
+	      CustomProperty {
+		DataType		"string"
+		Name			"LinkerSettings"
+		Value			"--map $(MODEL)_IAR_$(BOOT_MODE).map --config $(LDDIR)\\..\\$(STM32TARGET)_$(BOOT_MODE).icf --search .. --se"
+		"arch $(TOOLPATH)\\..\\lib"
+	      }
+	      CustomProperty {
+		DataType		"string"
+		Name			"AssemblerSettings"
+		Value			"-s+ -w+ -r --cpu cortex-M3 --fpu None --endian little"
+	      }
+	      CustomProperty {
+		DataType		"slbool"
+		Name			"DownloadApplication"
+		Value			off
+	      }
+	      CustomProperty {
+		DataType		"string"
+		Name			"Target_Inst_path"
+		Value			"C:\\Matlab\\STM32F4xx"
+	      }
+	    }
+	    PropName		    "Components"
+	  }
+	}
+	PropName		"Components"
+      }
+      Name		      "Configuration"
+      CurrentDlgPage	      "Code Generation"
+      ConfigPrmDlgPosition     [ 293, 45, 1186, 748 ] 
+    }
+    PropName		    "ConfigurationSets"
+  }
+  Simulink.ConfigSet {
+    $PropName		    "ActiveConfigurationSet"
+    $ObjectID		    7
+  }
+  Object {
+    $PropName		    "DataTransfer"
+    $ObjectID		    19
+    $ClassName		    "Simulink.GlobalDataTransfer"
+    DefaultTransitionBetweenSyncTasks "Ensure deterministic transfer (maximum delay)"
+    DefaultTransitionBetweenAsyncTasks "Ensure data integrity only"
+    DefaultTransitionBetweenContTasks "Ensure deterministic transfer (minimum delay)"
+    DefaultExtrapolationMethodBetweenContTasks "None"
+    AutoInsertRateTranBlk   [0]
+  }
+  ExplicitPartitioning	  off
+  BlockDefaults {
+    ForegroundColor	    "black"
+    BackgroundColor	    "white"
+    DropShadow		    off
+    NamePlacement	    "normal"
+    FontName		    "Helvetica"
+    FontSize		    10
+    FontWeight		    "normal"
+    FontAngle		    "normal"
+    ShowName		    on
+    BlockRotation	    0
+    BlockMirror		    off
+  }
+  AnnotationDefaults {
+    HorizontalAlignment	    "center"
+    VerticalAlignment	    "middle"
+    ForegroundColor	    "black"
+    BackgroundColor	    "white"
+    DropShadow		    off
+    FontName		    "Helvetica"
+    FontSize		    10
+    FontWeight		    "normal"
+    FontAngle		    "normal"
+    UseDisplayTextAsClickCallback off
+  }
+  LineDefaults {
+    FontName		    "Helvetica"
+    FontSize		    9
+    FontWeight		    "normal"
+    FontAngle		    "normal"
+  }
+  MaskDefaults {
+    SelfModifiable	    "off"
+    IconFrame		    "on"
+    IconOpaque		    "on"
+    RunInitForIconRedraw    "off"
+    IconRotate		    "none"
+    PortRotate		    "default"
+    IconUnits		    "autoscale"
+  }
+  MaskParameterDefaults {
+    Evaluate		    "on"
+    Tunable		    "on"
+    NeverSave		    "off"
+    Internal		    "off"
+    ReadOnly		    "off"
+    Enabled		    "on"
+    Visible		    "on"
+    ToolTip		    "on"
+  }
+  BlockParameterDefaults {
+    Block {
+      BlockType		      S-Function
+      FunctionName	      "system"
+      SFunctionModules	      "''"
+      PortCounts	      "[]"
+      SFunctionDeploymentMode off
+    }
+  }
+  System {
+    Name		    "STM32_Timers"
+    Location		    [4, 3, 599, 474]
+    Open		    on
+    ModelBrowserVisibility  off
+    ModelBrowserWidth	    200
+    ScreenColor		    "white"
+    PaperOrientation	    "landscape"
+    PaperPositionMode	    "auto"
+    PaperType		    "usletter"
+    PaperUnits		    "inches"
+    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
+    TiledPageScale	    1
+    ShowPageBoundaries	    off
+    ZoomFactor		    "100"
+    ReportName		    "simulink-default.rpt"
+    SIDHighWatermark	    "15"
+    Block {
+      BlockType		      S-Function
+      Name		      "Timers"
+      SID		      "9"
+      Ports		      []
+      Position		      [80, 72, 190, 138]
+      ZOrder		      -5
+      NamePlacement	      "alternate"
+      ShowName		      off
+      CopyFcn		      "pathTmf = updatePrefs('get','stm32f4RootPath');\nif isempty(pathTmf)\nh = errordlg('Add STM32F4x"
+      "x repository to Matlab default path or set System target file to stm32F4xx.tlc before!' ,'STM32F4xx','modal');\n"
+      "close(h);\nclear h\nend\nlibFiles = updatePrefs('get','stm32f4listLibFiles');\nlibFiles2Build = updatePrefs('get"
+      "','stm32f4listLibBuildFiles');\nmisc = strcmp('misc.c',{libFiles(:).name});\nlibFiles2Build(misc) = libFiles2Bui"
+      "ld(misc)  + 1;\ntim = strcmp('stm32f4xx_tim.c',{libFiles(:).name});\nlibFiles2Build(tim) = libFiles2Build(tim)  "
+      "+ 1;\nupdatePrefs('set','stm32f4listLibBuildFiles',libFiles2Build);\nclear misc tim\nclear pathTmf\nclear libFil"
+      "es\nclear libFiles2Build"
+      DeleteFcn		      "libFiles =  updatePrefs('get','stm32f4listLibFiles');\nlibFiles2Build = updatePrefs('get','stm"
+      "32f4listLibBuildFiles');\nmisc = strcmp('misc.c',{libFiles(:).name});\nlibFiles2Build(misc) = libFiles2Build(mis"
+      "c)  - 1;\nif(libFiles2Build(misc) <0)\nlibFiles2Build(misc)  = 0;\nend\ntim = strcmp('stm32f4xx_tim.c',{libFiles"
+      "(:).name});\nlibFiles2Build(tim) = libFiles2Build(tim)  - 1;\nif(libFiles2Build(tim) <0)\nlibFiles2Build(tim)  ="
+      " 0;\nend\nupdatePrefs('set','stm32f4listLibBuildFiles',libFiles2Build);\nclear misc tim\nclear libFiles  libFile"
+      "s2Build"
+      UndoDeleteFcn	      "libFiles =    updatePrefs('get','stm32f4listLibFiles');\nlibFiles2Build = updatePrefs('get'"
+      ",'stm32f4listLibBuildFiles');\nmisc = strcmp('misc.c',{libFiles(:).name});\nlibFiles2Build(misc) = libFiles2Buil"
+      "d(misc)  + 1;\ntim = strcmp('stm32f4xx_tim.c',{libFiles(:).name});\nlibFiles2Build(tim) = libFiles2Build(tim)  +"
+      " 1;\nupdatePrefs('set','stm32f4listLibBuildFiles',libFiles2Build);\nclear misc tim\nclear libFiles\nclear libFil"
+      "es2Build"
+      LoadFcn		      "libFiles =    updatePrefs('get','stm32f4listLibFiles');        \nlibFiles2Build = updatePrefs('g"
+      "et','stm32f4listLibBuildFiles');\nmisc = strcmp('misc.c',{libFiles(:).name});                    \nlibFiles2Buil"
+      "d(misc) = libFiles2Build(misc)  + 1;              \ntim = strcmp('stm32f4xx_tim.c',{libFiles(:).name});         "
+      "   \nlibFiles2Build(tim) = libFiles2Build(tim)  + 1;                \nupdatePrefs('set','stm32f4listLibBuildFile"
+      "s',libFiles2Build);  \nclear misc tim                                                 \nclear libFiles          "
+      "                                       \nclear libFiles2Build                                           "
+      FunctionName	      "TIMERS_Config"
+      Parameters	      "Timer_name,Timer_clock,Timer_mode,Timer_inout,Variable_frequency,Output_frequency,CH1_enable,C"
+      "H1_type,CH1_int,CH1_variable_duty,CH1_output_duty,CH1_output_polarity,CH1_output_comp_state,CH1_output_comp_pola"
+      "rity,CH1_output_idle,CH1_output_comp_idle,CH1_input_polarity,CH1_input_prescaler,CH1_input_filter,CH1_input_it,C"
+      "H2_enable,CH2_type,CH2_int,CH2_variable_duty,CH2_output_duty,CH2_output_polarity,CH2_output_comp_state,CH2_outpu"
+      "t_comp_polarity,CH2_output_idle,CH2_output_comp_idle,CH2_input_polarity,CH2_input_prescaler,CH2_input_filter,CH2"
+      "_input_it,CH3_enable,CH3_type,CH3_int,CH3_variable_duty,CH3_output_duty,CH3_output_polarity,CH3_output_comp_stat"
+      "e,CH3_output_comp_polarity,CH3_output_idle,CH3_output_comp_idle,CH3_input_polarity,CH3_input_prescaler,CH3_input"
+      "_filter,CH3_input_it,Encoder_mode,Encoder_TI1_polarity,Encoder_TI2_polarity,Encoder_auto_reload,TRGO_source,Repe"
+      "tition_counter"
+      EnableBusSupport	      off
+      Object {
+	$PropName		"MaskObject"
+	$ObjectID		20
+	$ClassName		"Simulink.Mask"
+	Type			"Timers"
+	Description		"Timers configuration (TIM1 to TIM8) as Input capture, Output PWM or Encoder.\nThree channels possibilit"
+	"y CH1, CH2 and CH3.\n"
+	Help			"web('help_Timers.html', '-helpbrowser')"
+	Initialization		"\n\n"
+	Display			"color('blue'); text(0.6, 0.90, 'STM32F4xx', 'horizontalalignment', 'right');color('black'); text(0.50, 0.1"
+	"2, 'Timers', 'horizontalAlignment','center');\nimage(imread('ST.bmp','bmp'),'top-right');\nnumInput = 1;\nnumOutput ="
+	" 1;\ncolor('red');\nif isequal(get_param(gcbh,'Variable_frequency'),'on') && isequal(get_param(gcbh,'Timer_inout'),'O"
+	"utput_PWM') \nport_label('input',numInput,'F out');\nnumInput = numInput +1;\nend\nif isequal(get_param(gcbh,'CH1_var"
+	"iable_duty'),'on') && isequal(get_param(gcbh,'CH1_enable'),'on') && isequal(get_param(gcbh,'CH1_type'),'Output')\npor"
+	"t_label('input',numInput,'duty CH1');\nnumInput = numInput +1;\nend\nif isequal(get_param(gcbh,'CH2_variable_duty'),'"
+	"on') && isequal(get_param(gcbh,'CH2_enable'),'on') && isequal(get_param(gcbh,'CH2_type'),'Output')\nport_label('input"
+	"',numInput,'duty CH2');\nnumInput = numInput +1;\nend\nif isequal(get_param(gcbh,'CH3_variable_duty'),'on') && isequa"
+	"l(get_param(gcbh,'CH3_enable'),'on') && isequal(get_param(gcbh,'CH3_type'),'Output')\nport_label('input',numInput,'du"
+	"ty CH3');\nend\noutput1 = get_param(gcbh,'CH1_int');\noutput2 = get_param(gcbh,'CH2_int');\noutput3 = get_param(gcbh,"
+	"'CH3_int');\nif (isequal(output1,'on')||isequal(output2,'on')||isequal(output3,'on'))&& isequal(get_param(gcbh,'Timer"
+	"_inout'),'Output_PWM') \nport_label('output',numOutput,'IRQ');\nnumOutput = numOutput + 1;\nend\noutput = get_param(g"
+	"cbh,'CH1_input_it');\nif (isequal(output,'No_interrupt'))\nelse\nport_label('output',numOutput,'CH1');\nnumOutput = n"
+	"umOutput + 1;\nend\noutput = get_param(gcbh,'CH2_input_it');\nif (isequal(output,'No_interrupt'))\nelse\nport_label('"
+	"output',numOutput,'CH2');\nnumOutput = numOutput + 1;\nend\noutput = get_param(gcbh,'CH3_input_it');\nif (isequal(out"
+	"put,'No_interrupt'))\nelse\nport_label('output',numOutput,'CH3');\nnumOutput = numOutput + 1;\nend\noutput = get_para"
+	"m(gcbh,'Timer_inout');\nif isequal(output,'Encoder')&&(isequal(get_param(gcbh,'CH1_enable'),'on')||isequal(get_param("
+	"gcbh,'CH2_enable'),'on')||isequal(get_param(gcbh,'CH3_enable'),'on'))\nport_label('output',numOutput,'CNT');\nnumOutp"
+	"ut = numOutput + 1;\nport_label('output',numOutput,'DIR');\nnumOutput = numOutput + 1;\nport_label('input',numInput,'"
+	"Reset CNT');\nnumInput = numInput +1;\nend\nclear input output output1 output2 output3 numInput numOutput"
+	IconUnits		"normalized"
+	Array {
+	  Type			  "Simulink.MaskParameter"
+	  Dimension		  54
+	  Object {
+	    $ObjectID		    21
+	    Type		    "popup"
+	    Array {
+	      Type		      "Cell"
+	      Dimension		      6
+	      Cell		      "TIM1"
+	      Cell		      "TIM2"
+	      Cell		      "TIM3"
+	      Cell		      "TIM4"
+	      Cell		      "TIM5"
+	      Cell		      "TIM8"
+	      PropName		      "TypeOptions"
+	    }
+	    Name		    "Timer_name"
+	    Prompt		    "Timer"
+	    Value		    "TIM1"
+	    Evaluate		    "off"
+	    Tunable		    "off"
+	    Callback		    "TIMERS_Config_callback('Timer_name');"
+	  }
+	  Object {
+	    $ObjectID		    22
+	    Type		    "edit"
+	    Name		    "Timer_clock"
+	    Prompt		    "Timer counter clock (Hz)"
+	    Value		    "21000000"
+	    Evaluate		    "off"
+	    Tunable		    "off"
+	  }
+	  Object {
+	    $ObjectID		    23
+	    Type		    "popup"
+	    Array {
+	      Type		      "Cell"
+	      Dimension		      5
+	      Cell		      "TIM_CounterMode_Up"
+	      Cell		      "TIM_CounterMode_Down"
+	      Cell		      "TIM_CounterMode_CenterAligned1"
+	      Cell		      "TIM_CounterMode_CenterAligned2"
+	      Cell		      "TIM_CounterMode_CenterAligned3"
+	      PropName		      "TypeOptions"
+	    }
+	    Name		    "Timer_mode"
+	    Prompt		    "Counter mode"
+	    Value		    "TIM_CounterMode_Up"
+	    Evaluate		    "off"
+	    Tunable		    "off"
+	  }
+	  Object {
+	    $ObjectID		    24
+	    Type		    "popup"
+	    Array {
+	      Type		      "Cell"
+	      Dimension		      3
+	      Cell		      "Output_PWM"
+	      Cell		      "Input_Capture"
+	      Cell		      "Encoder"
+	      PropName		      "TypeOptions"
+	    }
+	    Name		    "Timer_inout"
+	    Prompt		    "Timer mode"
+	    Value		    "Output_PWM"
+	    Evaluate		    "off"
+	    Tunable		    "off"
+	    Callback		    "TIMERS_Config_callback('Timer_inout');"
+	  }
+	  Object {
+	    $ObjectID		    25
+	    Type		    "checkbox"
+	    Name		    "Variable_frequency"
+	    Prompt		    "Signal output frequency for channels CH1, CH2 and CH3 is an input port"
+	    Value		    "off"
+	    Evaluate		    "off"
+	    Tunable		    "off"
+	  }
+	  Object {
+	    $ObjectID		    26
+	    Type		    "edit"
+	    Name		    "Output_frequency"
+	    Prompt		    "Signal output frequency (Hz)"
+	    Value		    "100000"
+	    Evaluate		    "off"
+	    Tunable		    "off"
+	  }
+	  Object {
+	    $ObjectID		    27
+	    Type		    "popup"
+	    Array {
+	      Type		      "Cell"
+	      Dimension		      3
+	      Cell		      "TIM_EncoderMode_TI1"
+	      Cell		      "TIM_EncoderMode_TI2"
+	      Cell		      "TIM_EncoderMode_TI12"
+	      PropName		      "TypeOptions"
+	    }
+	    Name		    "Encoder_mode"
+	    Prompt		    "Encoder interface mode"
+	    Value		    "TIM_EncoderMode_TI12"
+	    Evaluate		    "off"
+	    Tunable		    "off"
+	    Visible		    "off"
+	    Callback		    "TIMERS_Config_callback('Encoder_mode');"
+	  }
+	  Object {
+	    $ObjectID		    28
+	    Type		    "edit"
+	    Name		    "Encoder_auto_reload"
+	    Prompt		    "Auto reload value (encoder ticks Nb/loop)"
+	    Value		    "0"
+	    Evaluate		    "off"
+	    Tunable		    "off"
+	    Visible		    "off"
+	  }
+	  Object {
+	    $ObjectID		    29
+	    Type		    "popup"
+	    Array {
+	      Type		      "Cell"
+	      Dimension		      9
+	      Cell		      "not_used"
+	      Cell		      "TIM_TRGOSource_Reset"
+	      Cell		      "TIM_TRGOSource_Enable"
+	      Cell		      "TIM_TRGOSource_Update"
+	      Cell		      "TIM_TRGOSource_OC1"
+	      Cell		      "TIM_TRGOSource_OC1Ref"
+	      Cell		      "TIM_TRGOSource_OC2Ref"
+	      Cell		      "TIM_TRGOSource_OC3Ref"
+	      Cell		      "TIM_TRGOSource_OC4Ref"
+	      PropName		      "TypeOptions"
+	    }
+	    Name		    "TRGO_source"
+	    Prompt		    "Trigger Out (TRGO) source"
+	    Value		    "not_used"
+	    Evaluate		    "off"
+	    Tunable		    "off"
+	    Callback		    "TIMERS_Config_callback('TRGO_source');"
+	  }
+	  Object {
+	    $ObjectID		    30
+	    Type		    "edit"
+	    Name		    "Repetition_counter"
+	    Prompt		    "Repetition counter value (0 to 255)"
+	    Value		    "0"
+	    Evaluate		    "off"
+	    Tunable		    "off"
+	    Visible		    "off"
+	  }
+	  Object {
+	    $ObjectID		    31
+	    Type		    "checkbox"
+	    Name		    "CH1_enable"
+	    Prompt		    " Enable Channel"
+	    Value		    "off"
+	    Evaluate		    "off"
+	    Tunable		    "off"
+	    Callback		    "TIMERS_Config_callback('CH1_enable');"
+	  }
+	  Object {
+	    $ObjectID		    32
+	    Type		    "popup"
+	    Array {
+	      Type		      "Cell"
+	      Dimension		      3
+	      Cell		      "Output"
+	      Cell		      "Input_Capture"
+	      Cell		      "Encoder"
+	      PropName		      "TypeOptions"
+	    }
+	    Name		    "CH1_type"
+	    Prompt		    "Channel Type"
+	    Value		    "Output"
+	    Evaluate		    "off"
+	    Tunable		    "off"
+	    Enabled		    "off"
+	  }
+	  Object {
+	    $ObjectID		    33
+	    Type		    "checkbox"
+	    Name		    "CH1_int"
+	    Prompt		    "Enable interrupt"
+	    Value		    "off"
+	    Evaluate		    "off"
+	    Tunable		    "off"
+	    Visible		    "off"
+	  }
+	  Object {
+	    $ObjectID		    34
+	    Type		    "checkbox"
+	    Name		    "CH1_variable_duty"
+	    Prompt		    "Duty cycle is an input port"
+	    Value		    "off"
+	    Evaluate		    "off"
+	    Tunable		    "off"
+	    Visible		    "off"
+	  }
+	  Object {
+	    $ObjectID		    35
+	    Type		    "edit"
+	    Name		    "CH1_output_duty"
+	    Prompt		    "Output duty cycle (%)"
+	    Value		    "[]"
+	    Evaluate		    "off"
+	    Tunable		    "off"
+	    Visible		    "off"
+	  }
+	  Object {
+	    $ObjectID		    36
+	    Type		    "popup"
+	    Array {
+	      Type		      "Cell"
+	      Dimension		      2
+	      Cell		      "TIM_OCPolarity_High"
+	      Cell		      "TIM_OCPolarity_Low"
+	      PropName		      "TypeOptions"
+	    }
+	    Name		    "CH1_output_polarity"
+	    Prompt		    "Output polarity"
+	    Value		    "TIM_OCPolarity_High"
+	    Evaluate		    "off"
+	    Tunable		    "off"
+	    Visible		    "off"
+	  }
+	  Object {
+	    $ObjectID		    37
+	    Type		    "checkbox"
+	    Name		    "CH1_output_comp_state"
+	    Prompt		    "Output complement state"
+	    Value		    "on"
+	    Evaluate		    "off"
+	    Tunable		    "off"
+	    Visible		    "off"
+	  }
+	  Object {
+	    $ObjectID		    38
+	    Type		    "popup"
+	    Array {
+	      Type		      "Cell"
+	      Dimension		      2
+	      Cell		      "TIM_OCNPolarity_High"
+	      Cell		      "TIM_OCNPolarity_Low"
+	      PropName		      "TypeOptions"
+	    }
+	    Name		    "CH1_output_comp_polarity"
+	    Prompt		    "Output complement polarity"
+	    Value		    "TIM_OCNPolarity_High"
+	    Evaluate		    "off"
+	    Tunable		    "off"
+	    Visible		    "off"
+	  }
+	  Object {
+	    $ObjectID		    39
+	    Type		    "popup"
+	    Array {
+	      Type		      "Cell"
+	      Dimension		      2
+	      Cell		      "TIM_OCIdleState_Set"
+	      Cell		      "TIM_OCIdleState_Reset"
+	      PropName		      "TypeOptions"
+	    }
+	    Name		    "CH1_output_idle"
+	    Prompt		    "Output state during idle"
+	    Value		    "TIM_OCIdleState_Set"
+	    Evaluate		    "off"
+	    Tunable		    "off"
+	    Visible		    "off"
+	  }
+	  Object {
+	    $ObjectID		    40
+	    Type		    "popup"
+	    Array {
+	      Type		      "Cell"
+	      Dimension		      2
+	      Cell		      "TIM_OCNIdleState_Set"
+	      Cell		      "TIM_OCNIdleState_Reset"
+	      PropName		      "TypeOptions"
+	    }
+	    Name		    "CH1_output_comp_idle"
+	    Prompt		    "Output complement state during idle"
+	    Value		    "TIM_OCNIdleState_Set"
+	    Evaluate		    "off"
+	    Tunable		    "off"
+	    Visible		    "off"
+	  }
+	  Object {
+	    $ObjectID		    41
+	    Type		    "popup"
+	    Array {
+	      Type		      "Cell"
+	      Dimension		      3
+	      Cell		      "TIM_ICPolarity_Rising"
+	      Cell		      "TIM_ICPolarity_Falling"
+	      Cell		      "TIM_ICPolarity_BothEdge"
+	      PropName		      "TypeOptions"
+	    }
+	    Name		    "CH1_input_polarity"
+	    Prompt		    "Input capture polarity"
+	    Value		    "TIM_ICPolarity_Rising"
+	    Evaluate		    "off"
+	    Tunable		    "off"
+	    Visible		    "off"
+	  }
+	  Object {
+	    $ObjectID		    42
+	    Type		    "popup"
+	    Array {
+	      Type		      "Cell"
+	      Dimension		      4
+	      Cell		      "TIM_ICPSC_DIV1"
+	      Cell		      "TIM_ICPSC_DIV2"
+	      Cell		      "TIM_ICPSC_DIV4"
+	      Cell		      "TIM_ICPSC_DIV8"
+	      PropName		      "TypeOptions"
+	    }
+	    Name		    "CH1_input_prescaler"
+	    Prompt		    "Input capture prescaler"
+	    Value		    "TIM_ICPSC_DIV1"
+	    Evaluate		    "off"
+	    Tunable		    "off"
+	    Visible		    "off"
+	  }
+	  Object {
+	    $ObjectID		    43
+	    Type		    "popup"
+	    Array {
+	      Type		      "Cell"
+	      Dimension		      16
+	      Cell		      "0"
+	      Cell		      "1"
+	      Cell		      "2"
+	      Cell		      "3"
+	      Cell		      "4"
+	      Cell		      "5"
+	      Cell		      "6"
+	      Cell		      "7"
+	      Cell		      "8"
+	      Cell		      "9"
+	      Cell		      "10"
+	      Cell		      "11"
+	      Cell		      "12"
+	      Cell		      "13"
+	      Cell		      "14"
+	      Cell		      "15"
+	      PropName		      "TypeOptions"
+	    }
+	    Name		    "CH1_input_filter"
+	    Prompt		    "Input capture filter"
+	    Value		    "0"
+	    Evaluate		    "off"
+	    Tunable		    "off"
+	    Visible		    "off"
+	  }
+	  Object {
+	    $ObjectID		    44
+	    Type		    "popup"
+	    Array {
+	      Type		      "Cell"
+	      Dimension		      3
+	      Cell		      "No_interrupt"
+	      Cell		      "Compute_frequency"
+	      Cell		      "Compute_duty_cycle"
+	      PropName		      "TypeOptions"
+	    }
+	    Name		    "CH1_input_it"
+	    Prompt		    "Input capture interrupt"
+	    Value		    "No_interrupt"
+	    Evaluate		    "off"
+	    Tunable		    "off"
+	    Visible		    "off"
+	  }
+	  Object {
+	    $ObjectID		    45
+	    Type		    "popup"
+	    Array {
+	      Type		      "Cell"
+	      Dimension		      2
+	      Cell		      "TIM_ICPolarity_Falling"
+	      Cell		      "TIM_ICPolarity_Rising"
+	      PropName		      "TypeOptions"
+	    }
+	    Name		    "Encoder_TI1_polarity"
+	    Prompt		    "TI1 polarity"
+	    Value		    "TIM_ICPolarity_Falling"
+	    Evaluate		    "off"
+	    Tunable		    "off"
+	    Visible		    "off"
+	  }
+	  Object {
+	    $ObjectID		    46
+	    Type		    "checkbox"
+	    Name		    "CH2_enable"
+	    Prompt		    " Enable Channel"
+	    Value		    "off"
+	    Evaluate		    "off"
+	    Tunable		    "off"
+	    Callback		    "TIMERS_Config_callback('CH2_enable');"
+	  }
+	  Object {
+	    $ObjectID		    47
+	    Type		    "popup"
+	    Array {
+	      Type		      "Cell"
+	      Dimension		      3
+	      Cell		      "Output"
+	      Cell		      "Input_Capture"
+	      Cell		      "Encoder"
+	      PropName		      "TypeOptions"
+	    }
+	    Name		    "CH2_type"
+	    Prompt		    "Channel Type"
+	    Value		    "Output"
+	    Evaluate		    "off"
+	    Tunable		    "off"
+	    Enabled		    "off"
+	  }
+	  Object {
+	    $ObjectID		    48
+	    Type		    "checkbox"
+	    Name		    "CH2_int"
+	    Prompt		    "Enable interrupt"
+	    Value		    "off"
+	    Evaluate		    "off"
+	    Tunable		    "off"
+	    Visible		    "off"
+	  }
+	  Object {
+	    $ObjectID		    49
+	    Type		    "checkbox"
+	    Name		    "CH2_variable_duty"
+	    Prompt		    "Duty cycle is an input port"
+	    Value		    "off"
+	    Evaluate		    "off"
+	    Tunable		    "off"
+	    Visible		    "off"
+	  }
+	  Object {
+	    $ObjectID		    50
+	    Type		    "edit"
+	    Name		    "CH2_output_duty"
+	    Prompt		    "Output duty cycle (%)"
+	    Value		    "[]"
+	    Evaluate		    "off"
+	    Tunable		    "off"
+	    Visible		    "off"
+	  }
+	  Object {
+	    $ObjectID		    51
+	    Type		    "popup"
+	    Array {
+	      Type		      "Cell"
+	      Dimension		      2
+	      Cell		      "TIM_OCPolarity_High"
+	      Cell		      "TIM_OCPolarity_Low"
+	      PropName		      "TypeOptions"
+	    }
+	    Name		    "CH2_output_polarity"
+	    Prompt		    "Output polarity"
+	    Value		    "TIM_OCPolarity_High"
+	    Evaluate		    "off"
+	    Tunable		    "off"
+	    Visible		    "off"
+	  }
+	  Object {
+	    $ObjectID		    52
+	    Type		    "checkbox"
+	    Name		    "CH2_output_comp_state"
+	    Prompt		    "Output complement state"
+	    Value		    "on"
+	    Evaluate		    "off"
+	    Tunable		    "off"
+	    Visible		    "off"
+	  }
+	  Object {
+	    $ObjectID		    53
+	    Type		    "popup"
+	    Array {
+	      Type		      "Cell"
+	      Dimension		      2
+	      Cell		      "TIM_OCNPolarity_High"
+	      Cell		      "TIM_OCNPolarity_Low"
+	      PropName		      "TypeOptions"
+	    }
+	    Name		    "CH2_output_comp_polarity"
+	    Prompt		    "Output complement polarity"
+	    Value		    "TIM_OCNPolarity_High"
+	    Evaluate		    "off"
+	    Tunable		    "off"
+	    Visible		    "off"
+	  }
+	  Object {
+	    $ObjectID		    54
+	    Type		    "popup"
+	    Array {
+	      Type		      "Cell"
+	      Dimension		      2
+	      Cell		      "TIM_OCIdleState_Set"
+	      Cell		      "TIM_OCIdleState_Reset"
+	      PropName		      "TypeOptions"
+	    }
+	    Name		    "CH2_output_idle"
+	    Prompt		    "Output state during idle"
+	    Value		    "TIM_OCIdleState_Set"
+	    Evaluate		    "off"
+	    Tunable		    "off"
+	    Visible		    "off"
+	  }
+	  Object {
+	    $ObjectID		    55
+	    Type		    "popup"
+	    Array {
+	      Type		      "Cell"
+	      Dimension		      2
+	      Cell		      "TIM_OCNIdleState_Set"
+	      Cell		      "TIM_OCNIdleState_Reset"
+	      PropName		      "TypeOptions"
+	    }
+	    Name		    "CH2_output_comp_idle"
+	    Prompt		    "Output complement state during idle"
+	    Value		    "TIM_OCNIdleState_Set"
+	    Evaluate		    "off"
+	    Tunable		    "off"
+	    Visible		    "off"
+	  }
+	  Object {
+	    $ObjectID		    56
+	    Type		    "popup"
+	    Array {
+	      Type		      "Cell"
+	      Dimension		      3
+	      Cell		      "TIM_ICPolarity_Rising"
+	      Cell		      "TIM_ICPolarity_Falling"
+	      Cell		      "TIM_ICPolarity_BothEdge"
+	      PropName		      "TypeOptions"
+	    }
+	    Name		    "CH2_input_polarity"
+	    Prompt		    "Input capture polarity"
+	    Value		    "TIM_ICPolarity_Rising"
+	    Evaluate		    "off"
+	    Tunable		    "off"
+	    Visible		    "off"
+	  }
+	  Object {
+	    $ObjectID		    57
+	    Type		    "popup"
+	    Array {
+	      Type		      "Cell"
+	      Dimension		      4
+	      Cell		      "TIM_ICPSC_DIV1"
+	      Cell		      "TIM_ICPSC_DIV2"
+	      Cell		      "TIM_ICPSC_DIV4"
+	      Cell		      "TIM_ICPSC_DIV8"
+	      PropName		      "TypeOptions"
+	    }
+	    Name		    "CH2_input_prescaler"
+	    Prompt		    "Input capture prescaler"
+	    Value		    "TIM_ICPSC_DIV1"
+	    Evaluate		    "off"
+	    Tunable		    "off"
+	    Visible		    "off"
+	  }
+	  Object {
+	    $ObjectID		    58
+	    Type		    "popup"
+	    Array {
+	      Type		      "Cell"
+	      Dimension		      16
+	      Cell		      "0"
+	      Cell		      "1"
+	      Cell		      "2"
+	      Cell		      "3"
+	      Cell		      "4"
+	      Cell		      "5"
+	      Cell		      "6"
+	      Cell		      "7"
+	      Cell		      "8"
+	      Cell		      "9"
+	      Cell		      "10"
+	      Cell		      "11"
+	      Cell		      "12"
+	      Cell		      "13"
+	      Cell		      "14"
+	      Cell		      "15"
+	      PropName		      "TypeOptions"
+	    }
+	    Name		    "CH2_input_filter"
+	    Prompt		    "Input capture filter"
+	    Value		    "0"
+	    Evaluate		    "off"
+	    Tunable		    "off"
+	    Visible		    "off"
+	  }
+	  Object {
+	    $ObjectID		    59
+	    Type		    "popup"
+	    Array {
+	      Type		      "Cell"
+	      Dimension		      3
+	      Cell		      "No_interrupt"
+	      Cell		      "Compute_frequency"
+	      Cell		      "Compute_duty_cycle"
+	      PropName		      "TypeOptions"
+	    }
+	    Name		    "CH2_input_it"
+	    Prompt		    "Input capture interrupt"
+	    Value		    "No_interrupt"
+	    Evaluate		    "off"
+	    Tunable		    "off"
+	    Visible		    "off"
+	  }
+	  Object {
+	    $ObjectID		    60
+	    Type		    "popup"
+	    Array {
+	      Type		      "Cell"
+	      Dimension		      2
+	      Cell		      "TIM_ICPolarity_Falling"
+	      Cell		      "TIM_ICPolarity_Rising"
+	      PropName		      "TypeOptions"
+	    }
+	    Name		    "Encoder_TI2_polarity"
+	    Prompt		    "TI2 polarity"
+	    Value		    "TIM_ICPolarity_Falling"
+	    Evaluate		    "off"
+	    Tunable		    "off"
+	    Visible		    "off"
+	  }
+	  Object {
+	    $ObjectID		    61
+	    Type		    "checkbox"
+	    Name		    "CH3_enable"
+	    Prompt		    " Enable Channel"
+	    Value		    "off"
+	    Evaluate		    "off"
+	    Tunable		    "off"
+	    Callback		    "TIMERS_Config_callback('CH3_enable');"
+	  }
+	  Object {
+	    $ObjectID		    62
+	    Type		    "popup"
+	    Array {
+	      Type		      "Cell"
+	      Dimension		      3
+	      Cell		      "Output"
+	      Cell		      "Input_Capture"
+	      Cell		      "Encoder"
+	      PropName		      "TypeOptions"
+	    }
+	    Name		    "CH3_type"
+	    Prompt		    "Channel Type"
+	    Value		    "Output"
+	    Evaluate		    "off"
+	    Tunable		    "off"
+	    Enabled		    "off"
+	  }
+	  Object {
+	    $ObjectID		    63
+	    Type		    "checkbox"
+	    Name		    "CH3_int"
+	    Prompt		    "Enable interrupt"
+	    Value		    "off"
+	    Evaluate		    "off"
+	    Tunable		    "off"
+	    Visible		    "off"
+	  }
+	  Object {
+	    $ObjectID		    64
+	    Type		    "checkbox"
+	    Name		    "CH3_variable_duty"
+	    Prompt		    "Duty cycle is an input port"
+	    Value		    "off"
+	    Evaluate		    "off"
+	    Tunable		    "off"
+	    Visible		    "off"
+	  }
+	  Object {
+	    $ObjectID		    65
+	    Type		    "edit"
+	    Name		    "CH3_output_duty"
+	    Prompt		    "Output duty cycle (%)"
+	    Value		    "[]"
+	    Evaluate		    "off"
+	    Tunable		    "off"
+	    Visible		    "off"
+	  }
+	  Object {
+	    $ObjectID		    66
+	    Type		    "popup"
+	    Array {
+	      Type		      "Cell"
+	      Dimension		      2
+	      Cell		      "TIM_OCPolarity_High"
+	      Cell		      "TIM_OCPolarity_Low"
+	      PropName		      "TypeOptions"
+	    }
+	    Name		    "CH3_output_polarity"
+	    Prompt		    "Output polarity"
+	    Value		    "TIM_OCPolarity_High"
+	    Evaluate		    "off"
+	    Tunable		    "off"
+	    Visible		    "off"
+	  }
+	  Object {
+	    $ObjectID		    67
+	    Type		    "checkbox"
+	    Name		    "CH3_output_comp_state"
+	    Prompt		    "Output complement state"
+	    Value		    "on"
+	    Evaluate		    "off"
+	    Tunable		    "off"
+	    Visible		    "off"
+	  }
+	  Object {
+	    $ObjectID		    68
+	    Type		    "popup"
+	    Array {
+	      Type		      "Cell"
+	      Dimension		      2
+	      Cell		      "TIM_OCNPolarity_High"
+	      Cell		      "TIM_OCNPolarity_Low"
+	      PropName		      "TypeOptions"
+	    }
+	    Name		    "CH3_output_comp_polarity"
+	    Prompt		    "Output complement polarity"
+	    Value		    "TIM_OCNPolarity_High"
+	    Evaluate		    "off"
+	    Tunable		    "off"
+	    Visible		    "off"
+	  }
+	  Object {
+	    $ObjectID		    69
+	    Type		    "popup"
+	    Array {
+	      Type		      "Cell"
+	      Dimension		      2
+	      Cell		      "TIM_OCIdleState_Set"
+	      Cell		      "TIM_OCIdleState_Reset"
+	      PropName		      "TypeOptions"
+	    }
+	    Name		    "CH3_output_idle"
+	    Prompt		    "Output state during idle"
+	    Value		    "TIM_OCIdleState_Set"
+	    Evaluate		    "off"
+	    Tunable		    "off"
+	    Visible		    "off"
+	  }
+	  Object {
+	    $ObjectID		    70
+	    Type		    "popup"
+	    Array {
+	      Type		      "Cell"
+	      Dimension		      2
+	      Cell		      "TIM_OCNIdleState_Set"
+	      Cell		      "TIM_OCNIdleState_Reset"
+	      PropName		      "TypeOptions"
+	    }
+	    Name		    "CH3_output_comp_idle"
+	    Prompt		    "Output complement state during idle"
+	    Value		    "TIM_OCNIdleState_Set"
+	    Evaluate		    "off"
+	    Tunable		    "off"
+	    Visible		    "off"
+	  }
+	  Object {
+	    $ObjectID		    71
+	    Type		    "popup"
+	    Array {
+	      Type		      "Cell"
+	      Dimension		      3
+	      Cell		      "TIM_ICPolarity_Rising"
+	      Cell		      "TIM_ICPolarity_Falling"
+	      Cell		      "TIM_ICPolarity_BothEdge"
+	      PropName		      "TypeOptions"
+	    }
+	    Name		    "CH3_input_polarity"
+	    Prompt		    "Input capture polarity"
+	    Value		    "TIM_ICPolarity_Rising"
+	    Evaluate		    "off"
+	    Tunable		    "off"
+	    Visible		    "off"
+	  }
+	  Object {
+	    $ObjectID		    72
+	    Type		    "popup"
+	    Array {
+	      Type		      "Cell"
+	      Dimension		      4
+	      Cell		      "TIM_ICPSC_DIV1"
+	      Cell		      "TIM_ICPSC_DIV2"
+	      Cell		      "TIM_ICPSC_DIV4"
+	      Cell		      "TIM_ICPSC_DIV8"
+	      PropName		      "TypeOptions"
+	    }
+	    Name		    "CH3_input_prescaler"
+	    Prompt		    "Input capture prescaler"
+	    Value		    "TIM_ICPSC_DIV1"
+	    Evaluate		    "off"
+	    Tunable		    "off"
+	    Visible		    "off"
+	  }
+	  Object {
+	    $ObjectID		    73
+	    Type		    "popup"
+	    Array {
+	      Type		      "Cell"
+	      Dimension		      16
+	      Cell		      "0"
+	      Cell		      "1"
+	      Cell		      "2"
+	      Cell		      "3"
+	      Cell		      "4"
+	      Cell		      "5"
+	      Cell		      "6"
+	      Cell		      "7"
+	      Cell		      "8"
+	      Cell		      "9"
+	      Cell		      "10"
+	      Cell		      "11"
+	      Cell		      "12"
+	      Cell		      "13"
+	      Cell		      "14"
+	      Cell		      "15"
+	      PropName		      "TypeOptions"
+	    }
+	    Name		    "CH3_input_filter"
+	    Prompt		    "Input capture filter"
+	    Value		    "0"
+	    Evaluate		    "off"
+	    Tunable		    "off"
+	    Visible		    "off"
+	  }
+	  Object {
+	    $ObjectID		    74
+	    Type		    "popup"
+	    Array {
+	      Type		      "Cell"
+	      Dimension		      3
+	      Cell		      "No_interrupt"
+	      Cell		      "Compute_frequency"
+	      Cell		      "Compute_duty_cycle"
+	      PropName		      "TypeOptions"
+	    }
+	    Name		    "CH3_input_it"
+	    Prompt		    "Input capture interrupt"
+	    Value		    "No_interrupt"
+	    Evaluate		    "off"
+	    Tunable		    "off"
+	    Visible		    "off"
+	  }
+	  PropName		  "Parameters"
+	}
+	Array {
+	  Type			  "Simulink.dialog.Container"
+	  Dimension		  2
+	  Object {
+	    $ObjectID		    75
+	    $ClassName		    "Simulink.dialog.Group"
+	    Prompt		    "%<MaskType>"
+	    Object {
+	      $PropName		      "DialogControls"
+	      $ObjectID		      76
+	      $ClassName	      "Simulink.dialog.Text"
+	      Prompt		      "%<MaskDescription>"
+	      Name		      "DescTextVar"
+	    }
+	    Name		    "DescGroupVar"
+	  }
+	  Object {
+	    $ObjectID		    77
+	    $ClassName		    "Simulink.dialog.TabContainer"
+	    Array {
+	      Type		      "Simulink.dialog.Tab"
+	      Dimension		      4
+	      Object {
+		$ObjectID		78
+		Prompt			"Global"
+		Array {
+		  Type			  "Simulink.dialog.parameter.Control"
+		  Dimension		  10
+		  Object {
+		    $ObjectID		    79
+		    $ClassName		    "Simulink.dialog.parameter.Popup"
+		    Name		    "Timer_name"
+		  }
+		  Object {
+		    $ObjectID		    80
+		    $ClassName		    "Simulink.dialog.parameter.Edit"
+		    Name		    "Timer_clock"
+		  }
+		  Object {
+		    $ObjectID		    81
+		    $ClassName		    "Simulink.dialog.parameter.Popup"
+		    Name		    "Timer_mode"
+		  }
+		  Object {
+		    $ObjectID		    82
+		    $ClassName		    "Simulink.dialog.parameter.Popup"
+		    Name		    "Timer_inout"
+		  }
+		  Object {
+		    $ObjectID		    83
+		    $ClassName		    "Simulink.dialog.parameter.CheckBox"
+		    Name		    "Variable_frequency"
+		  }
+		  Object {
+		    $ObjectID		    84
+		    $ClassName		    "Simulink.dialog.parameter.Edit"
+		    Name		    "Output_frequency"
+		  }
+		  Object {
+		    $ObjectID		    85
+		    $ClassName		    "Simulink.dialog.parameter.Popup"
+		    Name		    "Encoder_mode"
+		  }
+		  Object {
+		    $ObjectID		    86
+		    $ClassName		    "Simulink.dialog.parameter.Edit"
+		    Name		    "Encoder_auto_reload"
+		  }
+		  Object {
+		    $ObjectID		    87
+		    $ClassName		    "Simulink.dialog.parameter.Popup"
+		    Name		    "TRGO_source"
+		  }
+		  Object {
+		    $ObjectID		    88
+		    $ClassName		    "Simulink.dialog.parameter.Edit"
+		    Name		    "Repetition_counter"
+		  }
+		  PropName		  "DialogControls"
+		}
+		Name			"ParameterTabVar0"
+	      }
+	      Object {
+		$ObjectID		89
+		Prompt			"CH1"
+		Array {
+		  Type			  "Simulink.dialog.parameter.Control"
+		  Dimension		  15
+		  Object {
+		    $ObjectID		    90
+		    $ClassName		    "Simulink.dialog.parameter.CheckBox"
+		    Name		    "CH1_enable"
+		  }
+		  Object {
+		    $ObjectID		    91
+		    $ClassName		    "Simulink.dialog.parameter.Popup"
+		    Name		    "CH1_type"
+		  }
+		  Object {
+		    $ObjectID		    92
+		    $ClassName		    "Simulink.dialog.parameter.CheckBox"
+		    Name		    "CH1_int"
+		  }
+		  Object {
+		    $ObjectID		    93
+		    $ClassName		    "Simulink.dialog.parameter.CheckBox"
+		    Name		    "CH1_variable_duty"
+		  }
+		  Object {
+		    $ObjectID		    94
+		    $ClassName		    "Simulink.dialog.parameter.Edit"
+		    Name		    "CH1_output_duty"
+		  }
+		  Object {
+		    $ObjectID		    95
+		    $ClassName		    "Simulink.dialog.parameter.Popup"
+		    Name		    "CH1_output_polarity"
+		  }
+		  Object {
+		    $ObjectID		    96
+		    $ClassName		    "Simulink.dialog.parameter.CheckBox"
+		    Name		    "CH1_output_comp_state"
+		  }
+		  Object {
+		    $ObjectID		    97
+		    $ClassName		    "Simulink.dialog.parameter.Popup"
+		    Name		    "CH1_output_comp_polarity"
+		  }
+		  Object {
+		    $ObjectID		    98
+		    $ClassName		    "Simulink.dialog.parameter.Popup"
+		    Name		    "CH1_output_idle"
+		  }
+		  Object {
+		    $ObjectID		    99
+		    $ClassName		    "Simulink.dialog.parameter.Popup"
+		    Name		    "CH1_output_comp_idle"
+		  }
+		  Object {
+		    $ObjectID		    100
+		    $ClassName		    "Simulink.dialog.parameter.Popup"
+		    Name		    "CH1_input_polarity"
+		  }
+		  Object {
+		    $ObjectID		    101
+		    $ClassName		    "Simulink.dialog.parameter.Popup"
+		    Name		    "CH1_input_prescaler"
+		  }
+		  Object {
+		    $ObjectID		    102
+		    $ClassName		    "Simulink.dialog.parameter.Popup"
+		    Name		    "CH1_input_filter"
+		  }
+		  Object {
+		    $ObjectID		    103
+		    $ClassName		    "Simulink.dialog.parameter.Popup"
+		    Name		    "CH1_input_it"
+		  }
+		  Object {
+		    $ObjectID		    104
+		    $ClassName		    "Simulink.dialog.parameter.Popup"
+		    Name		    "Encoder_TI1_polarity"
+		  }
+		  PropName		  "DialogControls"
+		}
+		Name			"ParameterTabVar01"
+	      }
+	      Object {
+		$ObjectID		105
+		Prompt			"CH2"
+		Array {
+		  Type			  "Simulink.dialog.parameter.Control"
+		  Dimension		  15
+		  Object {
+		    $ObjectID		    106
+		    $ClassName		    "Simulink.dialog.parameter.CheckBox"
+		    Name		    "CH2_enable"
+		  }
+		  Object {
+		    $ObjectID		    107
+		    $ClassName		    "Simulink.dialog.parameter.Popup"
+		    Name		    "CH2_type"
+		  }
+		  Object {
+		    $ObjectID		    108
+		    $ClassName		    "Simulink.dialog.parameter.CheckBox"
+		    Name		    "CH2_int"
+		  }
+		  Object {
+		    $ObjectID		    109
+		    $ClassName		    "Simulink.dialog.parameter.CheckBox"
+		    Name		    "CH2_variable_duty"
+		  }
+		  Object {
+		    $ObjectID		    110
+		    $ClassName		    "Simulink.dialog.parameter.Edit"
+		    Name		    "CH2_output_duty"
+		  }
+		  Object {
+		    $ObjectID		    111
+		    $ClassName		    "Simulink.dialog.parameter.Popup"
+		    Name		    "CH2_output_polarity"
+		  }
+		  Object {
+		    $ObjectID		    112
+		    $ClassName		    "Simulink.dialog.parameter.CheckBox"
+		    Name		    "CH2_output_comp_state"
+		  }
+		  Object {
+		    $ObjectID		    113
+		    $ClassName		    "Simulink.dialog.parameter.Popup"
+		    Name		    "CH2_output_comp_polarity"
+		  }
+		  Object {
+		    $ObjectID		    114
+		    $ClassName		    "Simulink.dialog.parameter.Popup"
+		    Name		    "CH2_output_idle"
+		  }
+		  Object {
+		    $ObjectID		    115
+		    $ClassName		    "Simulink.dialog.parameter.Popup"
+		    Name		    "CH2_output_comp_idle"
+		  }
+		  Object {
+		    $ObjectID		    116
+		    $ClassName		    "Simulink.dialog.parameter.Popup"
+		    Name		    "CH2_input_polarity"
+		  }
+		  Object {
+		    $ObjectID		    117
+		    $ClassName		    "Simulink.dialog.parameter.Popup"
+		    Name		    "CH2_input_prescaler"
+		  }
+		  Object {
+		    $ObjectID		    118
+		    $ClassName		    "Simulink.dialog.parameter.Popup"
+		    Name		    "CH2_input_filter"
+		  }
+		  Object {
+		    $ObjectID		    119
+		    $ClassName		    "Simulink.dialog.parameter.Popup"
+		    Name		    "CH2_input_it"
+		  }
+		  Object {
+		    $ObjectID		    120
+		    $ClassName		    "Simulink.dialog.parameter.Popup"
+		    Name		    "Encoder_TI2_polarity"
+		  }
+		  PropName		  "DialogControls"
+		}
+		Name			"ParameterTabVar012"
+	      }
+	      Object {
+		$ObjectID		121
+		Prompt			"CH3"
+		Array {
+		  Type			  "Simulink.dialog.parameter.Control"
+		  Dimension		  14
+		  Object {
+		    $ObjectID		    122
+		    $ClassName		    "Simulink.dialog.parameter.CheckBox"
+		    Name		    "CH3_enable"
+		  }
+		  Object {
+		    $ObjectID		    123
+		    $ClassName		    "Simulink.dialog.parameter.Popup"
+		    Name		    "CH3_type"
+		  }
+		  Object {
+		    $ObjectID		    124
+		    $ClassName		    "Simulink.dialog.parameter.CheckBox"
+		    Name		    "CH3_int"
+		  }
+		  Object {
+		    $ObjectID		    125
+		    $ClassName		    "Simulink.dialog.parameter.CheckBox"
+		    Name		    "CH3_variable_duty"
+		  }
+		  Object {
+		    $ObjectID		    126
+		    $ClassName		    "Simulink.dialog.parameter.Edit"
+		    Name		    "CH3_output_duty"
+		  }
+		  Object {
+		    $ObjectID		    127
+		    $ClassName		    "Simulink.dialog.parameter.Popup"
+		    Name		    "CH3_output_polarity"
+		  }
+		  Object {
+		    $ObjectID		    128
+		    $ClassName		    "Simulink.dialog.parameter.CheckBox"
+		    Name		    "CH3_output_comp_state"
+		  }
+		  Object {
+		    $ObjectID		    129
+		    $ClassName		    "Simulink.dialog.parameter.Popup"
+		    Name		    "CH3_output_comp_polarity"
+		  }
+		  Object {
+		    $ObjectID		    130
+		    $ClassName		    "Simulink.dialog.parameter.Popup"
+		    Name		    "CH3_output_idle"
+		  }
+		  Object {
+		    $ObjectID		    131
+		    $ClassName		    "Simulink.dialog.parameter.Popup"
+		    Name		    "CH3_output_comp_idle"
+		  }
+		  Object {
+		    $ObjectID		    132
+		    $ClassName		    "Simulink.dialog.parameter.Popup"
+		    Name		    "CH3_input_polarity"
+		  }
+		  Object {
+		    $ObjectID		    133
+		    $ClassName		    "Simulink.dialog.parameter.Popup"
+		    Name		    "CH3_input_prescaler"
+		  }
+		  Object {
+		    $ObjectID		    134
+		    $ClassName		    "Simulink.dialog.parameter.Popup"
+		    Name		    "CH3_input_filter"
+		  }
+		  Object {
+		    $ObjectID		    135
+		    $ClassName		    "Simulink.dialog.parameter.Popup"
+		    Name		    "CH3_input_it"
+		  }
+		  PropName		  "DialogControls"
+		}
+		Name			"ParameterTabVar0123"
+	      }
+	      PropName		      "DialogControls"
+	    }
+	    Name		    "ParameterTabContainerVar"
+	  }
+	  PropName		  "DialogControls"
+	}
+      }
+    }
+  }
+}

@@ -1,0 +1,13 @@
+__var breakId ;
+execUserReset() 
+{
+#R0 = main;
+breakId = __hwResetRunToBp(0,#R0,100);
+#R0 = #R0;
+}
+
+
+execUserExit()
+{
+ __clearBreak(breakId);
+}

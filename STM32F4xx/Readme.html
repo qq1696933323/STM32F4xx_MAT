@@ -1,0 +1,554 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>Readme</title><meta name="generator" content="MATLAB 8.2"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2013-10-02"><meta name="DC.source" content="Readme.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, tt, code { font-size:12px; }
+pre { margin:0px 0px 20px; }
+pre.error { color:red; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>Readme</h1><!--introduction--><p>
+<A NAME="ANCRES"> </A>
+</p><p><b>COPYRIGHT 2012 STMicroelectronics</b></p><p>Licensed under MCD-ST Liberty SW License Agreement V2, (the "License").</p><p>
+<a href="MCD-ST Liberty SW License Agreement V2.pdf" target="_blank">Read MCD-ST Liberty SW License Agreement V2.pdf</a>
+</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Package Description</a></li><li><a href="#2">Product version</a></li><li><a href="#3">Package installation</a></li><li><a href="#5">Package Overview</a></li><li><a href="#6"><i>blks</i></a></li><li><a href="#7"><i>html</i></a></li><li><a href="#8"><i>lib</i></a></li><li><a href="#9"><i>pil</i></a></li><li><a href="#11"><i>rtw</i></a></li><li><a href="#12"><i>script</i></a></li><li><a href="#13"><i>src</i></a></li><li><a href="#14"><i>STM32F4xxdemos</i></a></li><li><a href="#15"><i>toolchain</i></a></li><li><a href="#16">Configuration &amp; Settings</a></li><li><a href="#17">Demonstration settings (<i>if installed path is not C:\Matlab\STM32F4xx</i>)</a></li></ul></div><h2>Package Description<a name="1"></a></h2><p>This package contains all necessary files to quickly deploy application models in MATLAB and Simulink to STM32 F4 MCU.</p><p>Specific files included in the distribution are Simulink blockset libraries for STM32 F4 peripherals, Embedded Coder STM32 F4 configuration files (STM32F4xx.tmf and STM32F4xx.tlc), and PIL serial rtiostream and profiling functionalities.</p><h2>Product version<a name="2"></a></h2><p>STM32 Embedded Target has been developped for <b>MATLAB R2013b version</b></p><p>MathWorks products required:</p><p>
+<ul>
+<li>MATLAB and MATLAB Coder</li>
+<li>Simulink and Simulink Coder</li>
+<li>Embedded Coder</li>
+</ul>
+</p><p>The process from code generation to programing STM32 F4 MCU is fully automated and requires one of three following listed toolchains:</p><p>
+<dd><b>EWARM V6.30</b> or more
+<a href="http://www.iar.com/" target="_blank">(IAR)</a></dd>
+</p><p>
+<dd><b>Keil MDK V4.60</b> or more
+<a href="http://www.keil.com/" target="_blank">(ARM)</a></dd>
+</p><p>
+<dd><b>TrueSTUDIO V3.2</b> or more
+<a href="http://atollic.com/" target="_blank">(Atollic)</a></dd>
+</p><p>
+<A HREF="#ANCRES"><p align="right"> top </p></A>
+</p><h2>Package installation<a name="3"></a></h2><p>STM32 Embedded Target functionalities are available as soon as <b>STM32F4xx</b> product folder and subfolders are added to the MATLAB path.</p><p>Type <b>pathtool</b> in the <b>MATLAB Command Window</b> and follow the stages below to settle the product.</p><div><ol><li>Click <b>Add with subfolders...</b> button of "Set Path" window.</li><li>Select <b>STM32F4xx</b> folder (It contains this Readme file)</li><li>Click <b>OK</b></li><li>Click <b>Save</b> button and close "Set Path" window</li></ol></div><p><b>STM32 Embedded Target capabilities and functionalities are available now.</b></p><p><img vspace="5" hspace="5" src="pathtool.PNG" alt=""> </p><p>
+<A HREF="#ANCRES"><p align="right"> top </p></A>
+<A NAME="package"> </A>
+</p><h2>Package Overview<a name="5"></a></h2><p>The contents of the <b>STM32 Embedded Target</b> package are the following one.</p><p>
+<ul>
+<li><A HREF="#blks">blks</A>: Simulink blockset library</li>
+<li><A HREF="#html">html</A>: HTML help files for Simulink blockset library</li>
+<li><A HREF="#lib">lib</A>: "C" code libraries (CMSIS core and STM32F4xx peripherals driver)</li>
+<li><A HREF="#pil">pil</A>: PIL setting files and STM32F4 RtioStream</li>
+<li><A HREF="#rtw">rtw</A>: Embedded Coder STM32 F4 configuration files</li>
+<li><A HREF="#script">script</A>: Settings and configuration MATLAB scripts</li>
+<li><A HREF="#src">src</A>: STM32 F4 MCU configuration "C" files</li>
+<li><A HREF="#STM32F4xxdemos">STM32F4xxdemos</A>: Simulink models for demo and test</li>
+<li><A HREF="#toolchain">toolchain</A>: Settings and configuration files for toolchains.</li>
+</ul>
+</p><p>
+<A NAME="blks"> </A>
+</p><h2><i>blks</i><a name="6"></a></h2><p>Simulink blockset libraries specific files for STM32 F4 peripherals.</p><p>
+<ul>
+<li><b>logo</b> repository contains ST.bmp file logo visible on every Simulink peripheral models.</li>
+<li><b>masks</b> repository contains Simulink peripheral models parameters callback script.</li>
+<li><b>mdl</b> repository contains Simulink peripheral models.</li>
+<li><b>mex</b> repository contains mewx32 and mexw64 files for Simulink peripheral models</li>
+<li><b>tlc_c</b> repository contains "C" code generation peripherals TLC scripts.</li>
+</ul>
+<A HREF="#package"><p align="left"> back </p></A>
+<A NAME="html"> </A>
+</p><h2><i>html</i><a name="7"></a></h2><p>HTML and snapshots for Simulink peripheral models help description.</p><p>
+<A HREF="#package"><p align="left"> back </p></A>
+<A NAME="lib"> </A>
+</p><h2><i>lib</i><a name="8"></a></h2><p>
+<ul>
+<li>Cortex Microcontroller Software Interface Standard (CMSIS) V2.10 library.<br>
+Licensed under <a href=".\lib\CMSIS\CMSIS END USER LICENCE AGREEMENT.pdf" target="_blank"><b>CMSIS END USER LICENCE AGREEMENT</b></a></li>
+<li>STM32F4xx Standard Peripheral Driver "C" source code files.</li>
+</ul>
+<A HREF="#package"><p align="left"> back </p></A>
+<A NAME="pil"> </A>
+</p><h2><i>pil</i><a name="9"></a></h2><p>
+<ul>
+<li><b>+stm32F4xxpil</b> repository contains STM32F4 configuration files for PIL and profiling functionalities.</li>
+<li><b>stm32F4xxSerialRtiostream</b> repository contains "C" source driver files for PIL.</li>
+</ul>
+<b>P</b>rocessor <b>I</b>n the <b>L</b>oop (PIL) serial communication parameters are fixed too:
+<dd><b>115200 bds</b></dd>
+<dd><b>8 bits</b></dd>
+<dd><b>No Parity</b></dd>
+<dd><b>1 stop bit</b></dd>
+<dd><b>No Hardware</b></dd><br>
+PC communication port used for PIL must be set with same parameters.<br><br>
+PC communication port used for PIL is a MATLAB <b>preference</b> of <b>STM32F4xx</b> group called <b>COMPort</b>.<br>
+Command is <b>getpref('STM32F4xx')</b> from MATLAB "Command Window" to
+see all STM32F4xx defined preferences.<br>
+Command is <b>setpref('STM32F4xx','COMPort','COMx')</b> from MATLAB "Command Window" to
+set PC PIL communication port to COMx (x = COM number).<br>
+Only COMPort preference may need to be changed.<br><br>
+STM32F4 USART communication port is set from popup window before PIL runs.<br><br>
+Default initialization communication timeout is set to <b>15sec</b>.<br>
+Default receive communication timeout is set to <b>10sec</b> (Take care
+if breakpoint is set during PIL debug)<br>
+Can be modified from lines 54,59 of ConnectivityConfig.m file.
+</p><p><img vspace="5" hspace="5" src="usartPIL.PNG" alt=""> </p><p>
+<A HREF="#package"><p align="left"> back </p></A>
+<A NAME="rtw"> </A>
+</p><h2><i>rtw</i><a name="11"></a></h2><p>
+<b>rtw</b> repository contains Embedded Coder STM32 F4 configuration
+files:<br>
+<ul>
+<li><b>STM32F4xx.tmf</b> <b>t</b>emplate <b>m</b>ake <b>f</b>ile for building a PC-based
+stand-alone embedded real-time version of Simulink model using generated C code and
+one of the three available toolchains.</li>
+<li><b>STM32F4xx.tlc</b> System target file used to define STM32F4xx
+option parameters.</li>
+</ul>
+<A HREF="#package"><p align="left"> back </p></A>
+<A NAME="script"> </A>
+</p><h2><i>script</i><a name="12"></a></h2><p>Set of script files used to automatically initialize STM32F4 configuration model or used for RTW build process.</p><p>
+<A HREF="#package"><p align="left"> back </p></A>
+<A NAME="src"> </A>
+</p><h2><i>src</i><a name="13"></a></h2><p>
+STM32F4 "C" application source files.<br>
+<b>To be modified depending on application needs.</b>
+<ul>
+<li><b>RCC_Configuration.c</b> used for STM32F4 clock configuration.<br>
+Default configuration is 168MHz (internal RC)</li>
+<li><b>stm32f4xx_conf.h</b> used to enable application peripheral header file inclusion.</li>
+<li><b>stm32f4xx_it.c(.h)</b> used to define dumy IRQ handler.<br>
+<b>Comments handler of interrupt defines from Simulink application models.</b></li>
+</ul>
+<A HREF="#package"><p align="left"> back </p></A>
+<A NAME="STM32F4xxdemos"> </A>
+</p><h2><i>STM32F4xxdemos</i><a name="14"></a></h2><p>This repository contains PIL demonstration Simulink models and STM32F4 peripheral test Simulink models.</p><p>
+<ul>
+<li><b>MotorControl</b> contains motor control Simulink application model.<br>
+Used to demonstrate PIL communication and processing for motor control applications.<br>
+Field Oriented and Hall sensor application are based on ST Motor Control Evaluation board.</li>
+<li><b>Pil</b> contains typical IIR filtering example to verify and profile STM32 F4 execution
+results versus Simulink simulation behavior using PIL testing.</li>
+<li><b>Test</b> contains STM32F4 peripherals model examples.<br>
+Dedicated to demonstrate build applications and flash STM32F4 target.<br>
+<b>Not for PIL</b></li>
+<li><b>CodeGeneration</b> It is recommended to use this working directory as MATLAB "Current Folder" to run STM32F4xx Simulink application model.<br>
+It is not mandatory to set MATLAB "Current Folder" to <b>THIS</b> particular STM32F4xx\STM32F4xxdemos\CodeGeneration<br>
+but MATLAB "Current Folder" <b>end path should be CodeGeneration</b></li>
+</ul>
+<A HREF="#package"><p align="left"> back </p></A>
+<A NAME="toolchain"> </A>
+</p><h2><i>toolchain</i><a name="15"></a></h2><p>
+This repository contains toolchains templates used to build "C" code generated project.
+<ul>
+<li><b>ATOLLIC_TrueSTUDIO</b> templates for TrueSTUDIO toolchain.<br>
+Automatic process up to start TrueSTUDIO IDE.<br>
+User has to manually download project and start debug.</li>
+<li><b>IAR_Ewarm</b> templates for EWARM toolchain.</li>
+Automatic process up to start EWARM IDE and flash STM32F4 target.<br>
+User has to manually start debug.<br></li>
+<li><b>KEIL</b> templates for MDK toolchain.<br>
+Fully automated process.<br>
+Modify xxx_Settings files to set breakpoint or remove automatic run after download.</li>
+</ul>
+<A HREF="#package"><p align="left"> back </p></A>
+</p><h2>Configuration &amp; Settings<a name="16"></a></h2><p>
+As soon as *STM32F4xx* product folder and subfolders has been added to
+the MATLAB path:
+<ul>
+<li>STM32F4xx peripherals Simulink library is available.</li>
+<li>stm32F4xx.tlc system target file is available from Simulink model configuration, Code Generation, Target selection.</li>
+</ul>
+Code Generation, STM32F4xx Options have to be set regarding toolchain
+selection.<br>
+<br>
+Crutial information are saved as STM32F4xx group preferences.<br>
+Command is <b>getpref('STM32F4xx')</b> from MATLAB "Command Window" to
+see following STM32F4xx defined preferences:<br>
+<ul>
+<li><b>COMPort:</b> PC communication port name used for PIL.</li>
+<li><b>stm32f4RootPath:</b> Installed path. </li>
+<li><b>stm32f4ToolPath:</b> Toolchain path.</li>
+<li><b>stm32f4LibSrcPath:</b> STM32F4xx driver "C" source library path.</li>
+<li><b>stm32f4LibIncPath:</b> STM32F4xx driver includes library path.</li>
+<li><b>stm32f4listLibFiles:</b> List of STM32F4xx driver "C" source files.</li>
+<li><b>stm32f4listLibBuildFiles:</b> List of STM32F4xx driver "C" source files to build for the application.</li>
+<li><b>stm32f4PilMode:</b> is 0 or 1. 1 when model selected mode is
+Processor-in-the-Loop (PIL)</li>
+</ul>
+<b>stm32f4listLibBuildFiles</b> preference is updated from peripheral
+callbacks functions (CopyFcn, DeleteFcn, LoadFcn, ModelCloseFcn and
+UndoDeleteFcn) when drag&drop peripheral model from Simulink
+Library Browser to the application model or removed from the application
+model. This is used to build necessary drivers only.<br>
+<A HREF="#ANCRES"><p align="right"> top </p></A>
+</p><h2>Demonstration settings (<i>if installed path is not C:\Matlab\STM32F4xx</i>)<a name="17"></a></h2><p>The provided STM32F4xxdemos have been saved with <b>C:\Matlab\STM32F4xx</b> installed path.</p><p>If installed path is changed, "Configuration Parameters" must be done for the model:</p><div><ol><li>&#8220;Configuration Parameters"&gt;"Code Generation"&gt;"System target file"</li><li>Click Browse button and select ert.tlc.</li><li>Click Ok and Apply buttons.</li><li>When System target file is ert.tcl click browse button again and select <b>stm32F4xx.tlc</b> file.</li><li>Click Ok and Apply buttons.</li><li>"Configuration Parameters"&gt;"Code Generation"&gt;"STM32F4xx Options"</li><li>Set toolchain parameters. <b>Installed path</b> has been updated.</li></ol></div><p>
+<A HREF="#ANCRES"><p align="right"> top </p></A>
+</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2013b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% Readme
+%
+% <html>
+% <A NAME="ANCRES"> </A>
+% </html>
+%
+% *COPYRIGHT 2012 STMicroelectronics*
+%
+% Licensed under MCD-ST Liberty SW License Agreement V2, (the "License").
+%
+% <html>
+% <a href="MCD-ST Liberty SW License Agreement V2.pdf" target="_blank">Read MCD-ST Liberty SW License Agreement V2.pdf</a>
+% </html>
+%
+%% Package Description
+% This package contains all necessary files to quickly deploy application
+% models in MATLAB and Simulink to STM32 F4 MCU.
+%
+% Specific files included in the distribution are Simulink blockset 
+% libraries for STM32 F4 peripherals, Embedded Coder STM32 F4 configuration
+% files (STM32F4xx.tmf and STM32F4xx.tlc), and PIL serial rtiostream 
+% and profiling functionalities.
+%
+%% Product version
+% STM32 Embedded Target has been developped for *MATLAB R2013b version*
+%
+% MathWorks products required:
+%
+% <html>
+% <ul>
+% <li>MATLAB and MATLAB Coder</li>
+% <li>Simulink and Simulink Coder</li>
+% <li>Embedded Coder</li>
+% </ul>
+% </html>
+%
+% The process from code generation to programing STM32 F4 MCU is fully 
+% automated and requires one of three following listed toolchains:
+%
+% <html>
+% <dd><b>EWARM V6.30</b> or more
+% <a href="http://www.iar.com/" target="_blank">(IAR)</a></dd>
+% </html>
+%
+% <html>
+% <dd><b>Keil MDK V4.60</b> or more
+% <a href="http://www.keil.com/" target="_blank">(ARM)</a></dd>
+% </html>
+%
+% <html>
+% <dd><b>TrueSTUDIO V3.2</b> or more
+% <a href="http://atollic.com/" target="_blank">(Atollic)</a></dd>
+% </html>
+% 
+% <html>
+% <A HREF="#ANCRES"><p align="right"> top </p></A>
+% </html>
+%
+%% Package installation
+% STM32 Embedded Target functionalities are available as soon as
+% *STM32F4xx* product folder and subfolders are added to the MATLAB path.  
+% 
+% Type *pathtool* in the *MATLAB Command Window* and follow the 
+% stages below to settle the product.
+% 
+% # Click *Add with subfolders...* button of "Set Path" window.
+% # Select *STM32F4xx* folder (It contains this Readme file) 
+% # Click *OK*
+% # Click *Save* button and close "Set Path" window 
+% 
+% *STM32 Embedded Target capabilities and functionalities are available now.* 
+%%
+% 
+% <<pathtool.PNG>>
+% 
+% <html>
+% <A HREF="#ANCRES"><p align="right"> top </p></A>
+% <A NAME="package"> </A>
+% </html>
+%
+%% Package Overview
+% The contents of the *STM32 Embedded Target* package are the following one.
+%  
+% <html>
+% <ul>
+% <li><A HREF="#blks">blks</A>: Simulink blockset library</li>
+% <li><A HREF="#html">html</A>: HTML help files for Simulink blockset library</li>
+% <li><A HREF="#lib">lib</A>: "C" code libraries (CMSIS core and STM32F4xx peripherals driver)</li>
+% <li><A HREF="#pil">pil</A>: PIL setting files and STM32F4 RtioStream</li>
+% <li><A HREF="#rtw">rtw</A>: Embedded Coder STM32 F4 configuration files</li>
+% <li><A HREF="#script">script</A>: Settings and configuration MATLAB scripts</li>
+% <li><A HREF="#src">src</A>: STM32 F4 MCU configuration "C" files</li>
+% <li><A HREF="#STM32F4xxdemos">STM32F4xxdemos</A>: Simulink models for demo and test</li>
+% <li><A HREF="#toolchain">toolchain</A>: Settings and configuration files for toolchains.</li>
+% </ul>
+% </html>
+% 
+% <html>
+% <A NAME="blks"> </A>
+% </html>
+%
+%% _blks_
+% Simulink blockset libraries specific files for STM32 F4 peripherals.
+% 
+% <html>
+% <ul>
+% <li><b>logo</b> repository contains ST.bmp file logo visible on every Simulink peripheral models.</li>
+% <li><b>masks</b> repository contains Simulink peripheral models parameters callback script.</li>
+% <li><b>mdl</b> repository contains Simulink peripheral models.</li>
+% <li><b>mex</b> repository contains mewx32 and mexw64 files for Simulink peripheral models</li>
+% <li><b>tlc_c</b> repository contains "C" code generation peripherals TLC scripts.</li>
+% </ul>
+% <A HREF="#package"><p align="left"> back </p></A>
+% <A NAME="html"> </A>
+% </html>
+%
+%% _html_
+% HTML and snapshots for Simulink peripheral models help description.
+%
+% <html>
+% <A HREF="#package"><p align="left"> back </p></A>
+% <A NAME="lib"> </A>
+% </html>
+%
+%% _lib_
+%
+% <html>
+% <ul>
+% <li>Cortex Microcontroller Software Interface Standard (CMSIS) V2.10 library.<br>
+% Licensed under <a href=".\lib\CMSIS\CMSIS END USER LICENCE AGREEMENT.pdf" target="_blank"><b>CMSIS END USER LICENCE AGREEMENT</b></a></li>
+% <li>STM32F4xx Standard Peripheral Driver "C" source code files.</li>
+% </ul>
+% <A HREF="#package"><p align="left"> back </p></A>
+% <A NAME="pil"> </A>
+% </html>
+% 
+%% _pil_
+%
+% <html>
+% <ul>
+% <li><b>+stm32F4xxpil</b> repository contains STM32F4 configuration files for PIL and profiling functionalities.</li>
+% <li><b>stm32F4xxSerialRtiostream</b> repository contains "C" source driver files for PIL.</li>
+% </ul>
+% <b>P</b>rocessor <b>I</b>n the <b>L</b>oop (PIL) serial communication parameters are fixed too:
+% <dd><b>115200 bds</b></dd>
+% <dd><b>8 bits</b></dd>
+% <dd><b>No Parity</b></dd>
+% <dd><b>1 stop bit</b></dd>
+% <dd><b>No Hardware</b></dd><br>
+% PC communication port used for PIL must be set with same parameters.<br><br>
+% PC communication port used for PIL is a MATLAB <b>preference</b> of <b>STM32F4xx</b> group called <b>COMPort</b>.<br> 
+% Command is <b>getpref('STM32F4xx')</b> from MATLAB "Command Window" to
+% see all STM32F4xx defined preferences.<br>
+% Command is <b>setpref('STM32F4xx','COMPort','COMx')</b> from MATLAB "Command Window" to
+% set PC PIL communication port to COMx (x = COM number).<br>
+% Only COMPort preference may need to be changed.<br><br>
+% STM32F4 USART communication port is set from popup window before PIL runs.<br><br>
+% Default initialization communication timeout is set to <b>15sec</b>.<br>
+% Default receive communication timeout is set to <b>10sec</b> (Take care
+% if breakpoint is set during PIL debug)<br>
+% Can be modified from lines 54,59 of ConnectivityConfig.m file.
+% </html>
+%
+%%
+% 
+% <<usartPIL.PNG>>
+% 
+%
+% <html>
+% <A HREF="#package"><p align="left"> back </p></A>
+% <A NAME="rtw"> </A>
+% </html>
+%
+%% _rtw_
+%
+% <html>
+% <b>rtw</b> repository contains Embedded Coder STM32 F4 configuration
+% files:<br>
+% <ul>
+% <li><b>STM32F4xx.tmf</b> <b>t</b>emplate <b>m</b>ake <b>f</b>ile for building a PC-based 
+% stand-alone embedded real-time version of Simulink model using generated C code and
+% one of the three available toolchains.</li>
+% <li><b>STM32F4xx.tlc</b> System target file used to define STM32F4xx
+% option parameters.</li>
+% </ul>
+% <A HREF="#package"><p align="left"> back </p></A>
+% <A NAME="script"> </A>
+% </html>
+%
+%% _script_
+% Set of script files used to automatically initialize STM32F4
+% configuration model or used for RTW build process.
+%
+% <html>
+% <A HREF="#package"><p align="left"> back </p></A>
+% <A NAME="src"> </A>
+% </html>
+%
+%% _src_
+%
+% <html>
+% STM32F4 "C" application source files.<br>
+% <b>To be modified depending on application needs.</b>
+% <ul>
+% <li><b>RCC_Configuration.c</b> used for STM32F4 clock configuration.<br>
+% Default configuration is 168MHz (internal RC)</li>
+% <li><b>stm32f4xx_conf.h</b> used to enable application peripheral header file inclusion.</li>
+% <li><b>stm32f4xx_it.c(.h)</b> used to define dumy IRQ handler.<br>
+% <b>Comments handler of interrupt defines from Simulink application models.</b></li>
+% </ul>
+% <A HREF="#package"><p align="left"> back </p></A>
+% <A NAME="STM32F4xxdemos"> </A>
+% </html>
+%
+%% _STM32F4xxdemos_
+% This repository contains PIL demonstration Simulink models and STM32F4 peripheral
+% test Simulink models.
+%
+% <html>
+% <ul>
+% <li><b>MotorControl</b> contains motor control Simulink application model.<br>
+% Used to demonstrate PIL communication and processing for motor control applications.<br>
+% Field Oriented and Hall sensor application are based on ST Motor Control Evaluation board.</li>
+% <li><b>Pil</b> contains typical IIR filtering example to verify and profile STM32 F4 execution 
+% results versus Simulink simulation behavior using PIL testing.</li>
+% <li><b>Test</b> contains STM32F4 peripherals model examples.<br> 
+% Dedicated to demonstrate build applications and flash STM32F4 target.<br>
+% <b>Not for PIL</b></li>
+% <li><b>CodeGeneration</b> It is recommended to use this working directory as MATLAB "Current Folder" to run STM32F4xx Simulink application model.<br>
+% It is not mandatory to set MATLAB "Current Folder" to <b>THIS</b> particular STM32F4xx\STM32F4xxdemos\CodeGeneration<br>
+% but MATLAB "Current Folder" <b>end path should be CodeGeneration</b></li>
+% </ul>
+% <A HREF="#package"><p align="left"> back </p></A>
+% <A NAME="toolchain"> </A>
+% </html>
+%
+%% _toolchain_
+%
+% <html>
+% This repository contains toolchains templates used to build "C" code generated project. 
+% <ul>
+% <li><b>ATOLLIC_TrueSTUDIO</b> templates for TrueSTUDIO toolchain.<br>
+% Automatic process up to start TrueSTUDIO IDE.<br>
+% User has to manually download project and start debug.</li>
+% <li><b>IAR_Ewarm</b> templates for EWARM toolchain.</li>
+% Automatic process up to start EWARM IDE and flash STM32F4 target.<br>
+% User has to manually start debug.<br></li>
+% <li><b>KEIL</b> templates for MDK toolchain.<br>
+% Fully automated process.<br>
+% Modify xxx_Settings files to set breakpoint or remove automatic run after download.</li>
+% </ul>
+% <A HREF="#package"><p align="left"> back </p></A>
+% </html>
+%
+%% Configuration & Settings
+% 
+% <html>
+% As soon as *STM32F4xx* product folder and subfolders has been added to
+% the MATLAB path: 
+% <ul>
+% <li>STM32F4xx peripherals Simulink library is available.</li>
+% <li>stm32F4xx.tlc system target file is available from Simulink model configuration, Code Generation, Target selection.</li>
+% </ul>
+% Code Generation, STM32F4xx Options have to be set regarding toolchain
+% selection.<br>
+% <br>
+% Crutial information are saved as STM32F4xx group preferences.<br>
+% Command is <b>getpref('STM32F4xx')</b> from MATLAB "Command Window" to
+% see following STM32F4xx defined preferences:<br>
+% <ul>
+% <li><b>COMPort:</b> PC communication port name used for PIL.</li>
+% <li><b>stm32f4RootPath:</b> Installed path. </li>
+% <li><b>stm32f4ToolPath:</b> Toolchain path.</li>
+% <li><b>stm32f4LibSrcPath:</b> STM32F4xx driver "C" source library path.</li>
+% <li><b>stm32f4LibIncPath:</b> STM32F4xx driver includes library path.</li>
+% <li><b>stm32f4listLibFiles:</b> List of STM32F4xx driver "C" source files.</li>
+% <li><b>stm32f4listLibBuildFiles:</b> List of STM32F4xx driver "C" source files to build for the application.</li>
+% <li><b>stm32f4PilMode:</b> is 0 or 1. 1 when model selected mode is 
+% Processor-in-the-Loop (PIL)</li>
+% </ul>
+% <b>stm32f4listLibBuildFiles</b> preference is updated from peripheral
+% callbacks functions (CopyFcn, DeleteFcn, LoadFcn, ModelCloseFcn and
+% UndoDeleteFcn) when drag&drop peripheral model from Simulink
+% Library Browser to the application model or removed from the application
+% model. This is used to build necessary drivers only.<br> 
+% <A HREF="#ANCRES"><p align="right"> top </p></A>
+% </html>
+%
+%% Demonstration settings (_if installed path is not C:\Matlab\STM32F4xx_) 
+% 
+% The provided STM32F4xxdemos have been saved with *C:\Matlab\STM32F4xx*
+% installed path.
+%
+% If installed path is changed, "Configuration Parameters" must be done for the model:
+%
+% # “Configuration Parameters">"Code Generation">"System target file"
+% # Click Browse button and select ert.tlc. 
+% # Click Ok and Apply buttons.
+% # When System target file is ert.tcl click browse button again and select 
+% *stm32F4xx.tlc* file. 
+% # Click Ok and Apply buttons.
+% # "Configuration Parameters">"Code Generation">"STM32F4xx Options"
+% # Set toolchain parameters. *Installed path* has been updated.
+%
+%
+% <html>
+% <A HREF="#ANCRES"><p align="right"> top </p></A>
+% </html>
+%
+##### SOURCE END #####
+--></body></html>

@@ -1,0 +1,199 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>USART receive model</title><meta name="generator" content="MATLAB 8.2"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2013-09-27"><meta name="DC.source" content="help_USART_Receive.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, tt, code { font-size:12px; }
+pre { margin:0px 0px 20px; }
+pre.error { color:red; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>USART receive model</h1><!--introduction--><p>Model used to receive char using USART1 to USART6.</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#2">S-Function</a></li><li><a href="#4">Parameters</a></li><li><a href="#6"><i>Usart name</i></a></li><li><a href="#8"><i>Rcv Buffer Size</i></a></li><li><a href="#10"><i>Output datastring size</i></a></li><li><a href="#12"><i>Software Interrupt</i></a></li><li><a href="#16">Examples</a></li></ul></div><p>
+<A NAME="ANCRES"> </A>
+</p><h2>S-Function<a name="2"></a></h2><p><i>Nb Input:</i>  <b>0</b></p><p><i>Nb Output:</i> <b>2</b></p><div><ol><li><b>NbRcv</b> : Number of received char.</li><li><b>RcvVal</b> : Received char buffer.</li></ol></div><p><img vspace="5" hspace="5" src="STM32_USART_Receive.PNG" alt=""> </p><p>
+<A HREF="#ANCRES"><p align="right"> top </p></A>
+</p><h2>Parameters<a name="4"></a></h2><p>Set receive parameters</p><p><img vspace="5" hspace="5" src="USART_Rcv_Param.PNG" alt=""> </p><p>
+<A HREF="#ANCRES"><p align="right"> top </p></A>
+</p><h2><i>Usart name</i><a name="6"></a></h2><p>Usart communication channel name. USART1-3, UART4-5</p><p><img vspace="5" hspace="5" src="USART_Rcv_Name.PNG" alt=""> </p><p>
+<A HREF="#ANCRES"><p align="right"> top </p></A>
+</p><h2><i>Rcv Buffer Size</i><a name="8"></a></h2><p>Size of the ring buffer dedicated to reception.</p><p><img vspace="5" hspace="5" src="USART_Rcv_BuffSize.PNG" alt=""> </p><p>
+<A HREF="#ANCRES"><p align="right"> top </p></A>
+</p><h2><i>Output datastring size</i><a name="10"></a></h2><p>Size of output RcvVal buffer.</p><p><img vspace="5" hspace="5" src="USART_Rcv_OutStringSize.PNG" alt=""> </p><p>
+<A HREF="#ANCRES"><p align="right"> top </p></A>
+</p><h2><i>Software Interrupt</i><a name="12"></a></h2><p>Enable software interrupt and select software interrupt number. Selected software interrupt will be generated every time output RcvVal buffer is full. (Every time "Output data string size" number of char has been received)</p><p><img vspace="5" hspace="5" src="USART_Rcv_SoftInt.PNG" alt=""> </p><p>
+<A HREF="#ANCRES"><p align="right"> top </p></A>
+</p><p>Please note:</p><p><b>-</b> Software interrupt function trigger is output of STM32_IT_Config.</p><p><img vspace="5" hspace="5" src="USART_Rcv_ExtIRQ.PNG" alt=""> </p><p>
+<A HREF="#ANCRES"><p align="right"> top </p></A>
+</p><h2>Examples<a name="16"></a></h2><p>Receive char from PC HyperTerminal using USART3 and send it back to PC HyperTerminal using USART3.</p><p>This examples are based on STM3240G-EVAL board.</p><p><a href="matlab:open_system('USART_Rcv_Interrupt')">Open USART Receive example</a> This example receive char through interrupt and send back all received char during Solver fundamental sample time.</p><p><a href="matlab:open_system('USART_Rcv_SoftInterrupt')">Open USART Receive with Software interrupt example</a> This example receive char through interrupt but send function is called every 20 received char.</p><p>
+<A HREF="#ANCRES"><p align="right"> top </p></A>
+</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2013b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% USART receive model
+% Model used to receive char using USART1 to USART6.
+% 
+%%
+%
+% <html>
+% <A NAME="ANCRES"> </A>
+% </html>
+% 
+%% S-Function
+% _Nb Input:_  *0*
+%
+% _Nb Output:_ *2*
+%
+% # *NbRcv* : Number of received char.
+% # *RcvVal* : Received char buffer.
+%
+%%
+% 
+% <<STM32_USART_Receive.PNG>>
+% 
+% <html>
+% <A HREF="#ANCRES"><p align="right"> top </p></A>
+% </html>
+%
+%% Parameters
+% Set receive parameters 
+%%
+% <<USART_Rcv_Param.PNG>>
+% 
+% <html>
+% <A HREF="#ANCRES"><p align="right"> top </p></A>
+% </html>
+%
+%% _Usart name_
+% Usart communication channel name. USART1-3, UART4-5
+%%
+%
+% <<USART_Rcv_Name.PNG>>
+% 
+% <html>
+% <A HREF="#ANCRES"><p align="right"> top </p></A>
+% </html>
+%
+%% _Rcv Buffer Size_
+% Size of the ring buffer dedicated to reception. 
+%%
+%
+% <<USART_Rcv_BuffSize.PNG>>
+% 
+% <html>
+% <A HREF="#ANCRES"><p align="right"> top </p></A>
+% </html>
+%
+%% _Output datastring size_
+% Size of output RcvVal buffer.
+% 
+%%
+%
+% <<USART_Rcv_OutStringSize.PNG>>
+% 
+% <html>
+% <A HREF="#ANCRES"><p align="right"> top </p></A>
+% </html>
+%
+%% _Software Interrupt_
+% Enable software interrupt and select software interrupt number.
+% Selected software interrupt will be generated every time output RcvVal
+% buffer is full. (Every time "Output data string size" number of char has
+% been received)
+% 
+%%
+%
+% <<USART_Rcv_SoftInt.PNG>>
+% 
+% <html>
+% <A HREF="#ANCRES"><p align="right"> top </p></A>
+% </html>
+%
+%% 
+%
+% Please note: 
+%
+% *-* Software interrupt function trigger is output of STM32_IT_Config.
+%%
+%
+% <<USART_Rcv_ExtIRQ.PNG>>
+% 
+% <html>
+% <A HREF="#ANCRES"><p align="right"> top </p></A>
+% </html>
+%
+%% Examples
+% Receive char from PC HyperTerminal using USART3 and send it back to PC HyperTerminal using USART3.
+%
+% This examples are based on STM3240G-EVAL board.
+%
+% <matlab:open_system('USART_Rcv_Interrupt') Open USART Receive example> 
+% This example receive char through interrupt and send back all received
+% char during Solver fundamental sample time.
+% 
+% <matlab:open_system('USART_Rcv_SoftInterrupt') Open USART Receive with Software interrupt example> 
+% This example receive char through interrupt but send function is called
+% every 20 received char.
+%% 
+% <html>
+% <A HREF="#ANCRES"><p align="right"> top </p></A>
+% </html>
+%
+
+##### SOURCE END #####
+--></body></html>

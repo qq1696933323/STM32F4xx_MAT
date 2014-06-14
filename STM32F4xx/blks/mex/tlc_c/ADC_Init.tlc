@@ -1,0 +1,551 @@
+%% $RCSfile: ADC_Init.tlc,v $
+%% $Revision: 1.0 $
+%% $Date: 2012/01/26 $
+%%
+%% Abstract: ADC configuration
+%%    STM32F4xx ADC configuration code generation.
+%%    Generated code is based on STM32 Library files.
+%%
+%% Copyright 1990-2009 The MathWorks, Inc.
+
+%implements ADC_Init "C"
+
+%if !EXISTS(::CreateADC_Init)
+    %assign ::CreateADC_Init  = TLC_TRUE
+%endif
+
+%if !EXISTS(::InsertInitHeader)
+    %assign ::InsertInitHeader  = TLC_TRUE
+%endif
+%if !EXISTS(::InsertIncludes)
+    %assign ::InsertIncludes  = TLC_TRUE
+%endif 
+
+    %assign ::CreateADC_Init  = TLC_TRUE
+
+%trace CreateADC_Init  %<CreateADC_Init>
+
+
+%% Create function for ADC configuration:
+%if EXISTS(CreateADC_Init) && (CreateADC_Init == TLC_TRUE)
+
+%%assign ::CreateADC_Init = TLC_FALSE (Can be called for ADC1/2/3)
+
+%% Code for system initialization:
+    %function Start(block,system) Output
+		%assign ADC_Name = SFcnParamSettings.ADC_Name
+        %openfile ADC_Buf
+        %if EXISTS(::InsertInitHeader) && (::InsertInitHeader == TLC_TRUE)
+            %assign ::InsertInitHeader    = TLC_FALSE
+            /******************************************************
+					%<ADC_Name> INITIALIZATION
+			*******************************************************/
+        %endif
+        /* %<ADC_Name> Initialization */
+        %<ADC_Name>_Init();
+        %closefile ADC_Buf
+		%<LibMdlStartCustomCode(ADC_Buf,"execution")>;
+        %openfile ADC_Buf
+        %if EXISTS(::InsertInitHeader) && (::InsertInitHeader == TLC_TRUE)
+            %assign ::InsertInitHeader    = TLC_FALSE
+            /******************************************************
+					%<ADC_Name> START
+			*******************************************************/
+        %endif
+        /* %<ADC_Name> START */
+        %<ADC_Name>_Start();
+        %closefile ADC_Buf
+		%<LibMdlStartCustomCode(ADC_Buf,"trailer")>;
+    %endfunction
+
+%% Code for ADC configuration call:
+    %function BlockInstanceSetup(block, system) void
+        %assign SrcBaseName = LibGetMdlSrcBaseName()
+        %assign modelH      = LibCreateSourceFile("Header", "Simulink", SrcBaseName)
+        %assign modelC      = LibCreateSourceFile("Source", "Simulink", SrcBaseName)
+		%assign ADC_Name = SFcnParamSettings.ADC_Name
+		%assign ADC_Type = SFcnParamSettings.ADC_Type
+		%assign ADC_Default = SFcnParamSettings.ADC_Default
+		%assign ADC_Offset = SFcnParamSettings.ADC_Offset
+		%assign ADC_Resolution = SFcnParamSettings.ADC_Resolution
+		%assign ADC_ScanConvMode = SFcnParamSettings.ADC_ScanConvMode
+		%assign ADC_ContinuousConvMode = SFcnParamSettings.ADC_ContinuousConvMode
+		%assign ADC_ExtTrigPol = SFcnParamSettings.ADC_ExtTrigPol
+		%assign ADC_ExtTrigInjPol = SFcnParamSettings.ADC_ExtTrigInjPol
+		%assign ADC_ExtTrig = SFcnParamSettings.ADC_ExtTrig
+		%assign ADC_ExtTrigInj = SFcnParamSettings.ADC_ExtTrigInj
+		%assign ADC_DataAlign = SFcnParamSettings.ADC_DataAlign
+		%assign ADC_NbConv = SFcnParamSettings.ADC_NbConv
+		%assign ADC_Watchdog_Enable = SFcnParamSettings.ADC_Watchdog_Enable
+		%assign ADC_Watchdog_Command = SFcnParamSettings.ADC_Watchdog_Command
+		%assign ADC_Watchdog_NumChan = SFcnParamSettings.ADC_Watchdog_NumChan
+		%assign ADC_Watchdog_HighThreshold = SFcnParamSettings.ADC_Watchdog_HighThreshold
+		%assign ADC_Watchdog_lowThreshold = SFcnParamSettings.ADC_Watchdog_lowThreshold
+		%assign ADC_Ch0 = SFcnParamSettings.ADC_Ch0
+		%assign ADC_Ch1 = SFcnParamSettings.ADC_Ch1
+		%assign ADC_Ch2 = SFcnParamSettings.ADC_Ch2
+		%assign ADC_Ch3 = SFcnParamSettings.ADC_Ch3
+		%assign ADC_Ch4 = SFcnParamSettings.ADC_Ch4
+		%assign ADC_Ch5 = SFcnParamSettings.ADC_Ch5
+		%assign ADC_Ch6 = SFcnParamSettings.ADC_Ch6
+		%assign ADC_Ch7 = SFcnParamSettings.ADC_Ch7
+		%assign ADC_Ch8 = SFcnParamSettings.ADC_Ch8
+		%assign ADC_Ch9 = SFcnParamSettings.ADC_Ch9
+		%assign ADC_Ch10 = SFcnParamSettings.ADC_Ch10
+		%assign ADC_Ch11 = SFcnParamSettings.ADC_Ch11
+		%assign ADC_Ch12 = SFcnParamSettings.ADC_Ch12
+		%assign ADC_Ch13 = SFcnParamSettings.ADC_Ch13
+		%assign ADC_Ch14 = SFcnParamSettings.ADC_Ch14
+		%assign ADC_Ch15 = SFcnParamSettings.ADC_Ch15
+		%assign ADC_Ch16 = SFcnParamSettings.ADC_Ch16
+		%assign ADC_Ch17 = SFcnParamSettings.ADC_Ch17
+		%assign ADC_Ch18 = SFcnParamSettings.ADC_Ch18
+		%assign ADC_Ch0T = SFcnParamSettings.ADC_Ch0T
+		%assign ADC_Ch1T = SFcnParamSettings.ADC_Ch1T
+		%assign ADC_Ch2T = SFcnParamSettings.ADC_Ch2T
+		%assign ADC_Ch3T = SFcnParamSettings.ADC_Ch3T
+		%assign ADC_Ch4T = SFcnParamSettings.ADC_Ch4T
+		%assign ADC_Ch5T = SFcnParamSettings.ADC_Ch5T
+		%assign ADC_Ch6T = SFcnParamSettings.ADC_Ch6T
+		%assign ADC_Ch7T = SFcnParamSettings.ADC_Ch7T
+		%assign ADC_Ch8T = SFcnParamSettings.ADC_Ch8T
+		%assign ADC_Ch9T = SFcnParamSettings.ADC_Ch9T
+		%assign ADC_Ch10T = SFcnParamSettings.ADC_Ch10T
+		%assign ADC_Ch11T = SFcnParamSettings.ADC_Ch11T
+		%assign ADC_Ch12T = SFcnParamSettings.ADC_Ch12T
+		%assign ADC_Ch13T = SFcnParamSettings.ADC_Ch13T
+		%assign ADC_Ch14T = SFcnParamSettings.ADC_Ch14T
+		%assign ADC_Ch15T = SFcnParamSettings.ADC_Ch15T
+		%assign ADC_Ch16T = SFcnParamSettings.ADC_Ch16T
+		%assign ADC_Ch17T = SFcnParamSettings.ADC_Ch17T
+		%assign ADC_Ch18T = SFcnParamSettings.ADC_Ch18T
+
+		%assign ADC_DMA_channel = SFcnParamSettings.ADC_DMA_channel
+		%assign ADC_DMA_stream = SFcnParamSettings.ADC_DMA_stream
+		
+        %openfile ADC_Buf
+       /*******************************************************************************
+        * Function Name  : %<ADC_Name>_Init
+        * Description    : %<ADC_Name> Initialisation  
+        * Input          : -
+        *******************************************************************************/		
+        void %<ADC_Name>_Init(void)
+        {	
+		%assign regularRank = 1
+		%assign regularChan = 0
+		%assign injectRank = 1
+		%assign injectChan = 0
+			/* Enable %<ADC_Name> clock */			
+			RCC_APB2PeriphClockCmd(RCC_APB2Periph_%<ADC_Name>, ENABLE);
+	
+			%<ADC_Name>_InitStructure.ADC_Resolution = %<ADC_Resolution>;
+			%if (ISEQUAL(ADC_ScanConvMode, "One_channel"))
+			%<ADC_Name>_InitStructure.ADC_ScanConvMode = DISABLE;
+			%else
+			%<ADC_Name>_InitStructure.ADC_ScanConvMode = ENABLE;
+			%endif
+			%if (ISEQUAL(ADC_ContinuousConvMode, "on"))
+			%<ADC_Name>_InitStructure.ADC_ContinuousConvMode = ENABLE;
+			%else
+			%<ADC_Name>_InitStructure.ADC_ContinuousConvMode = DISABLE;
+			%endif
+			
+			%if (ISEQUAL(ADC_Type, "Regular"))
+			%<ADC_Name>_InitStructure.ADC_ExternalTrigConvEdge = %<ADC_ExtTrigPol>;
+			%<ADC_Name>_InitStructure.ADC_ExternalTrigConv = %<ADC_ExtTrig>;
+			%else
+			%<ADC_Name>_InitStructure.ADC_ExternalTrigConvEdge = %<ADC_ExtTrigInjPol>;
+			%<ADC_Name>_InitStructure.ADC_ExternalTrigConv = %<ADC_ExtTrigInj>;
+			%endif
+		
+			%<ADC_Name>_InitStructure.ADC_DataAlign = %<ADC_DataAlign>;
+			%<ADC_Name>_InitStructure.ADC_NbrOfConversion = %<ADC_NbConv>;
+			ADC_Init(%<ADC_Name>, &%<ADC_Name>_InitStructure);	
+		
+			%if (ISEQUAL(ADC_Watchdog_Enable, "on"))
+			/* Set %<ADC_Name> watchdog threshold */
+			ADC_AnalogWatchdogThresholdsConfig(%<ADC_Name>, %<ADC_Watchdog_HighThreshold>,%<ADC_Watchdog_lowThreshold>);
+			%if (ISEQUAL(ADC_Watchdog_Command, "ADC_AnalogWatchdog_SingleInjecEnable") || ISEQUAL(ADC_Watchdog_Command, "ADC_AnalogWatchdog_SingleRegOrInjecEnable"))			 
+			/* Single channel %<ADC_Name> watchdog configuration*/
+			ADC_AnalogWatchdogSingleChannelConfig(%<ADC_Name>, ADC_Channel_%<ADC_Watchdog_NumChan>);
+			%endif
+			/* %<ADC_Name> Watchdog enable */
+			ADC_AnalogWatchdogCmd(%<ADC_Name>, %<ADC_Watchdog_Command>);
+			%endif
+				
+			%if (ISEQUAL(ADC_Ch0, "on"))
+			%if (ISEQUAL(ADC_Ch0T, "Regular"))
+			/* %<ADC_Name> channel configuration *************************************/
+			ADC_RegularChannelConfig(%<ADC_Name>, ADC_Channel_0, %<regularRank>, ADC_SampleTime_3Cycles);
+			%assign regularRank = %<regularRank> + 1
+			%assign regularChan = %<regularChan> + 1
+			%else
+			ADC_InjectedChannelConfig(%<ADC_Name>, ADC_Channel_0, %<injectRank>, ADC_SampleTime_3Cycles);
+			%assign injectRank = %<injectRank> + 1			
+			%assign injectChan = %<injectChan> + 1
+			%endif
+			%endif
+		
+			%if (ISEQUAL(ADC_Ch1, "on"))
+			%if (ISEQUAL(ADC_Ch1T, "Regular"))
+			/* %<ADC_Name> channel configuration *************************************/
+			ADC_RegularChannelConfig(%<ADC_Name>, ADC_Channel_1, %<regularRank>, ADC_SampleTime_3Cycles);
+			%assign regularRank = %<regularRank> + 1
+			%assign regularChan = %<regularChan> + 1
+			%else
+			ADC_InjectedChannelConfig(%<ADC_Name>, ADC_Channel_1, %<injectRank>, ADC_SampleTime_3Cycles);
+			%assign injectRank = %<injectRank> + 1			
+			%assign injectChan = %<injectChan> + 1			
+			%endif
+			%endif
+		
+			%if (ISEQUAL(ADC_Ch2, "on"))
+			%if (ISEQUAL(ADC_Ch2T, "Regular"))
+			/* %<ADC_Name> channel configuration *************************************/
+			ADC_RegularChannelConfig(%<ADC_Name>, ADC_Channel_2, %<regularRank>, ADC_SampleTime_3Cycles);
+			%assign regularRank = %<regularRank> + 1
+			%assign regularChan = %<regularChan> + 1
+			%else
+			ADC_InjectedChannelConfig(%<ADC_Name>, ADC_Channel_2, %<injectRank>, ADC_SampleTime_3Cycles);
+			%assign injectRank = %<injectRank> + 1			
+			%assign injectChan = %<injectChan> + 1			
+			%endif
+			%endif
+		
+			%if (ISEQUAL(ADC_Ch3, "on"))
+			%if (ISEQUAL(ADC_Ch3T, "Regular"))
+			/* %<ADC_Name> channel configuration *************************************/
+			ADC_RegularChannelConfig(%<ADC_Name>, ADC_Channel_3, %<regularRank>, ADC_SampleTime_3Cycles);
+			%assign regularRank = %<regularRank> + 1
+			%assign regularChan = %<regularChan> + 1
+			%else
+			ADC_InjectedChannelConfig(%<ADC_Name>, ADC_Channel_3, %<injectRank>, ADC_SampleTime_3Cycles);
+			%assign injectRank = %<injectRank> + 1			
+			%assign injectChan = %<injectChan> + 1			
+			%endif
+			%endif
+		
+			%if (ISEQUAL(ADC_Ch4, "on"))
+			%if (ISEQUAL(ADC_Ch4T, "Regular"))
+			/* %<ADC_Name> channel configuration *************************************/
+			ADC_RegularChannelConfig(%<ADC_Name>, ADC_Channel_4, %<regularRank>, ADC_SampleTime_3Cycles);
+			%assign regularRank = %<regularRank> + 1
+			%assign regularChan = %<regularChan> + 1
+			%else
+			ADC_InjectedChannelConfig(%<ADC_Name>, ADC_Channel_4, %<injectRank>, ADC_SampleTime_3Cycles);
+			%assign injectRank = %<injectRank> + 1			
+			%assign injectChan = %<injectChan> + 1			
+			%endif
+			%endif
+		
+			%if (ISEQUAL(ADC_Ch5, "on"))
+			%if (ISEQUAL(ADC_Ch5T, "Regular"))
+			/* %<ADC_Name> channel configuration *************************************/
+			ADC_RegularChannelConfig(%<ADC_Name>, ADC_Channel_5, %<regularRank>, ADC_SampleTime_3Cycles);
+			%assign regularRank = %<regularRank> + 1
+			%assign regularChan = %<regularChan> + 1
+			%else
+			ADC_InjectedChannelConfig(%<ADC_Name>, ADC_Channel_5, %<injectRank>, ADC_SampleTime_3Cycles);
+			%assign injectRank = %<injectRank> + 1			
+			%assign injectChan = %<injectChan> + 1			
+			%endif
+			%endif
+		
+			%if (ISEQUAL(ADC_Ch6, "on"))
+			%if (ISEQUAL(ADC_Ch6T, "Regular"))
+			/* %<ADC_Name> channel configuration *************************************/
+			ADC_RegularChannelConfig(%<ADC_Name>, ADC_Channel_6, %<regularRank>, ADC_SampleTime_3Cycles);
+			%assign regularRank = %<regularRank> + 1
+			%assign regularChan = %<regularChan> + 1
+			%else
+			ADC_InjectedChannelConfig(%<ADC_Name>, ADC_Channel_6, %<injectRank>, ADC_SampleTime_3Cycles);
+			%assign injectRank = %<injectRank> + 1			
+			%assign injectChan = %<injectChan> + 1			
+			%endif
+			%endif
+		
+			%if (ISEQUAL(ADC_Ch7, "on"))
+			%if (ISEQUAL(ADC_Ch7T, "Regular"))
+			/* %<ADC_Name> channel configuration *************************************/
+			ADC_RegularChannelConfig(%<ADC_Name>, ADC_Channel_7, %<regularRank>, ADC_SampleTime_3Cycles);
+			%assign regularRank = %<regularRank> + 1
+			%assign regularChan = %<regularChan> + 1
+			%else
+			ADC_InjectedChannelConfig(%<ADC_Name>, ADC_Channel_7, %<injectRank>, ADC_SampleTime_3Cycles);
+			%assign injectRank = %<injectRank> + 1			
+			%assign injectChan = %<injectChan> + 1			
+			%endif
+			%endif
+		
+			%if (ISEQUAL(ADC_Ch8, "on"))
+			%if (ISEQUAL(ADC_Ch8T, "Regular"))
+			/* %<ADC_Name> channel configuration *************************************/
+			ADC_RegularChannelConfig(%<ADC_Name>, ADC_Channel_8, %<regularRank>, ADC_SampleTime_3Cycles);
+			%assign regularRank = %<regularRank> + 1
+			%assign regularChan = %<regularChan> + 1
+			%else
+			ADC_InjectedChannelConfig(%<ADC_Name>, ADC_Channel_8, %<injectRank>, ADC_SampleTime_3Cycles);
+			%assign injectRank = %<injectRank> + 1			
+			%assign injectChan = %<injectChan> + 1			
+			%endif
+			%endif
+		
+			%if (ISEQUAL(ADC_Ch9, "on"))
+			%if (ISEQUAL(ADC_Ch9T, "Regular"))
+			/* %<ADC_Name> channel configuration *************************************/
+			ADC_RegularChannelConfig(%<ADC_Name>, ADC_Channel_9, %<regularRank>, ADC_SampleTime_3Cycles);
+			%assign regularRank = %<regularRank> + 1
+			%assign regularChan = %<regularChan> + 1
+			%else
+			ADC_InjectedChannelConfig(%<ADC_Name>, ADC_Channel_9, %<injectRank>, ADC_SampleTime_3Cycles);
+			%assign injectRank = %<injectRank> + 1			
+			%assign injectChan = %<injectChan> + 1			
+			%endif
+			%endif
+		
+			%if (ISEQUAL(ADC_Ch10, "on"))
+			%if (ISEQUAL(ADC_Ch10T, "Regular"))
+			/* %<ADC_Name> channel configuration *************************************/
+			ADC_RegularChannelConfig(%<ADC_Name>, ADC_Channel_10, %<regularRank>, ADC_SampleTime_3Cycles);
+			%assign regularRank = %<regularRank> + 1
+			%assign regularChan = %<regularChan> + 1
+			%else
+			ADC_InjectedChannelConfig(%<ADC_Name>, ADC_Channel_10, %<injectRank>, ADC_SampleTime_3Cycles);
+			%assign injectRank = %<injectRank> + 1			
+			%assign injectChan = %<injectChan> + 1			
+			%endif
+			%endif
+		
+			%if (ISEQUAL(ADC_Ch11, "on"))
+			%if (ISEQUAL(ADC_Ch11T, "Regular"))
+			/* %<ADC_Name> channel configuration *************************************/
+			ADC_RegularChannelConfig(%<ADC_Name>, ADC_Channel_11, %<regularRank>, ADC_SampleTime_3Cycles);
+			%assign regularRank = %<regularRank> + 1
+			%assign regularChan = %<regularChan> + 1
+			%else
+			ADC_InjectedChannelConfig(%<ADC_Name>, ADC_Channel_11, %<injectRank>, ADC_SampleTime_3Cycles);
+			%assign injectRank = %<injectRank> + 1			
+			%assign injectChan = %<injectChan> + 1			
+			%endif
+			%endif
+		
+			%if (ISEQUAL(ADC_Ch12, "on"))
+			%if (ISEQUAL(ADC_Ch12T, "Regular"))
+			/* %<ADC_Name> channel configuration *************************************/
+			ADC_RegularChannelConfig(%<ADC_Name>, ADC_Channel_12, %<regularRank>, ADC_SampleTime_3Cycles);
+			%assign regularRank = %<regularRank> + 1
+			%assign regularChan = %<regularChan> + 1
+			%else
+			ADC_InjectedChannelConfig(%<ADC_Name>, ADC_Channel_12, %<injectRank>, ADC_SampleTime_3Cycles);
+			%assign injectRank = %<injectRank> + 1			
+			%assign injectChan = %<injectChan> + 1			
+			%endif
+			%endif
+		
+			%if (ISEQUAL(ADC_Ch13, "on"))
+			%if (ISEQUAL(ADC_Ch13T, "Regular"))
+			/* %<ADC_Name> channel configuration *************************************/
+			ADC_RegularChannelConfig(%<ADC_Name>, ADC_Channel_13, %<regularRank>, ADC_SampleTime_3Cycles);
+			%assign regularRank = %<regularRank> + 1
+			%assign regularChan = %<regularChan> + 1
+			%else
+			ADC_InjectedChannelConfig(%<ADC_Name>, ADC_Channel_13, %<injectRank>, ADC_SampleTime_3Cycles);
+			%assign injectRank = %<injectRank> + 1			
+			%assign injectChan = %<injectChan> + 1			
+			%endif
+			%endif
+		
+			%if (ISEQUAL(ADC_Ch14, "on"))
+			%if (ISEQUAL(ADC_Ch14T, "Regular"))
+			/* %<ADC_Name> channel configuration *************************************/
+			ADC_RegularChannelConfig(%<ADC_Name>, ADC_Channel_14, %<regularRank>, ADC_SampleTime_3Cycles);
+			%assign regularRank = %<regularRank> + 1
+			%assign regularChan = %<regularChan> + 1
+			%else
+			ADC_InjectedChannelConfig(%<ADC_Name>, ADC_Channel_14, %<injectRank>, ADC_SampleTime_3Cycles);
+			%assign injectRank = %<injectRank> + 1			
+			%assign injectChan = %<injectChan> + 1			
+			%endif
+			%endif
+		
+			%if (ISEQUAL(ADC_Ch15, "on"))
+			%if (ISEQUAL(ADC_Ch15T, "Regular"))
+			/* %<ADC_Name> channel configuration *************************************/
+			ADC_RegularChannelConfig(%<ADC_Name>, ADC_Channel_15, %<regularRank>, ADC_SampleTime_3Cycles);
+			%assign regularRank = %<regularRank> + 1
+			%assign regularChan = %<regularChan> + 1
+			%else
+			ADC_InjectedChannelConfig(%<ADC_Name>, ADC_Channel_15, %<injectRank>, ADC_SampleTime_3Cycles);
+			%assign injectRank = %<injectRank> + 1			
+			%assign injectChan = %<injectChan> + 1			
+			%endif
+			%endif
+		
+			%if (ISEQUAL(ADC_Ch16, "on"))
+			%if (ISEQUAL(ADC_Ch16T, "Regular"))
+			/* %<ADC_Name> channel configuration *************************************/
+			ADC_RegularChannelConfig(%<ADC_Name>, ADC_Channel_16, %<regularRank>, ADC_SampleTime_3Cycles);
+			%assign regularRank = %<regularRank> + 1
+			%assign regularChan = %<regularChan> + 1
+			%else
+			ADC_InjectedChannelConfig(%<ADC_Name>, ADC_Channel_16, %<injectRank>, ADC_SampleTime_3Cycles);
+			%assign injectRank = %<injectRank> + 1			
+			%assign injectChan = %<injectChan> + 1			
+			%endif
+			%endif
+		
+			%if (ISEQUAL(ADC_Ch17, "on"))
+			%if (ISEQUAL(ADC_Ch17T, "Regular"))
+			/* %<ADC_Name> channel configuration *************************************/
+			ADC_RegularChannelConfig(%<ADC_Name>, ADC_Channel_17, %<regularRank>, ADC_SampleTime_3Cycles);
+			%assign regularRank = %<regularRank> + 1
+			%assign regularChan = %<regularChan> + 1
+			%else
+			ADC_InjectedChannelConfig(%<ADC_Name>, ADC_Channel_17, %<injectRank>, ADC_SampleTime_3Cycles);
+			%assign injectRank = %<injectRank> + 1			
+			%assign injectChan = %<injectChan> + 1			
+			%endif
+			%endif
+		
+			%if (ISEQUAL(ADC_Ch18, "on"))
+			%if (ISEQUAL(ADC_Ch18T, "Regular"))
+			/* %<ADC_Name> channel configuration *************************************/
+			ADC_RegularChannelConfig(%<ADC_Name>, ADC_Channel_18, %<regularRank>, ADC_SampleTime_3Cycles);
+			%assign regularRank = %<regularRank> + 1
+			%assign regularChan = %<regularChan> + 1
+			%else
+			ADC_InjectedChannelConfig(%<ADC_Name>, ADC_Channel_18, %<injectRank>, ADC_SampleTime_3Cycles);
+			%assign injectRank = %<injectRank> + 1			
+			%assign injectChan = %<injectChan> + 1			
+			%endif
+			%endif		
+				
+				
+			#ifdef %<ADC_Name>_USE_DMA
+			/* Enable DMA request after last transfer (Single-ADC mode) */
+			ADC_DMARequestAfterLastTransferCmd(%<ADC_Name>, ENABLE);
+			#endif			
+			
+			#ifndef %<ADC_Name>_USE_DMA
+			#ifdef  ADC_USE_DMA
+			/* Enable DMA request after last transfer (multi-ADC mode) ******************/
+			ADC_MultiModeDMARequestAfterLastTransferCmd(ENABLE);
+			#endif
+			#endif
+		}
+        %closefile ADC_Buf
+        %<LibSetSourceFileSection(modelC,"Functions",ADC_Buf)>
+        %openfile ADC_Buf
+       /*******************************************************************************
+        * Function Name  : %<ADC_Name>_Start
+        * Description    : Enable and start convertion for %<ADC_Name>
+        * Input          : -
+        *******************************************************************************/					
+        void %<ADC_Name>_Start(void)
+        {	
+			#ifdef %<ADC_Name>_USE_DMA
+			/* Enable %<ADC_Name> DMA */
+			ADC_DMACmd(%<ADC_Name>, ENABLE);
+			#endif			
+			/* Enable %<ADC_Name> */
+			ADC_Cmd(%<ADC_Name>, ENABLE);
+			%if (regularChan != 0)
+			/* Start %<ADC_Name> Regular Software Conversion */ 
+			ADC_SoftwareStartConv(%<ADC_Name>);	
+			%endif
+			%if (injectChan != 0)
+			/* Start %<ADC_Name> Injected Software Conversion */ 
+			ADC_SoftwareStartInjectedConv(%<ADC_Name>);
+			%endif			
+        }
+        %closefile ADC_Buf
+        %<LibSetSourceFileSection(modelC,"Functions",ADC_Buf)>
+	       
+ %% Code for the function's declaration:
+        %openfile ADC_Buf
+            /* Function Declaration for %<ADC_Name> Configuration */
+            void %<ADC_Name>_Init(void);
+            void %<ADC_Name>_Start(void);
+		%closefile ADC_Buf
+        %<LibSetSourceFileSection(modelC,"Declarations",ADC_Buf)>
+
+%% Code for the necessary variable definition:
+        %openfile ADC_Buf
+			/* Global Variable Definition for %<ADC_Name> Configuration */
+			ADC_InitTypeDef       %<ADC_Name>_InitStructure;
+		
+			%if (ISEQUAL(ADC_Name, "ADC1"))
+			#ifdef ADC1_NB_CH
+			#undef ADC1_NB_CH
+			#endif			
+			#define ADC1_NB_CH 	(%<regularChan> + %<injectChan>)
+			#ifndef ADC2_NB_CH
+			#define ADC2_NB_CH 0
+			#endif			
+			#ifndef ADC3_NB_CH
+			#define ADC3_NB_CH 0
+			#endif			
+			%elseif (ISEQUAL(ADC_Name, "ADC2"))
+			#ifdef ADC2_NB_CH
+			#undef ADC2_NB_CH
+			#endif			
+			#define ADC2_NB_CH 	(%<regularChan> + %<injectChan>)
+			#ifndef ADC1_NB_CH
+			#define ADC1_NB_CH 0
+			#endif			
+			#ifndef ADC3_NB_CH
+			#define ADC3_NB_CH 0
+			#endif											
+			%else			
+			#ifdef ADC3_NB_CH
+			#undef ADC3_NB_CH
+			#endif			
+			#define ADC3_NB_CH 	(%<regularChan> + %<injectChan>)
+			#ifndef ADC2_NB_CH
+			#define ADC2_NB_CH 0
+			#endif			
+			#ifndef ADC1_NB_CH
+			#define ADC1_NB_CH 0
+			#endif						
+			%endif					
+						
+			%if (!ISEQUAL(ADC_DMA_channel, "not_used") && !ISEQUAL(ADC_DMA_stream, "not_used"))
+			#ifndef DMA2_CHANNEL_DEF
+			#define DMA2_CHANNEL_DEF %<ADC_DMA_channel>
+			#endif
+			#ifndef DMA2_STREAM_DEF
+			#define DMA2_STREAM_DEF %<ADC_DMA_stream>
+			#endif
+			#define %<ADC_Name>_USE_DMA 1
+			#define ADC_DR_CCR_ADDRESS  %<ADC_Name>_DR_ADDRESS
+			#define ADC_NUMBER_OF_CHANNELS %<ADC_Name>_NB_CH
+			uint16_t ADCConvertedValue[ADC_NUMBER_OF_CHANNELS];			
+			#define ADC_DMA_BUFFER ADCConvertedValue		
+			%endif
+			
+        %closefile ADC_Buf
+        %<LibSetSourceFileSection(modelC,"Definitions",ADC_Buf)>
+
+%% Code for required ADC includes:
+        %if EXISTS(::InsertIncludes) && (::InsertIncludes == TLC_TRUE)
+            %assign ::InsertIncludes    = TLC_FALSE
+            %openfile ADC_Buf
+				#include "stm32f4xx.h"
+            %closefile ADC_Buf
+            %<LibSetSourceFileSection(modelH,"Includes",ADC_Buf)>
+        %endif
+
+    %endfunction
+%else
+%% ERROR ADC INIT MUST BE CALLED ONCE ONLY 
+   %trace ERROR ADC INIT MUST BE CALLED ONCE ONLY 
+
+%endif 
+
+%% [EOF] ADC_Init.tlc
+
+
+
+
+
+

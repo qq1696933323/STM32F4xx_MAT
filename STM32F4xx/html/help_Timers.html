@@ -1,0 +1,570 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>Timers configuration model</title><meta name="generator" content="MATLAB 8.0"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2013-04-26"><meta name="DC.source" content="help_Timers.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, tt, code { font-size:12px; }
+pre { margin:0px 0px 20px; }
+pre.error { color:red; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>Timers configuration model</h1><!--introduction--><p>Model used to configure up to 3 channels CH1, CH2 and CH3 of STM32F4 timers TIM1, TIM2, TIM3, TIM4, TIM5 and TIM8.</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#2">S-Function</a></li><li><a href="#4">Timer mode : Output_PWM</a></li><li><a href="#6">Timer mode : Input_Capture</a></li><li><a href="#8">Parameters</a></li><li><a href="#10"><i>Timer</i></a></li><li><a href="#12"><i>Timer counter clock (Hz)</i></a></li><li><a href="#14"><i>Counter mode</i></a></li><li><a href="#16"><i>Timer mode</i></a></li><li><a href="#18"><i>Signal output frequency for channels CH1, CH2 and CH3 is an input port</i></a></li><li><a href="#20"><i>Signal output frequency (Hz)</i></a></li><li><a href="#22"><i>Continuous conversion mode</i></a></li><li><a href="#24">Channel input settings</a></li><li><a href="#26"><i>Enable Channel</i></a></li><li><a href="#27"><i>Channel Type</i></a></li><li><a href="#28"><i>Input capture polarity</i></a></li><li><a href="#30"><i>Input capture prescaler</i></a></li><li><a href="#32"><i>Input capture filter</i></a></li><li><a href="#34"><i>Input capture interrupt</i></a></li><li><a href="#36">Channel output settings</a></li><li><a href="#38"><i>Enable Channel</i></a></li><li><a href="#39"><i>Channel Type</i></a></li><li><a href="#40"><i>Enable interrupt</i></a></li><li><a href="#41"><i>Duty cycle is an input port</i></a></li><li><a href="#42"><i>Output duty cycle (%)</i></a></li><li><a href="#43"><i>Output polarity</i></a></li><li><a href="#45"><i>Output complement state</i></a></li><li><a href="#47"><i>Output complement polarity</i></a></li><li><a href="#49"><i>Output state during idle</i></a></li><li><a href="#51"><i>Output complement state during idle</i></a></li><li><a href="#53">Examples</a></li><li><a href="#54">Example1: With Output Compare interrupt generation</a></li><li><a href="#63">Example1: No interrupt generation</a></li></ul></div><p>
+<A NAME="ANCRES"> </A>
+</p><h2>S-Function<a name="2"></a></h2><p><i>Nb Input:</i>  <b>0 to 4</b></p><div><ol><li><b>F out</b> : Set signal output frequency</li><li><b>duty CH1</b> : Duty cycle percentage value for CH1. <b>Timer mode parameter is output_PWM</b></li><li><b>duty CH2</b> : Duty cycle percentage value for CH2. <b>Timer mode parameter is output_PWM</b></li><li><b>duty CH3</b> : Duty cycle percentage value for CH3. <b>Timer mode parameter is output_PWM</b></li></ol></div><p><i>Nb Output:</i> <b>0 to 3 Timer mode parameter is Input_Capture</b></p><div><ol><li><b>CH1</b> : Computed frequency value of channel 1.</li><li><b>CH2</b> : Computed frequency value of channel 2.</li><li><b>CH3</b> : Computed frequency value of channel 3.</li></ol></div><p><img vspace="5" hspace="5" src="Timers.PNG" alt=""> </p><h2>Timer mode : Output_PWM<a name="4"></a></h2><p>Timer output signal frequency and channel duty cycle percentage value are input parameters.</p><p><img vspace="5" hspace="5" src="Timers-InputValues.PNG" alt=""> </p><p>
+<A HREF="#ANCRES"><p align="right"> top </p></A>
+</p><h2>Timer mode : Input_Capture<a name="6"></a></h2><p>Output CHx computed frequencies.</p><p><img vspace="5" hspace="5" src="Timers-Freq.PNG" alt=""> </p><p>
+<A HREF="#ANCRES"><p align="right"> top </p></A>
+</p><h2>Parameters<a name="8"></a></h2><p>Set global parameters for the timer and parameters for chanels 1-3.</p><p><img vspace="5" hspace="5" src="Timers-Global_in.PNG" alt=""> </p><p>
+<A HREF="#ANCRES"><p align="right"> top </p></A>
+</p><h2><i>Timer</i><a name="10"></a></h2><p>Timer selection. Can be timer 1-5,8 (1 to 5 or 8)</p><p><img vspace="5" hspace="5" src="Timers_P1.PNG" alt=""> </p><p>
+<A HREF="#ANCRES"><p align="right"> top </p></A>
+</p><h2><i>Timer counter clock (Hz)</i><a name="12"></a></h2><p>Frequency value of the timer. Configure timer tick base to compute input or output channel signal.</p><p><b>Must be higher than signal frequency</b></p><p>
+<A HREF="#ANCRES"><p align="right"> top </p></A>
+</p><h2><i>Counter mode</i><a name="14"></a></h2><p>Counter mode used to generate output signals.</p><p><img vspace="5" hspace="5" src="Timers_P2.PNG" alt=""> </p><p><img vspace="5" hspace="5" src="Timers_P2-1.PNG" alt=""> </p><p>The Output compare interrupt flag is set when: the counter counts down (Center aligned 1), the counter counts up (Center aligned 2) the counter counts up and down (Center aligned 3). Interrupt is generated when CHx "Enable interrupt" parameter is selected.</p><p>
+<A HREF="#ANCRES"><p align="right"> top </p></A>
+</p><h2><i>Timer mode</i><a name="16"></a></h2><p>Configure timer to generate output signal or compute input signal frequency.</p><p><img vspace="5" hspace="5" src="Timers_P3.PNG" alt=""> </p><div><ol><li><b><i>Input Capture</i> :</b> Channels' signal is an input</li></ol></div><p><img vspace="5" hspace="5" src="Timers_Global_in.PNG" alt=""> </p><div><ol><li><b><i>Output PWM</i> :</b> Channels' signal is an output</li></ol></div><p><img vspace="5" hspace="5" src="Timers_Global_out.PNG" alt=""> </p><p>
+<A HREF="#ANCRES"><p align="right"> top </p></A>
+</p><h2><i>Signal output frequency for channels CH1, CH2 and CH3 is an input port</i><a name="18"></a></h2><p>Output channel frequency value comes from an input port. <b>Timer mode</b> is Output PWM.</p><p>
+<A HREF="#ANCRES"><p align="right"> top </p></A>
+</p><h2><i>Signal output frequency (Hz)</i><a name="20"></a></h2><p>This parameter gives output channel frequency value or initial value if it comes from an input port. <b>Timer mode</b> is Output PWM.</p><p>
+<A HREF="#ANCRES"><p align="right"> top </p></A>
+</p><h2><i>Continuous conversion mode</i><a name="22"></a></h2><p>Specifies whether the conversion is performed in continuous mode. Conversion is performed in single mode when it is not selected.</p><p>
+<A HREF="#ANCRES"><p align="right"> top </p></A>
+</p><h2>Channel input settings<a name="24"></a></h2><p>Select the external trigger edge.</p><p><img vspace="5" hspace="5" src="Timers-CH_in.PNG" alt=""> </p><p>
+<A HREF="#ANCRES"><p align="right"> top </p></A>
+</p><h2><i>Enable Channel</i><a name="26"></a></h2><p>Input channel parameters are available.</p><p>
+<A HREF="#ANCRES"><p align="right"> top </p></A>
+</p><h2><i>Channel Type</i><a name="27"></a></h2><p><b>Read only</b> parameter that reminds type of channel used. (Input/Output)</p><p>
+<A HREF="#ANCRES"><p align="right"> top </p></A>
+</p><h2><i>Input capture polarity</i><a name="28"></a></h2><p>Front use to compute signal frequency. (<b>duty cycle</b> not implemented)</p><p><img vspace="5" hspace="5" src="Timers_P7.PNG" alt=""> </p><p>
+<A HREF="#ANCRES"><p align="right"> top </p></A>
+</p><h2><i>Input capture prescaler</i><a name="30"></a></h2><p>Set the number of polarity event before signal is taken into account.</p><p>Example: Rising polarity and prescaler Div2. Signal event is taken into account every 2 rising edge. Usefull for very high frequency signal.</p><p><img vspace="5" hspace="5" src="Timers_P8.PNG" alt=""> </p><p>
+<A HREF="#ANCRES"><p align="right"> top </p></A>
+</p><h2><i>Input capture filter</i><a name="32"></a></h2><p>Set the number of timer counter ticks signal must be at same level to be taken into account.</p><p>Example: Rising polarity and Timer counter clock is 21000000Hz. If input filter is 3. Rising edge is taken into account after 3/21E6 = 0.15&micro;s Usefull to filter rebonds.</p><p><img vspace="5" hspace="5" src="Timers_P9.PNG" alt=""> </p><p>
+<A HREF="#ANCRES"><p align="right"> top </p></A>
+</p><h2><i>Input capture interrupt</i><a name="34"></a></h2><p>Signal information to compute.</p><div><ol><li><i>No interrupt</i> : Input is not used.</li><li><i>Compute frequency</i> : CH1 output is the signal frequency value (Hz).</li><li><i>Compute duty cycle</i> : <b>Not implemented</b></li></ol></div><p><img vspace="5" hspace="5" src="Timers_10.PNG" alt=""> </p><p>
+<A HREF="#ANCRES"><p align="right"> top </p></A>
+</p><h2>Channel output settings<a name="36"></a></h2><p>Select the external trigger edge.</p><p><img vspace="5" hspace="5" src="Timers-CH_out.PNG" alt=""> </p><p>
+<A HREF="#ANCRES"><p align="right"> top </p></A>
+</p><h2><i>Enable Channel</i><a name="38"></a></h2><p>Output channel parameters are available.</p><p>
+<A HREF="#ANCRES"><p align="right"> top </p></A>
+</p><h2><i>Channel Type</i><a name="39"></a></h2><p>Enable channel output compare interrupt. Interrupt is generated depending on "Counter mode" parameter configuration.</p><p>
+<A HREF="#ANCRES"><p align="right"> top </p></A>
+</p><h2><i>Enable interrupt</i><a name="40"></a></h2><p><b>Read only</b> parameter that reminds type of channel used. (Input/Output)</p><p>
+<A HREF="#ANCRES"><p align="right"> top </p></A>
+</p><h2><i>Duty cycle is an input port</i><a name="41"></a></h2><p>Output signal PWM duty cycle percentage value comes from input port.</p><p>
+<A HREF="#ANCRES"><p align="right"> top </p></A>
+</p><h2><i>Output duty cycle (%)</i><a name="42"></a></h2><p>Output signal PWM duty cycle percentage value or initial value when it comes from input port.</p><p>
+<A HREF="#ANCRES"><p align="right"> top </p></A>
+</p><h2><i>Output polarity</i><a name="43"></a></h2><p>High or Low rest level.</p><p><img vspace="5" hspace="5" src="Timers_P4.PNG" alt=""> </p><p>
+<A HREF="#ANCRES"><p align="right"> top </p></A>
+</p><h2><i>Output complement state</i><a name="45"></a></h2><p>Output complement state validation. Output complement state signal is available from corresponding port-pin.</p><p>
+<A HREF="#ANCRES"><p align="right"> top </p></A>
+</p><h2><i>Output complement polarity</i><a name="47"></a></h2><p>High or Low rest complement signal level if output complement state is selected.</p><p><img vspace="5" hspace="5" src="Timers_P4N.PNG" alt=""> </p><p>
+<A HREF="#ANCRES"><p align="right"> top </p></A>
+</p><h2><i>Output state during idle</i><a name="49"></a></h2><p>Output level during idle.</p><p><img vspace="5" hspace="5" src="Timers_P5.PNG" alt=""> </p><p>
+<A HREF="#ANCRES"><p align="right"> top </p></A>
+</p><h2><i>Output complement state during idle</i><a name="51"></a></h2><p>Output complement level during idel if output complement state is selected.</p><p><img vspace="5" hspace="5" src="Timers_P5N.PNG" alt=""> </p><p>
+<A HREF="#ANCRES"><p align="right"> top </p></A>
+</p><h2>Examples<a name="53"></a></h2><p>PWM output/input example.</p><p>Examples based on STM3240G-EVAL board.</p><p>PWM output signal (50% fix duty cycle) is generated on TIM8 CH1 (PortC-Pin6). PWM output signal frequency is from 100KHz to 200KHz depending on potentiometer value read from ADC3 PortF-Pin9.</p><p>TIM1 CH1 is in input capture configuration mode. It compute input (PortE-Pin9) signal frequency value that is sent to HyperTerminal through USART3.</p><p>PortC-Pin6 <b>must be physically connected</b> to PortE-Pin9.</p><h2>Example1: With Output Compare interrupt generation<a name="54"></a></h2><p><a href="matlab:open_system('PWM_Read_Write_Interrupt')">Open PWM example model</a></p><p><img vspace="5" hspace="5" src="PWM_Read_Write_Interrupt_EX.PNG" alt=""> </p><p><b>Timer 8 mode is output PWM.</b></p><p><b>Initial frequency value is set to 100KHz</b> <b>and Output signal frequency value is a block parameter.</b></p><p><img vspace="5" hspace="5" src="Timers-Output.PNG" alt=""> </p><p><b>Timer 8, Channel 1 used. Enable interrupt, duty cycle value is fixed to 50% and complement signal not used</b></p><p><img vspace="5" hspace="5" src="Timers-OutputCH1int.PNG" alt=""> </p><p><b>Timer 8, Channel 2 used. Enable interrupt, duty cycle value is fixed to 50% and complement signal not used</b></p><p><img vspace="5" hspace="5" src="Timers-OutputCH2int.PNG" alt=""> </p><p><b>Function called for every channel interrupt depending on Counter mode parameter setting</b></p><p><img vspace="5" hspace="5" src="Timers-Output-FcnCall.PNG" alt=""> </p><p><b>Example of function called : Blink green led</b></p><p><img vspace="5" hspace="5" src="Timers-Output-FcnCalled.PNG" alt=""> </p><p><b>Timer 1 mode is input capture</b></p><p><img vspace="5" hspace="5" src="Timers-Input.PNG" alt=""> </p><p><b>Channel 1 used to compute signal frequency value.</b></p><p><img vspace="5" hspace="5" src="Timers-InputCH1.PNG" alt=""> </p><p>
+<A HREF="#ANCRES"><p align="right"> top </p></A>
+</p><h2>Example1: No interrupt generation<a name="63"></a></h2><p><a href="matlab:open_system('PWM_Read_Write')">Open PWM example model</a></p><p><img vspace="5" hspace="5" src="PWM_Read_Write_EX.PNG" alt=""> </p><p><b>Timer 8 mode is output PWM.</b></p><p><b>Initial frequency value is set to 100KHz</b> <b>and Output signal frequency value is a block parameter.</b></p><p><img vspace="5" hspace="5" src="Timers-Output.PNG" alt=""> </p><p><b>Timer 8, Channel 1 used. No interrupt, duty cycle value is fixed to 50% and complement signal not used</b></p><p><img vspace="5" hspace="5" src="Timers-OutputCH1.PNG" alt=""> </p><p><b>Timer 1 mode is input capture</b></p><p><img vspace="5" hspace="5" src="Timers-Input.PNG" alt=""> </p><p><b>Channel 1 used to compute signal frequency value.</b></p><p><img vspace="5" hspace="5" src="Timers-InputCH1.PNG" alt=""> </p><p>
+<A HREF="#ANCRES"><p align="right"> top </p></A>
+</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2012b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% Timers configuration model
+% Model used to configure up to 3 channels CH1, CH2 and CH3 of STM32F4 timers TIM1, TIM2, TIM3, TIM4, TIM5 and TIM8.
+% 
+%%
+%
+% <html>
+% <A NAME="ANCRES"> </A>
+% </html>
+% 
+%% S-Function
+% _Nb Input:_  *0 to 4*
+%
+% # *F out* : Set signal output frequency
+% # *duty CH1* : Duty cycle percentage value for CH1. *Timer mode parameter is output_PWM*
+% # *duty CH2* : Duty cycle percentage value for CH2. *Timer mode parameter is output_PWM*
+% # *duty CH3* : Duty cycle percentage value for CH3. *Timer mode parameter is output_PWM*
+%
+% _Nb Output:_ *0 to 3 Timer mode parameter is Input_Capture*
+%
+% # *CH1* : Computed frequency value of channel 1.
+% # *CH2* : Computed frequency value of channel 2.
+% # *CH3* : Computed frequency value of channel 3.
+%
+%%
+% 
+% <<Timers.PNG>>
+% 
+%% Timer mode : Output_PWM
+% Timer output signal frequency and channel duty cycle percentage value are input parameters. 
+%%
+% 
+% <<Timers-InputValues.PNG>>
+% 
+% <html>
+% <A HREF="#ANCRES"><p align="right"> top </p></A>
+% </html>
+%% Timer mode : Input_Capture
+% Output CHx computed frequencies.
+%%
+% 
+% <<Timers-Freq.PNG>>
+% 
+% <html>
+% <A HREF="#ANCRES"><p align="right"> top </p></A>
+% </html>
+%% Parameters
+% Set global parameters for the timer and parameters for chanels 1-3.
+%%
+% 
+% <<Timers-Global_in.PNG>>
+% 
+% <html>
+% <A HREF="#ANCRES"><p align="right"> top </p></A>
+% </html>
+%
+%% _Timer_
+% Timer selection. Can be timer 1-5,8 (1 to 5 or 8)
+%%
+% 
+% <<Timers_P1.PNG>>
+% 
+% <html>
+% <A HREF="#ANCRES"><p align="right"> top </p></A>
+% </html>
+%% _Timer counter clock (Hz)_
+% Frequency value of the timer. Configure timer tick base to compute input
+% or output channel signal.
+% 
+% *Must be higher than signal frequency*
+%%
+% 
+% <html>
+% <A HREF="#ANCRES"><p align="right"> top </p></A>
+% </html>
+
+%% _Counter mode_
+% Counter mode used to generate output signals. 
+%%
+% 
+% <<Timers_P2.PNG>>
+% 
+% <<Timers_P2-1.PNG>>
+% 
+% The Output compare interrupt flag is set when: the
+% counter counts down (Center aligned 1), the counter counts up (Center
+% aligned 2) the counter counts up and down (Center aligned 3).
+% Interrupt is generated when CHx "Enable interrupt" parameter is selected.
+%
+% <html>
+% <A HREF="#ANCRES"><p align="right"> top </p></A>
+% </html>
+
+%% _Timer mode_
+% Configure timer to generate output signal or compute input signal frequency.
+%%
+% 
+% <<Timers_P3.PNG>>
+% 
+% # *_Input Capture_ :* Channels' signal is an input
+% 
+% <<Timers_Global_in.PNG>>
+% 
+% # *_Output PWM_ :* Channels' signal is an output
+% 
+% <<Timers_Global_out.PNG>>
+% 
+% <html>
+% <A HREF="#ANCRES"><p align="right"> top </p></A>
+% </html>
+
+%% _Signal output frequency for channels CH1, CH2 and CH3 is an input port_
+% Output channel frequency value comes from an input port. 
+% *Timer mode* is Output PWM.
+%%
+% 
+% <html>
+% <A HREF="#ANCRES"><p align="right"> top </p></A>
+% </html>
+%
+%% _Signal output frequency (Hz)_
+% This parameter gives output channel frequency value 
+% or initial value if it comes from an input port.
+% *Timer mode* is Output PWM.
+%%
+% 
+% <html>
+% <A HREF="#ANCRES"><p align="right"> top </p></A>
+% </html>
+%
+%% _Continuous conversion mode_
+% Specifies whether the conversion is performed in continuous mode.
+% Conversion is performed in single mode when it is not selected.
+%%
+% 
+% <html>
+% <A HREF="#ANCRES"><p align="right"> top </p></A>
+% </html>
+%
+%% Channel input settings
+% Select the external trigger edge.
+%
+%%
+% 
+% <<Timers-CH_in.PNG>>
+% 
+% <html>
+% <A HREF="#ANCRES"><p align="right"> top </p></A>
+% </html>
+%
+
+%% _Enable Channel_
+% Input channel parameters are available.
+%
+% <html>
+% <A HREF="#ANCRES"><p align="right"> top </p></A>
+% </html>
+%
+
+%% _Channel Type_
+% *Read only* parameter that reminds type of channel used. (Input/Output)
+% 
+% <html>
+% <A HREF="#ANCRES"><p align="right"> top </p></A>
+% </html>
+%
+
+%% _Input capture polarity_
+% Front use to compute signal frequency. (*duty cycle* not implemented)
+%
+%%
+% 
+% <<Timers_P7.PNG>>
+% 
+% <html>
+% <A HREF="#ANCRES"><p align="right"> top </p></A>
+% </html>
+%
+
+%% _Input capture prescaler_
+% Set the number of polarity event before signal is taken into account.
+%
+% Example: Rising polarity and prescaler Div2. Signal event is taken into
+% account every 2 rising edge. Usefull for very high frequency signal.
+%%
+% 
+% <<Timers_P8.PNG>>
+% 
+% <html>
+% <A HREF="#ANCRES"><p align="right"> top </p></A>
+% </html>
+%
+
+%% _Input capture filter_
+% Set the number of timer counter ticks signal must be at same level to be
+% taken into account. 
+%
+% Example: Rising polarity and Timer counter clock is 21000000Hz.
+% If input filter is 3. Rising edge is taken into account after 3/21E6
+% = 0.15µs Usefull to filter rebonds.
+%%
+% 
+% <<Timers_P9.PNG>>
+% 
+% <html>
+% <A HREF="#ANCRES"><p align="right"> top </p></A>
+% </html>
+%
+
+%% _Input capture interrupt_
+% Signal information to compute.
+%
+% # _No interrupt_ : Input is not used.
+% # _Compute frequency_ : CH1 output is the signal frequency value (Hz).
+% # _Compute duty cycle_ : *Not implemented*
+%%
+% 
+% <<Timers_10.PNG>>
+% 
+% <html>
+% <A HREF="#ANCRES"><p align="right"> top </p></A>
+% </html>
+%
+
+%% Channel output settings
+% Select the external trigger edge.
+%
+%%
+% 
+% <<Timers-CH_out.PNG>>
+% 
+% <html>
+% <A HREF="#ANCRES"><p align="right"> top </p></A>
+% </html>
+%
+
+%% _Enable Channel_
+% Output channel parameters are available.
+%
+% <html>
+% <A HREF="#ANCRES"><p align="right"> top </p></A>
+% </html>
+%
+
+%% _Channel Type_
+% Enable channel output compare interrupt. Interrupt is generated depending
+% on "Counter mode" parameter configuration.
+% 
+% <html>
+% <A HREF="#ANCRES"><p align="right"> top </p></A>
+% </html>
+%
+
+%% _Enable interrupt_
+% *Read only* parameter that reminds type of channel used. (Input/Output)
+% 
+% <html>
+% <A HREF="#ANCRES"><p align="right"> top </p></A>
+% </html>
+%
+
+%% _Duty cycle is an input port_
+% Output signal PWM duty cycle percentage value comes from input port.
+% 
+% <html>
+% <A HREF="#ANCRES"><p align="right"> top </p></A>
+% </html>
+%
+
+%% _Output duty cycle (%)_
+% Output signal PWM duty cycle percentage value or initial value when it comes from input port.
+%
+% <html>
+% <A HREF="#ANCRES"><p align="right"> top </p></A>
+% </html>
+%
+
+%% _Output polarity_
+% High or Low rest level.
+%
+%%
+% 
+% <<Timers_P4.PNG>>
+% 
+% <html>
+% <A HREF="#ANCRES"><p align="right"> top </p></A>
+% </html>
+%
+
+%% _Output complement state_
+% Output complement state validation. Output complement state signal is
+% available from corresponding port-pin.
+%
+%%
+% 
+% <html>
+% <A HREF="#ANCRES"><p align="right"> top </p></A>
+% </html>
+%
+
+%% _Output complement polarity_
+% High or Low rest complement signal level if output complement state is
+% selected.
+% 
+%%
+% 
+% <<Timers_P4N.PNG>>
+% 
+% <html>
+% <A HREF="#ANCRES"><p align="right"> top </p></A>
+% </html>
+%
+
+%% _Output state during idle_
+% Output level during idle. 
+%
+%%
+% 
+% <<Timers_P5.PNG>>
+% 
+% <html>
+% <A HREF="#ANCRES"><p align="right"> top </p></A>
+% </html>
+%
+
+%% _Output complement state during idle_
+% Output complement level during idel if output complement state is
+% selected.
+%
+%%
+% 
+% <<Timers_P5N.PNG>>
+% 
+% <html>
+% <A HREF="#ANCRES"><p align="right"> top </p></A>
+% </html>
+%
+
+%% Examples
+% PWM output/input example.
+%
+% Examples based on STM3240G-EVAL board.
+%
+% PWM output signal (50% fix duty cycle) is generated on TIM8 CH1 (PortC-Pin6).
+% PWM output signal frequency is from 100KHz to 200KHz depending on potentiometer
+% value read from ADC3 PortF-Pin9.
+%
+% TIM1 CH1 is in input capture configuration mode.
+% It compute input (PortE-Pin9) signal frequency value that is sent to
+% HyperTerminal through USART3.
+%
+% PortC-Pin6 *must be physically connected* to PortE-Pin9.
+%
+%% Example1: With Output Compare interrupt generation
+%
+% <matlab:open_system('PWM_Read_Write_Interrupt') Open PWM example model> 
+%
+%%
+% 
+% <<PWM_Read_Write_Interrupt_EX.PNG>>
+% 
+% *Timer 8 mode is output PWM.*
+%
+% *Initial frequency value is set to 100KHz*
+% *and Output signal frequency value is a block parameter.*
+%%
+% 
+% <<Timers-Output.PNG>>
+% 
+% *Timer 8, Channel 1 used. Enable interrupt, duty cycle value is fixed to 50% and complement signal not used*
+%%
+% 
+% <<Timers-OutputCH1int.PNG>>
+% 
+% *Timer 8, Channel 2 used. Enable interrupt, duty cycle value is fixed to 50% and complement signal not used*
+%%
+% 
+% <<Timers-OutputCH2int.PNG>>
+% 
+% *Function called for every channel interrupt depending on Counter mode parameter setting*
+%%
+% 
+% <<Timers-Output-FcnCall.PNG>>
+% 
+% *Example of function called : Blink green led*
+%%
+% 
+% <<Timers-Output-FcnCalled.PNG>>
+% 
+% *Timer 1 mode is input capture*
+%%
+% 
+% <<Timers-Input.PNG>>
+% 
+% *Channel 1 used to compute signal frequency value.*
+%%
+% 
+% <<Timers-InputCH1.PNG>>
+% 
+% <html>
+% <A HREF="#ANCRES"><p align="right"> top </p></A>
+% </html>
+%
+%% Example1: No interrupt generation
+%
+% <matlab:open_system('PWM_Read_Write') Open PWM example model> 
+%
+%%
+% 
+% <<PWM_Read_Write_EX.PNG>>
+% 
+% *Timer 8 mode is output PWM.*
+%
+% *Initial frequency value is set to 100KHz*
+% *and Output signal frequency value is a block parameter.*
+%%
+% 
+% <<Timers-Output.PNG>>
+% 
+% *Timer 8, Channel 1 used. No interrupt, duty cycle value is fixed to 50% and complement signal not used*
+%%
+% 
+% <<Timers-OutputCH1.PNG>>
+% 
+% *Timer 1 mode is input capture*
+%%
+% 
+% <<Timers-Input.PNG>>
+% 
+% *Channel 1 used to compute signal frequency value.*
+%%
+% 
+% <<Timers-InputCH1.PNG>>
+% 
+% <html>
+% <A HREF="#ANCRES"><p align="right"> top </p></A>
+% </html>
+%
+##### SOURCE END #####
+--></body></html>

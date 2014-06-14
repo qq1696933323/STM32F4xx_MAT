@@ -1,0 +1,21 @@
+__var breakId ;
+__var registerRead;
+execUserSetup() 
+{
+ breakId = __setCodeBreak("main", 0, "1", "TRUE", "");
+}
+
+execUserReset() 
+{
+//__writeMemory32(0xA05F0001, 0xE000EDF0, "Memory"); 
+//registerRead = __readMemory32(0xE000EDF0, "Memory");
+//__message "RegisterRead = ",registerRead ;
+//registerRead = registerRead & 0xA05F1101 ;
+/* __jlinkExecCommand("ExecCpuCmdGo");*/
+//Go();
+}
+
+execUserExit()
+{
+ __clearAllBreaks();
+}

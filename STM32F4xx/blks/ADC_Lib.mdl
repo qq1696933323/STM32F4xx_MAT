@@ -1,0 +1,2901 @@
+Library {
+  Name			  "ADC_Lib"
+  Version		  8.2
+  MdlSubVersion		  0
+  SavedCharacterEncoding  "windows-1252"
+  LibraryType		  "BlockLibrary"
+  SaveDefaultBlockParams  on
+  LockLinksToLibrary	  on
+  ScopeRefreshTime	  0.035000
+  OverrideScopeRefreshTime on
+  DisableAllScopes	  off
+  FPTRunName		  "Run 1"
+  MaxMDLFileLineLength	  120
+  Object {
+    $PropName		    "BdWindowsInfo"
+    $ObjectID		    1
+    $ClassName		    "Simulink.BDWindowsInfo"
+    Object {
+      $PropName		      "WindowsInfo"
+      $ObjectID		      2
+      $ClassName	      "Simulink.WindowInfo"
+      IsActive		      [1]
+      Location		      [460.0, 229.0, 592.0, 477.0]
+      Object {
+	$PropName		"ModelBrowserInfo"
+	$ObjectID		3
+	$ClassName		"Simulink.ModelBrowserInfo"
+	Visible			[0]
+	DockPosition		"Left"
+	Width			[50]
+	Height			[50]
+	Filter			[9]
+      }
+      Object {
+	$PropName		"ExplorerBarInfo"
+	$ObjectID		4
+	$ClassName		"Simulink.ExplorerBarInfo"
+	Visible			[1]
+      }
+      Object {
+	$PropName		"EditorsInfo"
+	$ObjectID		5
+	$ClassName		"Simulink.EditorInfo"
+	IsActive		[1]
+	ViewObjType		"SimulinkTopLevel"
+	LoadSaveID		"0"
+	Extents			[550.0, 318.0]
+	ZoomFactor		[1.0]
+	Offset			[0.0, 0.0]
+      }
+    }
+  }
+  Created		  "Thu Jan 05 16:46:15 2012"
+  Creator		  "reynaudp"
+  UpdateHistory		  "UpdateHistoryNever"
+  ModifiedByFormat	  "%<Auto>"
+  LastModifiedBy	  "reynaudp"
+  ModifiedDateFormat	  "%<Auto>"
+  LastModifiedDate	  "Fri Sep 27 08:36:09 2013"
+  RTWModifiedTimeStamp	  302171762
+  ModelVersionFormat	  "1.%<AutoIncrement:49>"
+  ConfigurationManager	  "none"
+  SampleTimeColors	  off
+  SampleTimeAnnotations	  off
+  LibraryLinkDisplay	  "disabled"
+  WideLines		  off
+  ShowLineDimensions	  off
+  ShowPortDataTypes	  off
+  ShowDesignRanges	  off
+  ShowLoopsOnError	  on
+  IgnoreBidirectionalLines off
+  ShowStorageClass	  off
+  ShowTestPointIcons	  on
+  ShowSignalResolutionIcons on
+  ShowViewerIcons	  on
+  SortedOrder		  off
+  ExecutionContextIcon	  off
+  ShowLinearizationAnnotations on
+  BlockNameDataTip	  off
+  BlockParametersDataTip  off
+  BlockDescriptionStringDataTip	off
+  ToolBar		  on
+  StatusBar		  on
+  BrowserShowLibraryLinks off
+  BrowserLookUnderMasks	  off
+  SimulationMode	  "normal"
+  PauseTimes		  "5"
+  NumberOfSteps		  1
+  SnapshotBufferSize	  10
+  SnapshotInterval	  10
+  NumberOfLastSnapshots	  0
+  LinearizationMsg	  "none"
+  Profile		  off
+  ParamWorkspaceSource	  "MATLABWorkspace"
+  RecordCoverage	  off
+  CovSaveName		  "covdata"
+  CovMetricSettings	  "dw"
+  CovNameIncrementing	  off
+  CovHtmlReporting	  on
+  CovForceBlockReductionOff on
+  CovEnableCumulative	  on
+  covSaveCumulativeToWorkspaceVar on
+  CovSaveSingleToWorkspaceVar on
+  CovCumulativeReport	  off
+  CovReportOnPause	  on
+  CovModelRefEnable	  "Off"
+  CovExternalEMLEnable	  off
+  ExtModeBatchMode	  off
+  ExtModeEnableFloating	  on
+  ExtModeTrigType	  "manual"
+  ExtModeTrigMode	  "normal"
+  ExtModeTrigPort	  "1"
+  ExtModeTrigElement	  "any"
+  ExtModeTrigDuration	  1000
+  ExtModeTrigDurationFloating "auto"
+  ExtModeTrigHoldOff	  0
+  ExtModeTrigDelay	  0
+  ExtModeTrigDirection	  "rising"
+  ExtModeTrigLevel	  0
+  ExtModeArchiveMode	  "off"
+  ExtModeAutoIncOneShot	  off
+  ExtModeIncDirWhenArm	  off
+  ExtModeAddSuffixToVar	  off
+  ExtModeWriteAllDataToWs off
+  ExtModeArmWhenConnect	  on
+  ExtModeSkipDownloadWhenConnect off
+  ExtModeLogAll		  on
+  ExtModeAutoUpdateStatusClock on
+  ShowModelReferenceBlockVersion off
+  ShowModelReferenceBlockIO off
+  Array {
+    Type		    "Handle"
+    Dimension		    1
+    Simulink.ConfigSet {
+      $ObjectID		      6
+      Version		      "1.13.1"
+      Array {
+	Type			"Handle"
+	Dimension		8
+	Simulink.SolverCC {
+	  $ObjectID		  7
+	  Version		  "1.13.1"
+	  StartTime		  "0.0"
+	  StopTime		  "10.0"
+	  AbsTol		  "auto"
+	  FixedStep		  "auto"
+	  InitialStep		  "auto"
+	  MaxNumMinSteps	  "-1"
+	  MaxOrder		  5
+	  ZcThreshold		  "auto"
+	  ConsecutiveZCsStepRelTol "10*128*eps"
+	  MaxConsecutiveZCs	  "1000"
+	  ExtrapolationOrder	  4
+	  NumberNewtonIterations  1
+	  MaxStep		  "auto"
+	  MinStep		  "auto"
+	  MaxConsecutiveMinStep	  "1"
+	  RelTol		  "1e-3"
+	  SolverMode		  "Auto"
+	  EnableConcurrentExecution off
+	  ConcurrentTasks	  off
+	  Solver		  "ode45"
+	  SolverName		  "ode45"
+	  SolverJacobianMethodControl "auto"
+	  ShapePreserveControl	  "DisableAll"
+	  ZeroCrossControl	  "UseLocalSettings"
+	  ZeroCrossAlgorithm	  "Nonadaptive"
+	  AlgebraicLoopSolver	  "TrustRegion"
+	  SolverResetMethod	  "Fast"
+	  PositivePriorityOrder	  off
+	  AutoInsertRateTranBlk	  off
+	  SampleTimeConstraint	  "Unconstrained"
+	  InsertRTBMode		  "Whenever possible"
+	}
+	Simulink.DataIOCC {
+	  $ObjectID		  8
+	  Version		  "1.13.1"
+	  Decimation		  "1"
+	  ExternalInput		  "[t, u]"
+	  FinalStateName	  "xFinal"
+	  InitialState		  "xInitial"
+	  LimitDataPoints	  on
+	  MaxDataPoints		  "1000"
+	  LoadExternalInput	  off
+	  LoadInitialState	  off
+	  SaveFinalState	  off
+	  SaveCompleteFinalSimState off
+	  SaveFormat		  "Array"
+	  SignalLoggingSaveFormat "ModelDataLogs"
+	  SaveOutput		  on
+	  SaveState		  off
+	  SignalLogging		  on
+	  DSMLogging		  on
+	  InspectSignalLogs	  off
+	  SaveTime		  on
+	  ReturnWorkspaceOutputs  off
+	  StateSaveName		  "xout"
+	  TimeSaveName		  "tout"
+	  OutputSaveName	  "yout"
+	  SignalLoggingName	  "logsout"
+	  DSMLoggingName	  "dsmout"
+	  OutputOption		  "RefineOutputTimes"
+	  OutputTimes		  "[]"
+	  ReturnWorkspaceOutputsName "out"
+	  Refine		  "1"
+	}
+	Simulink.OptimizationCC {
+	  $ObjectID		  9
+	  Version		  "1.13.1"
+	  Array {
+	    Type		    "Cell"
+	    Dimension		    8
+	    Cell		    "BooleansAsBitfields"
+	    Cell		    "PassReuseOutputArgsAs"
+	    Cell		    "PassReuseOutputArgsThreshold"
+	    Cell		    "ZeroExternalMemoryAtStartup"
+	    Cell		    "ZeroInternalMemoryAtStartup"
+	    Cell		    "OptimizeModelRefInitCode"
+	    Cell		    "NoFixptDivByZeroProtection"
+	    Cell		    "UseSpecifiedMinMax"
+	    PropName		    "DisabledProps"
+	  }
+	  BlockReduction	  on
+	  BooleanDataType	  on
+	  ConditionallyExecuteInputs on
+	  InlineParams		  off
+	  UseIntDivNetSlope	  off
+	  UseFloatMulNetSlope	  off
+	  DefaultUnderspecifiedDataType	"double"
+	  UseSpecifiedMinMax	  off
+	  InlineInvariantSignals  off
+	  OptimizeBlockIOStorage  on
+	  BufferReuse		  on
+	  EnhancedBackFolding	  off
+	  StrengthReduction	  off
+	  ExpressionFolding	  on
+	  BooleansAsBitfields	  off
+	  BitfieldContainerType	  "uint_T"
+	  EnableMemcpy		  on
+	  MemcpyThreshold	  64
+	  PassReuseOutputArgsAs	  "Structure reference"
+	  ExpressionDepthLimit	  2147483647
+	  FoldNonRolledExpr	  on
+	  LocalBlockOutputs	  on
+	  RollThreshold		  5
+	  SystemCodeInlineAuto	  off
+	  StateBitsets		  off
+	  DataBitsets		  off
+	  ActiveStateOutputEnumStorageType "Native Integer"
+	  UseTempVars		  off
+	  ZeroExternalMemoryAtStartup on
+	  ZeroInternalMemoryAtStartup on
+	  InitFltsAndDblsToZero	  off
+	  NoFixptDivByZeroProtection off
+	  EfficientFloat2IntCast  off
+	  EfficientMapNaN2IntZero on
+	  OptimizeModelRefInitCode off
+	  LifeSpan		  "inf"
+	  MaxStackSize		  "Inherit from target"
+	  BufferReusableBoundary  on
+	  SimCompilerOptimization "Off"
+	  AccelVerboseBuild	  off
+	  ParallelExecutionInRapidAccelerator on
+	}
+	Simulink.DebuggingCC {
+	  $ObjectID		  10
+	  Version		  "1.13.1"
+	  RTPrefix		  "error"
+	  ConsistencyChecking	  "none"
+	  ArrayBoundsChecking	  "none"
+	  SignalInfNanChecking	  "none"
+	  SignalRangeChecking	  "none"
+	  ReadBeforeWriteMsg	  "UseLocalSettings"
+	  WriteAfterWriteMsg	  "UseLocalSettings"
+	  WriteAfterReadMsg	  "UseLocalSettings"
+	  AlgebraicLoopMsg	  "warning"
+	  ArtificialAlgebraicLoopMsg "warning"
+	  SaveWithDisabledLinksMsg "warning"
+	  SaveWithParameterizedLinksMsg	"warning"
+	  CheckSSInitialOutputMsg on
+	  UnderspecifiedInitializationDetection	"Classic"
+	  MergeDetectMultiDrivingBlocksExec "none"
+	  CheckExecutionContextPreStartOutputMsg off
+	  CheckExecutionContextRuntimeOutputMsg	off
+	  SignalResolutionControl "UseLocalSettings"
+	  BlockPriorityViolationMsg "warning"
+	  MinStepSizeMsg	  "warning"
+	  TimeAdjustmentMsg	  "none"
+	  MaxConsecutiveZCsMsg	  "error"
+	  MaskedZcDiagnostic	  "warning"
+	  IgnoredZcDiagnostic	  "warning"
+	  SolverPrmCheckMsg	  "warning"
+	  InheritedTsInSrcMsg	  "warning"
+	  DiscreteInheritContinuousMsg "warning"
+	  MultiTaskDSMMsg	  "error"
+	  MultiTaskCondExecSysMsg "error"
+	  MultiTaskRateTransMsg	  "error"
+	  SingleTaskRateTransMsg  "none"
+	  TasksWithSamePriorityMsg "warning"
+	  SigSpecEnsureSampleTimeMsg "warning"
+	  CheckMatrixSingularityMsg "none"
+	  IntegerOverflowMsg	  "warning"
+	  Int32ToFloatConvMsg	  "warning"
+	  ParameterDowncastMsg	  "error"
+	  ParameterOverflowMsg	  "error"
+	  ParameterUnderflowMsg	  "none"
+	  ParameterPrecisionLossMsg "warning"
+	  ParameterTunabilityLossMsg "warning"
+	  FixptConstUnderflowMsg  "none"
+	  FixptConstOverflowMsg	  "none"
+	  FixptConstPrecisionLossMsg "none"
+	  UnderSpecifiedDataTypeMsg "none"
+	  UnnecessaryDatatypeConvMsg "none"
+	  VectorMatrixConversionMsg "none"
+	  InvalidFcnCallConnMsg	  "error"
+	  FcnCallInpInsideContextMsg "EnableAllAsWarning"
+	  SignalLabelMismatchMsg  "none"
+	  UnconnectedInputMsg	  "warning"
+	  UnconnectedOutputMsg	  "warning"
+	  UnconnectedLineMsg	  "warning"
+	  SFcnCompatibilityMsg	  "none"
+	  FrameProcessingCompatibilityMsg "warning"
+	  UniqueDataStoreMsg	  "none"
+	  BusObjectLabelMismatch  "warning"
+	  RootOutportRequireBusObject "warning"
+	  AssertControl		  "UseLocalSettings"
+	  EnableOverflowDetection off
+	  ModelReferenceIOMsg	  "none"
+	  ModelReferenceMultiInstanceNormalModeStructChecksumCheck "error"
+	  ModelReferenceVersionMismatchMessage "none"
+	  ModelReferenceIOMismatchMessage "none"
+	  ModelReferenceCSMismatchMessage "none"
+	  UnknownTsInhSupMsg	  "warning"
+	  ModelReferenceDataLoggingMessage "warning"
+	  ModelReferenceSymbolNameMessage "warning"
+	  ModelReferenceExtraNoncontSigs "error"
+	  StateNameClashWarn	  "warning"
+	  SimStateInterfaceChecksumMismatchMsg "warning"
+	  SimStateOlderReleaseMsg "error"
+	  InitInArrayFormatMsg	  "warning"
+	  StrictBusMsg		  "ErrorLevel1"
+	  BusNameAdapt		  "WarnAndRepair"
+	  NonBusSignalsTreatedAsBus "none"
+	  LoggingUnavailableSignals "error"
+	  BlockIODiagnostic	  "none"
+	  SFUnusedDataAndEventsDiag "warning"
+	  SFUnexpectedBacktrackingDiag "warning"
+	  SFInvalidInputDataAccessInChartInitDiag "warning"
+	  SFNoUnconditionalDefaultTransitionDiag "warning"
+	  SFTransitionOutsideNaturalParentDiag "warning"
+	  SFUnconditionalTransitionShadowingDiag "warning"
+	  SFUndirectedBroadcastEventsDiag "warning"
+	  SFTransitionActionBeforeConditionDiag	"warning"
+	}
+	Simulink.HardwareCC {
+	  $ObjectID		  11
+	  Version		  "1.13.1"
+	  ProdBitPerChar	  8
+	  ProdBitPerShort	  16
+	  ProdBitPerInt		  32
+	  ProdBitPerLong	  32
+	  ProdBitPerLongLong	  64
+	  ProdBitPerFloat	  32
+	  ProdBitPerDouble	  64
+	  ProdBitPerPointer	  32
+	  ProdLargestAtomicInteger "Char"
+	  ProdLargestAtomicFloat  "None"
+	  ProdIntDivRoundTo	  "Undefined"
+	  ProdEndianess		  "Unspecified"
+	  ProdWordSize		  32
+	  ProdShiftRightIntArith  on
+	  ProdLongLongMode	  off
+	  ProdHWDeviceType	  "32-bit Generic"
+	  TargetBitPerChar	  8
+	  TargetBitPerShort	  16
+	  TargetBitPerInt	  32
+	  TargetBitPerLong	  32
+	  TargetBitPerLongLong	  64
+	  TargetBitPerFloat	  32
+	  TargetBitPerDouble	  64
+	  TargetBitPerPointer	  32
+	  TargetLargestAtomicInteger "Char"
+	  TargetLargestAtomicFloat "None"
+	  TargetShiftRightIntArith on
+	  TargetLongLongMode	  off
+	  TargetIntDivRoundTo	  "Undefined"
+	  TargetEndianess	  "Unspecified"
+	  TargetWordSize	  32
+	  TargetTypeEmulationWarnSuppressLevel 0
+	  TargetPreprocMaxBitsSint 32
+	  TargetPreprocMaxBitsUint 32
+	  TargetHWDeviceType	  "Specified"
+	  TargetUnknown		  off
+	  ProdEqTarget		  on
+	}
+	Simulink.ModelReferenceCC {
+	  $ObjectID		  12
+	  Version		  "1.13.1"
+	  UpdateModelReferenceTargets "IfOutOfDateOrStructuralChange"
+	  CheckModelReferenceTargetMessage "error"
+	  EnableParallelModelReferenceBuilds off
+	  ParallelModelReferenceErrorOnInvalidPool on
+	  ParallelModelReferenceMATLABWorkerInit "None"
+	  ModelReferenceNumInstancesAllowed "Multi"
+	  PropagateVarSize	  "Infer from blocks in model"
+	  ModelReferencePassRootInputsByReference on
+	  ModelReferenceMinAlgLoopOccurrences off
+	  PropagateSignalLabelsOutOfModel off
+	  SupportModelReferenceSimTargetCustomCode off
+	}
+	Simulink.SFSimCC {
+	  $ObjectID		  13
+	  Version		  "1.13.1"
+	  SFSimEnableDebug	  on
+	  SFSimOverflowDetection  on
+	  SFSimEcho		  on
+	  SimBlas		  on
+	  SimCtrlC		  on
+	  SimExtrinsic		  on
+	  SimIntegrity		  on
+	  SimUseLocalCustomCode	  off
+	  SimParseCustomCode	  on
+	  SimBuildMode		  "sf_incremental_build"
+	  SimGenImportedTypeDefs  off
+	}
+	Simulink.RTWCC {
+	  $BackupClass		  "Simulink.RTWCC"
+	  $ObjectID		  14
+	  Version		  "1.13.1"
+	  Array {
+	    Type		    "Cell"
+	    Dimension		    8
+	    Cell		    "IncludeHyperlinkInReport"
+	    Cell		    "GenerateTraceInfo"
+	    Cell		    "GenerateTraceReport"
+	    Cell		    "GenerateTraceReportSl"
+	    Cell		    "GenerateTraceReportSf"
+	    Cell		    "GenerateTraceReportEml"
+	    Cell		    "GenerateSLWebview"
+	    Cell		    "GenerateCodeMetricsReport"
+	    PropName		    "DisabledProps"
+	  }
+	  SystemTargetFile	  "grt.tlc"
+	  TLCOptions		  ""
+	  GenCodeOnly		  off
+	  MakeCommand		  "make_rtw"
+	  GenerateMakefile	  on
+	  PackageGeneratedCodeAndArtifacts off
+	  PackageName		  ""
+	  TemplateMakefile	  "grt_default_tmf"
+	  PostCodeGenCommand	  ""
+	  Description		  ""
+	  GenerateReport	  off
+	  SaveLog		  off
+	  RTWVerbose		  on
+	  RetainRTWFile		  off
+	  ProfileTLC		  off
+	  TLCDebug		  off
+	  TLCCoverage		  off
+	  TLCAssert		  off
+	  ProcessScriptMode	  "Default"
+	  ConfigurationMode	  "Optimized"
+	  ProcessScript		  ""
+	  ConfigurationScript	  ""
+	  ConfigAtBuild		  off
+	  RTWUseLocalCustomCode	  off
+	  RTWUseSimCustomCode	  off
+	  CustomSourceCode	  ""
+	  CustomHeaderCode	  ""
+	  CustomInclude		  ""
+	  CustomSource		  ""
+	  CustomLibrary		  ""
+	  CustomInitializer	  ""
+	  CustomTerminator	  ""
+	  Toolchain		  "Automatically locate an installed toolchain"
+	  BuildConfiguration	  "Faster Builds"
+	  IncludeHyperlinkInReport off
+	  LaunchReport		  off
+	  PortableWordSizes	  off
+	  GenerateErtSFunction	  off
+	  CreateSILPILBlock	  "None"
+	  CodeExecutionProfiling  off
+	  CodeExecutionProfileVariable "executionProfile"
+	  CodeProfilingSaveOptions "SummaryOnly"
+	  CodeProfilingInstrumentation off
+	  SILDebugging		  off
+	  TargetLang		  "C"
+	  IncludeBusHierarchyInRTWFileBlockHierarchyMap	off
+	  IncludeERTFirstTime	  off
+	  GenerateTraceInfo	  off
+	  GenerateTraceReport	  off
+	  GenerateTraceReportSl	  off
+	  GenerateTraceReportSf	  off
+	  GenerateTraceReportEml  off
+	  GenerateCodeInfo	  off
+	  GenerateWebview	  off
+	  GenerateCodeMetricsReport off
+	  GenerateCodeReplacementReport	off
+	  RTWCompilerOptimization "Off"
+	  RTWCustomCompilerOptimizations ""
+	  CheckMdlBeforeBuild	  "Off"
+	  CustomRebuildMode	  "OnUpdate"
+	  DataInitializer	  ""
+	  SharedConstantsCachingThreshold 1024
+	  Array {
+	    Type		    "Handle"
+	    Dimension		    2
+	    Simulink.CodeAppCC {
+	      $ObjectID		      15
+	      Version		      "1.13.1"
+	      Array {
+		Type			"Cell"
+		Dimension		21
+		Cell			"IgnoreCustomStorageClasses"
+		Cell			"IgnoreTestpoints"
+		Cell			"InsertBlockDesc"
+		Cell			"InsertPolySpaceComments"
+		Cell			"SFDataObjDesc"
+		Cell			"MATLABFcnDesc"
+		Cell			"SimulinkDataObjDesc"
+		Cell			"DefineNamingRule"
+		Cell			"SignalNamingRule"
+		Cell			"ParamNamingRule"
+		Cell			"InlinedPrmAccess"
+		Cell			"CustomSymbolStr"
+		Cell			"CustomSymbolStrGlobalVar"
+		Cell			"CustomSymbolStrType"
+		Cell			"CustomSymbolStrField"
+		Cell			"CustomSymbolStrFcn"
+		Cell			"CustomSymbolStrFcnArg"
+		Cell			"CustomSymbolStrBlkIO"
+		Cell			"CustomSymbolStrTmpVar"
+		Cell			"CustomSymbolStrMacro"
+		Cell			"ReqsInCode"
+		PropName		"DisabledProps"
+	      }
+	      ForceParamTrailComments off
+	      GenerateComments	      on
+	      IgnoreCustomStorageClasses on
+	      IgnoreTestpoints	      off
+	      IncHierarchyInIds	      off
+	      MaxIdLength	      31
+	      PreserveName	      off
+	      PreserveNameWithParent  off
+	      ShowEliminatedStatement off
+	      OperatorAnnotations     off
+	      IncAutoGenComments      off
+	      SimulinkDataObjDesc     off
+	      SFDataObjDesc	      off
+	      MATLABFcnDesc	      off
+	      IncDataTypeInIds	      off
+	      MangleLength	      1
+	      CustomSymbolStrGlobalVar "$R$N$M"
+	      CustomSymbolStrType     "$N$R$M_T"
+	      CustomSymbolStrField    "$N$M"
+	      CustomSymbolStrFcn      "$R$N$M$F"
+	      CustomSymbolStrFcnArg   "rt$I$N$M"
+	      CustomSymbolStrBlkIO    "rtb_$N$M"
+	      CustomSymbolStrTmpVar   "$N$M"
+	      CustomSymbolStrMacro    "$R$N$M"
+	      CustomSymbolStrUtil     "$N$C"
+	      DefineNamingRule	      "None"
+	      ParamNamingRule	      "None"
+	      SignalNamingRule	      "None"
+	      InsertBlockDesc	      off
+	      InsertPolySpaceComments off
+	      SimulinkBlockComments   on
+	      MATLABSourceComments    off
+	      EnableCustomComments    off
+	      InternalIdentifier      "Shortened"
+	      InlinedPrmAccess	      "Literals"
+	      ReqsInCode	      off
+	      UseSimReservedNames     off
+	    }
+	    Simulink.GRTTargetCC {
+	      $BackupClass	      "Simulink.TargetCC"
+	      $ObjectID		      16
+	      Version		      "1.13.1"
+	      Array {
+		Type			"Cell"
+		Dimension		16
+		Cell			"GeneratePreprocessorConditionals"
+		Cell			"IncludeMdlTerminateFcn"
+		Cell			"CombineOutputUpdateFcns"
+		Cell			"SuppressErrorStatus"
+		Cell			"ERTCustomFileBanners"
+		Cell			"GenerateSampleERTMain"
+		Cell			"GenerateTestInterfaces"
+		Cell			"ModelStepFunctionPrototypeControlCompliant"
+		Cell			"CPPClassGenCompliant"
+		Cell			"PortableWordSizes"
+		Cell			"PurelyIntegerCode"
+		Cell			"SupportComplex"
+		Cell			"SupportAbsoluteTime"
+		Cell			"SupportContinuousTime"
+		Cell			"SupportNonInlinedSFcns"
+		Cell			"GenerateAllocFcn"
+		PropName		"DisabledProps"
+	      }
+	      TargetFcnLib	      "ansi_tfl_table_tmw.mat"
+	      TargetLibSuffix	      ""
+	      TargetPreCompLibLocation ""
+	      CodeReplacementLibrary  "ANSI_C"
+	      UtilityFuncGeneration   "Auto"
+	      ERTMultiwordTypeDef     "System defined"
+	      ERTMultiwordLength      256
+	      MultiwordLength	      2048
+	      GenerateFullHeader      on
+	      GenerateSampleERTMain   off
+	      GenerateTestInterfaces  off
+	      IsPILTarget	      off
+	      ModelReferenceCompliant on
+	      ParMdlRefBuildCompliant on
+	      CompOptLevelCompliant   on
+	      ConcurrentExecutionCompliant on
+	      IncludeMdlTerminateFcn  on
+	      GeneratePreprocessorConditionals "Disable all"
+	      CombineOutputUpdateFcns off
+	      CombineSignalStateStructs	off
+	      SuppressErrorStatus     off
+	      ERTFirstTimeCompliant   off
+	      IncludeFileDelimiter    "Auto"
+	      ERTCustomFileBanners    off
+	      SupportAbsoluteTime     on
+	      LogVarNameModifier      "rt_"
+	      MatFileLogging	      on
+	      MultiInstanceERTCode    off
+	      SupportNonFinite	      on
+	      SupportComplex	      on
+	      PurelyIntegerCode	      off
+	      SupportContinuousTime   on
+	      SupportNonInlinedSFcns  on
+	      SupportVariableSizeSignals off
+	      EnableShiftOperators    on
+	      ParenthesesLevel	      "Nominal"
+	      MATLABClassNameForMDSCustomization "Simulink.SoftwareTarget.GRTCustomization"
+	      ModelStepFunctionPrototypeControlCompliant off
+	      CPPClassGenCompliant    off
+	      AutosarCompliant	      off
+	      GRTInterface	      on
+	      GenerateAllocFcn	      off
+	      UseMalloc		      off
+	      ExtMode		      off
+	      ExtModeStaticAlloc      off
+	      ExtModeTesting	      off
+	      ExtModeStaticAllocSize  1000000
+	      ExtModeTransport	      0
+	      ExtModeMexFile	      "ext_comm"
+	      ExtModeIntrfLevel	      "Level1"
+	      RTWCAPISignals	      off
+	      RTWCAPIParams	      off
+	      RTWCAPIStates	      off
+	      RTWCAPIRootIO	      off
+	      GenerateASAP2	      off
+	    }
+	    PropName		    "Components"
+	  }
+	}
+	PropName		"Components"
+      }
+      Name		      "Configuration"
+      CurrentDlgPage	      "Solver"
+      ConfigPrmDlgPosition     [ 200, 85, 1080, 715 ] 
+    }
+    PropName		    "ConfigurationSets"
+  }
+  ExplicitPartitioning	  off
+  BlockDefaults {
+    ForegroundColor	    "black"
+    BackgroundColor	    "white"
+    DropShadow		    off
+    NamePlacement	    "normal"
+    FontName		    "Helvetica"
+    FontSize		    10
+    FontWeight		    "normal"
+    FontAngle		    "normal"
+    ShowName		    on
+    BlockRotation	    0
+    BlockMirror		    off
+  }
+  AnnotationDefaults {
+    HorizontalAlignment	    "center"
+    VerticalAlignment	    "middle"
+    ForegroundColor	    "black"
+    BackgroundColor	    "white"
+    DropShadow		    off
+    FontName		    "Helvetica"
+    FontSize		    10
+    FontWeight		    "normal"
+    FontAngle		    "normal"
+    UseDisplayTextAsClickCallback off
+  }
+  LineDefaults {
+    FontName		    "Helvetica"
+    FontSize		    9
+    FontWeight		    "normal"
+    FontAngle		    "normal"
+  }
+  MaskDefaults {
+    SelfModifiable	    "off"
+    IconFrame		    "on"
+    IconOpaque		    "on"
+    RunInitForIconRedraw    "off"
+    IconRotate		    "none"
+    PortRotate		    "default"
+    IconUnits		    "autoscale"
+  }
+  MaskParameterDefaults {
+    Evaluate		    "on"
+    Tunable		    "on"
+    NeverSave		    "off"
+    Internal		    "off"
+    ReadOnly		    "off"
+    Enabled		    "on"
+    Visible		    "on"
+    ToolTip		    "on"
+  }
+  BlockParameterDefaults {
+    Block {
+      BlockType		      S-Function
+      FunctionName	      "system"
+      SFunctionModules	      "''"
+      PortCounts	      "[]"
+      SFunctionDeploymentMode off
+    }
+  }
+  System {
+    Name		    "ADC_Lib"
+    Location		    [460, 229, 1052, 706]
+    Open		    on
+    ModelBrowserVisibility  off
+    ModelBrowserWidth	    200
+    ScreenColor		    "white"
+    PaperOrientation	    "landscape"
+    PaperPositionMode	    "auto"
+    PaperType		    "usletter"
+    PaperUnits		    "inches"
+    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
+    TiledPageScale	    1
+    ShowPageBoundaries	    off
+    ZoomFactor		    "100"
+    ReportName		    "simulink-default.rpt"
+    SIDHighWatermark	    "51"
+    Block {
+      BlockType		      S-Function
+      Name		      "ADC_Init"
+      SID		      "51"
+      Ports		      []
+      Position		      [165, 35, 275, 95]
+      ZOrder		      28
+      NamePlacement	      "alternate"
+      ShowName		      off
+      CopyFcn		      "pathTmf = updatePrefs('get','stm32f4RootPath');\nif isempty(pathTmf)\nh = errordlg('Add STM32F4x"
+      "x repository to Matlab default path or set System target file to stm32F4xx.tlc before!' ,'STM32F4xx','modal');\n"
+      "close(h);\nclear h\nend\nlibFiles =    updatePrefs('get','stm32f4listLibFiles');          libFiles2Build = updat"
+      "ePrefs('get','stm32f4listLibBuildFiles');\nadc = strcmp('stm32f4xx_adc.c',{libFiles(:).name});\nlibFiles2Build(a"
+      "dc) = libFiles2Build(adc)  + 1;\ngpio = strcmp('stm32f4xx_gpio.c',{libFiles(:).name});\nlibFiles2Build(gpio) = l"
+      "ibFiles2Build(gpio) + 1;\nrcc = strcmp('stm32f4xx_rcc.c',{libFiles(:).name}) ;\nlibFiles2Build(rcc) = libFiles2B"
+      "uild(rcc) + 1;\nupdatePrefs('set','stm32f4listLibBuildFiles',libFiles2Build);\nclear adc gpio rcc  pathTmf libFi"
+      "les\nclear libFiles2Build"
+      DeleteFcn		      "libFiles =    updatePrefs('get','stm32f4listLibFiles');          libFiles2Build = updatePrefs("
+      "'get','stm32f4listLibBuildFiles');\nadc = strcmp('stm32f4xx_adc.c',{libFiles(:).name});\nlibFiles2Build(adc) = l"
+      "ibFiles2Build(adc)  - 1;  if(libFiles2Build(adc) <0)\nlibFiles2Build(adc)  = 0;                                 "
+      " end\ngpio = strcmp('stm32f4xx_gpio.c',{libFiles(:).name});\nlibFiles2Build(gpio) = libFiles2Build(gpio) - 1;  i"
+      "f(libFiles2Build(gpio) <0)\nlibFiles2Build(gpio)  = 0;                                  end\nrcc = strcmp('stm32"
+      "f4xx_rcc.c',{libFiles(:).name}) ;\nlibFiles2Build(rcc) = libFiles2Build(rcc) - 1;    if(libFiles2Build(rcc) <0)\n"
+      "libFiles2Build(rcc)  = 0;                                  end\nupdatePrefs('set','stm32f4listLibBuildFiles',lib"
+      "Files2Build);\nclear adc gpio rcc  libFiles  libFiles2Build"
+      UndoDeleteFcn	      "libFiles =    updatePrefs('get','stm32f4listLibFiles');          libFiles2Build = updatePre"
+      "fs('get','stm32f4listLibBuildFiles');\nadc = strcmp('stm32f4xx_adc.c',{libFiles(:).name});\nlibFiles2Build(adc) "
+      "= libFiles2Build(adc)  + 1;\ngpio = strcmp('stm32f4xx_gpio.c',{libFiles(:).name});\nlibFiles2Build(gpio) = libFi"
+      "les2Build(gpio) + 1;\nrcc = strcmp('stm32f4xx_rcc.c',{libFiles(:).name}) ;\nlibFiles2Build(rcc) = libFiles2Build"
+      "(rcc) + 1;\nupdatePrefs('set','stm32f4listLibBuildFiles',libFiles2Build);\nclear adc gpio rcc  libFiles\nclear l"
+      "ibFiles2Build"
+      LoadFcn		      "libFiles =    updatePrefs('get','stm32f4listLibFiles');          libFiles2Build = updatePrefs('g"
+      "et','stm32f4listLibBuildFiles');\nadc = strcmp('stm32f4xx_adc.c',{libFiles(:).name});                           "
+      "                                                  \nlibFiles2Build(adc) = libFiles2Build(adc)  + 1;             "
+      "                                                                    \ngpio = strcmp('stm32f4xx_gpio.c',{libFiles"
+      "(:).name});                                                                           \nlibFiles2Build(gpio) = l"
+      "ibFiles2Build(gpio) + 1;                                                                                \nrcc = "
+      "strcmp('stm32f4xx_rcc.c',{libFiles(:).name}) ;                                                                  "
+      "          \nlibFiles2Build(rcc) = libFiles2Build(rcc) + 1;                                                      "
+      "                            \n                                                                                  "
+      "                                              \nupdatePrefs('set','stm32f4listLibBuildFiles',libFiles2Build);   "
+      "                                                                \nclear adc gpio rcc  libFiles                  "
+      "                                                                                  \nclear libFiles2Build        "
+      "                                                                                                    "
+      FunctionName	      "ADC_Init"
+      Parameters	      "ADC_Name,ADC_Type,ADC_Default,ADC_Offset,ADC_Resolution,ADC_ScanConvMode,ADC_ContinuousConvMod"
+      "e,ADC_ExtTrigPol,ADC_ExtTrigInjPol,ADC_ExtTrig,ADC_ExtTrigInj,ADC_DataAlign,ADC_NbConv,ADC_Watchdog_Enable,ADC_W"
+      "atchdog_Command,ADC_Watchdog_NumChan,ADC_Watchdog_HighThreshold,ADC_Watchdog_lowThreshold,ADC_Ch0,ADC_Ch0T,ADC_C"
+      "h0L,ADC_Ch1,ADC_Ch1T,ADC_Ch1L,ADC_Ch2,ADC_Ch2T,ADC_Ch2L,ADC_Ch3,ADC_Ch3T,ADC_Ch3L,ADC_Ch4,ADC_Ch4T,ADC_Ch4L,ADC_"
+      "Ch5,ADC_Ch5T,ADC_Ch5L,ADC_Ch6,ADC_Ch6T,ADC_Ch6L,ADC_Ch7,ADC_Ch7T,ADC_Ch7L,ADC_Ch8,ADC_Ch8T,ADC_Ch8L,ADC_Ch9,ADC_"
+      "Ch9T,ADC_Ch9L,ADC_Ch10,ADC_Ch10T,ADC_Ch10L,ADC_Ch11,ADC_Ch11T,ADC_Ch11L,ADC_Ch12,ADC_Ch12T,ADC_Ch12L,ADC_Ch13,AD"
+      "C_Ch13T,ADC_Ch13L,ADC_Ch14,ADC_Ch14T,ADC_Ch14L,ADC_Ch15,ADC_Ch15T,ADC_Ch15L,ADC_Ch16,ADC_Ch16T,ADC_Ch16L,ADC_Ch1"
+      "7,ADC_Ch17T,ADC_Ch17L,ADC_Ch18,ADC_Ch18T,ADC_Ch18L,ADC_DMA_channel,ADC_DMA_stream"
+      EnableBusSupport	      off
+      Object {
+	$PropName		"MaskObject"
+	$ObjectID		17
+	$ClassName		"Simulink.Mask"
+	Type			"ADC_Init"
+	Description		"Analog-to-digital converter (ADC) parameters setting.\n1)Select the ADC to configure.\n2)Set ADC regula"
+	"r and/or injected parameters.\n3)Set watchdog\n4)Select used channels.\n"
+	Help			"web('help_ADC_Init.html', '-helpbrowser')"
+	Display			"color('blue'); text(0.6, 0.90, 'STM32F4xx', 'horizontalalignment', 'right');color('black'); text(0.50, 0.1"
+	"2, 'ADC_Init', 'horizontalAlignment','center');\nimage(imread('ST.bmp','bmp'),'top-right');\n"
+	IconUnits		"normalized"
+	Array {
+	  Type			  "Simulink.MaskParameter"
+	  Dimension		  77
+	  Object {
+	    $ObjectID		    18
+	    Type		    "popup"
+	    Array {
+	      Type		      "Cell"
+	      Dimension		      3
+	      Cell		      "ADC1"
+	      Cell		      "ADC2"
+	      Cell		      "ADC3"
+	      PropName		      "TypeOptions"
+	    }
+	    Name		    "ADC_Name"
+	    Prompt		    "ADC "
+	    Value		    "ADC1"
+	    Evaluate		    "off"
+	    Callback		    "ADC_Init_callback('ADC_Name');"
+	  }
+	  Object {
+	    $ObjectID		    19
+	    Type		    "popup"
+	    Array {
+	      Type		      "Cell"
+	      Dimension		      2
+	      Cell		      "Regular"
+	      Cell		      "Injected"
+	      PropName		      "TypeOptions"
+	    }
+	    Name		    "ADC_Type"
+	    Prompt		    "ADC type"
+	    Value		    "Regular"
+	    Evaluate		    "off"
+	    Callback		    "ADC_Init_callback('ADC_Type');"
+	  }
+	  Object {
+	    $ObjectID		    20
+	    Type		    "checkbox"
+	    Name		    "ADC_Default"
+	    Prompt		    "Set to default initial values"
+	    Value		    "off"
+	    Evaluate		    "off"
+	    Callback		    "ADC_Init_callback('init_setting');"
+	  }
+	  Object {
+	    $ObjectID		    21
+	    Type		    "edit"
+	    Name		    "ADC_Offset"
+	    Prompt		    "Offset"
+	    Value		    "0"
+	    Evaluate		    "off"
+	    Visible		    "off"
+	    Callback		    "ADC_Init_callback('offset');"
+	  }
+	  Object {
+	    $ObjectID		    22
+	    Type		    "popup"
+	    Array {
+	      Type		      "Cell"
+	      Dimension		      4
+	      Cell		      "ADC_Resolution_12b"
+	      Cell		      "ADC_Resolution_10b"
+	      Cell		      "ADC_Resolution_8b"
+	      Cell		      "ADC_Resolution_6b"
+	      PropName		      "TypeOptions"
+	    }
+	    Name		    "ADC_Resolution"
+	    Prompt		    "Resolution"
+	    Value		    "ADC_Resolution_12b"
+	    Evaluate		    "off"
+	  }
+	  Object {
+	    $ObjectID		    23
+	    Type		    "popup"
+	    Array {
+	      Type		      "Cell"
+	      Dimension		      2
+	      Cell		      "Multichannels"
+	      Cell		      "One_channel"
+	      PropName		      "TypeOptions"
+	    }
+	    Name		    "ADC_ScanConvMode"
+	    Prompt		    "Scan mode"
+	    Value		    "One_channel"
+	    Evaluate		    "off"
+	  }
+	  Object {
+	    $ObjectID		    24
+	    Type		    "checkbox"
+	    Name		    "ADC_ContinuousConvMode"
+	    Prompt		    "Continuous conversion mode"
+	    Value		    "on"
+	    Evaluate		    "off"
+	  }
+	  Object {
+	    $ObjectID		    25
+	    Type		    "popup"
+	    Array {
+	      Type		      "Cell"
+	      Dimension		      4
+	      Cell		      "ADC_ExternalTrigConvEdge_None"
+	      Cell		      "ADC_ExternalTrigConvEdge_Rising"
+	      Cell		      "ADC_ExternalTrigConvEdge_Falling"
+	      Cell		      "ADC_ExternalTrigConvEdge_RisingFalling"
+	      PropName		      "TypeOptions"
+	    }
+	    Name		    "ADC_ExtTrigPol"
+	    Prompt		    "Ext Trig. conversion edge"
+	    Value		    "ADC_ExternalTrigConvEdge_None"
+	    Evaluate		    "off"
+	  }
+	  Object {
+	    $ObjectID		    26
+	    Type		    "popup"
+	    Array {
+	      Type		      "Cell"
+	      Dimension		      4
+	      Cell		      "ADC_ExternalTrigInjecConvEdge_None"
+	      Cell		      "ADC_ExternalTrigInjecConvEdge_Rising"
+	      Cell		      "ADC_ExternalTrigInjecConvEdge_Fallin"
+	      Cell		      "ADC_ExternalTrigInjecConvEdge_RisingFalling"
+	      PropName		      "TypeOptions"
+	    }
+	    Name		    "ADC_ExtTrigInjPol"
+	    Prompt		    "Ext Trig. conversion edge"
+	    Value		    "ADC_ExternalTrigInjecConvEdge_None"
+	    Evaluate		    "off"
+	    Visible		    "off"
+	  }
+	  Object {
+	    $ObjectID		    27
+	    Type		    "popup"
+	    Array {
+	      Type		      "Cell"
+	      Dimension		      16
+	      Cell		      "ADC_ExternalTrigConv_T1_CC1"
+	      Cell		      "ADC_ExternalTrigConv_T1_CC2"
+	      Cell		      "ADC_ExternalTrigConv_T1_CC3"
+	      Cell		      "ADC_ExternalTrigConv_T2_CC2"
+	      Cell		      "ADC_ExternalTrigConv_T2_CC3"
+	      Cell		      "ADC_ExternalTrigConv_T2_CC4"
+	      Cell		      "ADC_ExternalTrigConv_T2_TRGO"
+	      Cell		      "ADC_ExternalTrigConv_T3_CC1"
+	      Cell		      "ADC_ExternalTrigConv_T3_TRGO"
+	      Cell		      "ADC_ExternalTrigConv_T4_CC4"
+	      Cell		      "ADC_ExternalTrigConv_T5_CC1"
+	      Cell		      "ADC_ExternalTrigConv_T5_CC2"
+	      Cell		      "ADC_ExternalTrigConv_T5_CC3"
+	      Cell		      "ADC_ExternalTrigConv_T8_CC1"
+	      Cell		      "ADC_ExternalTrigConv_T8_TRGO"
+	      Cell		      "ADC_ExternalTrigConv_Ext_IT11"
+	      PropName		      "TypeOptions"
+	    }
+	    Name		    "ADC_ExtTrig"
+	    Prompt		    "Ext Trig. conversion"
+	    Value		    "ADC_ExternalTrigConv_T1_CC1"
+	    Evaluate		    "off"
+	  }
+	  Object {
+	    $ObjectID		    28
+	    Type		    "popup"
+	    Array {
+	      Type		      "Cell"
+	      Dimension		      16
+	      Cell		      "ADC_ExternalTrigInjecConv_T1_CC4"
+	      Cell		      "ADC_ExternalTrigInjecConv_T1_TRGO"
+	      Cell		      "ADC_ExternalTrigInjecConv_T2_CC1"
+	      Cell		      "ADC_ExternalTrigInjecConv_T2_TRGO"
+	      Cell		      "ADC_ExternalTrigInjecConv_T3_CC2"
+	      Cell		      "ADC_ExternalTrigInjecConv_T3_CC4"
+	      Cell		      "ADC_ExternalTrigInjecConv_T4_CC1"
+	      Cell		      "ADC_ExternalTrigInjecConv_T4_CC2"
+	      Cell		      "ADC_ExternalTrigInjecConv_T4_CC3"
+	      Cell		      "ADC_ExternalTrigInjecConv_T4_TRGO"
+	      Cell		      "ADC_ExternalTrigInjecConv_T5_CC4"
+	      Cell		      "ADC_ExternalTrigInjecConv_T5_TRGO"
+	      Cell		      "ADC_ExternalTrigInjecConv_T8_CC2"
+	      Cell		      "ADC_ExternalTrigInjecConv_T8_CC3"
+	      Cell		      "ADC_ExternalTrigInjecConv_T8_CC4"
+	      Cell		      "ADC_ExternalTrigInjecConv_Ext_IT15"
+	      PropName		      "TypeOptions"
+	    }
+	    Name		    "ADC_ExtTrigInj"
+	    Prompt		    "Ext Trig. conversion"
+	    Value		    "ADC_ExternalTrigInjecConv_T1_CC4"
+	    Evaluate		    "off"
+	    Visible		    "off"
+	  }
+	  Object {
+	    $ObjectID		    29
+	    Type		    "popup"
+	    Array {
+	      Type		      "Cell"
+	      Dimension		      2
+	      Cell		      "ADC_DataAlign_Right"
+	      Cell		      "ADC_DataAlign_Left"
+	      PropName		      "TypeOptions"
+	    }
+	    Name		    "ADC_DataAlign"
+	    Prompt		    "Data align"
+	    Value		    "ADC_DataAlign_Right"
+	    Evaluate		    "off"
+	  }
+	  Object {
+	    $ObjectID		    30
+	    Type		    "popup"
+	    Array {
+	      Type		      "Cell"
+	      Dimension		      16
+	      Cell		      "1"
+	      Cell		      "2"
+	      Cell		      "3"
+	      Cell		      "4"
+	      Cell		      "5"
+	      Cell		      "6"
+	      Cell		      "7"
+	      Cell		      "8"
+	      Cell		      "9"
+	      Cell		      "10"
+	      Cell		      "11"
+	      Cell		      "12"
+	      Cell		      "13"
+	      Cell		      "14"
+	      Cell		      "15"
+	      Cell		      "16"
+	      PropName		      "TypeOptions"
+	    }
+	    Name		    "ADC_NbConv"
+	    Prompt		    "Nbr of conversion"
+	    Value		    "1"
+	    Evaluate		    "off"
+	  }
+	  Object {
+	    $ObjectID		    31
+	    Type		    "popup"
+	    Array {
+	      Type		      "Cell"
+	      Dimension		      4
+	      Cell		      "not_used"
+	      Cell		      "DMA_Channel_0"
+	      Cell		      "DMA_Channel_1"
+	      Cell		      "DMA_Channel_2"
+	      PropName		      "TypeOptions"
+	    }
+	    Name		    "ADC_DMA_channel"
+	    Prompt		    "DMA2 channel"
+	    Value		    "not_used"
+	    Evaluate		    "off"
+	  }
+	  Object {
+	    $ObjectID		    32
+	    Type		    "popup"
+	    Array {
+	      Type		      "Cell"
+	      Dimension		      6
+	      Cell		      "not_used"
+	      Cell		      "DMA2_Stream0"
+	      Cell		      "DMA2_Stream1"
+	      Cell		      "DMA2_Stream2"
+	      Cell		      "DMA2_Stream3"
+	      Cell		      "DMA2_Stream4"
+	      PropName		      "TypeOptions"
+	    }
+	    Name		    "ADC_DMA_stream"
+	    Prompt		    "DMA2 stream"
+	    Value		    "not_used"
+	    Evaluate		    "off"
+	  }
+	  Object {
+	    $ObjectID		    33
+	    Type		    "checkbox"
+	    Name		    "ADC_Watchdog_Enable"
+	    Prompt		    "Watchdog enable"
+	    Value		    "off"
+	    Evaluate		    "off"
+	    Callback		    "ADC_Init_callback('wd_enable');"
+	  }
+	  Object {
+	    $ObjectID		    34
+	    Type		    "popup"
+	    Array {
+	      Type		      "Cell"
+	      Dimension		      6
+	      Cell		      "ADC_AnalogWatchdog_None"
+	      Cell		      "ADC_AnalogWatchdog_SingleInjecEnable"
+	      Cell		      "ADC_AnalogWatchdog_SingleRegOrInjecEnable"
+	      Cell		      "ADC_AnalogWatchdog_AllRegEnable"
+	      Cell		      "ADC_AnalogWatchdog_AllInjecEnable"
+	      Cell		      "ADC_AnalogWatchdog_AllRegAllInjecEnable"
+	      PropName		      "TypeOptions"
+	    }
+	    Name		    "ADC_Watchdog_Command"
+	    Prompt		    "Analog watchdog command"
+	    Value		    "ADC_AnalogWatchdog_None"
+	    Evaluate		    "off"
+	    Enabled		    "off"
+	    Callback		    "ADC_Init_callback('wd_command');"
+	  }
+	  Object {
+	    $ObjectID		    35
+	    Type		    "popup"
+	    Array {
+	      Type		      "Cell"
+	      Dimension		      19
+	      Cell		      "0"
+	      Cell		      "1"
+	      Cell		      "2"
+	      Cell		      "3"
+	      Cell		      "4"
+	      Cell		      "5"
+	      Cell		      "6"
+	      Cell		      "7"
+	      Cell		      "8"
+	      Cell		      "9"
+	      Cell		      "10"
+	      Cell		      "11"
+	      Cell		      "12"
+	      Cell		      "13"
+	      Cell		      "14"
+	      Cell		      "15"
+	      Cell		      "16"
+	      Cell		      "17"
+	      Cell		      "18"
+	      PropName		      "TypeOptions"
+	    }
+	    Name		    "ADC_Watchdog_NumChan"
+	    Prompt		    "Channel"
+	    Value		    "0"
+	    Evaluate		    "off"
+	    Enabled		    "off"
+	  }
+	  Object {
+	    $ObjectID		    36
+	    Type		    "edit"
+	    Name		    "ADC_Watchdog_HighThreshold"
+	    Prompt		    "High threshold"
+	    Value		    "4095"
+	    Evaluate		    "off"
+	    Enabled		    "off"
+	    Callback		    "ADC_Init_callback('wd_highThreshold');"
+	  }
+	  Object {
+	    $ObjectID		    37
+	    Type		    "edit"
+	    Name		    "ADC_Watchdog_lowThreshold"
+	    Prompt		    "Low threshold"
+	    Value		    "0"
+	    Evaluate		    "off"
+	    Enabled		    "off"
+	    Callback		    "ADC_Init_callback('wd_lowThreshold');"
+	  }
+	  Object {
+	    $ObjectID		    38
+	    Type		    "checkbox"
+	    Name		    "ADC_Ch0"
+	    Prompt		    "Ch0"
+	    Value		    "off"
+	    Evaluate		    "off"
+	    Callback		    "ADC_Init_callback('Ch0');"
+	  }
+	  Object {
+	    $ObjectID		    39
+	    Type		    "popup"
+	    Array {
+	      Type		      "Cell"
+	      Dimension		      2
+	      Cell		      "Regular"
+	      Cell		      "Injected"
+	      PropName		      "TypeOptions"
+	    }
+	    Name		    "ADC_Ch0T"
+	    Prompt		    "Ch0 type"
+	    Value		    "Regular"
+	    Evaluate		    "off"
+	    Visible		    "off"
+	  }
+	  Object {
+	    $ObjectID		    40
+	    Type		    "edit"
+	    Name		    "ADC_Ch0L"
+	    Prompt		    "Ch0 location"
+	    Value		    "PA0"
+	    Evaluate		    "off"
+	    Enabled		    "off"
+	    Visible		    "off"
+	  }
+	  Object {
+	    $ObjectID		    41
+	    Type		    "checkbox"
+	    Name		    "ADC_Ch1"
+	    Prompt		    "Ch1"
+	    Value		    "off"
+	    Evaluate		    "off"
+	    Callback		    "ADC_Init_callback('Ch1');"
+	  }
+	  Object {
+	    $ObjectID		    42
+	    Type		    "popup"
+	    Array {
+	      Type		      "Cell"
+	      Dimension		      2
+	      Cell		      "Regular"
+	      Cell		      "Injected"
+	      PropName		      "TypeOptions"
+	    }
+	    Name		    "ADC_Ch1T"
+	    Prompt		    "Ch1 type"
+	    Value		    "Regular"
+	    Evaluate		    "off"
+	    Visible		    "off"
+	  }
+	  Object {
+	    $ObjectID		    43
+	    Type		    "edit"
+	    Name		    "ADC_Ch1L"
+	    Prompt		    "Ch1 location"
+	    Value		    "PA1"
+	    Evaluate		    "off"
+	    Enabled		    "off"
+	    Visible		    "off"
+	  }
+	  Object {
+	    $ObjectID		    44
+	    Type		    "checkbox"
+	    Name		    "ADC_Ch2"
+	    Prompt		    "Ch2"
+	    Value		    "off"
+	    Evaluate		    "off"
+	    Callback		    "ADC_Init_callback('Ch2');"
+	  }
+	  Object {
+	    $ObjectID		    45
+	    Type		    "popup"
+	    Array {
+	      Type		      "Cell"
+	      Dimension		      2
+	      Cell		      "Regular"
+	      Cell		      "Injected"
+	      PropName		      "TypeOptions"
+	    }
+	    Name		    "ADC_Ch2T"
+	    Prompt		    "Ch2 type"
+	    Value		    "Regular"
+	    Evaluate		    "off"
+	    Visible		    "off"
+	  }
+	  Object {
+	    $ObjectID		    46
+	    Type		    "edit"
+	    Name		    "ADC_Ch2L"
+	    Prompt		    "Ch2 location"
+	    Value		    "PA2"
+	    Evaluate		    "off"
+	    Enabled		    "off"
+	    Visible		    "off"
+	  }
+	  Object {
+	    $ObjectID		    47
+	    Type		    "checkbox"
+	    Name		    "ADC_Ch3"
+	    Prompt		    "Ch3"
+	    Value		    "off"
+	    Evaluate		    "off"
+	    Callback		    "ADC_Init_callback('Ch3');"
+	  }
+	  Object {
+	    $ObjectID		    48
+	    Type		    "popup"
+	    Array {
+	      Type		      "Cell"
+	      Dimension		      2
+	      Cell		      "Regular"
+	      Cell		      "Injected"
+	      PropName		      "TypeOptions"
+	    }
+	    Name		    "ADC_Ch3T"
+	    Prompt		    "Ch3 type"
+	    Value		    "Regular"
+	    Evaluate		    "off"
+	    Visible		    "off"
+	  }
+	  Object {
+	    $ObjectID		    49
+	    Type		    "edit"
+	    Name		    "ADC_Ch3L"
+	    Prompt		    "Ch3 location"
+	    Value		    "PA3"
+	    Evaluate		    "off"
+	    Enabled		    "off"
+	    Visible		    "off"
+	  }
+	  Object {
+	    $ObjectID		    50
+	    Type		    "checkbox"
+	    Name		    "ADC_Ch4"
+	    Prompt		    "Ch4"
+	    Value		    "off"
+	    Evaluate		    "off"
+	    Callback		    "ADC_Init_callback('Ch4');"
+	  }
+	  Object {
+	    $ObjectID		    51
+	    Type		    "popup"
+	    Array {
+	      Type		      "Cell"
+	      Dimension		      2
+	      Cell		      "Regular"
+	      Cell		      "Injected"
+	      PropName		      "TypeOptions"
+	    }
+	    Name		    "ADC_Ch4T"
+	    Prompt		    "Ch4 type"
+	    Value		    "Regular"
+	    Evaluate		    "off"
+	    Visible		    "off"
+	  }
+	  Object {
+	    $ObjectID		    52
+	    Type		    "edit"
+	    Name		    "ADC_Ch4L"
+	    Prompt		    "Ch4 location"
+	    Value		    "PA4"
+	    Evaluate		    "off"
+	    Enabled		    "off"
+	    Visible		    "off"
+	  }
+	  Object {
+	    $ObjectID		    53
+	    Type		    "checkbox"
+	    Name		    "ADC_Ch5"
+	    Prompt		    "Ch5"
+	    Value		    "off"
+	    Evaluate		    "off"
+	    Callback		    "ADC_Init_callback('Ch5');"
+	  }
+	  Object {
+	    $ObjectID		    54
+	    Type		    "popup"
+	    Array {
+	      Type		      "Cell"
+	      Dimension		      2
+	      Cell		      "Regular"
+	      Cell		      "Injected"
+	      PropName		      "TypeOptions"
+	    }
+	    Name		    "ADC_Ch5T"
+	    Prompt		    "Ch5 type"
+	    Value		    "Regular"
+	    Evaluate		    "off"
+	    Visible		    "off"
+	  }
+	  Object {
+	    $ObjectID		    55
+	    Type		    "edit"
+	    Name		    "ADC_Ch5L"
+	    Prompt		    "Ch5 location"
+	    Value		    "PA5"
+	    Evaluate		    "off"
+	    Enabled		    "off"
+	    Visible		    "off"
+	  }
+	  Object {
+	    $ObjectID		    56
+	    Type		    "checkbox"
+	    Name		    "ADC_Ch6"
+	    Prompt		    "Ch6"
+	    Value		    "off"
+	    Evaluate		    "off"
+	    Callback		    "ADC_Init_callback('Ch6');"
+	  }
+	  Object {
+	    $ObjectID		    57
+	    Type		    "popup"
+	    Array {
+	      Type		      "Cell"
+	      Dimension		      2
+	      Cell		      "Regular"
+	      Cell		      "Injected"
+	      PropName		      "TypeOptions"
+	    }
+	    Name		    "ADC_Ch6T"
+	    Prompt		    "Ch6 type"
+	    Value		    "Regular"
+	    Evaluate		    "off"
+	    Visible		    "off"
+	  }
+	  Object {
+	    $ObjectID		    58
+	    Type		    "edit"
+	    Name		    "ADC_Ch6L"
+	    Prompt		    "Ch6 location"
+	    Value		    "PA6"
+	    Evaluate		    "off"
+	    Enabled		    "off"
+	    Visible		    "off"
+	  }
+	  Object {
+	    $ObjectID		    59
+	    Type		    "checkbox"
+	    Name		    "ADC_Ch7"
+	    Prompt		    "Ch7"
+	    Value		    "off"
+	    Evaluate		    "off"
+	    Callback		    "ADC_Init_callback('Ch7');"
+	  }
+	  Object {
+	    $ObjectID		    60
+	    Type		    "popup"
+	    Array {
+	      Type		      "Cell"
+	      Dimension		      2
+	      Cell		      "Regular"
+	      Cell		      "Injected"
+	      PropName		      "TypeOptions"
+	    }
+	    Name		    "ADC_Ch7T"
+	    Prompt		    "Ch7 type"
+	    Value		    "Regular"
+	    Evaluate		    "off"
+	    Visible		    "off"
+	  }
+	  Object {
+	    $ObjectID		    61
+	    Type		    "edit"
+	    Name		    "ADC_Ch7L"
+	    Prompt		    "Ch7 location"
+	    Value		    "PA7"
+	    Evaluate		    "off"
+	    Enabled		    "off"
+	    Visible		    "off"
+	  }
+	  Object {
+	    $ObjectID		    62
+	    Type		    "checkbox"
+	    Name		    "ADC_Ch8"
+	    Prompt		    "Ch8"
+	    Value		    "off"
+	    Evaluate		    "off"
+	    Callback		    "ADC_Init_callback('Ch8');"
+	  }
+	  Object {
+	    $ObjectID		    63
+	    Type		    "popup"
+	    Array {
+	      Type		      "Cell"
+	      Dimension		      2
+	      Cell		      "Regular"
+	      Cell		      "Injected"
+	      PropName		      "TypeOptions"
+	    }
+	    Name		    "ADC_Ch8T"
+	    Prompt		    "Ch8 type"
+	    Value		    "Regular"
+	    Evaluate		    "off"
+	    Visible		    "off"
+	  }
+	  Object {
+	    $ObjectID		    64
+	    Type		    "edit"
+	    Name		    "ADC_Ch8L"
+	    Prompt		    "Ch8 location"
+	    Value		    "PB0"
+	    Evaluate		    "off"
+	    Enabled		    "off"
+	    Visible		    "off"
+	  }
+	  Object {
+	    $ObjectID		    65
+	    Type		    "checkbox"
+	    Name		    "ADC_Ch9"
+	    Prompt		    "Ch9"
+	    Value		    "off"
+	    Evaluate		    "off"
+	    Callback		    "ADC_Init_callback('Ch9');"
+	  }
+	  Object {
+	    $ObjectID		    66
+	    Type		    "popup"
+	    Array {
+	      Type		      "Cell"
+	      Dimension		      2
+	      Cell		      "Regular"
+	      Cell		      "Injected"
+	      PropName		      "TypeOptions"
+	    }
+	    Name		    "ADC_Ch9T"
+	    Prompt		    "Ch9 type"
+	    Value		    "Regular"
+	    Evaluate		    "off"
+	    Visible		    "off"
+	  }
+	  Object {
+	    $ObjectID		    67
+	    Type		    "edit"
+	    Name		    "ADC_Ch9L"
+	    Prompt		    "Ch9 location"
+	    Value		    "PB1"
+	    Evaluate		    "off"
+	    Enabled		    "off"
+	    Visible		    "off"
+	  }
+	  Object {
+	    $ObjectID		    68
+	    Type		    "checkbox"
+	    Name		    "ADC_Ch10"
+	    Prompt		    "Ch10"
+	    Value		    "off"
+	    Evaluate		    "off"
+	    Callback		    "ADC_Init_callback('Ch10');"
+	  }
+	  Object {
+	    $ObjectID		    69
+	    Type		    "popup"
+	    Array {
+	      Type		      "Cell"
+	      Dimension		      2
+	      Cell		      "Regular"
+	      Cell		      "Injected"
+	      PropName		      "TypeOptions"
+	    }
+	    Name		    "ADC_Ch10T"
+	    Prompt		    "Ch10 type"
+	    Value		    "Regular"
+	    Visible		    "off"
+	  }
+	  Object {
+	    $ObjectID		    70
+	    Type		    "edit"
+	    Name		    "ADC_Ch10L"
+	    Prompt		    "Ch10 location"
+	    Value		    "PC0"
+	    Evaluate		    "off"
+	    Enabled		    "off"
+	    Visible		    "off"
+	  }
+	  Object {
+	    $ObjectID		    71
+	    Type		    "checkbox"
+	    Name		    "ADC_Ch11"
+	    Prompt		    "Ch11"
+	    Value		    "off"
+	    Evaluate		    "off"
+	    Callback		    "ADC_Init_callback('Ch11');"
+	  }
+	  Object {
+	    $ObjectID		    72
+	    Type		    "popup"
+	    Array {
+	      Type		      "Cell"
+	      Dimension		      2
+	      Cell		      "Regular"
+	      Cell		      "Injected"
+	      PropName		      "TypeOptions"
+	    }
+	    Name		    "ADC_Ch11T"
+	    Prompt		    "Ch11 type"
+	    Value		    "Regular"
+	    Evaluate		    "off"
+	    Visible		    "off"
+	  }
+	  Object {
+	    $ObjectID		    73
+	    Type		    "edit"
+	    Name		    "ADC_Ch11L"
+	    Prompt		    "Ch11 location"
+	    Value		    "PC1"
+	    Evaluate		    "off"
+	    Enabled		    "off"
+	    Visible		    "off"
+	  }
+	  Object {
+	    $ObjectID		    74
+	    Type		    "checkbox"
+	    Name		    "ADC_Ch12"
+	    Prompt		    "Ch12"
+	    Value		    "off"
+	    Evaluate		    "off"
+	    Callback		    "ADC_Init_callback('Ch12');"
+	  }
+	  Object {
+	    $ObjectID		    75
+	    Type		    "popup"
+	    Array {
+	      Type		      "Cell"
+	      Dimension		      2
+	      Cell		      "Regular"
+	      Cell		      "Injected"
+	      PropName		      "TypeOptions"
+	    }
+	    Name		    "ADC_Ch12T"
+	    Prompt		    "Ch12 type"
+	    Value		    "Regular"
+	    Evaluate		    "off"
+	    Visible		    "off"
+	  }
+	  Object {
+	    $ObjectID		    76
+	    Type		    "edit"
+	    Name		    "ADC_Ch12L"
+	    Prompt		    "Ch12 location"
+	    Value		    "PC2"
+	    Evaluate		    "off"
+	    Enabled		    "off"
+	    Visible		    "off"
+	  }
+	  Object {
+	    $ObjectID		    77
+	    Type		    "checkbox"
+	    Name		    "ADC_Ch13"
+	    Prompt		    "Ch13"
+	    Value		    "off"
+	    Evaluate		    "off"
+	    Callback		    "ADC_Init_callback('Ch13');"
+	  }
+	  Object {
+	    $ObjectID		    78
+	    Type		    "popup"
+	    Array {
+	      Type		      "Cell"
+	      Dimension		      2
+	      Cell		      "Regular"
+	      Cell		      "Injected"
+	      PropName		      "TypeOptions"
+	    }
+	    Name		    "ADC_Ch13T"
+	    Prompt		    "Ch13 type"
+	    Value		    "Regular"
+	    Evaluate		    "off"
+	    Visible		    "off"
+	  }
+	  Object {
+	    $ObjectID		    79
+	    Type		    "edit"
+	    Name		    "ADC_Ch13L"
+	    Prompt		    "Ch13 location"
+	    Value		    "PC3"
+	    Evaluate		    "off"
+	    Enabled		    "off"
+	    Visible		    "off"
+	  }
+	  Object {
+	    $ObjectID		    80
+	    Type		    "checkbox"
+	    Name		    "ADC_Ch14"
+	    Prompt		    "Ch14"
+	    Value		    "off"
+	    Evaluate		    "off"
+	    Callback		    "ADC_Init_callback('Ch14');"
+	  }
+	  Object {
+	    $ObjectID		    81
+	    Type		    "popup"
+	    Array {
+	      Type		      "Cell"
+	      Dimension		      2
+	      Cell		      "Regular"
+	      Cell		      "Injected"
+	      PropName		      "TypeOptions"
+	    }
+	    Name		    "ADC_Ch14T"
+	    Prompt		    "Ch14 type"
+	    Value		    "Regular"
+	    Evaluate		    "off"
+	    Visible		    "off"
+	  }
+	  Object {
+	    $ObjectID		    82
+	    Type		    "edit"
+	    Name		    "ADC_Ch14L"
+	    Prompt		    "Ch14 location"
+	    Value		    "PC4"
+	    Evaluate		    "off"
+	    Enabled		    "off"
+	    Visible		    "off"
+	  }
+	  Object {
+	    $ObjectID		    83
+	    Type		    "checkbox"
+	    Name		    "ADC_Ch15"
+	    Prompt		    "Ch15"
+	    Value		    "off"
+	    Evaluate		    "off"
+	    Callback		    "ADC_Init_callback('Ch15');"
+	  }
+	  Object {
+	    $ObjectID		    84
+	    Type		    "popup"
+	    Array {
+	      Type		      "Cell"
+	      Dimension		      2
+	      Cell		      "Regular"
+	      Cell		      "Injected"
+	      PropName		      "TypeOptions"
+	    }
+	    Name		    "ADC_Ch15T"
+	    Prompt		    "Ch15 type"
+	    Value		    "Regular"
+	    Evaluate		    "off"
+	    Visible		    "off"
+	  }
+	  Object {
+	    $ObjectID		    85
+	    Type		    "edit"
+	    Name		    "ADC_Ch15L"
+	    Prompt		    "Ch15 location"
+	    Value		    "PC5"
+	    Evaluate		    "off"
+	    Enabled		    "off"
+	    Visible		    "off"
+	  }
+	  Object {
+	    $ObjectID		    86
+	    Type		    "checkbox"
+	    Name		    "ADC_Ch16"
+	    Prompt		    "Ch16"
+	    Value		    "off"
+	    Evaluate		    "off"
+	    Callback		    "ADC_Init_callback('Ch16');"
+	  }
+	  Object {
+	    $ObjectID		    87
+	    Type		    "popup"
+	    Array {
+	      Type		      "Cell"
+	      Dimension		      2
+	      Cell		      "Regular"
+	      Cell		      "Injected"
+	      PropName		      "TypeOptions"
+	    }
+	    Name		    "ADC_Ch16T"
+	    Prompt		    "Ch16 type"
+	    Value		    "Regular"
+	    Evaluate		    "off"
+	    Visible		    "off"
+	  }
+	  Object {
+	    $ObjectID		    88
+	    Type		    "edit"
+	    Name		    "ADC_Ch16L"
+	    Prompt		    "Ch16 location"
+	    Value		    "Temp.Sensor"
+	    Evaluate		    "off"
+	    Enabled		    "off"
+	    Visible		    "off"
+	  }
+	  Object {
+	    $ObjectID		    89
+	    Type		    "checkbox"
+	    Name		    "ADC_Ch17"
+	    Prompt		    "Ch17"
+	    Value		    "off"
+	    Evaluate		    "off"
+	    Callback		    "ADC_Init_callback('Ch17');"
+	  }
+	  Object {
+	    $ObjectID		    90
+	    Type		    "popup"
+	    Array {
+	      Type		      "Cell"
+	      Dimension		      2
+	      Cell		      "Regular"
+	      Cell		      "Injected"
+	      PropName		      "TypeOptions"
+	    }
+	    Name		    "ADC_Ch17T"
+	    Prompt		    "Ch17 type"
+	    Value		    "Regular"
+	    Evaluate		    "off"
+	    Visible		    "off"
+	  }
+	  Object {
+	    $ObjectID		    91
+	    Type		    "edit"
+	    Name		    "ADC_Ch17L"
+	    Prompt		    "Ch17 location"
+	    Value		    "Vrefint"
+	    Evaluate		    "off"
+	    Enabled		    "off"
+	    Visible		    "off"
+	  }
+	  Object {
+	    $ObjectID		    92
+	    Type		    "checkbox"
+	    Name		    "ADC_Ch18"
+	    Prompt		    "Ch18"
+	    Value		    "off"
+	    Evaluate		    "off"
+	    Callback		    "ADC_Init_callback('Ch18');"
+	  }
+	  Object {
+	    $ObjectID		    93
+	    Type		    "popup"
+	    Array {
+	      Type		      "Cell"
+	      Dimension		      2
+	      Cell		      "Regular"
+	      Cell		      "Injected"
+	      PropName		      "TypeOptions"
+	    }
+	    Name		    "ADC_Ch18T"
+	    Prompt		    "Ch18 type"
+	    Value		    "Regular"
+	    Evaluate		    "off"
+	    Visible		    "off"
+	  }
+	  Object {
+	    $ObjectID		    94
+	    Type		    "edit"
+	    Name		    "ADC_Ch18L"
+	    Prompt		    "Ch18 location"
+	    Value		    "Vbat"
+	    Evaluate		    "off"
+	    Enabled		    "off"
+	    Visible		    "off"
+	  }
+	  PropName		  "Parameters"
+	}
+	Array {
+	  Type			  "Simulink.dialog.Container"
+	  Dimension		  2
+	  Object {
+	    $ObjectID		    95
+	    $ClassName		    "Simulink.dialog.Group"
+	    Prompt		    "%<MaskType>"
+	    Object {
+	      $PropName		      "DialogControls"
+	      $ObjectID		      96
+	      $ClassName	      "Simulink.dialog.Text"
+	      Prompt		      "%<MaskDescription>"
+	      Name		      "DescTextVar"
+	    }
+	    Name		    "DescGroupVar"
+	  }
+	  Object {
+	    $ObjectID		    97
+	    $ClassName		    "Simulink.dialog.TabContainer"
+	    Array {
+	      Type		      "Simulink.dialog.Tab"
+	      Dimension		      3
+	      Object {
+		$ObjectID		98
+		Prompt			"ADC"
+		Array {
+		  Type			  "Simulink.dialog.parameter.Control"
+		  Dimension		  15
+		  Object {
+		    $ObjectID		    99
+		    $ClassName		    "Simulink.dialog.parameter.Popup"
+		    Name		    "ADC_Name"
+		  }
+		  Object {
+		    $ObjectID		    100
+		    $ClassName		    "Simulink.dialog.parameter.Popup"
+		    Name		    "ADC_Type"
+		  }
+		  Object {
+		    $ObjectID		    101
+		    $ClassName		    "Simulink.dialog.parameter.CheckBox"
+		    Name		    "ADC_Default"
+		  }
+		  Object {
+		    $ObjectID		    102
+		    $ClassName		    "Simulink.dialog.parameter.Edit"
+		    Name		    "ADC_Offset"
+		  }
+		  Object {
+		    $ObjectID		    103
+		    $ClassName		    "Simulink.dialog.parameter.Popup"
+		    Name		    "ADC_Resolution"
+		  }
+		  Object {
+		    $ObjectID		    104
+		    $ClassName		    "Simulink.dialog.parameter.Popup"
+		    Name		    "ADC_ScanConvMode"
+		  }
+		  Object {
+		    $ObjectID		    105
+		    $ClassName		    "Simulink.dialog.parameter.CheckBox"
+		    Name		    "ADC_ContinuousConvMode"
+		  }
+		  Object {
+		    $ObjectID		    106
+		    $ClassName		    "Simulink.dialog.parameter.Popup"
+		    Name		    "ADC_ExtTrigPol"
+		  }
+		  Object {
+		    $ObjectID		    107
+		    $ClassName		    "Simulink.dialog.parameter.Popup"
+		    Name		    "ADC_ExtTrigInjPol"
+		  }
+		  Object {
+		    $ObjectID		    108
+		    $ClassName		    "Simulink.dialog.parameter.Popup"
+		    Name		    "ADC_ExtTrig"
+		  }
+		  Object {
+		    $ObjectID		    109
+		    $ClassName		    "Simulink.dialog.parameter.Popup"
+		    Name		    "ADC_ExtTrigInj"
+		  }
+		  Object {
+		    $ObjectID		    110
+		    $ClassName		    "Simulink.dialog.parameter.Popup"
+		    Name		    "ADC_DataAlign"
+		  }
+		  Object {
+		    $ObjectID		    111
+		    $ClassName		    "Simulink.dialog.parameter.Popup"
+		    Name		    "ADC_NbConv"
+		  }
+		  Object {
+		    $ObjectID		    112
+		    $ClassName		    "Simulink.dialog.parameter.Popup"
+		    Name		    "ADC_DMA_channel"
+		  }
+		  Object {
+		    $ObjectID		    113
+		    $ClassName		    "Simulink.dialog.parameter.Popup"
+		    Name		    "ADC_DMA_stream"
+		  }
+		  PropName		  "DialogControls"
+		}
+		Name			"ParameterTabVar0"
+	      }
+	      Object {
+		$ObjectID		114
+		Prompt			"Watchdog"
+		Array {
+		  Type			  "Simulink.dialog.parameter.Control"
+		  Dimension		  5
+		  Object {
+		    $ObjectID		    115
+		    $ClassName		    "Simulink.dialog.parameter.CheckBox"
+		    Name		    "ADC_Watchdog_Enable"
+		  }
+		  Object {
+		    $ObjectID		    116
+		    $ClassName		    "Simulink.dialog.parameter.Popup"
+		    Name		    "ADC_Watchdog_Command"
+		  }
+		  Object {
+		    $ObjectID		    117
+		    $ClassName		    "Simulink.dialog.parameter.Popup"
+		    Name		    "ADC_Watchdog_NumChan"
+		  }
+		  Object {
+		    $ObjectID		    118
+		    $ClassName		    "Simulink.dialog.parameter.Edit"
+		    Name		    "ADC_Watchdog_HighThreshold"
+		  }
+		  Object {
+		    $ObjectID		    119
+		    $ClassName		    "Simulink.dialog.parameter.Edit"
+		    Name		    "ADC_Watchdog_lowThreshold"
+		  }
+		  PropName		  "DialogControls"
+		}
+		Name			"ParameterTabVar01"
+	      }
+	      Object {
+		$ObjectID		120
+		Prompt			"Channels Selection"
+		Array {
+		  Type			  "Simulink.dialog.parameter.Control"
+		  Dimension		  57
+		  Object {
+		    $ObjectID		    121
+		    $ClassName		    "Simulink.dialog.parameter.CheckBox"
+		    Name		    "ADC_Ch0"
+		  }
+		  Object {
+		    $ObjectID		    122
+		    $ClassName		    "Simulink.dialog.parameter.Popup"
+		    Name		    "ADC_Ch0T"
+		  }
+		  Object {
+		    $ObjectID		    123
+		    $ClassName		    "Simulink.dialog.parameter.Edit"
+		    Name		    "ADC_Ch0L"
+		  }
+		  Object {
+		    $ObjectID		    124
+		    $ClassName		    "Simulink.dialog.parameter.CheckBox"
+		    Name		    "ADC_Ch1"
+		  }
+		  Object {
+		    $ObjectID		    125
+		    $ClassName		    "Simulink.dialog.parameter.Popup"
+		    Name		    "ADC_Ch1T"
+		  }
+		  Object {
+		    $ObjectID		    126
+		    $ClassName		    "Simulink.dialog.parameter.Edit"
+		    Name		    "ADC_Ch1L"
+		  }
+		  Object {
+		    $ObjectID		    127
+		    $ClassName		    "Simulink.dialog.parameter.CheckBox"
+		    Name		    "ADC_Ch2"
+		  }
+		  Object {
+		    $ObjectID		    128
+		    $ClassName		    "Simulink.dialog.parameter.Popup"
+		    Name		    "ADC_Ch2T"
+		  }
+		  Object {
+		    $ObjectID		    129
+		    $ClassName		    "Simulink.dialog.parameter.Edit"
+		    Name		    "ADC_Ch2L"
+		  }
+		  Object {
+		    $ObjectID		    130
+		    $ClassName		    "Simulink.dialog.parameter.CheckBox"
+		    Name		    "ADC_Ch3"
+		  }
+		  Object {
+		    $ObjectID		    131
+		    $ClassName		    "Simulink.dialog.parameter.Popup"
+		    Name		    "ADC_Ch3T"
+		  }
+		  Object {
+		    $ObjectID		    132
+		    $ClassName		    "Simulink.dialog.parameter.Edit"
+		    Name		    "ADC_Ch3L"
+		  }
+		  Object {
+		    $ObjectID		    133
+		    $ClassName		    "Simulink.dialog.parameter.CheckBox"
+		    Name		    "ADC_Ch4"
+		  }
+		  Object {
+		    $ObjectID		    134
+		    $ClassName		    "Simulink.dialog.parameter.Popup"
+		    Name		    "ADC_Ch4T"
+		  }
+		  Object {
+		    $ObjectID		    135
+		    $ClassName		    "Simulink.dialog.parameter.Edit"
+		    Name		    "ADC_Ch4L"
+		  }
+		  Object {
+		    $ObjectID		    136
+		    $ClassName		    "Simulink.dialog.parameter.CheckBox"
+		    Name		    "ADC_Ch5"
+		  }
+		  Object {
+		    $ObjectID		    137
+		    $ClassName		    "Simulink.dialog.parameter.Popup"
+		    Name		    "ADC_Ch5T"
+		  }
+		  Object {
+		    $ObjectID		    138
+		    $ClassName		    "Simulink.dialog.parameter.Edit"
+		    Name		    "ADC_Ch5L"
+		  }
+		  Object {
+		    $ObjectID		    139
+		    $ClassName		    "Simulink.dialog.parameter.CheckBox"
+		    Name		    "ADC_Ch6"
+		  }
+		  Object {
+		    $ObjectID		    140
+		    $ClassName		    "Simulink.dialog.parameter.Popup"
+		    Name		    "ADC_Ch6T"
+		  }
+		  Object {
+		    $ObjectID		    141
+		    $ClassName		    "Simulink.dialog.parameter.Edit"
+		    Name		    "ADC_Ch6L"
+		  }
+		  Object {
+		    $ObjectID		    142
+		    $ClassName		    "Simulink.dialog.parameter.CheckBox"
+		    Name		    "ADC_Ch7"
+		  }
+		  Object {
+		    $ObjectID		    143
+		    $ClassName		    "Simulink.dialog.parameter.Popup"
+		    Name		    "ADC_Ch7T"
+		  }
+		  Object {
+		    $ObjectID		    144
+		    $ClassName		    "Simulink.dialog.parameter.Edit"
+		    Name		    "ADC_Ch7L"
+		  }
+		  Object {
+		    $ObjectID		    145
+		    $ClassName		    "Simulink.dialog.parameter.CheckBox"
+		    Name		    "ADC_Ch8"
+		  }
+		  Object {
+		    $ObjectID		    146
+		    $ClassName		    "Simulink.dialog.parameter.Popup"
+		    Name		    "ADC_Ch8T"
+		  }
+		  Object {
+		    $ObjectID		    147
+		    $ClassName		    "Simulink.dialog.parameter.Edit"
+		    Name		    "ADC_Ch8L"
+		  }
+		  Object {
+		    $ObjectID		    148
+		    $ClassName		    "Simulink.dialog.parameter.CheckBox"
+		    Name		    "ADC_Ch9"
+		  }
+		  Object {
+		    $ObjectID		    149
+		    $ClassName		    "Simulink.dialog.parameter.Popup"
+		    Name		    "ADC_Ch9T"
+		  }
+		  Object {
+		    $ObjectID		    150
+		    $ClassName		    "Simulink.dialog.parameter.Edit"
+		    Name		    "ADC_Ch9L"
+		  }
+		  Object {
+		    $ObjectID		    151
+		    $ClassName		    "Simulink.dialog.parameter.CheckBox"
+		    Name		    "ADC_Ch10"
+		  }
+		  Object {
+		    $ObjectID		    152
+		    $ClassName		    "Simulink.dialog.parameter.Popup"
+		    Name		    "ADC_Ch10T"
+		  }
+		  Object {
+		    $ObjectID		    153
+		    $ClassName		    "Simulink.dialog.parameter.Edit"
+		    Name		    "ADC_Ch10L"
+		  }
+		  Object {
+		    $ObjectID		    154
+		    $ClassName		    "Simulink.dialog.parameter.CheckBox"
+		    Name		    "ADC_Ch11"
+		  }
+		  Object {
+		    $ObjectID		    155
+		    $ClassName		    "Simulink.dialog.parameter.Popup"
+		    Name		    "ADC_Ch11T"
+		  }
+		  Object {
+		    $ObjectID		    156
+		    $ClassName		    "Simulink.dialog.parameter.Edit"
+		    Name		    "ADC_Ch11L"
+		  }
+		  Object {
+		    $ObjectID		    157
+		    $ClassName		    "Simulink.dialog.parameter.CheckBox"
+		    Name		    "ADC_Ch12"
+		  }
+		  Object {
+		    $ObjectID		    158
+		    $ClassName		    "Simulink.dialog.parameter.Popup"
+		    Name		    "ADC_Ch12T"
+		  }
+		  Object {
+		    $ObjectID		    159
+		    $ClassName		    "Simulink.dialog.parameter.Edit"
+		    Name		    "ADC_Ch12L"
+		  }
+		  Object {
+		    $ObjectID		    160
+		    $ClassName		    "Simulink.dialog.parameter.CheckBox"
+		    Name		    "ADC_Ch13"
+		  }
+		  Object {
+		    $ObjectID		    161
+		    $ClassName		    "Simulink.dialog.parameter.Popup"
+		    Name		    "ADC_Ch13T"
+		  }
+		  Object {
+		    $ObjectID		    162
+		    $ClassName		    "Simulink.dialog.parameter.Edit"
+		    Name		    "ADC_Ch13L"
+		  }
+		  Object {
+		    $ObjectID		    163
+		    $ClassName		    "Simulink.dialog.parameter.CheckBox"
+		    Name		    "ADC_Ch14"
+		  }
+		  Object {
+		    $ObjectID		    164
+		    $ClassName		    "Simulink.dialog.parameter.Popup"
+		    Name		    "ADC_Ch14T"
+		  }
+		  Object {
+		    $ObjectID		    165
+		    $ClassName		    "Simulink.dialog.parameter.Edit"
+		    Name		    "ADC_Ch14L"
+		  }
+		  Object {
+		    $ObjectID		    166
+		    $ClassName		    "Simulink.dialog.parameter.CheckBox"
+		    Name		    "ADC_Ch15"
+		  }
+		  Object {
+		    $ObjectID		    167
+		    $ClassName		    "Simulink.dialog.parameter.Popup"
+		    Name		    "ADC_Ch15T"
+		  }
+		  Object {
+		    $ObjectID		    168
+		    $ClassName		    "Simulink.dialog.parameter.Edit"
+		    Name		    "ADC_Ch15L"
+		  }
+		  Object {
+		    $ObjectID		    169
+		    $ClassName		    "Simulink.dialog.parameter.CheckBox"
+		    Name		    "ADC_Ch16"
+		  }
+		  Object {
+		    $ObjectID		    170
+		    $ClassName		    "Simulink.dialog.parameter.Popup"
+		    Name		    "ADC_Ch16T"
+		  }
+		  Object {
+		    $ObjectID		    171
+		    $ClassName		    "Simulink.dialog.parameter.Edit"
+		    Name		    "ADC_Ch16L"
+		  }
+		  Object {
+		    $ObjectID		    172
+		    $ClassName		    "Simulink.dialog.parameter.CheckBox"
+		    Name		    "ADC_Ch17"
+		  }
+		  Object {
+		    $ObjectID		    173
+		    $ClassName		    "Simulink.dialog.parameter.Popup"
+		    Name		    "ADC_Ch17T"
+		  }
+		  Object {
+		    $ObjectID		    174
+		    $ClassName		    "Simulink.dialog.parameter.Edit"
+		    Name		    "ADC_Ch17L"
+		  }
+		  Object {
+		    $ObjectID		    175
+		    $ClassName		    "Simulink.dialog.parameter.CheckBox"
+		    Name		    "ADC_Ch18"
+		  }
+		  Object {
+		    $ObjectID		    176
+		    $ClassName		    "Simulink.dialog.parameter.Popup"
+		    Name		    "ADC_Ch18T"
+		  }
+		  Object {
+		    $ObjectID		    177
+		    $ClassName		    "Simulink.dialog.parameter.Edit"
+		    Name		    "ADC_Ch18L"
+		  }
+		  PropName		  "DialogControls"
+		}
+		Name			"ParameterTabVar012"
+	      }
+	      PropName		      "DialogControls"
+	    }
+	    Name		    "ParameterTabContainerVar"
+	  }
+	  PropName		  "DialogControls"
+	}
+      }
+    }
+    Block {
+      BlockType		      S-Function
+      Name		      "ADC_Read"
+      SID		      "50"
+      Ports		      []
+      Position		      [295, 35, 405, 95]
+      ZOrder		      27
+      NamePlacement	      "alternate"
+      ShowName		      off
+      CopyFcn		      "pathTmf = updatePrefs('get','stm32f4RootPath');\nif isempty(pathTmf)\nh = errordlg('Add STM32F4x"
+      "x repository to Matlab default path or set System target file to stm32F4xx.tlc before!' ,'STM32F4xx','modal');\n"
+      "close(h);\nclear h\nend\nlibFiles =    updatePrefs('get','stm32f4listLibFiles');          libFiles2Build = updat"
+      "ePrefs('get','stm32f4listLibBuildFiles');\nadc = strcmp('stm32f4xx_adc.c',{libFiles(:).name});\nlibFiles2Build(a"
+      "dc) = libFiles2Build(adc)  + 1;\ngpio = strcmp('stm32f4xx_gpio.c',{libFiles(:).name});\nlibFiles2Build(gpio) = l"
+      "ibFiles2Build(gpio) + 1;\nrcc = strcmp('stm32f4xx_rcc.c',{libFiles(:).name}) ;\nlibFiles2Build(rcc) = libFiles2B"
+      "uild(rcc) + 1;\nupdatePrefs('set','stm32f4listLibBuildFiles',libFiles2Build);\nclear adc gpio rcc  pathTmf libFi"
+      "les\nclear libFiles2Build"
+      DeleteFcn		      "libFiles =    updatePrefs('get','stm32f4listLibFiles');          libFiles2Build = updatePrefs("
+      "'get','stm32f4listLibBuildFiles');\nadc = strcmp('stm32f4xx_adc.c',{libFiles(:).name});\nlibFiles2Build(adc) = l"
+      "ibFiles2Build(adc)  - 1;  if(libFiles2Build(adc) <0)\nlibFiles2Build(adc)  = 0;                                 "
+      " end\ngpio = strcmp('stm32f4xx_gpio.c',{libFiles(:).name});\nlibFiles2Build(gpio) = libFiles2Build(gpio) - 1;  i"
+      "f(libFiles2Build(gpio) <0)\nlibFiles2Build(gpio)  = 0;                                  end\nrcc = strcmp('stm32"
+      "f4xx_rcc.c',{libFiles(:).name}) ;\nlibFiles2Build(rcc) = libFiles2Build(rcc) - 1;    if(libFiles2Build(rcc) <0)\n"
+      "libFiles2Build(rcc)  = 0;                                  end\nupdatePrefs('set','stm32f4listLibBuildFiles',lib"
+      "Files2Build);\nclear adc gpio rcc  libFiles  libFiles2Build"
+      UndoDeleteFcn	      "libFiles =    updatePrefs('get','stm32f4listLibFiles');          libFiles2Build = updatePre"
+      "fs('get','stm32f4listLibBuildFiles');\nadc = strcmp('stm32f4xx_adc.c',{libFiles(:).name});\nlibFiles2Build(adc) "
+      "= libFiles2Build(adc)  + 1;\ngpio = strcmp('stm32f4xx_gpio.c',{libFiles(:).name});\nlibFiles2Build(gpio) = libFi"
+      "les2Build(gpio) + 1;\nrcc = strcmp('stm32f4xx_rcc.c',{libFiles(:).name}) ;\nlibFiles2Build(rcc) = libFiles2Build"
+      "(rcc) + 1;\nupdatePrefs('set','stm32f4listLibBuildFiles',libFiles2Build);\nclear adc gpio rcc  libFiles\nclear l"
+      "ibFiles2Build"
+      LoadFcn		      "libFiles =    updatePrefs('get','stm32f4listLibFiles');          libFiles2Build = updatePrefs('g"
+      "et','stm32f4listLibBuildFiles');\nadc = strcmp('stm32f4xx_adc.c',{libFiles(:).name});                           "
+      "                                                  \nlibFiles2Build(adc) = libFiles2Build(adc)  + 1;             "
+      "                                                                    \ngpio = strcmp('stm32f4xx_gpio.c',{libFiles"
+      "(:).name});                                                                           \nlibFiles2Build(gpio) = l"
+      "ibFiles2Build(gpio) + 1;                                                                                \nrcc = "
+      "strcmp('stm32f4xx_rcc.c',{libFiles(:).name}) ;                                                                  "
+      "          \nlibFiles2Build(rcc) = libFiles2Build(rcc) + 1;                                                      "
+      "                            \n                                                                                  "
+      "                                              \nupdatePrefs('set','stm32f4listLibBuildFiles',libFiles2Build);   "
+      "                                                                \nclear adc gpio rcc  libFiles                  "
+      "                                                                                  \nclear libFiles2Build        "
+      "                                                                                                    "
+      FunctionName	      "ADC_Read"
+      Parameters	      "ADC_Name,ADC_Ch0,ADC_Ch1,ADC_Ch2,ADC_Ch3,ADC_Ch4,ADC_Ch5,ADC_Ch6,ADC_Ch7,ADC_Ch8,ADC_Ch9,ADC_C"
+      "h10,ADC_Ch11,ADC_Ch12,ADC_Ch13,ADC_Ch14,ADC_Ch15,ADC_Ch16,ADC_Ch17,ADC_Ch18"
+      EnableBusSupport	      off
+      Object {
+	$PropName		"MaskObject"
+	$ObjectID		178
+	$ClassName		"Simulink.Mask"
+	Type			"ADC_Read"
+	Description		"Analog-to-digital converter (ADC) read value.\n1)Select ADC to read.\n2)Select channel(s) to read.\n"
+	Help			"web('help_ADC_Read.html', '-helpbrowser')"
+	Display			"color('blue'); text(0.6, 0.90, 'STM32F4xx', 'horizontalalignment', 'right');color('black'); text(0.50, 0.1"
+	"2, 'ADC_Read', 'horizontalAlignment','center');\nimage(imread('ST.bmp','bmp'),'top-right');\nnumOutput = 1;\ncolor('r"
+	"ed');\nif isequal(get_param(gcbh,'ADC_Ch0'),'on')\nport_label('output',numOutput,'Ch0');\nnumOutput = numOutput +1;\n"
+	"end\nif isequal(get_param(gcbh,'ADC_Ch1'),'on')\nport_label('output',numOutput,'Ch1');\nnumOutput = numOutput +1;\nen"
+	"d\nif isequal(get_param(gcbh,'ADC_Ch2'),'on')\nport_label('output',numOutput,'Ch2');\nnumOutput = numOutput +1;\nend\n"
+	"if isequal(get_param(gcbh,'ADC_Ch3'),'on')\nport_label('output',numOutput,'Ch3');\nnumOutput = numOutput +1;\nend\nif"
+	" isequal(get_param(gcbh,'ADC_Ch4'),'on')\nport_label('output',numOutput,'Ch4');\nnumOutput = numOutput +1;\nend\nif i"
+	"sequal(get_param(gcbh,'ADC_Ch5'),'on')\nport_label('output',numOutput,'Ch5');\nnumOutput = numOutput +1;\nend\nif ise"
+	"qual(get_param(gcbh,'ADC_Ch6'),'on')\nport_label('output',numOutput,'Ch6');\nnumOutput = numOutput +1;\nend\nif isequ"
+	"al(get_param(gcbh,'ADC_Ch7'),'on')\nport_label('output',numOutput,'Ch7');\nnumOutput = numOutput +1;\nend\nif isequal"
+	"(get_param(gcbh,'ADC_Ch8'),'on')\nport_label('output',numOutput,'Ch8');\nnumOutput = numOutput +1;\nend\nif isequal(g"
+	"et_param(gcbh,'ADC_Ch9'),'on')\nport_label('output',numOutput,'Ch9');\nnumOutput = numOutput +1;\nend\nif isequal(get"
+	"_param(gcbh,'ADC_Ch10'),'on')\nport_label('output',numOutput,'Ch10');\nnumOutput = numOutput +1;\nend\nif isequal(get"
+	"_param(gcbh,'ADC_Ch11'),'on')\nport_label('output',numOutput,'Ch11');\nnumOutput = numOutput +1;\nend\nif isequal(get"
+	"_param(gcbh,'ADC_Ch12'),'on')\nport_label('output',numOutput,'Ch12');\nnumOutput = numOutput +1;\nend\nif isequal(get"
+	"_param(gcbh,'ADC_Ch13'),'on')\nport_label('output',numOutput,'Ch13');\nnumOutput = numOutput +1;\nend\nif isequal(get"
+	"_param(gcbh,'ADC_Ch14'),'on')\nport_label('output',numOutput,'Ch14');\nnumOutput = numOutput +1;\nend\nif isequal(get"
+	"_param(gcbh,'ADC_Ch15'),'on')\nport_label('output',numOutput,'Ch15');\nnumOutput = numOutput +1;\nend\nif isequal(get"
+	"_param(gcbh,'ADC_Ch16'),'on')\nport_label('output',numOutput,'Ch16');\nnumOutput = numOutput +1;\nend\nif isequal(get"
+	"_param(gcbh,'ADC_Ch17'),'on')\nport_label('output',numOutput,'Ch17');\nnumOutput = numOutput +1;\nend\nif isequal(get"
+	"_param(gcbh,'ADC_Ch18'),'on')\nport_label('output',numOutput,'Ch18');\nnumOutput = numOutput +1;\nend\n"
+	IconUnits		"normalized"
+	Array {
+	  Type			  "Simulink.MaskParameter"
+	  Dimension		  20
+	  Object {
+	    $ObjectID		    179
+	    Type		    "popup"
+	    Array {
+	      Type		      "Cell"
+	      Dimension		      3
+	      Cell		      "ADC1"
+	      Cell		      "ADC2"
+	      Cell		      "ADC3"
+	      PropName		      "TypeOptions"
+	    }
+	    Name		    "ADC_Name"
+	    Prompt		    "ADC "
+	    Value		    "ADC1"
+	    Evaluate		    "off"
+	  }
+	  Object {
+	    $ObjectID		    180
+	    Type		    "checkbox"
+	    Name		    "ADC_Ch0"
+	    Prompt		    "Ch0"
+	    Value		    "off"
+	    Evaluate		    "off"
+	  }
+	  Object {
+	    $ObjectID		    181
+	    Type		    "checkbox"
+	    Name		    "ADC_Ch1"
+	    Prompt		    "Ch1"
+	    Value		    "off"
+	    Evaluate		    "off"
+	  }
+	  Object {
+	    $ObjectID		    182
+	    Type		    "checkbox"
+	    Name		    "ADC_Ch2"
+	    Prompt		    "Ch2"
+	    Value		    "off"
+	    Evaluate		    "off"
+	  }
+	  Object {
+	    $ObjectID		    183
+	    Type		    "checkbox"
+	    Name		    "ADC_Ch3"
+	    Prompt		    "Ch3"
+	    Value		    "off"
+	    Evaluate		    "off"
+	  }
+	  Object {
+	    $ObjectID		    184
+	    Type		    "checkbox"
+	    Name		    "ADC_Ch4"
+	    Prompt		    "Ch4"
+	    Value		    "off"
+	    Evaluate		    "off"
+	  }
+	  Object {
+	    $ObjectID		    185
+	    Type		    "checkbox"
+	    Name		    "ADC_Ch5"
+	    Prompt		    "Ch5"
+	    Value		    "off"
+	    Evaluate		    "off"
+	  }
+	  Object {
+	    $ObjectID		    186
+	    Type		    "checkbox"
+	    Name		    "ADC_Ch6"
+	    Prompt		    "Ch6"
+	    Value		    "off"
+	    Evaluate		    "off"
+	  }
+	  Object {
+	    $ObjectID		    187
+	    Type		    "checkbox"
+	    Name		    "ADC_Ch7"
+	    Prompt		    "Ch7"
+	    Value		    "off"
+	    Evaluate		    "off"
+	  }
+	  Object {
+	    $ObjectID		    188
+	    Type		    "checkbox"
+	    Name		    "ADC_Ch8"
+	    Prompt		    "Ch8"
+	    Value		    "off"
+	    Evaluate		    "off"
+	  }
+	  Object {
+	    $ObjectID		    189
+	    Type		    "checkbox"
+	    Name		    "ADC_Ch9"
+	    Prompt		    "Ch9"
+	    Value		    "off"
+	    Evaluate		    "off"
+	  }
+	  Object {
+	    $ObjectID		    190
+	    Type		    "checkbox"
+	    Name		    "ADC_Ch10"
+	    Prompt		    "Ch10"
+	    Value		    "off"
+	    Evaluate		    "off"
+	  }
+	  Object {
+	    $ObjectID		    191
+	    Type		    "checkbox"
+	    Name		    "ADC_Ch11"
+	    Prompt		    "Ch11"
+	    Value		    "off"
+	    Evaluate		    "off"
+	  }
+	  Object {
+	    $ObjectID		    192
+	    Type		    "checkbox"
+	    Name		    "ADC_Ch12"
+	    Prompt		    "Ch12"
+	    Value		    "off"
+	    Evaluate		    "off"
+	  }
+	  Object {
+	    $ObjectID		    193
+	    Type		    "checkbox"
+	    Name		    "ADC_Ch13"
+	    Prompt		    "Ch13"
+	    Value		    "off"
+	    Evaluate		    "off"
+	  }
+	  Object {
+	    $ObjectID		    194
+	    Type		    "checkbox"
+	    Name		    "ADC_Ch14"
+	    Prompt		    "Ch14"
+	    Value		    "off"
+	    Evaluate		    "off"
+	  }
+	  Object {
+	    $ObjectID		    195
+	    Type		    "checkbox"
+	    Name		    "ADC_Ch15"
+	    Prompt		    "Ch15"
+	    Value		    "off"
+	    Evaluate		    "off"
+	  }
+	  Object {
+	    $ObjectID		    196
+	    Type		    "checkbox"
+	    Name		    "ADC_Ch16"
+	    Prompt		    "Ch16"
+	    Value		    "off"
+	    Evaluate		    "off"
+	  }
+	  Object {
+	    $ObjectID		    197
+	    Type		    "checkbox"
+	    Name		    "ADC_Ch17"
+	    Prompt		    "Ch17"
+	    Value		    "off"
+	    Evaluate		    "off"
+	  }
+	  Object {
+	    $ObjectID		    198
+	    Type		    "checkbox"
+	    Name		    "ADC_Ch18"
+	    Prompt		    "Ch18"
+	    Value		    "off"
+	    Evaluate		    "off"
+	  }
+	  PropName		  "Parameters"
+	}
+	Array {
+	  Type			  "Simulink.dialog.Container"
+	  Dimension		  2
+	  Object {
+	    $ObjectID		    199
+	    $ClassName		    "Simulink.dialog.Group"
+	    Prompt		    "%<MaskType>"
+	    Object {
+	      $PropName		      "DialogControls"
+	      $ObjectID		      200
+	      $ClassName	      "Simulink.dialog.Text"
+	      Prompt		      "%<MaskDescription>"
+	      Name		      "DescTextVar"
+	    }
+	    Name		    "DescGroupVar"
+	  }
+	  Object {
+	    $ObjectID		    201
+	    $ClassName		    "Simulink.dialog.TabContainer"
+	    Array {
+	      Type		      "Simulink.dialog.Tab"
+	      Dimension		      2
+	      Object {
+		$ObjectID		202
+		Prompt			"ADC"
+		Object {
+		  $PropName		  "DialogControls"
+		  $ObjectID		  203
+		  $ClassName		  "Simulink.dialog.parameter.Popup"
+		  Name			  "ADC_Name"
+		}
+		Name			"ParameterTabVar0"
+	      }
+	      Object {
+		$ObjectID		204
+		Prompt			"Channels Selection"
+		Array {
+		  Type			  "Simulink.dialog.parameter.CheckBox"
+		  Dimension		  19
+		  Object {
+		    $ObjectID		    205
+		    Name		    "ADC_Ch0"
+		  }
+		  Object {
+		    $ObjectID		    206
+		    Name		    "ADC_Ch1"
+		  }
+		  Object {
+		    $ObjectID		    207
+		    Name		    "ADC_Ch2"
+		  }
+		  Object {
+		    $ObjectID		    208
+		    Name		    "ADC_Ch3"
+		  }
+		  Object {
+		    $ObjectID		    209
+		    Name		    "ADC_Ch4"
+		  }
+		  Object {
+		    $ObjectID		    210
+		    Name		    "ADC_Ch5"
+		  }
+		  Object {
+		    $ObjectID		    211
+		    Name		    "ADC_Ch6"
+		  }
+		  Object {
+		    $ObjectID		    212
+		    Name		    "ADC_Ch7"
+		  }
+		  Object {
+		    $ObjectID		    213
+		    Name		    "ADC_Ch8"
+		  }
+		  Object {
+		    $ObjectID		    214
+		    Name		    "ADC_Ch9"
+		  }
+		  Object {
+		    $ObjectID		    215
+		    Name		    "ADC_Ch10"
+		  }
+		  Object {
+		    $ObjectID		    216
+		    Name		    "ADC_Ch11"
+		  }
+		  Object {
+		    $ObjectID		    217
+		    Name		    "ADC_Ch12"
+		  }
+		  Object {
+		    $ObjectID		    218
+		    Name		    "ADC_Ch13"
+		  }
+		  Object {
+		    $ObjectID		    219
+		    Name		    "ADC_Ch14"
+		  }
+		  Object {
+		    $ObjectID		    220
+		    Name		    "ADC_Ch15"
+		  }
+		  Object {
+		    $ObjectID		    221
+		    Name		    "ADC_Ch16"
+		  }
+		  Object {
+		    $ObjectID		    222
+		    Name		    "ADC_Ch17"
+		  }
+		  Object {
+		    $ObjectID		    223
+		    Name		    "ADC_Ch18"
+		  }
+		  PropName		  "DialogControls"
+		}
+		Name			"ParameterTabVar01"
+	      }
+	      PropName		      "DialogControls"
+	    }
+	    Name		    "ParameterTabContainerVar"
+	  }
+	  PropName		  "DialogControls"
+	}
+      }
+    }
+    Block {
+      BlockType		      S-Function
+      Name		      "STM32_ADC_Common_Init"
+      SID		      "49"
+      Ports		      []
+      Position		      [35, 35, 145, 95]
+      ZOrder		      26
+      NamePlacement	      "alternate"
+      ShowName		      off
+      CopyFcn		      "pathTmf = updatePrefs('get','stm32f4RootPath');                                                 "
+      "                                        \nif isempty(pathTmf)                                                   "
+      "                                                                  \nh = errordlg('Add STM32F4xx repository to Ma"
+      "tlab default path or set System target file to stm32F4xx.tlc before!' ,'STM32F4xx','modal');\nclose(h);         "
+      "                                                                                                                "
+      "      \nclear h                                                                                                 "
+      "                                \nend                                                                           "
+      "                                                          \nlibFiles =    updatePrefs('get','stm32f4listLibFiles"
+      "');          libFiles2Build = updatePrefs('get','stm32f4listLibBuildFiles');        \nadc = strcmp('stm32f4xx_ad"
+      "c.c',{libFiles(:).name});                                                                                     \n"
+      "libFiles2Build(adc) = libFiles2Build(adc)  + 1;                                                                 "
+      "                        \ngpio = strcmp('stm32f4xx_gpio.c',{libFiles(:).name});                                 "
+      "                                                  \nlibFiles2Build(gpio) = libFiles2Build(gpio) + 1;            "
+      "                                                                            \nrcc = strcmp('stm32f4xx_rcc.c',{li"
+      "bFiles(:).name}) ;                                                                                    \nlibFiles"
+      "2Build(rcc) = libFiles2Build(rcc) + 1;                                                                          "
+      "                \ndma = strcmp('stm32f4xx_dma.c',{libFiles(:).name}) ;                                          "
+      "                                          \nlibFiles2Build(dma) = libFiles2Build(dma) + 1;                      "
+      "                                                                    \nupdatePrefs('set','stm32f4listLibBuildFile"
+      "s',libFiles2Build);                                                                           \nclear adc gpio r"
+      "cc dma  pathTmf libFiles                                                                                        "
+      "        \nclear libFiles2Build                                                                                  "
+      "                                  "
+      DeleteFcn		      "libFiles =    updatePrefs('get','stm32f4listLibFiles');          libFiles2Build = updatePrefs("
+      "'get','stm32f4listLibBuildFiles');\nadc = strcmp('stm32f4xx_adc.c',{libFiles(:).name});                         "
+      "                                                    \nlibFiles2Build(adc) = libFiles2Build(adc)  - 1;  if(libFil"
+      "es2Build(adc) <0)                                                     \nlibFiles2Build(adc)  = 0;               "
+      "                   end                                                                  \ngpio = strcmp('stm32f4"
+      "xx_gpio.c',{libFiles(:).name});                                                                           \nlibF"
+      "iles2Build(gpio) = libFiles2Build(gpio) - 1;  if(libFiles2Build(gpio) <0)                                       "
+      "            \nlibFiles2Build(gpio)  = 0;                                  end                                   "
+      "                              \nrcc = strcmp('stm32f4xx_rcc.c',{libFiles(:).name}) ;                            "
+      "                                                \nlibFiles2Build(rcc) = libFiles2Build(rcc) - 1;    if(libFiles2"
+      "Build(rcc) <0)                                                    \nlibFiles2Build(rcc)  = 0;                   "
+      "               end                                                                  \ndma = strcmp('stm32f4xx_dm"
+      "a.c',{libFiles(:).name}) ;                                                                            \nlibFiles"
+      "2Build(dma) = libFiles2Build(dma) - 1;    if(libFiles2Build(dma) <0)                                            "
+      "        \nlibFiles2Build(dma)  = 0;                                  end                                        "
+      "                          \nupdatePrefs('set','stm32f4listLibBuildFiles',libFiles2Build);                       "
+      "                                            \nclear adc gpio rcc dma libFiles  libFiles2Build                   "
+      "                                                              "
+      UndoDeleteFcn	      "libFiles =    updatePrefs('get','stm32f4listLibFiles');          libFiles2Build = updatePre"
+      "fs('get','stm32f4listLibBuildFiles');\nadc = strcmp('stm32f4xx_adc.c',{libFiles(:).name});                      "
+      "                                                       \nlibFiles2Build(adc) = libFiles2Build(adc)  + 1;        "
+      "                                                                         \ngpio = strcmp('stm32f4xx_gpio.c',{lib"
+      "Files(:).name});                                                                           \nlibFiles2Build(gpio"
+      ") = libFiles2Build(gpio) + 1;                                                                                \nr"
+      "cc = strcmp('stm32f4xx_rcc.c',{libFiles(:).name}) ;                                                             "
+      "               \nlibFiles2Build(rcc) = libFiles2Build(rcc) + 1;                                                 "
+      "                                 \ndma = strcmp('stm32f4xx_dma.c',{libFiles(:).name}) ;                         "
+      "                                                   \nlibFiles2Build(dma) = libFiles2Build(dma) + 1;             "
+      "                                                                     \nupdatePrefs('set','stm32f4listLibBuildFil"
+      "es',libFiles2Build);                                                                   \nclear adc gpio rcc dma "
+      "libFiles                                                                                                 \nclear"
+      " libFiles2Build                                                                                                 "
+      "           "
+      LoadFcn		      "libFiles =    updatePrefs('get','stm32f4listLibFiles');          libFiles2Build = updatePrefs('g"
+      "et','stm32f4listLibBuildFiles');                                             \nadc = strcmp('stm32f4xx_adc.c',{l"
+      "ibFiles(:).name});                                                                                              "
+      "                            \nlibFiles2Build(adc) = libFiles2Build(adc)  + 1;                                   "
+      "                                                                                           \ngpio = strcmp('stm3"
+      "2f4xx_gpio.c',{libFiles(:).name});                                                                              "
+      "                                          \nlibFiles2Build(gpio) = libFiles2Build(gpio) + 1;                    "
+      "                                                                                                         \nrcc ="
+      " strcmp('stm32f4xx_rcc.c',{libFiles(:).name}) ;                                                                 "
+      "                                                        \nlibFiles2Build(rcc) = libFiles2Build(rcc) + 1;        "
+      "                                                                   dma = strcmp('stm32f4xx_dma.c',{libFiles(:).n"
+      "ame}) ;\nlibFiles2Build(dma) = libFiles2Build(dma) + 1;                                                         "
+      "                                                                      \n                                        "
+      "                                                                                                                "
+      "                     \n                                                                                         "
+      "                                                                                    \nupdatePrefs('set','stm32f4"
+      "listLibBuildFiles',libFiles2Build);                                                                             "
+      "                                   \nclear adc gpio rcc dma libFiles                                            "
+      "                                                                                                  \nclear libFil"
+      "es2Build                                                                                                        "
+      "                                                 "
+      FunctionName	      "ADC_Common_Init"
+      Parameters	      "ADC_Mode,ADC_Prescaler,ADC_DMAAccessMode,ADC_TwoSamplingDelay"
+      EnableBusSupport	      off
+      Object {
+	$PropName		"MaskObject"
+	$ObjectID		224
+	$ClassName		"Simulink.Mask"
+	Type			"ADC_Common_Init"
+	Description		"Analog-to-digital converter (ADC) common parameters setting.\nAvailable for ADC1-3 and should be used o"
+	"nce only.\nADC_Mode: Configures the ADC to operate in independent or multi mode. \nADC_Prescaler: Select the frequenc"
+	"y of the clock to the ADC. The clock is common for all the ADCs.\nADC_DMAAccessMode: Configures the Direct memory acc"
+	"ess mode for multi ADC mode.\n    ADC_DMAAccessMode_Disabled: DMA mode disabled\n    ADC_DMAAccessMode_1 : DMA mode 1"
+	" enabled (2 / 3 half-words one by one - 1 then 2 then 3)\n    ADC_DMAAccessMode_2	: DMA mode 2 enabled (2 / 3 half-wo"
+	"rds by pairs - 2&1 then 1&3 then 3&2)\n    ADC_DMAAccessMode_3	: DMA mode 3 enabled (2 / 3 bytes by pairs - 2&1 then "
+	"1&3 then 3&2)\nADC_TwoSamplingDelay: Configures the Delay between 2 sampling phases."
+	Help			"web('help_ADC_Common_Init.html', '-helpbrowser')"
+	Display			"color('blue'); text(0.6, 0.90, 'STM32F4xx', 'horizontalalignment', 'right');color('black'); text(0.50, 0.1"
+	"2, 'ADC Common Init', 'horizontalAlignment','center');\nimage(imread('ST.bmp','bmp'),'top-right');\n"
+	IconUnits		"normalized"
+	Array {
+	  Type			  "Simulink.MaskParameter"
+	  Dimension		  4
+	  Object {
+	    $ObjectID		    225
+	    Type		    "popup"
+	    Array {
+	      Type		      "Cell"
+	      Dimension		      12
+	      Cell		      "ADC_Mode_Independent"
+	      Cell		      "ADC_DualMode_RegSimult_InjecSimult"
+	      Cell		      "ADC_DualMode_RegSimult_AlterTrig"
+	      Cell		      "ADC_DualMode_InjecSimult"
+	      Cell		      "ADC_DualMode_RegSimult"
+	      Cell		      "ADC_DualMode_Interl"
+	      Cell		      "ADC_DualMode_AlterTrig"
+	      Cell		      "ADC_TripleMode_RegSimult_InjecSimult"
+	      Cell		      "ADC_TripleMode_RegSimult_AlterTrig"
+	      Cell		      "ADC_TripleMode_InjecSimult"
+	      Cell		      "ADC_TripleMode_RegSimult"
+	      Cell		      "ADC_TripleMode_AlterTrig"
+	      PropName		      "TypeOptions"
+	    }
+	    Name		    "ADC_Mode"
+	    Prompt		    "ADC operating mode"
+	    Value		    "ADC_Mode_Independent"
+	    Evaluate		    "off"
+	  }
+	  Object {
+	    $ObjectID		    226
+	    Type		    "popup"
+	    Array {
+	      Type		      "Cell"
+	      Dimension		      4
+	      Cell		      "ADC_Prescaler_Div2"
+	      Cell		      "ADC_Prescaler_Div4"
+	      Cell		      "ADC_Prescaler_Div6"
+	      Cell		      "ADC_Prescaler_Div8"
+	      PropName		      "TypeOptions"
+	    }
+	    Name		    "ADC_Prescaler"
+	    Prompt		    "Clock frequency prescaler"
+	    Value		    "ADC_Prescaler_Div2"
+	    Evaluate		    "off"
+	  }
+	  Object {
+	    $ObjectID		    227
+	    Type		    "popup"
+	    Array {
+	      Type		      "Cell"
+	      Dimension		      4
+	      Cell		      " ADC_DMAAccessMode_Disabled"
+	      Cell		      "ADC_DMAAccessMode_1"
+	      Cell		      "ADC_DMAAccessMode_2"
+	      Cell		      "ADC_DMAAccessMode_3"
+	      PropName		      "TypeOptions"
+	    }
+	    Name		    "ADC_DMAAccessMode"
+	    Prompt		    "Direct Memory Access mode"
+	    Value		    " ADC_DMAAccessMode_Disabled"
+	    Evaluate		    "off"
+	  }
+	  Object {
+	    $ObjectID		    228
+	    Type		    "popup"
+	    Array {
+	      Type		      "Cell"
+	      Dimension		      16
+	      Cell		      "ADC_TwoSamplingDelay_5Cycles"
+	      Cell		      "ADC_TwoSamplingDelay_6Cycles"
+	      Cell		      "ADC_TwoSamplingDelay_7Cycles"
+	      Cell		      "ADC_TwoSamplingDelay_8Cycles"
+	      Cell		      "ADC_TwoSamplingDelay_9Cycles"
+	      Cell		      "ADC_TwoSamplingDelay_10Cycles"
+	      Cell		      "ADC_TwoSamplingDelay_11Cycles"
+	      Cell		      "ADC_TwoSamplingDelay_12Cycles"
+	      Cell		      "ADC_TwoSamplingDelay_13Cycles"
+	      Cell		      "ADC_TwoSamplingDelay_14Cycles"
+	      Cell		      "ADC_TwoSamplingDelay_15Cycles"
+	      Cell		      "ADC_TwoSamplingDelay_16Cycles"
+	      Cell		      "ADC_TwoSamplingDelay_17Cycles"
+	      Cell		      "ADC_TwoSamplingDelay_18Cycles"
+	      Cell		      "ADC_TwoSamplingDelay_19Cycles"
+	      Cell		      "ADC_TwoSamplingDelay_20Cycles"
+	      PropName		      "TypeOptions"
+	    }
+	    Name		    "ADC_TwoSamplingDelay"
+	    Prompt		    "Delay between 2 sampling phases"
+	    Value		    "ADC_TwoSamplingDelay_5Cycles"
+	    Evaluate		    "off"
+	  }
+	  PropName		  "Parameters"
+	}
+	Array {
+	  Type			  "Simulink.dialog.Container"
+	  Dimension		  2
+	  Object {
+	    $ObjectID		    229
+	    $ClassName		    "Simulink.dialog.Group"
+	    Prompt		    "%<MaskType>"
+	    Object {
+	      $PropName		      "DialogControls"
+	      $ObjectID		      230
+	      $ClassName	      "Simulink.dialog.Text"
+	      Prompt		      "%<MaskDescription>"
+	      Name		      "DescTextVar"
+	    }
+	    Name		    "DescGroupVar"
+	  }
+	  Object {
+	    $ObjectID		    231
+	    $ClassName		    "Simulink.dialog.TabContainer"
+	    Object {
+	      $PropName		      "DialogControls"
+	      $ObjectID		      232
+	      $ClassName	      "Simulink.dialog.Tab"
+	      Prompt		      "ADC Common parameters setting"
+	      Array {
+		Type			"Simulink.dialog.parameter.Popup"
+		Dimension		4
+		Object {
+		  $ObjectID		  233
+		  Name			  "ADC_Mode"
+		}
+		Object {
+		  $ObjectID		  234
+		  Name			  "ADC_Prescaler"
+		}
+		Object {
+		  $ObjectID		  235
+		  Name			  "ADC_DMAAccessMode"
+		}
+		Object {
+		  $ObjectID		  236
+		  Name			  "ADC_TwoSamplingDelay"
+		}
+		PropName		"DialogControls"
+	      }
+	      Name		      "ParameterTabVar0"
+	    }
+	    Name		    "ParameterTabContainerVar"
+	  }
+	  PropName		  "DialogControls"
+	}
+      }
+    }
+  }
+}

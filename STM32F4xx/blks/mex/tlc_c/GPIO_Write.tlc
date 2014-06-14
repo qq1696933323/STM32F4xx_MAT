@@ -1,0 +1,248 @@
+%% $RCSfile: GPIO_Write.tlc,v $
+%% $Revision: 1.0 $
+%% $Date: 2012/01/26 $
+%%
+%% Abstract: GPIO Write 
+%%    STM32F2xx GPIO Write input value to GPIOx selected port. (Pinx filtering)
+%%    Generated code is based on STM32 Library files.
+%%
+%% Copyright 1990-2009 The MathWorks, Inc.
+%assign CodeFormat = "Embedded-C"
+%implements GPIO_Write "C"
+
+%%warning "---------->Start GPIO_WRITE"
+
+%if !EXISTS(::CreateGPIO_Write)
+    %assign ::CreateGPIO_Write  = TLC_TRUE
+%endif
+
+%if !EXISTS(::InsertInitHeader)
+    %assign ::InsertInitHeader  = TLC_TRUE
+%endif
+%if !EXISTS(::InsertIncludes)
+    %assign ::InsertIncludes  = TLC_TRUE
+%endif 
+
+    %assign ::CreateGPIO_Write  = TLC_TRUE
+
+%trace CreateGPIO_Write  %<CreateGPIO_Write>
+
+
+%% Create function for GPIO Write:
+%if EXISTS(CreateGPIO_Write) && (CreateGPIO_Write == TLC_TRUE)
+
+    %%assign ::CreateGPIO_Write = TLC_FALSE
+
+%% Code for GPIO configuration call:
+%%    %function BlockTypeSetup(block, system) void
+    %function BlockInstanceSetup(block, system) void
+        %assign SrcBaseName = LibGetMdlSrcBaseName()
+        %assign modelH      = LibCreateSourceFile("Header", "Simulink", SrcBaseName)
+        %assign modelC      = LibCreateSourceFile("Source", "Simulink", SrcBaseName)
+        %if EXISTS(::InsertInitHeader) && (::InsertInitHeader == TLC_TRUE)
+            %assign ::InsertInitHeader    = TLC_FALSE
+            /******************************************************
+                              GPIO  WRITE
+            *******************************************************/
+        %endif
+
+%% Code for required GPIO includes:
+        %if EXISTS(::InsertIncludes) && (::InsertIncludes == TLC_TRUE)
+            %assign ::InsertIncludes    = TLC_FALSE	
+            %openfile GPIO_Buf
+				#include "stm32f4xx.h"
+            %closefile GPIO_Buf
+            %<LibSetSourceFileSection(modelH,"Includes",GPIO_Buf)>
+        %endif
+
+    %endfunction
+%else
+%% ERROR GPIO INIT MUST BE CALLED ONCE ONLY 
+   %trace ERROR GPIO INIT MUST BE CALLED ONCE ONLY 
+
+%endif 
+
+%% Function: Outputs ==========================================
+%% Abstract:
+%% GPIO_Write input value depending on pin config
+%%
+    %function Outputs(block, system) Output
+/* %<Type> Block: %<Name> */  
+        %assign Port =  SFcnParamSettings.Port_name
+		%assign EnableIn =  SFcnParamSettings.Enable_input
+		%assign Pin0 =  SFcnParamSettings.Pin0
+		%assign Pin1 =  SFcnParamSettings.Pin1
+		%assign Pin2 =  SFcnParamSettings.Pin2
+		%assign Pin3 =  SFcnParamSettings.Pin3
+		%assign Pin4 =  SFcnParamSettings.Pin4
+		%assign Pin5 =  SFcnParamSettings.Pin5
+		%assign Pin6 =  SFcnParamSettings.Pin6
+		%assign Pin7 =  SFcnParamSettings.Pin7
+		%assign Pin8 =  SFcnParamSettings.Pin8
+		%assign Pin9 =  SFcnParamSettings.Pin9
+		%assign Pin10 =  SFcnParamSettings.Pin10
+		%assign Pin11 =  SFcnParamSettings.Pin11
+		%assign Pin12 =  SFcnParamSettings.Pin12
+		%assign Pin13 =  SFcnParamSettings.Pin13
+		%assign Pin14 =  SFcnParamSettings.Pin14
+		%assign Pin15 =  SFcnParamSettings.Pin15
+		%assign PinMask = 65535
+		%assign Toggle_Pin0 =  SFcnParamSettings.Toggle_Pin0
+		%assign Toggle_Pin1 =  SFcnParamSettings.Toggle_Pin1
+		%assign Toggle_Pin2 =  SFcnParamSettings.Toggle_Pin2
+		%assign Toggle_Pin3 =  SFcnParamSettings.Toggle_Pin3
+		%assign Toggle_Pin4 =  SFcnParamSettings.Toggle_Pin4
+		%assign Toggle_Pin5 =  SFcnParamSettings.Toggle_Pin5
+		%assign Toggle_Pin6 =  SFcnParamSettings.Toggle_Pin6
+		%assign Toggle_Pin7 =  SFcnParamSettings.Toggle_Pin7
+		%assign Toggle_Pin8 =  SFcnParamSettings.Toggle_Pin8
+		%assign Toggle_Pin9 =  SFcnParamSettings.Toggle_Pin9
+		%assign Toggle_Pin10 =  SFcnParamSettings.Toggle_Pin10
+		%assign Toggle_Pin11 =  SFcnParamSettings.Toggle_Pin11
+		%assign Toggle_Pin12 =  SFcnParamSettings.Toggle_Pin12
+		%assign Toggle_Pin13 =  SFcnParamSettings.Toggle_Pin13
+		%assign Toggle_Pin14 =  SFcnParamSettings.Toggle_Pin14
+		%assign Toggle_Pin15 =  SFcnParamSettings.Toggle_Pin15
+		
+		%if (ISEQUAL(EnableIn,"on"))
+			%assign uAddr = LibBlockInputSignal(0, "", "", 0) 
+		%else
+			%assign uAddr = 0
+		%endif
+		
+ 		%if (ISEQUAL(Pin0, "off") || ISEQUAL(Toggle_Pin0, "on"))
+		 %assign PinMask  = %<PinMask> & 65534
+%% %warning "Pinmask0 = %<PinMask>"		 
+		%endif
+ 		%if (ISEQUAL(Pin1, "off") || ISEQUAL(Toggle_Pin1, "on"))
+		 %assign PinMask  = %<PinMask> & 65533 
+%% %warning "Pinmask1 = %<PinMask>"		 
+		%endif
+ 		%if (ISEQUAL(Pin2, "off") || ISEQUAL(Toggle_Pin2, "on"))
+		 %assign PinMask  = %<PinMask> & 65531
+%% %warning "Pinmask2 = %<PinMask>"		 
+		%endif
+ 		%if (ISEQUAL(Pin3, "off") || ISEQUAL(Toggle_Pin3, "on"))
+		 %assign PinMask  = %<PinMask> & 65527
+%% %warning "Pinmask3 = %<PinMask>"		 
+		%endif
+ 		%if (ISEQUAL(Pin4, "off") || ISEQUAL(Toggle_Pin4, "on"))
+		 %assign PinMask  = %<PinMask> & 65519
+%% %warning "Pinmask4 = %<PinMask>"		 
+		%endif
+ 		%if (ISEQUAL(Pin5, "off") || ISEQUAL(Toggle_Pin5, "on"))
+		 %assign PinMask  = %<PinMask> & 65503
+%% %warning "Pinmask5 = %<PinMask>"		 
+		%endif
+ 		%if (ISEQUAL(Pin6, "off") || ISEQUAL(Toggle_Pin6, "on"))
+		 %assign PinMask  = %<PinMask> & 65471
+%% %warning "Pinmask6 = %<PinMask>"		 
+		%endif
+ 		%if (ISEQUAL(Pin7, "off") || ISEQUAL(Toggle_Pin7, "on"))
+		 %assign PinMask  = %<PinMask> & 65407
+%% %warning "Pinmask7 = %<PinMask>"		 
+		%endif
+ 		%if (ISEQUAL(Pin8, "off") || ISEQUAL(Toggle_Pin8, "on"))
+		 %assign PinMask  = %<PinMask> & 65279
+%% %warning "Pinmask8 = %<PinMask>"		 
+		%endif
+ 		%if (ISEQUAL(Pin9, "off") || ISEQUAL(Toggle_Pin9, "on"))
+		 %assign PinMask  = %<PinMask> & 65023
+%% %warning "Pinmask9 = %<PinMask>"		 
+		%endif
+ 		%if (ISEQUAL(Pin10, "off") || ISEQUAL(Toggle_Pin10, "on"))
+		 %assign PinMask  = %<PinMask> & 64511
+%% %warning "Pinmask10 = %<PinMask>"		 
+		%endif
+ 		%if (ISEQUAL(Pin11, "off") || ISEQUAL(Toggle_Pin11, "on"))
+		 %assign PinMask  = %<PinMask> & 63487
+%% %warning "Pinmask11 = %<PinMask>"		 
+		%endif
+ 		%if (ISEQUAL(Pin12, "off") || ISEQUAL(Toggle_Pin12, "on"))
+		 %assign PinMask  = %<PinMask> & 61439
+%% %warning "Pinmask12 = %<PinMask>"		 
+		%endif
+ 		%if (ISEQUAL(Pin13, "off") || ISEQUAL(Toggle_Pin13, "on"))
+		 %assign PinMask  = %<PinMask> & 57343
+%% %warning "Pinmask13 = %<PinMask>"		 
+		%endif
+ 		%if (ISEQUAL(Pin14, "off") || ISEQUAL(Toggle_Pin14, "on"))
+		 %assign PinMask  = %<PinMask> & 49151
+%% %warning "Pinmask14 = %<PinMask>"		 
+		%endif
+ 		%if (ISEQUAL(Pin15, "off") || ISEQUAL(Toggle_Pin15, "on"))
+		 %assign PinMask  = %<PinMask> & 32767
+%% %warning "Pinmask15 = %<PinMask>"		 
+		%endif
+		
+%% %warning "Pinmask Final = %<PinMask>"		 
+ 		%openfile GPIO_Buf
+	   %if (ISEQUAL(EnableIn,"on") && (%<PinMask>))
+		uint16_t L_GPIOVal_%<Port> = GPIO_ReadOutputData(%<Port>) & ~(uint16_t)%<PinMask>;		
+	   %endif
+		%closefile GPIO_Buf
+        %<LibSystemOutputCustomCode(system,GPIO_Buf,"declaration")>
+ 
+		%openfile GPIO_Buf
+	   %if (ISEQUAL(EnableIn,"on") && (%<PinMask>))
+		GPIO_Write(%<Port>, L_GPIOVal_%<Port> | ((uint16_t)%<uAddr> & (uint16_t)%<PinMask>));
+	   %endif  
+ 		%if (ISEQUAL(Toggle_Pin0, "on"))
+		GPIO_ToggleBits(%<Port>,GPIO_Pin_0);		
+		%endif
+ 		%if (ISEQUAL(Toggle_Pin1, "on"))
+		GPIO_ToggleBits(%<Port>,GPIO_Pin_1);		
+		%endif
+ 		%if (ISEQUAL(Toggle_Pin2, "on"))
+		GPIO_ToggleBits(%<Port>,GPIO_Pin_2);		
+		%endif
+ 		%if (ISEQUAL(Toggle_Pin3, "on"))
+		GPIO_ToggleBits(%<Port>,GPIO_Pin_3);		
+		%endif
+ 		%if (ISEQUAL(Toggle_Pin4, "on"))
+		GPIO_ToggleBits(%<Port>,GPIO_Pin_4);		
+		%endif
+ 		%if (ISEQUAL(Toggle_Pin5, "on"))
+		GPIO_ToggleBits(%<Port>,GPIO_Pin_5);		
+		%endif
+ 		%if (ISEQUAL(Toggle_Pin6, "on"))
+		GPIO_ToggleBits(%<Port>,GPIO_Pin_6);		
+		%endif
+ 		%if (ISEQUAL(Toggle_Pin7, "on"))
+		GPIO_ToggleBits(%<Port>,GPIO_Pin_7);		
+		%endif
+ 		%if (ISEQUAL(Toggle_Pin8, "on"))
+		GPIO_ToggleBits(%<Port>,GPIO_Pin_8);		
+		%endif
+ 		%if (ISEQUAL(Toggle_Pin9, "on"))
+		GPIO_ToggleBits(%<Port>,GPIO_Pin_9);		
+		%endif
+ 		%if (ISEQUAL(Toggle_Pin10, "on"))
+		GPIO_ToggleBits(%<Port>,GPIO_Pin_10);		
+		%endif
+ 		%if (ISEQUAL(Toggle_Pin11, "on"))
+		GPIO_ToggleBits(%<Port>,GPIO_Pin_11);		
+		%endif
+ 		%if (ISEQUAL(Toggle_Pin12, "on"))
+		GPIO_ToggleBits(%<Port>,GPIO_Pin_12);		
+		%endif
+ 		%if (ISEQUAL(Toggle_Pin13, "on"))
+		GPIO_ToggleBits(%<Port>,GPIO_Pin_13);		
+		%endif
+ 		%if (ISEQUAL(Toggle_Pin14, "on"))
+		GPIO_ToggleBits(%<Port>,GPIO_Pin_14);		
+		%endif
+ 		%if (ISEQUAL(Toggle_Pin15, "on"))
+		GPIO_ToggleBits(%<Port>,GPIO_Pin_15);		
+		%endif 
+		%closefile GPIO_Buf
+        %<LibSystemOutputCustomCode(system,GPIO_Buf,"trailer")>
+   %endfunction
+   
+%% [EOF] GPIO_Write.tlc
+
+
+
+
+
+

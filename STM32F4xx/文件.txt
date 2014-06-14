@@ -1,0 +1,20 @@
+blks: Simulink blockset library
+html: HTML help files for Simulink blockset library
+lib: "C" code libraries (CMSIS core and STM32F4xx peripherals driver)
+pil: PIL setting files and STM32F4 RtioStream
+rtw: Embedded Coder STM32 F4 configuration files
+script: Settings and configuration MATLAB scripts
+src: STM32 F4 MCU configuration "C" files
+STM32F4xxdemos: Simulink models for demo and test
+toolchain: Settings and configuration files for toolchains.
+
+
+rtw repository contains Embedded Coder STM32 F4 configuration files:
+STM32F4xx.tmf template make file for building a PC-based stand-alone embedded real-time version of Simulink model using generated C code and one of the three available toolchains.
+STM32F4xx.tlc System target file used to define STM32F4xx option parameters.
+
+
+
+script
+Set of script files used to automatically initialize STM32F4 configuration model or used for RTW build process.
+

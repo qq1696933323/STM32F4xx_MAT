@@ -1,0 +1,329 @@
+%% $RCSfile: ADC_Read.tlc,v $
+%% $Revision: 1.0 $
+%% $Date: 2012/01/26 $
+%%
+%% Abstract: ADC Read 
+%%    STM32F2xx ADC Read input value from ADCx.
+%%    Generated code is based on STM32 Library files.
+%%
+%% Copyright 1990-2009 The MathWorks, Inc.
+
+%implements ADC_Read "C"
+
+%%warning "---------->Start ADC_READ"
+
+%if !EXISTS(::CreateADC_Read)
+    %assign ::CreateADC_Read  = TLC_TRUE
+%endif
+
+%if !EXISTS(::InsertInitHeader)
+    %assign ::InsertInitHeader  = TLC_TRUE
+%endif
+%if !EXISTS(::InsertIncludes)
+    %assign ::InsertIncludes  = TLC_TRUE
+%endif 
+
+    %assign ::CreateADC_Read  = TLC_TRUE
+
+%trace CreateADC_Read  %<CreateADC_Read>
+
+
+%% Create function for ADC Read:
+%if EXISTS(CreateADC_Read) && (CreateADC_Read == TLC_TRUE)
+
+    %%assign ::CreateADC_Read = TLC_FALSE
+
+%% Code for ADC configuration call:
+%%    %function BlockTypeSetup(block, system) void
+    %function BlockInstanceSetup(block, system) void
+        %assign SrcBaseName = LibGetMdlSrcBaseName()
+        %assign modelH      = LibCreateSourceFile("Header", "Simulink", SrcBaseName)
+        %assign modelC      = LibCreateSourceFile("Source", "Simulink", SrcBaseName)
+        %if EXISTS(::InsertInitHeader) && (::InsertInitHeader == TLC_TRUE)
+            %assign ::InsertInitHeader    = TLC_FALSE
+            /******************************************************
+                              ADC  READ
+            *******************************************************/
+        %endif
+
+%% Code for required ADC includes:
+        %if EXISTS(::InsertIncludes) && (::InsertIncludes == TLC_TRUE)
+            %assign ::InsertIncludes    = TLC_FALSE		
+            %openfile ADC_Buf
+				#include "stm32f4xx.h"
+            %closefile ADC_Buf
+            %<LibSetSourceFileSection(modelH,"Includes",ADC_Buf)>
+        %endif
+
+    %endfunction
+%else
+%% ERROR ADC INIT MUST BE CALLED ONCE ONLY 
+   %trace ERROR ADC INIT MUST BE CALLED ONCE ONLY 
+
+%endif 
+
+%% Function: Outputs ==========================================
+%% Abstract:
+%% ADC_Read input value depending on pin config
+%%
+   %function Outputs(block, system) Output
+	/* %<Type> Block: %<Name> */  
+        %assign ADC_name =  SFcnParamSettings.ADC_name
+		%assign ADC_Ch0 = SFcnParamSettings.ADC_Ch0
+		%assign ADC_Ch1 = SFcnParamSettings.ADC_Ch1
+		%assign ADC_Ch2 = SFcnParamSettings.ADC_Ch2
+		%assign ADC_Ch3 = SFcnParamSettings.ADC_Ch3
+		%assign ADC_Ch4 = SFcnParamSettings.ADC_Ch4
+		%assign ADC_Ch5 = SFcnParamSettings.ADC_Ch5
+		%assign ADC_Ch6 = SFcnParamSettings.ADC_Ch6
+		%assign ADC_Ch7 = SFcnParamSettings.ADC_Ch7
+		%assign ADC_Ch8 = SFcnParamSettings.ADC_Ch8
+		%assign ADC_Ch9 = SFcnParamSettings.ADC_Ch9
+		%assign ADC_Ch10 = SFcnParamSettings.ADC_Ch10
+		%assign ADC_Ch11 = SFcnParamSettings.ADC_Ch11
+		%assign ADC_Ch12 = SFcnParamSettings.ADC_Ch12
+		%assign ADC_Ch13 = SFcnParamSettings.ADC_Ch13
+		%assign ADC_Ch14 = SFcnParamSettings.ADC_Ch14
+		%assign ADC_Ch15 = SFcnParamSettings.ADC_Ch15
+		%assign ADC_Ch16 = SFcnParamSettings.ADC_Ch16
+		%assign ADC_Ch17 = SFcnParamSettings.ADC_Ch17
+		%assign ADC_Ch18 = SFcnParamSettings.ADC_Ch18
+ 	    %assign  OutputNum = 0
+ 		
+ 		%openfile ADC_Buf
+		%if (ISEQUAL(ADC_name, "ADC1"))
+		int Offset%<ADC_name>_L = 0;
+		%elseif (ISEQUAL(ADC_name, "ADC2"))
+		int Offset%<ADC_name>_L = ADC1_NB_CH;
+		%elseif (ISEQUAL(ADC_name, "ADC3"))
+   		int Offset%<ADC_name>_L = ADC1_NB_CH + ADC2_NB_CH;
+		%endif
+		%closefile ADC_Buf
+        %<LibSystemOutputCustomCode(system,ADC_Buf,"header")>
+						
+		%openfile ADC_Buf
+		
+		%if (ISEQUAL(ADC_Ch0, "on"))
+		%assign ch0Val = LibBlockOutputSignal(OutputNum, "", "", 0) 
+		#ifdef %<ADC_name>_USE_DMA
+		%<ch0Val> = ADCConvertedValue[%<OutputNum>];	
+		#elif defined (ADC_USE_DMA)
+		%<ch0Val> = ADCConvertedValue[Offset%<ADC_name>_L + %<OutputNum>];
+		#else
+		%<ch0Val> = *(uint16_t*)%<ADC_name>_DR_ADDRESS;		
+		#endif
+ 	    %assign  OutputNum = %<OutputNum> + 1 	
+		%endif  			    
+		%if (ISEQUAL(ADC_Ch1, "on"))
+		%assign ch1Val = LibBlockOutputSignal(OutputNum, "", "", 0) 
+		#ifdef %<ADC_name>_USE_DMA
+		%<ch1Val> = ADCConvertedValue[%<OutputNum>];	
+		#elif defined (ADC_USE_DMA)
+		%<ch1Val> = ADCConvertedValue[Offset%<ADC_name>_L + %<OutputNum>];
+		#else
+		%<ch1Val> = *(uint16_t*)%<ADC_name>_DR_ADDRESS;		
+		#endif
+ 	    %assign  OutputNum = %<OutputNum> + 1 	
+		%endif
+		%if (ISEQUAL(ADC_Ch2, "on"))
+		%assign ch2Val = LibBlockOutputSignal(OutputNum, "", "", 0) 
+		#ifdef %<ADC_name>_USE_DMA
+		%<ch2Val> = ADCConvertedValue[%<OutputNum>];	
+		#elif defined (ADC_USE_DMA)
+		%<ch2Val> = ADCConvertedValue[Offset%<ADC_name>_L + %<OutputNum>];
+		#else
+		%<ch2Val> = *(uint16_t*)%<ADC_name>_DR_ADDRESS;		
+		#endif
+ 	    %assign  OutputNum = %<OutputNum> + 1 	
+		%endif
+		%if (ISEQUAL(ADC_Ch3, "on"))
+		%assign ch3Val = LibBlockOutputSignal(OutputNum, "", "", 0) 
+		#ifdef %<ADC_name>_USE_DMA
+		%<ch3Val> = ADCConvertedValue[%<OutputNum>];	
+		#elif defined (ADC_USE_DMA)
+		%<ch3Val> = ADCConvertedValue[Offset%<ADC_name>_L + %<OutputNum>];
+		#else
+		%<ch3Val> = *(uint16_t*)%<ADC_name>_DR_ADDRESS;		
+		#endif
+ 	    %assign  OutputNum = %<OutputNum> + 1 	
+		%endif
+		%if (ISEQUAL(ADC_Ch4, "on"))
+		%assign ch4Val = LibBlockOutputSignal(OutputNum, "", "", 0) 
+		#ifdef %<ADC_name>_USE_DMA
+		%<ch4Val> = ADCConvertedValue[%<OutputNum>];	
+		#elif defined (ADC_USE_DMA)
+		%<ch4Val> = ADCConvertedValue[Offset%<ADC_name>_L + %<OutputNum>];
+		#else
+		%<ch4Val> = *(uint16_t*)%<ADC_name>_DR_ADDRESS;		
+		#endif
+ 	    %assign  OutputNum = %<OutputNum> + 1 	
+		%endif
+		%if (ISEQUAL(ADC_Ch5, "on"))
+		%assign ch5Val = LibBlockOutputSignal(OutputNum, "", "", 0) 
+		#ifdef %<ADC_name>_USE_DMA
+		%<ch5Val> = ADCConvertedValue[%<OutputNum>];	
+		#elif defined (ADC_USE_DMA)
+		%<ch5Val> = ADCConvertedValue[Offset%<ADC_name>_L + %<OutputNum>];
+		#else
+		%<ch5Val> = *(uint16_t*)%<ADC_name>_DR_ADDRESS;		
+		#endif
+ 	    %assign  OutputNum = %<OutputNum> + 1 	
+		%endif
+		%if (ISEQUAL(ADC_Ch6, "on"))
+		%assign ch6Val = LibBlockOutputSignal(OutputNum, "", "", 0) 
+		#ifdef %<ADC_name>_USE_DMA
+		%<ch6Val> = ADCConvertedValue[%<OutputNum>];	
+		#elif defined (ADC_USE_DMA)
+		%<ch6Val> = ADCConvertedValue[Offset%<ADC_name>_L + %<OutputNum>];
+		#else
+		%<ch6Val> = *(uint16_t*)%<ADC_name>_DR_ADDRESS;		
+		#endif
+ 	    %assign  OutputNum = %<OutputNum> + 1 	
+		%endif
+		%if (ISEQUAL(ADC_Ch7, "on"))
+		%assign ch7Val = LibBlockOutputSignal(OutputNum, "", "", 0) 
+		#ifdef %<ADC_name>_USE_DMA
+		%<ch7Val> = ADCConvertedValue[%<OutputNum>];	
+		#elif defined (ADC_USE_DMA)
+		%<ch7Val> = ADCConvertedValue[Offset%<ADC_name>_L + %<OutputNum>];
+		#else
+		%<ch7Val> = *(uint16_t*)%<ADC_name>_DR_ADDRESS;		
+		#endif
+ 	    %assign  OutputNum = %<OutputNum> + 1 	
+		%endif
+		%if (ISEQUAL(ADC_Ch8, "on"))
+		%assign ch8Val = LibBlockOutputSignal(OutputNum, "", "", 0) 
+		#ifdef %<ADC_name>_USE_DMA
+		%<ch8Val> = ADCConvertedValue[%<OutputNum>];	
+		#elif defined (ADC_USE_DMA)
+		%<ch8Val> = ADCConvertedValue[Offset%<ADC_name>_L + %<OutputNum>];
+		#else
+		%<ch8Val> = *(uint16_t*)%<ADC_name>_DR_ADDRESS;		
+		#endif
+ 	    %assign  OutputNum = %<OutputNum> + 1 	
+		%endif
+		%if (ISEQUAL(ADC_Ch9, "on"))
+		%assign ch9Val = LibBlockOutputSignal(OutputNum, "", "", 0) 
+		#ifdef %<ADC_name>_USE_DMA
+		%<ch9Val> = ADCConvertedValue[%<OutputNum>];	
+		#elif defined (ADC_USE_DMA)
+		%<ch9Val> = ADCConvertedValue[Offset%<ADC_name>_L + %<OutputNum>];
+		#else
+		%<ch9Val> = *(uint16_t*)%<ADC_name>_DR_ADDRESS;		
+		#endif
+ 	    %assign  OutputNum = %<OutputNum> + 1 	
+		%endif
+		%if (ISEQUAL(ADC_Ch10, "on"))
+		%assign ch10Val = LibBlockOutputSignal(OutputNum, "", "", 0) 
+		#ifdef %<ADC_name>_USE_DMA
+		%<ch10Val> = ADCConvertedValue[%<OutputNum>];	
+		#elif defined (ADC_USE_DMA)
+		%<ch10Val> = ADCConvertedValue[Offset%<ADC_name>_L + %<OutputNum>];
+		#else
+		%<ch10Val> = *(uint16_t*)%<ADC_name>_DR_ADDRESS;		
+		#endif
+ 	    %assign  OutputNum = %<OutputNum> + 1 	
+		%endif
+		%if (ISEQUAL(ADC_Ch11, "on"))
+		%assign ch11Val = LibBlockOutputSignal(OutputNum, "", "", 0) 
+		#ifdef %<ADC_name>_USE_DMA
+		%<ch11Val> = ADCConvertedValue[%<OutputNum>];	
+		#elif defined (ADC_USE_DMA)
+		%<ch11Val> = ADCConvertedValue[Offset%<ADC_name>_L + %<OutputNum>];
+		#else
+		%<ch11Val> = *(uint16_t*)%<ADC_name>_DR_ADDRESS;		
+		#endif
+ 	    %assign  OutputNum = %<OutputNum> + 1 	
+		%endif
+		%if (ISEQUAL(ADC_Ch12, "on"))
+		%assign ch12Val = LibBlockOutputSignal(OutputNum, "", "", 0) 
+		#ifdef %<ADC_name>_USE_DMA
+		%<ch12Val> = ADCConvertedValue[%<OutputNum>];	
+		#elif defined (ADC_USE_DMA)
+		%<ch12Val> = ADCConvertedValue[Offset%<ADC_name>_L + %<OutputNum>];
+		#else
+		%<ch12Val> = *(uint16_t*)%<ADC_name>_DR_ADDRESS;		
+		#endif
+ 	    %assign  OutputNum = %<OutputNum> + 1 	
+		%endif
+		%if (ISEQUAL(ADC_Ch13, "on"))
+		%assign ch13Val = LibBlockOutputSignal(OutputNum, "", "", 0) 
+		#ifdef %<ADC_name>_USE_DMA
+		%<ch13Val> = ADCConvertedValue[%<OutputNum>];	
+		#elif defined (ADC_USE_DMA)
+		%<ch13Val> = ADCConvertedValue[Offset%<ADC_name>_L + %<OutputNum>];
+		#else
+		%<ch13Val> = *(uint16_t*)%<ADC_name>_DR_ADDRESS;		
+		#endif
+ 	    %assign  OutputNum = %<OutputNum> + 1 	
+		%endif
+		%if (ISEQUAL(ADC_Ch14, "on"))
+		%assign ch14Val = LibBlockOutputSignal(OutputNum, "", "", 0) 
+		#ifdef %<ADC_name>_USE_DMA
+		%<ch14Val> = ADCConvertedValue[%<OutputNum>];	
+		#elif defined (ADC_USE_DMA)
+		%<ch14Val> = ADCConvertedValue[Offset%<ADC_name>_L + %<OutputNum>];
+		#else
+		%<ch14Val> = *(uint16_t*)%<ADC_name>_DR_ADDRESS;		
+		#endif
+ 	    %assign  OutputNum = %<OutputNum> + 1 	
+		%endif
+		%if (ISEQUAL(ADC_Ch15, "on"))
+		%assign ch15Val = LibBlockOutputSignal(OutputNum, "", "", 0) 
+		#ifdef %<ADC_name>_USE_DMA
+		%<ch15Val> = ADCConvertedValue[%<OutputNum>];	
+		#elif defined (ADC_USE_DMA)
+		%<ch15Val> = ADCConvertedValue[Offset%<ADC_name>_L + %<OutputNum>];
+		#else
+		%<ch15Val> = *(uint16_t*)%<ADC_name>_DR_ADDRESS;		
+		#endif
+ 	    %assign  OutputNum = %<OutputNum> + 1 	
+		%endif
+		%if (ISEQUAL(ADC_Ch16, "on"))
+		%assign ch16Val = LibBlockOutputSignal(OutputNum, "", "", 0) 
+		#ifdef %<ADC_name>_USE_DMA
+		%<ch16Val> = ADCConvertedValue[%<OutputNum>];	
+		#elif defined (ADC_USE_DMA)
+		%<ch16Val> = ADCConvertedValue[Offset%<ADC_name>_L + %<OutputNum>];
+		#else
+		%<ch16Val> = *(uint16_t*)%<ADC_name>_DR_ADDRESS;		
+		#endif
+ 	    %assign  OutputNum = %<OutputNum> + 1 	
+		%endif
+		%if (ISEQUAL(ADC_Ch17, "on"))
+		%assign ch17Val = LibBlockOutputSignal(OutputNum, "", "", 0) 
+		#ifdef %<ADC_name>_USE_DMA
+		%<ch17Val> = ADCConvertedValue[%<OutputNum>];	
+		#elif defined (ADC_USE_DMA)
+		%<ch17Val> = ADCConvertedValue[Offset%<ADC_name>_L + %<OutputNum>];
+		#else
+		%<ch17Val> = *(uint16_t*)%<ADC_name>_DR_ADDRESS;		
+		#endif
+ 	    %assign  OutputNum = %<OutputNum> + 1 	
+		%endif
+		%if (ISEQUAL(ADC_Ch18, "on"))
+		%assign ch18Val = LibBlockOutputSignal(OutputNum, "", "", 0) 
+		#ifdef %<ADC_name>_USE_DMA
+		%<ch18Val> = ADCConvertedValue[%<OutputNum>];	
+		#elif defined (ADC_USE_DMA)
+		%<ch18Val> = ADCConvertedValue[Offset%<ADC_name>_L + %<OutputNum>];
+		#else
+		%<ch18Val> = *(uint16_t*)%<ADC_name>_DR_ADDRESS;		
+		#endif
+ 	    %assign  OutputNum = %<OutputNum> + 1 	
+		%endif
+
+
+		
+		%closefile ADC_Buf
+        %<LibSystemOutputCustomCode(system,ADC_Buf,"execution")>
+   %endfunction
+
+
+%% [EOF] ADC_Read.tlc
+
+
+
+
+
+

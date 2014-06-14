@@ -1,0 +1,276 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>GPIOE Configuration model</title><meta name="generator" content="MATLAB 8.0"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2013-03-26"><meta name="DC.source" content="help_GPIOE_Config.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, tt, code { font-size:12px; }
+pre { margin:0px 0px 20px; }
+pre.error { color:red; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>GPIOE Configuration model</h1><!--introduction--><p>Model used to configure up to 16 pins of STM32F4 GPIO portE.</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#2">S-Function</a></li><li><a href="#4">Parameters</a></li><li><a href="#6"><i>Pin used</i></a></li><li><a href="#8"><i>Maximum frequency</i></a></li><li><a href="#10"><i>Configuration mode</i></a></li><li><a href="#13"><i>Configuration output type</i></a></li><li><a href="#15"><i>Set High initial value</i></a></li><li><a href="#17"><i>Configuration PullUp pullDown</i></a></li><li><a href="#19"><i>Alternate Function</i></a></li><li><a href="#22">Example 1</a></li><li><a href="#26">Example 2</a></li></ul></div><p>
+<A NAME="ANCRES"> </A>
+</p><h2>S-Function<a name="2"></a></h2><p><i>Nb Input:</i>  <b>0</b></p><p><i>Nb Output:</i> <b>0</b></p><p><img vspace="5" hspace="5" src="GPIOE_Config.PNG" alt=""> </p><h2>Parameters<a name="4"></a></h2><p>Configure individually each pin (0 to 15) for PortE.</p><p><img vspace="5" hspace="5" src="GPIOE-Config.PNG" alt=""> </p><p>
+<A HREF="#ANCRES"><p align="right"> top </p></A>
+</p><h2><i>Pin used</i><a name="6"></a></h2><p>Must be selected to configure Pin. Parameters are not available and not taken into account if not selected.</p><p>
+<A HREF="#ANCRES"><p align="right"> top </p></A>
+</p><h2><i>Maximum frequency</i><a name="8"></a></h2><p>Set maximum frequency available for configured pin.</p><p><img vspace="5" hspace="5" src="GPIO_P1.PNG" alt=""> </p><p>
+<A HREF="#ANCRES"><p align="right"> top </p></A>
+</p><h2><i>Configuration mode</i><a name="10"></a></h2><p>Pin can be configured as input, output, Alternate function or analog.</p><div><ol><li><i>Input</i> : Pin value is read as 0 or 1 (VSS or VDD)</li><li><i>Output</i> : Pin value is set as 0 or 1 (VSS or VDD). <b>Default</b></li><li><i>Alternate function</i> : Pin is dedicated to peripheral and automatically configured. (Example: Usart Rx)</li><li><i>Analog</i> : Pin is configured for ADC.</li></ol></div><p><img vspace="5" hspace="5" src="GPIO_P2.PNG" alt=""> </p><p>
+<A HREF="#ANCRES"><p align="right"> top </p></A>
+</p><h2><i>Configuration output type</i><a name="13"></a></h2><p>When <i>Configuration mode</i> is GPIO_Mode_Out (Pin is configured as Output). Output pin can be configured as PushPull or OpenDrain.</p><p><img vspace="5" hspace="5" src="GPIO_P3.PNG" alt=""> </p><p>
+<A HREF="#ANCRES"><p align="right"> top </p></A>
+</p><h2><i>Set High initial value</i><a name="15"></a></h2><p>When Pin is output configured. Set the Pin initial value High or low after configuration.</p><p>
+<A HREF="#ANCRES"><p align="right"> top </p></A>
+</p><h2><i>Configuration PullUp pullDown</i><a name="17"></a></h2><p>When <i>Configuration mode</i> is GPIO_Mode_In (Pin is configured as Input). Pin can be internally connected to pull up (default High value), pull down (default low value) or no not connected (no pull)</p><p><img vspace="5" hspace="5" src="GPIO_P4.PNG" alt=""> </p><p>
+<A HREF="#ANCRES"><p align="right"> top </p></A>
+</p><h2><i>Alternate Function</i><a name="19"></a></h2><p>When <i>Configuration mode</i> is GPIO_Mode_AF (Pin is configured as Alternate Function). This parameter gives possible peripheral setting for this pin.</p><div><ol><li><i>GPIO_AF_TIM2</i> : Timer 2</li><li><i>GPIO_AF_TIM5</i> : Timer 5</li><li><i>GPIO_AF_TIM8</i> : Timer 8</li><li><i>GPIO_AF_USART2</i> : Usart N&deg; 2</li><li><i>GPIO_AF_UART4</i> : Uart N&deg; 4</li><li><i>GPIO_AF_ETH</i> : Ethernet</li><li><i>GPIO_AF_EVENTOUT</i> : Output event</li></ol></div><p><img vspace="5" hspace="5" src="GPIO_P5.PNG" alt=""> </p><p>
+<A HREF="#ANCRES"><p align="right"> top </p></A>
+</p><h2>Example 1<a name="22"></a></h2><p>ADC configuration example.</p><p>This example is based on STM3240G-EVAL board. Analog-to-digital converter (ADC3) reads potentiometer value from PortF-Pin9.</p><p><a href="matlab:open_system('ADC3_IN7_Pot')">Open ADC3_IN7_pot</a></p><p><img vspace="5" hspace="5" src="ADC_EX.PNG" alt=""> </p><p><b>PortF Pin9 is analog mode configured.</b></p><p><img vspace="5" hspace="5" src="ADC_EX3.PNG" alt=""> </p><p>
+<A HREF="#ANCRES"><p align="right"> top </p></A>
+</p><p><b>Note :  <i>Port C pin 10 and Port C pin 11</i> are automatically configure as alternate function from USART_Config model.</b></p><p><img vspace="5" hspace="5" src="USART_EX_CONF.PNG" alt=""> </p><p>
+<A HREF="#ANCRES"><p align="right"> top </p></A>
+</p><h2>Example 2<a name="26"></a></h2><p>GPIO toggle output.</p><p>This example is based on STM3240G-EVAL board.</p><p>PortC-Pin7 is configured as output push/pull. Pin7 toggle in order to blink connected blue Led.</p><p><a href="matlab:open_system('BlinkBlueLed')">Open BlinkBlueLed</a></p><p><img vspace="5" hspace="5" src="GPIO_EX.PNG" alt=""> </p><p><b>PortC Pin7 is output configured. Initial value is High</b></p><p><img vspace="5" hspace="5" src="GPIO_EX1.PNG" alt=""> </p><p>
+<A HREF="#ANCRES"><p align="right"> top </p></A>
+</p><p><b>GPIO_Write model PortC Pin7 toggle.</b></p><p><img vspace="5" hspace="5" src="GPIO_EX2.PNG" alt=""> </p><p>
+<A HREF="#ANCRES"><p align="right"> top </p></A>
+</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2012b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% GPIOE Configuration model
+% Model used to configure up to 16 pins of STM32F4 GPIO portE.
+%%
+%
+% <html>
+% <A NAME="ANCRES"> </A>
+% </html>
+% 
+%% S-Function
+% _Nb Input:_  *0*
+%
+% _Nb Output:_ *0*
+%%
+% 
+% <<GPIOE_Config.PNG>>
+% 
+%% Parameters
+% Configure individually each pin (0 to 15) for PortE.
+%%
+% 
+% <<GPIOE-Config.PNG>>
+% 
+% <html>
+% <A HREF="#ANCRES"><p align="right"> top </p></A>
+% </html>
+%
+%% _Pin used_
+% Must be selected to configure Pin. 
+% Parameters are not available and not taken into account if not selected. 
+%
+%%
+% 
+% <html>
+% <A HREF="#ANCRES"><p align="right"> top </p></A>
+% </html>
+%
+%% _Maximum frequency_
+% Set maximum frequency available for configured pin. 
+%
+%%
+% 
+% <<GPIO_P1.PNG>>
+% 
+% <html>
+% <A HREF="#ANCRES"><p align="right"> top </p></A>
+% </html>
+%% _Configuration mode_
+% Pin can be configured as input, output, Alternate function or analog.
+%%
+% # _Input_ : Pin value is read as 0 or 1 (VSS or VDD)
+% # _Output_ : Pin value is set as 0 or 1 (VSS or VDD). *Default*
+% # _Alternate function_ : Pin is dedicated to peripheral and automatically configured. (Example: Usart Rx) 
+% # _Analog_ : Pin is configured for ADC.
+%
+%%
+% 
+% <<GPIO_P2.PNG>>
+% 
+% <html>
+% <A HREF="#ANCRES"><p align="right"> top </p></A>
+% </html>
+
+%% _Configuration output type_
+% When _Configuration mode_ is GPIO_Mode_Out (Pin is configured as Output). 
+% Output pin can be configured as PushPull or OpenDrain.
+%%
+% 
+% <<GPIO_P3.PNG>>
+% 
+% <html>
+% <A HREF="#ANCRES"><p align="right"> top </p></A>
+% </html>
+
+%% _Set High initial value_
+% When Pin is output configured. Set the Pin initial value High or low after
+% configuration.
+%%
+% 
+% <html>
+% <A HREF="#ANCRES"><p align="right"> top </p></A>
+% </html>
+
+%% _Configuration PullUp pullDown_
+% When _Configuration mode_ is GPIO_Mode_In (Pin is configured as Input). 
+% Pin can be internally connected to pull up (default High value), 
+% pull down (default low value) or no not connected (no pull)
+%%
+% 
+% <<GPIO_P4.PNG>>
+% 
+% <html>
+% <A HREF="#ANCRES"><p align="right"> top </p></A>
+% </html>
+%
+
+%% _Alternate Function_
+% When _Configuration mode_ is GPIO_Mode_AF (Pin is configured as Alternate Function).
+% This parameter gives possible peripheral setting for this pin.
+%%
+% # _GPIO_AF_TIM2_ : Timer 2
+% # _GPIO_AF_TIM5_ : Timer 5
+% # _GPIO_AF_TIM8_ : Timer 8
+% # _GPIO_AF_USART2_ : Usart N° 2
+% # _GPIO_AF_UART4_ : Uart N° 4
+% # _GPIO_AF_ETH_ : Ethernet
+% # _GPIO_AF_EVENTOUT_ : Output event
+%
+%%
+% 
+% <<GPIO_P5.PNG>>
+% 
+% <html>
+% <A HREF="#ANCRES"><p align="right"> top </p></A>
+% </html>
+%
+%% Example 1
+% ADC configuration example.
+%
+% This example is based on STM3240G-EVAL board.
+% Analog-to-digital converter (ADC3) reads potentiometer value from 
+% PortF-Pin9. 
+%
+% <matlab:open_system('ADC3_IN7_Pot') Open ADC3_IN7_pot> 
+%
+%%
+% 
+% <<ADC_EX.PNG>>
+% 
+% *PortF Pin9 is analog mode configured.*
+%%
+% 
+% <<ADC_EX3.PNG>>
+% 
+% <html>
+% <A HREF="#ANCRES"><p align="right"> top </p></A>
+% </html>
+%
+% *Note :  _Port C pin 10 and Port C pin 11_ are automatically configure as
+% alternate function from USART_Config model.* 
+%%
+% 
+% <<USART_EX_CONF.PNG>>
+% 
+% <html>
+% <A HREF="#ANCRES"><p align="right"> top </p></A>
+% </html>
+%
+%% Example 2
+% GPIO toggle output.
+%
+% This example is based on STM3240G-EVAL board.
+% 
+% PortC-Pin7 is configured as output push/pull. Pin7 toggle in order to blink 
+% connected blue Led.
+%
+% <matlab:open_system('BlinkBlueLed') Open BlinkBlueLed> 
+%
+%%
+% 
+% <<GPIO_EX.PNG>>
+% 
+% *PortC Pin7 is output configured. Initial value is High*
+%%
+% 
+% <<GPIO_EX1.PNG>>
+% 
+% <html>
+% <A HREF="#ANCRES"><p align="right"> top </p></A>
+% </html>
+%
+% *GPIO_Write model PortC Pin7 toggle.*
+%%
+% 
+% <<GPIO_EX2.PNG>>
+% 
+% <html>
+% <A HREF="#ANCRES"><p align="right"> top </p></A>
+% </html>
+%
+##### SOURCE END #####
+--></body></html>

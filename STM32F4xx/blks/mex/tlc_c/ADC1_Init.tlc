@@ -1,0 +1,253 @@
+%% $RCSfile: ADC1_Init.tlc,v $
+%% $Revision: 1.0 $
+%% $Date: 2012/01/26 $
+%%
+%% Abstract: ADC1 configuration
+%%    STM32F4xx ADC1 configuration code generation.
+%%    Generated code is based on STM32 Library files.
+%%
+%% Copyright 1990-2009 The MathWorks, Inc.
+
+%implements ADC1_Init "C"
+
+%if !EXISTS(::CreateADC1_Init)
+    %assign ::CreateADC1_Init  = TLC_TRUE
+%endif
+
+%if !EXISTS(::InsertInitHeader)
+    %assign ::InsertInitHeader  = TLC_TRUE
+%endif
+%if !EXISTS(::InsertIncludes)
+    %assign ::InsertIncludes  = TLC_TRUE
+%endif 
+
+    %assign ::CreateADC1_Init  = TLC_TRUE
+
+%trace CreateADC1_Init  %<CreateADC1_Init>
+
+
+%% Create function for ADC1 configuration:
+%if EXISTS(CreateADC1_Init) && (CreateADC1_Init == TLC_TRUE)
+
+    %%assign ::CreateADC1_Init = TLC_FALSE
+
+%% Code for system initialization:
+    %function Start(block,system) Output
+        %openfile ADC1_Buf
+        %if EXISTS(::InsertInitHeader) && (::InsertInitHeader == TLC_TRUE)
+            %assign ::InsertInitHeader    = TLC_FALSE
+            /******************************************************
+                            ADC1 INITIALIZATION
+            *******************************************************/
+        %endif
+        /* ADC1 Initialization */
+        ADC1_Init();
+        %closefile ADC1_Buf
+		%<LibMdlStartCustomCode(ADC1_Buf,"execution")>;
+        %openfile ADC1_Buf
+        %if EXISTS(::InsertInitHeader) && (::InsertInitHeader == TLC_TRUE)
+            %assign ::InsertInitHeader    = TLC_FALSE
+            /******************************************************
+                            ADC1 START
+            *******************************************************/
+        %endif
+        /* ADC1 START */
+        ADC1_Start();
+        %closefile ADC1_Buf
+		%<LibMdlStartCustomCode(ADC1_Buf,"trailer")>;
+    %endfunction
+
+%% Code for ADC configuration call:
+    %function BlockTypeSetup(block, system) void
+        %assign SrcBaseName = LibGetMdlSrcBaseName()
+        %assign modelH      = LibCreateSourceFile("Header", "Simulink", SrcBaseName)
+        %assign modelC      = LibCreateSourceFile("Source", "Simulink", SrcBaseName)
+
+		%assign ADC1_Num = SFcnParamSettings.ADC1_Num
+		%assign ADC1_Description = SFcnParamSettings.ADC1_Description
+		%assign ADC1_Selection = SFcnParamSettings.ADC1_Selection
+		%assign ADC1_Default = SFcnParamSettings.ADC1_Default
+		%assign ADC1_Guarded = SFcnParamSettings.ADC1_Guarded
+		%assign ADC1_Offset = SFcnParamSettings.ADC1_Offset
+		%assign ADC1_Resolution = SFcnParamSettings.ADC1_Resolution
+		%assign ADC1_ScanMode = SFcnParamSettings.ADC1_ScanMode
+		%assign ADC1_ConvMode = SFcnParamSettings.ADC1_ConvMode
+		%assign ADC1_ExtTrigPol = SFcnParamSettings.ADC1_ExtTrigPol
+		%assign ADC1_ExtTrigInjPol = SFcnParamSettings.ADC1_ExtTrigInjPol
+		%assign ADC1_ExtTrig = SFcnParamSettings.ADC1_ExtTrig
+		%assign ADC1_ExtTrigInj = SFcnParamSettings.ADC1_ExtTrigInj
+		%assign ADC1_DataAlign = SFcnParamSettings.ADC1_DataAlign
+		%assign ADC1_NbConv = SFcnParamSettings.ADC1_NbConv
+		%assign ADC1_Pin = SFcnParamSettings.ADC1_Pin
+		%assign ADC1_NbRegular = SFcnParamSettings.ADC1_NbRegular
+		%assign ADC1_NbRegularGuarded = SFcnParamSettings.ADC1_NbRegularGuarded
+		%assign ADC1_NbInjected = SFcnParamSettings.ADC1_NbInjected
+		%assign ADC1_NbInjectedGuarded = SFcnParamSettings.ADC1_NbInjectedGuarded
+		%assign ADC1_Watchdog_Enable = SFcnParamSettings.ADC1_Watchdog_Enable
+		%assign ADC1_Watchdog_Command = SFcnParamSettings.ADC1_Watchdog_Command
+		%assign ADC1_Watchdog_NumChan = SFcnParamSettings.ADC1_Watchdog_NumChan
+		%assign ADC1_Watchdog_HighThreshold = SFcnParamSettings.ADC1_Watchdog_HighThreshold
+		%assign ADC1_Watchdog_lowThreshold = SFcnParamSettings.ADC1_Watchdog_lowThreshold
+        %openfile ADC1_Buf
+       /*******************************************************************************
+        * Function Name  : ADC1_Init
+        * Description    : ADC1 Initialisation
+        * Input          : -
+        *******************************************************************************/		
+        void ADC1_Init(void)
+        {	
+		%assign clockenable = 0
+		%assign regularRank = 1
+		%assign regularChan = 0
+		%assign injectChan = 0
+		%assign injectRank = 1
+		%assign mode = "ADC_Mode_Independent"
+		%assign Number = SIZE(ADC1_Description)
+%warning "---------->Number of channels : %<Number[1]> "
+		%assign numChan = 0
+		%foreach Idx = %<Number[1]>
+			%if ( ISEQUAL("%<ADC1_Description[Idx]>", "Regular") || ISEQUAL("%<ADC1_Description[Idx]>", "Injected") )
+%warning "---------->Channel %<numChan> is : %<ADC1_Description[Idx]> "	
+            /* Test if ADC1 clock has already been enabled*/
+			%if (ISEQUAL("%<clockenable>", "0"))
+			/* Enable ADC1 clock */			
+			RCC_APB2PeriphClockCmd(RCC_APB2Periph_ADC1, ENABLE);
+			/* ADC Common Init **********************************************************/
+			ADC1_CommonInitStructure.ADC_Mode = %<mode>;
+			ADC1_CommonInitStructure.ADC_Prescaler = ADC_Prescaler_Div2;
+			ADC1_CommonInitStructure.ADC_DMAAccessMode = ADC_DMAAccessMode_Disabled;
+			ADC1_CommonInitStructure.ADC_TwoSamplingDelay = ADC_TwoSamplingDelay_5Cycles;
+			ADC_CommonInit(&ADC1_CommonInitStructure);
+			%assign clockenable = 1
+			%endif
+
+			/* ADC1 channel %<numChan> Init ****************************************************************/
+			/* Test Requested mode */
+			%if (ISEQUAL("%<ADC1_Description[Idx]>", "Regular"))
+			/*REGULAR MODE*/
+			%assign regularChan = 1
+			ADC1_InitStructure.ADC_Resolution = %<ADC1_Description[Idx+4]>;
+			%if (ISEQUAL("%<ADC1_Description[Idx+5]>", "One_channel"))
+			ADC1_InitStructure.ADC_ScanConvMode = DISABLE;
+			%else
+			ADC1_InitStructure.ADC_ScanConvMode = ENABLE;
+			%endif
+			%if (ISEQUAL("%<ADC1_Description[Idx+6]>", "on"))
+			ADC1_InitStructure.ADC_ContinuousConvMode = ENABLE;
+			%else
+			ADC1_InitStructure.ADC_ContinuousConvMode = DISABLE;
+			%endif
+			ADC1_InitStructure.ADC_ExternalTrigConvEdge = %<ADC1_Description[Idx+7]>;
+			ADC1_InitStructure.ADC_ExternalTrigConv = %<ADC1_Description[Idx+9]>;
+			ADC1_InitStructure.ADC_DataAlign = %<ADC1_Description[Idx+11]>;
+			ADC1_InitStructure.ADC_NbrOfConversion = %<ADC1_Description[Idx+12]>;
+			ADC_Init(ADC1, &ADC1_InitStructure);	
+			/* ADC1 regular channel%<numChan> configuration *************************************/
+			ADC_RegularChannelConfig(ADC1, ADC_Channel_%<numChan>, %<regularRank>, ADC_SampleTime_3Cycles);
+			%assign regularRank = %<regularRank> + 1
+			%elseif (ISEQUAL("%<ADC1_Description[Idx]>", "Injected"))
+			/*INJECTED MODE */
+			%assign injectChan = 1
+			ADC_SetInjectedOffset(ADC1, ADC_InjectedChannel_%<injectRank>,%<ADC1_Description[Idx+3]>)
+			ADC1_InitStructure.ADC_Resolution = %<ADC1_Description[Idx+4]>;
+			%if (ISEQUAL("%<ADC1_Description[Idx+5]>", "One_channel"))
+			ADC1_InitStructure.ADC_ScanConvMode = DISABLE;
+			%else
+			ADC1_InitStructure.ADC_ScanConvMode = ENABLE;
+			%endif
+			%if (ISEQUAL("%<ADC1_Description[Idx+6]>", "on"))
+			ADC1_InitStructure.ADC_ContinuousConvMode = ENABLE;
+			%else
+			ADC1_InitStructure.ADC_ContinuousConvMode = DISABLE;
+			%endif
+			ADC1_InitStructure.ADC_ExternalTrigConvEdge = %<ADC1_Description[Idx+8]>;
+			ADC1_InitStructure.ADC_ExternalTrigConv = %<ADC1_Description[Idx+10]>;
+			ADC1_InitStructure.ADC_DataAlign = %<ADC1_Description[Idx+11]>;
+			ADC1_InitStructure.ADC_NbrOfConversion = %<ADC1_Description[Idx+12]>;
+			ADC_Init(ADC1, &ADC1_InitStructure);	
+			/* ADC1 injected channel%<numChan> configuration *************************************/
+			ADC_InjectedChannelConfig(ADC1, ADC_Channel_%<numChan>, %<injectRank>, ADC_SampleTime_3Cycles);
+			%assign injectRank = %<injectRank> + 1			
+			%endif	
+			%assign numChan = %<numChan> + 1
+			%endif
+			%if ( ISEQUAL("%<ADC1_Description[Idx]>", "Not_Used") )
+			%assign numChan = %<numChan> + 1
+			%endif
+		%endforeach
+			%if (ISEQUAL("%<ADC1_Watchdog_Enable>", "on"))
+			/* Set watchdog threshold */
+			ADC_AnalogWatchdogThresholdsConfig(ADC1, %<ADC1_Watchdog_HighThreshold>,%<ADC1_Watchdog_lowThreshold>);
+			%if (ISEQUAL("%<ADC1_Watchdog_Command>", "ADC_AnalogWatchdog_SingleInjecEnable") || ISEQUAL("%<ADC1_Watchdog_Command>", "ADC_AnalogWatchdog_SingleRegOrInjecEnable"))			 
+			/* Single channel watchdog configuration*/
+			ADC_AnalogWatchdogSingleChannelConfig(ADC1, ADC_Channel_%<ADC1_Watchdog_NumChan>);
+			%endif
+			/* Watchdog enable */
+			ADC_AnalogWatchdogCmd(ADC1, %<ADC1_Watchdog_Command>);
+			%endif
+        }
+        %closefile ADC1_Buf
+        %<LibSetSourceFileSection(modelC,"Functions",ADC1_Buf)>
+        %openfile ADC1_Buf
+       /*******************************************************************************
+        * Function Name  : ADC1_Start
+        * Description    : Enable and start convertion for ADC1
+        * Input          : -
+        *******************************************************************************/					
+        void ADC1_Start(void)
+        {	
+			%if (ISEQUAL("%<clockenable>", "1"))
+			/* Enable ADC1 */
+			ADC_Cmd(ADC1, ENABLE);
+			%if (regularChan == 1)
+			/* Start ADC1 Regular Software Conversion */ 
+			ADC_SoftwareStartConv(ADC1);	
+			%endif
+			%if (injectChan == 1)
+			/* Start ADC1 Injected Software Conversion */ 
+			ADC_SoftwareStartInjectedConv(ADC1);
+			%endif			
+			%endif
+        }
+        %closefile ADC1_Buf
+        %<LibSetSourceFileSection(modelC,"Functions",ADC1_Buf)>
+	
+%% Code for the function's declaration:
+        %openfile ADC1_Buf
+            /* Function Declaration for ADC1 Configuration */
+            void ADC1_Init(void);
+            void ADC1_Start(void);
+		%closefile ADC1_Buf
+        %<LibSetSourceFileSection(modelC,"Declarations",ADC1_Buf)>
+
+%% Code for the necessary variable definition:
+        %openfile ADC1_Buf
+			/* Global Variable Definition for ADC1 Configuration */
+			ADC_InitTypeDef       ADC1_InitStructure;
+			ADC_CommonInitTypeDef ADC1_CommonInitStructure;
+        %closefile ADC1_Buf
+        %<LibSetSourceFileSection(modelC,"Definitions",ADC1_Buf)>
+
+%% Code for required ADC1 includes:
+        %if EXISTS(::InsertIncludes) && (::InsertIncludes == TLC_TRUE)
+            %assign ::InsertIncludes    = TLC_FALSE
+            %openfile ADC1_Buf
+				#include "stm32f4xx.h"
+            %closefile ADC1_Buf
+            %<LibSetSourceFileSection(modelH,"Includes",ADC1_Buf)>
+        %endif
+
+    %endfunction
+%else
+%% ERROR ADC1 INIT MUST BE CALLED ONCE ONLY 
+   %trace ERROR ADC1 INIT MUST BE CALLED ONCE ONLY 
+
+%endif 
+
+%% [EOF] ADC1_Init.tlc
+
+
+
+
+
+

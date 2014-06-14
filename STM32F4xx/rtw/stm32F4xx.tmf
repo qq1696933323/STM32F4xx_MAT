@@ -1,0 +1,653 @@
+# 
+# File    : stm32F4xx.tmf
+#
+# $ stm32F4xx.tmf 2011-10-03 dlange $
+#
+#
+# Abstract:
+#       Real-Time Workshop template makefile for building a PC-based
+#       stand-alone embedded real-time version of Simulink model using
+#       generated C code and IAR (EWARM) Compiler for ARM
+
+#------------------------- Path Information -------------------------------
+
+# Project and application specific tools and directories:
+#Target is STM32F4xx ARM M4_Core based 
+TARGET      = STM32F4XX
+
+#Use mex extention to know if 32 or 64bit installed
+MEXEXT = |>MEXEXT<|
+
+#TARGET_PATH is PATH of STM32F4XX distrib repository. 
+#All path are based on it.
+TARGET_PATH = "|>TARGET_INST_PATH<|"
+
+#Path for PIL sources, includes, STM32 and CMSIS libraries
+SRC         = $(TARGET_PATH)\src
+CMSISINC    = $(TARGET_PATH)\lib\CMSIS\Device\ST\STM32F4xx\Include
+CMSISDSPINC = $(TARGET_PATH)\lib\CMSIS\Include
+LIBINC      = $(TARGET_PATH)\lib\$(TARGET)_StdPeriph_Driver\inc
+LIBSRC      = $(TARGET_PATH)\lib\$(TARGET)_StdPeriph_Driver\src
+PATHSETUP   = $(TARGET_PATH)\lib\CMSIS\Device\ST\STM32F4xx\Source\Templates
+PIL_RTIO	= $(TARGET_PATH)\pil\stm32F4xxSerialRtiostream
+CMSISDSPSRC = $(TARGET_PATH)\lib\CMSIS\DSP_Lib\Source\BasicMathFunctions
+CMSISDSPSRC1 = $(TARGET_PATH)\lib\CMSIS\DSP_Lib\Source\CommonTables
+CMSISDSPSRC2 = $(TARGET_PATH)\lib\CMSIS\DSP_Lib\Source\ControllerFunctions
+CMSISDSPSRC3 = $(TARGET_PATH)\lib\CMSIS\DSP_Lib\Source\FastMathFunctions
+CMSISDSPSRC4 = $(TARGET_PATH)\lib\CMSIS\DSP_Lib\Source\FilteringFunctions
+CMSISDSPSRC5 = $(TARGET_PATH)\lib\CMSIS\DSP_Lib\Source\MatrixFunctions
+CMSISDSPSRC6 = $(TARGET_PATH)\lib\CMSIS\DSP_Lib\Source\StatisticsFunctions
+CMSISDSPSRC7 = $(TARGET_PATH)\lib\CMSIS\DSP_Lib\Source\SupportFunctions
+CMSISDSPSRC8 = $(TARGET_PATH)\lib\CMSIS\DSP_Lib\Source\TransformFunctions
+
+
+#------------------------ Macros read by make_rtw ------------------------------
+#
+# The following macros are read by the Real-Time Workshop build procedure:
+#
+#  MAKECMD         - This is the command used to invoke the make utility
+#  HOST            - What platform this template makefile is targeted for
+#                    (i.e. PC or UNIX)
+#  BUILD           - Invoke make from the Real-Time Workshop build procedure
+#                    (yes/no)?
+#  SYS_TARGET_FILE - Name of system target file.
+
+
+ifeq ($(MEXEXT),mexw64)
+MAKECMD         = "%MATLAB%\bin\%MATLAB_WIN_VER%\gmake"
+else ifeq ($(MEXEXT),mexw32)
+MAKECMD         = "%MATLAB%\bin\%MATLAB_WIN_VER%\gmake"
+else
+   $(error ERROR NOT SUPPORTED OS VERSION!!! )
+endif
+
+SHELL           = cmd
+HOST            = PC
+BUILD           = yes
+SYS_TARGET_FILE = stm32F4xx.tlc
+MAKEFILE_FILESEP = /
+
+#source file extension
+SRC_FILE_EXT = .c
+#object file extension
+OBJ_EXT = .o
+#File extention is .out for IAR exec file
+PROGRAM_FILE_EXT = .out
+#File extension is .lib for library file
+BINARY_FILE_EXT = .lib
+#File extension is .s for IAR assembler file (startup)
+ASM_FILE_EXT = .s
+#---------------------- Tokens expanded by make_rtw ----------------------------
+#
+# The following tokens, when wrapped with "|>" and "<|" are expanded by the
+# Real-Time Workshop build procedure.
+#
+#  TOOL_CHAIN          - Name of toolchain used. Can be IAR or ATOLLIC.
+#  BOOT_MODE           - From FLASH or boot from RAM (Usually FLASH)
+#  COMPILER_TOOL_CHAIN - Toolchain used (IAR, ATOLLIC) from system target file
+#  MODEL_NAME          - Name of the Simulink block diagram
+#  MODEL_MODULES       - Any additional generated source modules
+#  MAKEFILE_NAME       - Name of makefile created from template makefile <model>.mk
+#  MATLAB_ROOT         - Path to were MATLAB is installed.
+#  MATLAB_BIN          - Path to MATLAB executable.
+#  S_FUNCTIONS         - List of additional S-function modules.
+#  S_FUNCTIONS_LIB     - List of S-functions libraries to link. 
+#  NUMST               - Number of sample times
+#  NCSTATES            - Number of continuous states
+#  BUILDARGS           - Options passed in at the command line.
+#  MULTITASKING        - yes (1) or no (0): Is solver mode multitasking
+#  INTEGER_CODE        - yes (1) or no (0): Is generated code purely integer
+#  MAT_FILE            - yes (1) or no (0): Should mat file logging be done,
+#                        if 0, the generated code runs indefinitely
+#  EXT_MODE            - yes (1) or no (0): Build for external mode
+#  TMW_EXTMODE_TESTING - yes (1) or no (0): Build ext_test.c for external mode
+#                        testing.
+#  EXTMODE_TRANSPORT   - Index of transport mechanism (e.g. tcpip, serial) for extmode
+#  EXTMODE_STATIC      - yes (1) or no (0): Use static instead of dynamic mem alloc.
+#  EXTMODE_STATIC_SIZE - Size of static memory allocation buffer.
+#  MULTI_INSTANCE_CODE - Is the generated code multi instantiable (1/0)?
+#  PORTABLE_WORDSIZES  - Is this build intented for SIL simulation with portable word sizes (1/0)?
+#  SHRLIBTARGET        - Is this build intended for generation of a shared library instead 
+#                        of executable (1/0)?
+TOOL_CHAIN           = |>TOOLCHAIN<|
+BOOT_MODE            = |>FLASH_RAM<|
+COMPILER_TOOL_CHAIN  = |>TOOLCHAIN<|
+MODEL                = |>MODEL_NAME<|
+MODULES              = |>MODEL_MODULES<|
+MODULES_OBJ          = |>MODEL_MODULES_OBJ<|
+MAKEFILE             = |>MAKEFILE_NAME<|
+TOOLPATH             = "|>COMPILERPATH<|"
+MATLAB_ROOT          = "|>MATLAB_ROOT<|"
+ALT_MATLAB_ROOT      = "|>ALT_MATLAB_ROOT<|"
+MATLAB_BIN           = "|>MATLAB_BIN<|"
+ALT_MATLAB_BIN       = "|>ALT_MATLAB_BIN<|"
+S_FUNCTIONS          = |>S_FUNCTIONS<|
+S_FUNCTIONS_LIB      = |>S_FUNCTIONS_LIB<|
+NUMST                = |>NUMST<|
+NCSTATES             = |>NCSTATES<|
+BUILDARGS            = |>BUILDARGS<|
+MULTITASKING         = |>MULTITASKING<|
+INTEGER_CODE         = |>INTEGER_CODE<|
+MAT_FILE             = |>MAT_FILE<|
+ONESTEPFCN           = |>COMBINE_OUTPUT_UPDATE_FCNS<|
+TERMFCN              = |>INCLUDE_MDL_TERMINATE_FCN<|
+B_ERTSFCN            = |>GENERATE_ERT_S_FUNCTION<|
+#MEXEXT               = |>MEXEXT<|
+EXT_MODE             = |>EXT_MODE<|
+TMW_EXTMODE_TESTING  = |>TMW_EXTMODE_TESTING<|
+EXTMODE_TRANSPORT    = |>EXTMODE_TRANSPORT<|
+EXTMODE_STATIC       = |>EXTMODE_STATIC_ALLOC<|
+EXTMODE_STATIC_SIZE  = |>EXTMODE_STATIC_ALLOC_SIZE<|
+MULTI_INSTANCE_CODE  = |>MULTI_INSTANCE_CODE<|
+MODELREFS            = |>MODELREFS<|
+TARGET_LANG_EXT      = |>TARGET_LANG_EXT<|
+SHARED_SRC           = |>SHARED_SRC<|
+SHARED_SRC_DIR       = |>SHARED_SRC_DIR<|
+SHARED_BIN_DIR       = |>SHARED_BIN_DIR<|
+SHARED_LIB           = |>SHARED_LIB<|
+MEX_OPT_FILE         = |>MEX_OPT_FILE<|
+PORTABLE_WORDSIZES   = |>PORTABLE_WORDSIZES<|
+SHRLIBTARGET         = |>SHRLIBTARGET<|
+OPTIMIZATION_FLAGS   = |>OPTIMIZATION_FLAGS<|
+ADDITIONAL_LDFLAGS   = |>ADDITIONAL_LDFLAGS<|
+MAKEFILEBUILDER_TGT  = |>MAKEFILEBUILDER_TGT<|
+STANDALONE_SUPPRESS_EXE = |>STANDALONE_SUPPRESS_EXE<|
+
+STM32_SERIES	 = |>STM32SERIES<|
+
+#--------------------------- Model and reference models -----------------------
+MODELLIB             = |>MODELLIB<|
+MODELREF_LINK_LIBS   = |>MODELREF_LINK_LIBS<|
+MODELREF_LINK_RSPFILE     = |>MODELREF_LINK_RSPFILE_NAME<|
+MODELREF_INC_PATH         = |>START_MDLREFINC_EXPAND_INCLUDES<| -I |>MODELREF_INC_PATH<| |>END_MDLREFINC_EXPAND_INCLUDES<| 
+RELATIVE_PATH_TO_ANCHOR   = |>RELATIVE_PATH_TO_ANCHOR<|
+MODELREF_TARGET_TYPE      = |>MODELREF_TARGET_TYPE<|
+
+#Matlab Path checking
+ifneq ($(MATLAB_ROOT),$(ALT_MATLAB_ROOT))
+MATLAB_ROOT = $(ALT_MATLAB_ROOT)
+endif
+MATLAB_ROOT := $(subst \,/,$(MATLAB_ROOT))
+MATLAB_ROOT := $(subst Program Files,Program\ Files,$(MATLAB_ROOT))
+ifneq ($(MATLAB_BIN),$(ALT_MATLAB_BIN))
+MATLAB_BIN = $(ALT_MATLAB_BIN)
+endif
+MATLAB_BIN := $(subst Program Files,Program\ Files,$(MATLAB_BIN))
+MATLAB_BIN := $(subst ~,\~,$(MATLAB_BIN))
+
+
+# Set Compiler, Asm and linker depending on toolchain
+#IAR toolchain first
+ifeq ($(TOOL_CHAIN),IAR)
+   $(info  ###Makefile for IAR)
+   # Toolchain libraries path
+   LDDIR       = $(TARGET_PATH)\toolchain\IAR_Ewarm
+   # Compiler path 
+   CC = $(TOOLPATH)\iccarm.exe
+   # Assembler path 
+   ASM = $(TOOLPATH)\iasmarm.exe
+   # Linker path 
+   LNK = $(TOOLPATH)\ilinkarm.exe
+   # library path
+   AR = $(TOOLPATH)\iarchive.exe
+   #Archive creation flags V=verbose 
+   ARFLAGS = -V
+   # Linker Output generated file is model + file extens
+   PROGRAM_FILE_EXT = .out
+   BINARY_FILE_EXT = .lib
+   ASM_FILE_EXT = .s
+   #Add startup path   
+   PATHSTARTUP   = $(TARGET_PATH)\lib\CMSIS\Device\ST\STM32F4xx\Source\Templates\iar 
+else ifeq ($(TOOL_CHAIN),KEIL)
+   $(info  ###Makefile for KEIL)
+   # Toolchain libraries path
+   LDDIR       = $(TARGET_PATH)\toolchain\KEIL
+   # Compiler path 
+   CC = $(TOOLPATH)\ARMCC\bin\armcc.exe
+   # Assembler path 
+   ASM = $(TOOLPATH)\ARMCC\bin\armasm.exe
+   # Linker path 
+   LNK = $(TOOLPATH)\ARMCC\bin\armlink.exe
+   # library path
+   AR = $(TOOLPATH)\ARMCC\bin\armar.exe
+   #Archive creation flags v=verbose 
+   ARFLAGS = -v 
+   # Linker Output generated file is model + file extens
+   PROGRAM_FILE_EXT = .axf
+   BINARY_FILE_EXT = .lib
+   ASM_FILE_EXT = .s
+   #Add startup path   
+   PATHSTARTUP   = $(TARGET_PATH)\lib\CMSIS\Device\ST\STM32F4xx\Source\Templates\arm
+else ifeq ($(TOOL_CHAIN),ATOLLIC)
+   $(info  ###Makefile for ATOLLIC)
+   # Toolchain libraries path
+   LDDIR       = $(TARGET_PATH)\toolchain\ATOLLIC_TrueSTUDIO
+   # Compiler path 
+   CC = $(TOOLPATH)\ARMTools\bin\arm-atollic-eabi-gcc.exe
+   # Assembler path 
+   #ASM = $(TOOLPATH)\ARMTools\bin\arm-atollic-eabi-as.exe
+   ASM = $(TOOLPATH)\ARMTools\bin\arm-atollic-eabi-gcc.exe   
+   # Linker path 
+   #LNK = $(TOOLPATH)\ARMTools\bin\arm-atollic-eabi-ld.exe
+   LNK = $(TOOLPATH)\ARMTools\bin\arm-atollic-eabi-gcc.exe
+   # library path
+   AR = $(TOOLPATH)\ARMTools\bin\arm-atollic-eabi-ld.exe
+   #Archive creation flags V=verbose 
+   ARFLAGS = --verbose -cref --defsym=malloc_getpagesize_P=0x1000 -r
+   # Linker Output generated file is model + file extension
+   PROGRAM_FILE_EXT = .elf
+   BINARY_FILE_EXT = .lib
+   ASM_FILE_EXT = .s
+   #Add startup path   
+   PATHSTARTUP   = $(TARGET_PATH)\lib\CMSIS\Device\ST\STM32F4xx\Source\Templates\TrueSTUDIO
+else
+   $(error ERROR TOOLCHAIN HAS NOT BEEN DEFINED!!!!)
+endif
+
+#Add path for startup file
+#vpath %$(ASM_FILE_EXT) $(PATHSTARTUP)
+#Set path for make: Define path to search for source files
+#vpath %$(SRC_FILE_EXT) . .. $(SRC) $(LIBSRC) $(PATHSETUP) $(PATHSTARTUP) $(PIL_RTIO) $(CMSISDSPSRC)
+
+#empty:=
+#space:= $(empty) $(empty)
+#toto := $(subst \,/,$(toto))
+#toto := $(subst $(space),\$(space),$(toto))
+#toto := $(subst ~,\~,$(toto))
+
+
+# Place -I options here
+MATLAB_INCLUDES = \
+	-I$(MATLAB_ROOT)/rtw/c/ert \
+	-I$(MATLAB_ROOT)/extern/include \
+	-I$(MATLAB_ROOT)/simulink/include \
+	-I$(MATLAB_ROOT)/rtw/c/src \
+	-I$(MATLAB_ROOT)/rtw/c/src/ext_mode/common \
+	-I$(MATLAB_ROOT)/toolbox/rtw/targets/pil/c 
+ifeq ($(TOOL_CHAIN),KEIL)
+MATLAB_INCLUDES += -I$(TOOLPATH)/RV31/INC 
+endif
+
+# Additional includes 
+ADD_INCLUDES = \
+|>START_EXPAND_INCLUDES<|	-I|>EXPAND_DIR_NAME<| \
+|>END_EXPAND_INCLUDES<|
+
+SHARED_INCLUDES =
+ifneq ($(SHARED_SRC_DIR),)
+SHARED_INCLUDES = -I$(SHARED_SRC_DIR) 
+endif
+
+#------------------------------ Includes -------------------------------------
+INCLUDES = -I. -I$(RELATIVE_PATH_TO_ANCHOR) $(MATLAB_INCLUDES) \
+           $(ADD_INCLUDES) $(MODELREF_INC_PATH) $(SHARED_INCLUDES) \
+           -I$(LIBINC) -I$(SRC) -I$(CMSISINC) -I$(CMSISDSPINC) \
+		   -I$(PIL_RTIO)
+		   
+	
+#-------------------------------- Flags --------------------------------------
+# General Options
+CC_OPTS = $(OPTIMIZATION_FLAGS) $(DEFAULT_OPT_OPTS) $(ANSI_OPTS)
+
+# Compiler/Assembler/linker Flags
+CFLAGS = $(CC_OPTS) $(OPTS) $(COMPILERSETTINGS) $(INCLUDES) 
+AFLAGS = $(DEFAULT_OPT_OPTS) $(ASSEMBLERSETTINGS) $(INCLUDES)
+LFLAGS = $(LINKERSETTINGS)
+
+#-------------------------------- Target application --------------------------------------
+# Define the target file
+
+ifeq ($(MODELREF_TARGET_TYPE), NONE)
+ifeq ($(MAKEFILEBUILDER_TGT), 0)
+ifeq ($(STANDALONE_SUPPRESS_EXE), 1)
+# Build object code only for top level model (preliminary step for building
+# PIL application)
+BUILD_MODE=pil_prebuild
+PRODUCT=ObjectModules
+BUILD_PRODUCT_TYPE = object modules
+else
+# Building executable for real-time deployment
+BUILD_MODE=real_time
+PRODUCT = $(MODEL)$(PROGRAM_FILE_EXT)
+BUILD_PRODUCT_TYPE = executable
+endif
+else
+# Building executable for deployment as PIL application (non-real-time 
+# simulation)
+BUILD_MODE=pil_application
+PRODUCT = $(MODEL)$(PROGRAM_FILE_EXT)
+BUILD_PRODUCT_TYPE = executable
+endif
+else
+# Building a library for a referenced model
+BUILD_MODE = model_reference
+PRODUCT = $(MODELLIB)
+BUILD_PRODUCT_TYPE = library
+endif
+
+
+$(info  ###BuildMode : $(BUILD_MODE) MODELREF_TARGET_TYPE=$(MODELREF_TARGET_TYPE) SIMULATION_MODE_RP=$(SIMULATION_MODE_RP) MAKEFILEBUILDER_TGT=$(MAKEFILEBUILDER_TGT) STANDALONE_SUPPRESS_EXE=$(STANDALONE_SUPPRESS_EXE))
+
+#-------------- Source Files, Object Files and Dependency Files -----------
+# Target specific sources:
+# Provided through variable TARGET_SRCS from hook file
+# System specific sources:
+# Provided through variable SYSTEM_SRCS from hook file
+
+EXT_SRC = stm32f4xx_usart.c
+EXT_SRC += stm32f4xx_rcc.c 
+EXT_SRC += stm32f4xx_gpio.c 
+EXT_SRC += misc.c 
+
+SRCS = $(MODULES) $(S_FUNCTIONS) 
+
+ifeq ($(BUILD_MODE), pil_prebuild)
+  SRCS += $(MODULES) $(MODEL).$(TARGET_LANG_EXT) $(EXT_SRC)
+endif
+
+ifeq ($(BUILD_MODE), pil_application)
+  SRCS += $(TARGET_SRCS) $(TARGET_BLOCK_SRCS) $(SYSTEM_SRCS) $(EXT_SRC) RCC_Configuration.c
+  PREBUILT_SRCS      = $(subst \,/,$(MODULES))
+  PREBUILT_OBJS      = $(addsuffix $(OBJ_EXT), $(basename $(PREBUILT_SRCS)))
+endif
+
+ifeq ($(BUILD_MODE), real_time)
+  SRCS += $(MODEL).$(TARGET_LANG_EXT) $(EXT_SRC) main.c RCC_Configuration.c
+  SRCS += $(TARGET_BLOCK_SRCS) $(TARGET_SRCS) $(SYSTEM_SRCS)
+endif
+
+
+
+ifeq ($(BUILD_MODE), model_reference)
+ifeq ($(SIMULATION_MODE_RP),NO_PIL) 
+  SRCS = $(S_FUNCTIONS)
+  testIsNotMain = $(if $(findstring main.c, $(testFile)), $(info main.c not built for model_reference),$(testFile) )
+  files := $(foreach testFile,$(MODULES),$(testIsNotMain))
+  SRCS += $(files)
+endif
+endif
+
+LIBS = $(S_FUNCTIONS_LIB)
+
+SHARED_SRC := $(subst \,/,$(SHARED_SRC))
+SHARED_SRC := $(wildcard $(SHARED_SRC))
+SHARED_OBJS = $(addsuffix $(OBJ_EXT), $(basename $(SHARED_SRC)))
+SHARED_OBJS := $(subst \,/,$(SHARED_OBJS))
+SHARED_LIB := $(subst \,/,$(SHARED_LIB))
+MODELLIB := $(subst \,/,$(MODELLIB))
+
+
+#-------------- Default target -----------
+OBJS  = $(SRCS:$(SRC_FILE_EXT)=$(OBJ_EXT)) 
+OBJS  := $(subst \,/,$(OBJS))
+
+STM32STARTUP = $(STARTUP_SRCS:$(ASM_FILE_EXT)=$(OBJ_EXT))
+STM32STARTUP := $(subst \,/,$(STM32STARTUP))
+
+$(info  ###Startup file: $(STM32STARTUP) )
+$(info  ###Startup path: $(PATHSTARTUP))
+
+TARGETS = $(PRODUCT)
+
+all: $(TARGETS)
+	@echo "### Created $(PRODUCT) successfully (or it was already up to date)"
+
+clean :
+	@del *.o
+	echo ###All .o files deleted.
+ 
+mrproper : clean
+	@del $(PRODUCT)
+	echo ###Project clean.
+	
+.PHONY : clean mrproper
+	@echo "### Created $(PRODUCT) successfully (or it was already up to date)"
+
+#----------------------------- Dependencies ------------------------------------
+##$(OBJS) : $(MAKEFILE) rtw_proj.tmw
+$(OBJS) : $(MAKEFILE)
+
+$(SHARED_LIB) : $(SHARED_OBJS)
+	@echo "### Creating $@ "
+ifneq (,$(findstring $(SHARED_LIB),$(wildcard $(SHARED_LIB))))
+	@echo "### $(AR) $(ARFLAGS) Lib:$@ Inputs:$(notdir $(SHARED_OBJS))"
+ifeq ($(TOOL_CHAIN),IAR)
+###IAR toolchain
+	@$(AR) $(ARFLAGS) -r $@ $(notdir $(SHARED_OBJS))
+	@echo "### Library: $@ Replaced "
+else ifeq ($(TOOL_CHAIN),KEIL)
+###KEIL toolchain
+	@$(AR) $(ARFLAGS) -ru -s --show_cmdline --debug_symbols $@ $(notdir $(SHARED_OBJS))
+	@echo "### Library: $@ Replaced "
+else ifeq ($(TOOL_CHAIN),ATOLLIC)
+###ATOLLIC toolchain
+	@$(AR) $(ARFLAGS) -o $@ $(notdir $(SHARED_OBJS))
+	@echo "### Library: $@ Replaced "
+else
+   $(error ERROR TOOLCHAIN HAS NOT BEEN DEFINED!!!!)
+endif
+else
+ifeq ($(TOOL_CHAIN),IAR)
+###IAR toolchain
+	@$(AR) $(ARFLAGS) -o $@ $(notdir $(SHARED_OBJS))
+	@echo "### Library: $@ Created "
+else ifeq ($(TOOL_CHAIN),KEIL)
+###KEIL toolchain
+	@$(AR) $(ARFLAGS) --create -s --show_cmdline --debug_symbols $@ $(notdir $(SHARED_OBJS))
+	@echo "### Library: $@ Created "
+else ifeq ($(TOOL_CHAIN),ATOLLIC)
+###ATOLLIC toolchain
+	@$(AR) $(ARFLAGS) -o $@ $(notdir $(SHARED_OBJS))
+	@echo "### Library: $@ Created "
+else
+   $(error ERROR TOOLCHAIN HAS NOT BEEN DEFINED!!!!)
+endif
+endif
+	
+
+##-------------------------- Support for building modules ----------------------
+ifeq ($(BUILD_MODE), pil_prebuild)
+$(PRODUCT) : $(OBJS) $(STM32STARTUP)
+	@echo "### BUILD_MODE $(BUILD_MODE)"
+	@echo "### Created $(PRODUCT)"
+endif
+
+ifeq ($(BUILD_MODE), model_reference)
+$(PRODUCT) : $(STM32STARTUP) $(OBJS) $(SHARED_LIB) $(LIBS) 
+	@echo "### BUILD_MODE $(BUILD_MODE)"
+ifneq (,$(findstring $(PRODUCT),$(wildcard $(PRODUCT))))
+ifeq ($(TOOL_CHAIN),IAR)
+###IAR toolchain
+	@$(AR) $(ARFLAGS) -r $@ $(OBJS)
+	@echo "### Replaced $@ model_reference"
+else ifeq ($(TOOL_CHAIN),KEIL)
+###KEIL toolchain
+	@$(AR) $(ARFLAGS) -ru $@ $(OBJS)
+	@echo "### Replaced $@ model_reference"
+else ifeq ($(TOOL_CHAIN),ATOLLIC)
+###ATOLLIC toolchain
+	@$(AR) $(ARFLAGS) -o $@ $(OBJS)
+	@echo "### Replaced $@ model_reference"
+else
+   $(error ERROR TOOLCHAIN HAS NOT BEEN DEFINED!!!!)
+endif
+else
+ifeq ($(TOOL_CHAIN),IAR)
+###IAR toolchain
+	@$(AR) $(ARFLAGS) -o $@ $(OBJS)
+	@echo "### Generated $@ model_reference"
+else ifeq ($(TOOL_CHAIN),KEIL)
+###KEIL toolchain
+	@$(AR) $(ARFLAGS) --create $@ $(OBJS)
+	@echo "### Generated $@ model_reference"
+else ifeq ($(TOOL_CHAIN),ATOLLIC)
+###ATOLLIC toolchain
+	@$(AR) $(ARFLAGS) -o $@ $(OBJS)
+	@echo "### Generated $@ model_reference"
+else
+   $(error ERROR TOOLCHAIN HAS NOT BEEN DEFINED!!!!)
+endif
+endif
+endif
+
+ifeq ($(BUILD_MODE), pil_application)
+$(MODEL)$(PROGRAM_FILE_EXT): $(PREBUILT_OBJS) $(OBJS) $(STM32STARTUP) $(MODELLIB) $(MODELREF_LINK_LIBS) $(SHARED_LIB) $(LIBS)
+	@echo "### BUILD_MODE $(BUILD_MODE)"
+ifeq ($(TOOL_CHAIN),KEIL)
+	@echo "### CMD: @$(LNK) $^ $(LFLAGS) --output $@"	
+	@$(LNK) $(LFLAGS) --output $@ $^
+else
+	@echo "### CMD: @$(LNK) $^ $(LFLAGS) -o $@"	
+	@$(LNK) $^ $(LFLAGS) -o $@ 
+endif
+	@echo "### Generated $@ pil_application"
+endif
+
+ifeq ($(BUILD_MODE), real_time)
+$(MODEL)$(PROGRAM_FILE_EXT): $(OBJS) $(STM32STARTUP) $(MODELREF_LINK_LIBS) $(SHARED_LIB) $(LIBS)
+	@echo "### BUILD_MODE $(BUILD_MODE)"
+ifeq ($(TOOL_CHAIN),KEIL)
+	@$(LNK) $(LFLAGS) --output $@ $^
+else
+	@$(LNK) $^ $(LFLAGS) -o $@ 
+endif
+	@echo "### Generated $@ real_time"
+endif
+
+
+#--------------------------------- Rules -------------------------------------
+%.o: $(subst \,/,$(RELATIVE_PATH_TO_ANCHOR))/%$(SRC_FILE_EXT)
+##	$(CC) -c $(CFLAGS) $< $(CCOUTPUTFLAG)$@ 
+	@$(CC) $(CFLAGS) $< 
+	@echo ### Successfully compiled source $<
+
+%.o: $(subst \,/,$(RELATIVE_PATH_TO_ANCHOR))/%.cpp
+##	$(CC) -c $(CFLAGS) $< $(CCOUTPUTFLAG)$@ 
+	@$(CC) $(CFLAGS) $< 
+	@echo ### Successfully compiled source $<
+
+%.o: %.cpp
+##	$(CC) -c $(CFLAGS) $< $(CCOUTPUTFLAG)$@ 
+	@$(CC) $(CFLAGS) $< 
+	@echo ### Successfully compiled source $<
+
+%.o: %$(SRC_FILE_EXT)
+##	$(CC) -c $(CFLAGS) $< $(CCOUTPUTFLAG)$@ 
+	@echo ### Start compile $(SRC_FILE_EXT) source $<
+	@$(CC) $(CFLAGS) $< 
+	@echo ### Successfully compiled source $<
+
+%.o: %$(ASM_FILE_EXT)
+	@echo ### Start compile $(ASM_FILE_EXT) source $<
+	@$(ASM) $(AFLAGS)  $< 
+	@echo ### Successfully compiled source $<
+
+%.o: $(subst ",,$(PATHSTARTUP))/%$(ASM_FILE_EXT)
+	@echo ### Start compile $(ASM_FILE_EXT) source $<
+	@$(ASM) $(AFLAGS)  $< 
+	@echo ### Successfully compiled source $<
+	
+		
+#ifeq ($(BUILD_MODE), pil_application)
+#%.o: $(subst ",,$(PATHSETUP))/%$(SRC_FILE_EXT)
+#	@echo ### Start compile $(SRC_FILE_EXT) source $<
+#	@$(CC) $(CFLAGS) $< 
+#	@echo ### Successfully compiled source $<
+#
+#%.o: $(subst ",,$(SRC))/%$(SRC_FILE_EXT)
+#	@echo ### Start compile $(SRC_FILE_EXT) source $<
+#	@$(CC) $(CFLAGS) $< 
+#	@echo ### Successfully compiled source $<	
+#endif
+
+#ifeq ($(BUILD_MODE), model_reference)
+#%.o: $(subst ",,$(PATHSTARTUP))/%$(ASM_FILE_EXT)
+#	@echo ### Start compile $(ASM_FILE_EXT) source $<
+#	@$(ASM) $(AFLAGS)  $< 
+#	@echo ### Successfully compiled source $<
+#endif
+
+%.o: $(subst ",,$(PATHSETUP))/%$(SRC_FILE_EXT)
+	@echo ### Start compile $(SRC_FILE_EXT) source $<
+	@$(CC) $(CFLAGS) $< 
+	@echo ### Successfully compiled source $<
+
+%.o: $(subst ",,$(SRC))/%$(SRC_FILE_EXT)
+	@echo ### Start compile $(SRC_FILE_EXT) source $<
+	@$(CC) $(CFLAGS) $< 
+	@echo ### Successfully compiled source $<	
+
+%.o: $(subst ",,$(PIL_RTIO))/%$(SRC_FILE_EXT)
+	@echo ### Start compile $(SRC_FILE_EXT) source $<
+	@$(CC) $(CFLAGS) $< 
+	@echo ### Successfully compiled source $<	
+
+%.o: $(subst ",,$(CMSISDSPSRC))/%$(SRC_FILE_EXT)
+	@echo ### Start compile $(SRC_FILE_EXT) source $<
+	@$(CC) $(CFLAGS) $< 
+	@echo ### Successfully compiled source $<	
+
+%.o: $(subst ",,$(CMSISDSPSRC1))/%$(SRC_FILE_EXT)
+	@echo ### Start compile $(SRC_FILE_EXT) source $<
+	@$(CC) $(CFLAGS) $< 
+	@echo ### Successfully compiled source $<	
+
+%.o: $(subst ",,$(CMSISDSPSRC2))/%$(SRC_FILE_EXT)
+	@echo ### Start compile $(SRC_FILE_EXT) source $<
+	@$(CC) $(CFLAGS) $< 
+	@echo ### Successfully compiled source $<	
+
+%.o: $(subst ",,$(CMSISDSPSRC3))/%$(SRC_FILE_EXT)
+	@echo ### Start compile $(SRC_FILE_EXT) source $<
+	@$(CC) $(CFLAGS) $< 
+	@echo ### Successfully compiled source $<	
+
+%.o: $(subst ",,$(CMSISDSPSRC4))/%$(SRC_FILE_EXT)
+	@echo ### Start compile $(SRC_FILE_EXT) source $<
+	@$(CC) $(CFLAGS) $< 
+	@echo ### Successfully compiled source $<	
+
+%.o: $(subst ",,$(CMSISDSPSRC5))/%$(SRC_FILE_EXT)
+	@echo ### Start compile $(SRC_FILE_EXT) source $<
+	@$(CC) $(CFLAGS) $< 
+	@echo ### Successfully compiled source $<	
+
+%.o: $(subst ",,$(CMSISDSPSRC6))/%$(SRC_FILE_EXT)
+	@echo ### Start compile $(SRC_FILE_EXT) source $<
+	@$(CC) $(CFLAGS) $< 
+	@echo ### Successfully compiled source $<	
+
+%.o: $(subst ",,$(CMSISDSPSRC7))/%$(SRC_FILE_EXT)
+	@echo ### Start compile $(SRC_FILE_EXT) source $<
+	@$(CC) $(CFLAGS) $< 
+	@echo ### Successfully compiled source $<	
+
+%.o: $(subst ",,$(CMSISDSPSRC8))/%$(SRC_FILE_EXT)
+	@echo ### Start compile $(SRC_FILE_EXT) source $<
+	@$(CC) $(CFLAGS) $< 
+	@echo ### Successfully compiled source $<	
+	
+|>START_EXPAND_RULES<|
+%.o: $(subst ",,|>EXPAND_DIR_NAME<|)/%.cpp
+##	$(CC) -c $(CFLAGS) $< $(CCOUTPUTFLAG)$@ 
+	@$(CC) $(CFLAGS) $< 
+	@echo ### Successfully compiled source $<
+|>END_EXPAND_RULES<|
+
+|>START_EXPAND_RULES<|
+%.o: $(subst ",,|>EXPAND_DIR_NAME<|)/%$(SRC_FILE_EXT)
+##	$(CC) -c $(CFLAGS) $< $(CCOUTPUTFLAG)$@ 
+	@echo ### Start compile EXPAND $(SRC_FILE_EXT) source $<
+	@$(CC) $(CFLAGS) $< 
+	@echo ### Successfully compiled source $<
+|>END_EXPAND_RULES<|
+
+|>START_EXPAND_RULES<|
+%.o: $(subst ",,|>EXPAND_DIR_NAME<|)/%$(ASM_FILE_EXT)
+##	$(ASM) $(AFLAGS) $< $(CCOUTPUTFLAG)$@ 
+	@echo ### Start compile EXPAND $(ASM_FILE_EXT) source $<
+	@$(ASM) $(AFLAGS) $< 
+	@echo ### Successfully compiled source $<
+|>END_EXPAND_RULES<|
+
+# EOF: stm32F4xx.tmf

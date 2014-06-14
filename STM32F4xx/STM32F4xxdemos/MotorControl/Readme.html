@@ -1,0 +1,400 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>Readme</title><meta name="generator" content="MATLAB 8.2"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2013-10-15"><meta name="DC.source" content="Readme.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, tt, code { font-size:12px; }
+pre { margin:0px 0px 20px; }
+pre.error { color:red; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>Readme</h1><!--introduction--><p>
+<A NAME="ANCRES"> </A>
+</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Description</a></li><li><a href="#4">FOC - Field-Oriented Control</a></li><li><a href="#11">HallSensor</a></li><li><a href="#12">PMSM</a></li><li><a href="#15">Util</a></li></ul></div><h2>Description<a name="1"></a></h2><p>
+Following Motor Control examples have been developped with <b>MATLAB R2013b</b> using
+<a href="http://www.st.com/web/catalog/tools/FM116/SC959/SS1532/PF203167?s_searchtype=partnumber" target="_blank"><b>STM3210B-MCKIT</b></a>
+replacing STM32F10-128K-EVAL board (which is in the kit) with
+<a href="http://www.st.com/web/catalog/tools/FM116/SC959/SS1532/PF252216?s_searchtype=partnumber" target="_blank"><b>STM3240G-EVAL</b></a>
+board.
+</p><p>Please refer to STM3210B-MCKIT documentation for jumpers and hardware settings.</p><p>For following examples, please set:</p><p>
+<ul>
+<li>Power supply:</li>
+</ul>
+</p><p><img vspace="5" hspace="5" src="MC_PowerSupply.PNG" alt=""> </p><p>Set Jumpers as described in "Shinano 24V PMSM motor (provided)".</p><p>
+<ul>
+<li>W1: <35V only </li>
+<li>W6: Present</li>
+<li>W7: Present and set on DEFAULT</li>
+<li>W8: Present</li>
+<li>W9: Present</li>
+<li>W11: Present</li>
+<li>W12: Not present</li>
+<li>W13: Not present</li>
+<li>W14: Not present</li>
+<li>W15: Not present</li>
+<li>W16: Present and set on REVERSE</li>
+<li>W17: Present</li>
+<li>W18: Present</li>
+<li>W19: Present</li>
+</ul>
+</p><p><b>Repositories :</b></p><p>
+<ul>
+<li>FOC : Field-Oriented Control</li>
+<li>HallSensor : Hall effect sensor</li>
+<li>PMSM : Permanent Magnet Synchronous Machine</li>
+<li>Util : Common MATLAB scripts</li>
+</ul>
+</p><p>
+<A HREF="#ANCRES"><p align="right"> top </p></A>
+</p><h2>FOC - Field-Oriented Control<a name="4"></a></h2><p>It is based on a Park transformation for sinuzoidal with encoder example.</p><p>It computes 3 phases output currents in order to maximize perpendicular field to the permanent magnet.</p><p>This example gives opportunity to :</p><p>
+<ul>
+<li>do pure simulation = PC simulation</li>
+<li>do <b>P</b>rocessor <b>I</b>n the <b>L</b>oop (<b>PIL</b>) simulation</li>
+<li>build and run project on motor kit hardware.</li>
+</ul>
+</p><p>Pure simulation, PIL simulation and Motor Control Kit application are based on the same reference model (PMSM_FOC_Compute.slx).</p><p>This model computes output current to be applied to motor depending on speed input and loop back values.</p><p><img vspace="5" hspace="5" src="PMSM_FOC_Compute.PNG" alt=""> </p><p><a href="matlab:open_system('PMSM_FOC')">PMSM_FOC</a> model has been developped and must be used for both <b>Pure simulation</b> and <b>PIL simulation</b></p><p>
+<A HREF="#ANCRES"><p align="right"> top </p></A>
+</p><p>
+<b>----------------------------------------------------------------------</b>
+</p><p>To do <b>Pure simulation</b> you must set :</p><div><ol><li>PMSM_FOC_Compute block parameter&gt;simulation mode to "Normal"</li><li>PMSM_FOC model simulation mode parameter to "Normal"</li></ol></div><p><img vspace="5" hspace="5" src="PMSM_FOC_Normal.PNG" alt=""> </p><p><img vspace="5" hspace="5" src="PMSM_FOC_Compute_Normal.PNG" alt=""> </p><p>Then, set PMSM_FOC model "Simulation stop time" parameter to the desired simulation time (default is 0.8) and start simulation clicking "Run" button.</p><p>
+<A HREF="#ANCRES"><p align="right"> top </p></A>
+</p><p>
+<b>----------------------------------------------------------------------</b>
+</p><p>To do <b>PIL simulation</b> you must set :</p><div><ol><li>PMSM_FOC_Compute block parameter&gt;simulation mode to "Processor-in-the-loop (PIL)"</li><li>PMSM_FOC model simulation mode parameter to "Processor-in-the-loop (PIL)"</li></ol></div><p><img vspace="5" hspace="5" src="PMSM_FOC_PIL.PNG" alt=""> </p><p><img vspace="5" hspace="5" src="PMSM_FOC_Compute_PIL.PNG" alt=""> </p><p>Then, set PMSM_FOC model "Simulation stop time" parameter to the desired PIL simulation time (default is 0.2) and start simulation clicking "Run" button.</p><p>Note that <b>PIL takes long time</b> regarding "pure simulation" time because of Serial speed communication (115200bds) link between PC and ST Evaluation board.</p><p>
+<A HREF="#ANCRES"><p align="right"> top </p></A>
+</p><p>
+<b>----------------------------------------------------------------------</b>
+</p><p><b>To generate STM32F4 target application based on peripherals toolset</b>:</p><p>Open <a href="matlab:open_system('PMSM_FOC_Encoder_ST')">PMSM_FOC_Encoder_ST</a> model and set:</p><div><ol><li>PMSM_FOC_Compute block parameter&gt;simulation mode to "Normal"</li><li>PMSM_FOC_Encoder_ST model simulation mode parameter to "Normal"</li><li>Build STM32F4 project clicking "Build model" button.</li></ol></div><p><img vspace="5" hspace="5" src="PMSM_FOC_Encoder_ST.PNG" alt=""> </p><p>
+<A HREF="#ANCRES"><p align="right"> top </p></A>
+</p><h2>HallSensor<a name="11"></a></h2><p>It is based on trapezoidal with Hall sensor example. It computes 3 phases output currents with trapezoidal truth table, depending on Hall sensor information.</p><p>This example gives opportunity to :</p><p>
+<ul>
+<li>do pure simulation (PC simulation) for Trapezoidal open loop example</li>
+<li>do pure simulation (PC simulation) for Trapezoidal torque control example</li>
+<li>build and run project on motor kit hardware.</li>
+</ul>
+</p><p>Open <a href="matlab:open_system('PMSM_Trapezoidal_OpenLoop')">PMSM_Trapezoidal_OpenLoop.slx</a> and <a href="matlab:open_system('PMSM_Trapezoidal')">PMSM_Trapezoidal.slx</a> examples models are used for PC simulation. Open model and "Run" it to do PC simulation. As Hall sensors give +/-30&deg; rotor position, you can see that computed field is not always perpendicular to permanent magnet.</p><p>Open <a href="matlab:open_system('PMSM_Trapezoidal_ToolBoxST')">PMSM_Trapezoidal_ToolBoxST.slx</a> and press "Build" button to generate, build and download <b>STM32F4</b> application to motor control kit.</p><div><ol><li>Click <b>Add with subfolders...</b> button of "Set Path" window.</li><li>Select <b>STM32F4xx</b> folder (It contains this Readme file)</li><li>Click <b>OK</b></li><li>Click <b>Save</b> button and close "Set Path" window</li></ol></div><p>
+<A HREF="#ANCRES"><p align="right"> top </p></A>
+<A NAME="package"> </A>
+</p><h2>PMSM<a name="12"></a></h2><p>It is based on MATLAB default Permanent Magnet Synchronous Machine System Test Bench example and used for *P*rocessor *I*n the *L*oop demonstration. <a href="matlab:open_system('rtwdemo_pmsmfoc_system_ST')">rtwdemo_pmsmfoc_system_ST.slx</a> is top level model including <a href="matlab:open_system('rtwdemo_pmsmfoc_ST')">rtwdemo_pmsmfoc_ST.slx</a> reference model.</p><p>To run <b>PIL</b> simulation, you must set:</p><div><ol><li>rtwdemo_pmsmfoc_ST block parameter&gt;simulation mode to "Processor-in-the-loop (PIL)"</li><li>rtwdemo_pmsmfoc_system_ST model simulation mode parameter to "Processor-in-the-loop (PIL)"</li></ol></div><p><img vspace="5" hspace="5" src="rtwdemo_pmsmfoc_ST_PIL.PNG" alt=""> </p><p><img vspace="5" hspace="5" src="rtwdemo_pmsmfoc_system_ST_PIL.PNG" alt=""> </p><p>Then, set rtwdemo_pmsmfoc_system_ST model "Simulation stop time" parameter to the desired PIL simulation time and start simulation clicking "Run" button.</p><p>Note that <b>PIL takes long time</b> regarding "pure simulation" time because of Serial speed communication (115200bds) link between PC and ST Evaluation board.</p><p>
+<A HREF="#ANCRES"><p align="right"> top </p></A>
+</p><h2>Util<a name="15"></a></h2><p>
+It is utility repository including MATLAB script used to draw motor rotor
+rotation and generated field during simulation.<br>
+Fields are proportional to phases current.<br>
+It includes arrow.m script developped by
+<a href="http://www.usc.edu/civil_eng/johnsone/" target="_blank"><b>Dr. Erik A. Johnson</b></a>
+<a href="mailto:JohnsonE@usc.edu">JohnsonE@usc.edu</a>
+</p><p>
+<A HREF="#ANCRES"><p align="right"> top </p></A>
+</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2013b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% Readme
+%
+% <html>
+% <A NAME="ANCRES"> </A>
+% </html>
+%
+%
+%% Description
+% 
+% <html>
+% Following Motor Control examples have been developped with <b>MATLAB R2013b</b> using 
+% <a href="http://www.st.com/web/catalog/tools/FM116/SC959/SS1532/PF203167?s_searchtype=partnumber" target="_blank"><b>STM3210B-MCKIT</b></a>
+% replacing STM32F10-128K-EVAL board (which is in the kit) with 
+% <a href="http://www.st.com/web/catalog/tools/FM116/SC959/SS1532/PF252216?s_searchtype=partnumber" target="_blank"><b>STM3240G-EVAL</b></a>
+% board.
+% </html>
+% 
+% Please refer to STM3210B-MCKIT documentation for jumpers and hardware
+% settings.
+%
+% For following examples, please set:
+%
+% <html>
+% <ul>
+% <li>Power supply:</li>
+% </ul>
+% </html>
+%%
+% <<MC_PowerSupply.PNG>>
+%
+%
+%%
+% Set Jumpers as described in "Shinano 24V PMSM motor (provided)". 
+%
+% <html>
+% <ul>
+% <li>W1: <35V only </li>
+% <li>W6: Present</li>
+% <li>W7: Present and set on DEFAULT</li>
+% <li>W8: Present</li>
+% <li>W9: Present</li>
+% <li>W11: Present</li>
+% <li>W12: Not present</li>
+% <li>W13: Not present</li>
+% <li>W14: Not present</li>
+% <li>W15: Not present</li>
+% <li>W16: Present and set on REVERSE</li>
+% <li>W17: Present</li>
+% <li>W18: Present</li>
+% <li>W19: Present</li>
+% </ul>
+% </html>
+%
+% *Repositories :*
+%
+% <html>
+% <ul>
+% <li>FOC : Field-Oriented Control</li>
+% <li>HallSensor : Hall effect sensor</li>
+% <li>PMSM : Permanent Magnet Synchronous Machine</li>
+% <li>Util : Common MATLAB scripts</li>
+% </ul>
+% </html>
+%
+% <html>
+% <A HREF="#ANCRES"><p align="right"> top </p></A>
+% </html>
+%
+%% FOC - Field-Oriented Control
+% It is based on a Park transformation for sinuzoidal with encoder example.
+%
+% It computes 3 phases output currents in order to maximize perpendicular
+% field to the permanent magnet.
+%
+% This example gives opportunity to :
+%
+% <html>
+% <ul>
+% <li>do pure simulation = PC simulation</li>
+% <li>do <b>P</b>rocessor <b>I</b>n the <b>L</b>oop (<b>PIL</b>) simulation</li>
+% <li>build and run project on motor kit hardware.</li>
+% </ul>
+% </html>
+%
+% Pure simulation, PIL simulation and Motor Control Kit application are based on the
+% same reference model (PMSM_FOC_Compute.slx). 
+%
+% This model computes output
+% current to be applied to motor depending on speed input and loop
+% back values.
+%%
+% 
+% <<PMSM_FOC_Compute.PNG>>
+%
+%
+% <matlab:open_system('PMSM_FOC') PMSM_FOC> model has been developped and must be used
+% for both *Pure simulation* and *PIL simulation*
+%
+% <html>
+% <A HREF="#ANCRES"><p align="right"> top </p></A>
+% </html>
+%
+% <html>
+% <b>REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH</b>
+% </html>
+%
+% To do *Pure simulation* you must set :
+%
+% # PMSM_FOC_Compute block parameter>simulation mode to "Normal"
+% # PMSM_FOC model simulation mode parameter to "Normal"
+%
+%%
+% <<PMSM_FOC_Normal.PNG>>
+%
+%%
+% <<PMSM_FOC_Compute_Normal.PNG>>
+%
+% Then, set PMSM_FOC model "Simulation stop time" parameter to the desired
+% simulation time (default is 0.8) and start simulation clicking "Run" button.
+%
+% <html>
+% <A HREF="#ANCRES"><p align="right"> top </p></A>
+% </html>
+%
+% <html>
+% <b>REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH</b>
+% </html>
+%
+% To do *PIL simulation* you must set :
+%
+% # PMSM_FOC_Compute block parameter>simulation mode to "Processor-in-the-loop (PIL)"
+% # PMSM_FOC model simulation mode parameter to "Processor-in-the-loop (PIL)"
+%
+%%
+% <<PMSM_FOC_PIL.PNG>>
+%
+%%
+% <<PMSM_FOC_Compute_PIL.PNG>>
+%
+% Then, set PMSM_FOC model "Simulation stop time" parameter to the desired
+% PIL simulation time (default is 0.2) and start simulation clicking "Run" button. 
+%
+% Note that *PIL takes long time* regarding "pure simulation" time because of 
+% Serial speed communication (115200bds) link between PC and ST Evaluation board.
+%
+% <html>
+% <A HREF="#ANCRES"><p align="right"> top </p></A>
+% </html>
+%
+% <html>
+% <b>REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH</b>
+% </html>
+%
+% *To generate STM32F4 target application based on peripherals toolset*:
+%
+% Open <matlab:open_system('PMSM_FOC_Encoder_ST') PMSM_FOC_Encoder_ST> model and set:
+% 
+% # PMSM_FOC_Compute block parameter>simulation mode to "Normal"
+% # PMSM_FOC_Encoder_ST model simulation mode parameter to "Normal"
+% # Build STM32F4 project clicking "Build model" button.
+%
+%%
+% <<PMSM_FOC_Encoder_ST.PNG>>
+%
+% <html>
+% <A HREF="#ANCRES"><p align="right"> top </p></A>
+% </html>
+%
+%% HallSensor
+% It is based on trapezoidal with Hall sensor example.
+% It computes 3 phases output currents with trapezoidal truth table, depending on
+% Hall sensor information.
+%
+% This example gives opportunity to :
+%
+% <html>
+% <ul>
+% <li>do pure simulation (PC simulation) for Trapezoidal open loop example</li>
+% <li>do pure simulation (PC simulation) for Trapezoidal torque control example</li>
+% <li>build and run project on motor kit hardware.</li>
+% </ul>
+% </html>
+%
+% Open <matlab:open_system('PMSM_Trapezoidal_OpenLoop') PMSM_Trapezoidal_OpenLoop.slx> 
+% and <matlab:open_system('PMSM_Trapezoidal') PMSM_Trapezoidal.slx> examples models
+% are used for PC simulation. Open model and "Run" it to do PC simulation.   
+% As Hall sensors give +/-30° rotor position, you can see that computed field is not always 
+% perpendicular to permanent magnet.
+%
+% 
+% Open <matlab:open_system('PMSM_Trapezoidal_ToolBoxST') PMSM_Trapezoidal_ToolBoxST.slx> 
+% and press "Build" button to generate, build and download *STM32F4*
+% application to motor control kit.
+% 
+% 
+% # Click *Add with subfolders...* button of "Set Path" window.
+% # Select *STM32F4xx* folder (It contains this Readme file) 
+% # Click *OK*
+% # Click *Save* button and close "Set Path" window 
+% 
+% 
+% <html>
+% <A HREF="#ANCRES"><p align="right"> top </p></A>
+% <A NAME="package"> </A>
+% </html>
+%
+%% PMSM
+% It is based on MATLAB default Permanent Magnet Synchronous Machine System
+% Test Bench example and used for *P*rocessor *I*n the *L*oop demonstration. 
+% <matlab:open_system('rtwdemo_pmsmfoc_system_ST') rtwdemo_pmsmfoc_system_ST.slx> 
+% is top level model including <matlab:open_system('rtwdemo_pmsmfoc_ST') rtwdemo_pmsmfoc_ST.slx>
+% reference model.
+%
+% To run *PIL* simulation, you must set:
+%
+% # rtwdemo_pmsmfoc_ST block parameter>simulation mode to "Processor-in-the-loop (PIL)"
+% # rtwdemo_pmsmfoc_system_ST model simulation mode parameter to "Processor-in-the-loop (PIL)"
+%
+%%
+% <<rtwdemo_pmsmfoc_ST_PIL.PNG>>
+%
+%%
+% <<rtwdemo_pmsmfoc_system_ST_PIL.PNG>>
+%
+% Then, set rtwdemo_pmsmfoc_system_ST model "Simulation stop time" parameter to the desired
+% PIL simulation time and start simulation clicking "Run" button. 
+%
+% Note that *PIL takes long time* regarding "pure simulation" time because of 
+% Serial speed communication (115200bds) link between PC and ST Evaluation board.
+%
+%
+% <html>
+% <A HREF="#ANCRES"><p align="right"> top </p></A>
+% </html>
+%
+%% Util
+%
+% <html>
+% It is utility repository including MATLAB script used to draw motor rotor
+% rotation and generated field during simulation.<br>
+% Fields are proportional to phases current.<br> 
+% It includes arrow.m script developped by
+% <a href="http://www.usc.edu/civil_eng/johnsone/" target="_blank"><b>Dr. Erik A. Johnson</b></a>
+% <a href="mailto:JohnsonE@usc.edu">JohnsonE@usc.edu</a> 
+% </html>
+% 
+%
+% <html>
+% <A HREF="#ANCRES"><p align="right"> top </p></A>
+% </html>
+%
+##### SOURCE END #####
+--></body></html>

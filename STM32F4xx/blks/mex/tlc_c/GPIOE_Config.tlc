@@ -1,0 +1,779 @@
+%% $RCSfile: GPIOE_Config.tlc,v $
+%% $Revision: 1.0 $
+%% $Date: 2012/01/26 $
+%%
+%% Abstract: GPIO PortE configuration
+%%    STM32F2xx GPIO PortE configuration code generation.
+%%    Generated code is based on STM32 Library files.
+%%
+%% Copyright 1990-2009 The MathWorks, Inc.
+
+%implements GPIOE_Config "C"
+
+%if !EXISTS(::CreateGPIOE_Config)
+    %assign ::CreateGPIOE_Config  = TLC_TRUE
+%endif
+
+%if !EXISTS(::InsertInitHeader)
+    %assign ::InsertInitHeader  = TLC_TRUE
+%endif
+%if !EXISTS(::InsertIncludes)
+    %assign ::InsertIncludes  = TLC_TRUE
+%endif 
+
+    %assign ::CreateGPIOE_Config  = TLC_TRUE
+
+%trace CreateGPIOE_Config  %<CreateGPIOE_Config>
+
+
+%% Create function for GPIOE configuration:
+%if EXISTS(CreateGPIOE_Config) && (CreateGPIOE_Config == TLC_TRUE)
+
+    %%assign ::CreateGPIOE_Config = TLC_FALSE
+
+%% Code for system initialization:
+    %function Start(block,system) Output
+        %openfile GPIOE_Buf
+        %if EXISTS(::InsertInitHeader) && (::InsertInitHeader == TLC_TRUE)
+            %assign ::InsertInitHeader    = TLC_FALSE
+            /******************************************************
+                              GPIOE CONFIGURATION
+            *******************************************************/
+        %endif
+        /* GPIOE Configuration */
+        GPIOE_Configuration();
+        %closefile GPIOE_Buf
+		%<LibMdlStartCustomCode(GPIOE_Buf,"execution")>;
+    %endfunction
+
+%% Code for GPIOE configuration call:
+    %function BlockTypeSetup(block, system) void
+        %assign SrcBaseName = LibGetMdlSrcBaseName()
+        %assign modelH      = LibCreateSourceFile("Header", "Simulink", SrcBaseName)
+        %assign modelC      = LibCreateSourceFile("Source", "Simulink", SrcBaseName)
+
+        %assign TimerPortAndPin = "%<SrcBaseName>_TimerPortAndPin"
+        %assign TimerPortAndPinModelH      = LibCreateSourceFile("Header", "Simulink", TimerPortAndPin)
+
+        %assign  Pin0_used = SFcnParamSettings.Pin0_Use
+        %assign  Pin0_speed = SFcnParamSettings.Pin0_Speed
+        %assign  Pin0_mode = SFcnParamSettings.Pin0_Mode
+        %assign  Pin0_type = SFcnParamSettings.Pin0_Type
+        %assign  Pin0_pupd = SFcnParamSettings.Pin0_PuPd
+        %assign  Pin0_af = SFcnParamSettings.Pin0_AF
+
+        %assign  Pin1_used = SFcnParamSettings.Pin1_Use
+        %assign  Pin1_speed = SFcnParamSettings.Pin1_Speed
+        %assign  Pin1_mode = SFcnParamSettings.Pin1_Mode
+        %assign  Pin1_type = SFcnParamSettings.Pin1_Type
+        %assign  Pin1_pupd = SFcnParamSettings.Pin1_PuPd
+        %assign  Pin1_af = SFcnParamSettings.Pin1_AF
+
+        %assign  Pin2_used = SFcnParamSettings.Pin2_Use
+        %assign  Pin2_speed = SFcnParamSettings.Pin2_Speed
+        %assign  Pin2_mode = SFcnParamSettings.Pin2_Mode
+        %assign  Pin2_type = SFcnParamSettings.Pin2_Type
+        %assign  Pin2_pupd = SFcnParamSettings.Pin2_PuPd
+        %assign  Pin2_af = SFcnParamSettings.Pin2_AF
+
+        %assign  Pin3_used = SFcnParamSettings.Pin3_Use
+        %assign  Pin3_speed = SFcnParamSettings.Pin3_Speed
+        %assign  Pin3_mode = SFcnParamSettings.Pin3_Mode
+        %assign  Pin3_type = SFcnParamSettings.Pin3_Type
+        %assign  Pin3_pupd = SFcnParamSettings.Pin3_PuPd
+        %assign  Pin3_af = SFcnParamSettings.Pin3_AF
+
+        %assign  Pin4_used = SFcnParamSettings.Pin4_Use
+        %assign  Pin4_speed = SFcnParamSettings.Pin4_Speed
+        %assign  Pin4_mode = SFcnParamSettings.Pin4_Mode
+        %assign  Pin4_type = SFcnParamSettings.Pin4_Type
+        %assign  Pin4_pupd = SFcnParamSettings.Pin4_PuPd
+        %assign  Pin4_af = SFcnParamSettings.Pin4_AF
+
+        %assign  Pin5_used = SFcnParamSettings.Pin5_Use
+        %assign  Pin5_speed = SFcnParamSettings.Pin5_Speed
+        %assign  Pin5_mode = SFcnParamSettings.Pin5_Mode
+        %assign  Pin5_type = SFcnParamSettings.Pin5_Type
+        %assign  Pin5_pupd = SFcnParamSettings.Pin5_PuPd
+        %assign  Pin5_af = SFcnParamSettings.Pin5_AF
+
+        %assign  Pin6_used = SFcnParamSettings.Pin6_Use
+        %assign  Pin6_speed = SFcnParamSettings.Pin6_Speed
+        %assign  Pin6_mode = SFcnParamSettings.Pin6_Mode
+        %assign  Pin6_type = SFcnParamSettings.Pin6_Type
+        %assign  Pin6_pupd = SFcnParamSettings.Pin6_PuPd
+        %assign  Pin6_af = SFcnParamSettings.Pin6_AF
+
+        %assign  Pin7_used = SFcnParamSettings.Pin7_Use
+        %assign  Pin7_speed = SFcnParamSettings.Pin7_Speed
+        %assign  Pin7_mode = SFcnParamSettings.Pin7_Mode
+        %assign  Pin7_type = SFcnParamSettings.Pin7_Type
+        %assign  Pin7_pupd = SFcnParamSettings.Pin7_PuPd
+        %assign  Pin7_af = SFcnParamSettings.Pin7_AF
+
+        %assign  Pin8_used = SFcnParamSettings.Pin8_Use
+        %assign  Pin8_speed = SFcnParamSettings.Pin8_Speed
+        %assign  Pin8_mode = SFcnParamSettings.Pin8_Mode
+        %assign  Pin8_type = SFcnParamSettings.Pin8_Type
+        %assign  Pin8_pupd = SFcnParamSettings.Pin8_PuPd
+        %assign  Pin8_af = SFcnParamSettings.Pin8_AF
+
+        %assign  Pin9_used = SFcnParamSettings.Pin9_Use
+        %assign  Pin9_speed = SFcnParamSettings.Pin9_Speed
+        %assign  Pin9_mode = SFcnParamSettings.Pin9_Mode
+        %assign  Pin9_type = SFcnParamSettings.Pin9_Type
+        %assign  Pin9_pupd = SFcnParamSettings.Pin9_PuPd
+        %assign  Pin9_af = SFcnParamSettings.Pin9_AF
+
+        %assign  Pin10_used = SFcnParamSettings.Pin10_Use
+        %assign  Pin10_speed = SFcnParamSettings.Pin10_Speed
+        %assign  Pin10_mode = SFcnParamSettings.Pin10_Mode
+        %assign  Pin10_type = SFcnParamSettings.Pin10_Type
+        %assign  Pin10_pupd = SFcnParamSettings.Pin10_PuPd
+        %assign  Pin10_af = SFcnParamSettings.Pin10_AF
+
+        %assign  Pin11_used = SFcnParamSettings.Pin11_Use
+        %assign  Pin11_speed = SFcnParamSettings.Pin11_Speed
+        %assign  Pin11_mode = SFcnParamSettings.Pin11_Mode
+        %assign  Pin11_type = SFcnParamSettings.Pin11_Type
+        %assign  Pin11_pupd = SFcnParamSettings.Pin11_PuPd
+        %assign  Pin11_af = SFcnParamSettings.Pin11_AF
+
+        %assign  Pin12_used = SFcnParamSettings.Pin12_Use
+        %assign  Pin12_speed = SFcnParamSettings.Pin12_Speed
+        %assign  Pin12_mode = SFcnParamSettings.Pin12_Mode
+        %assign  Pin12_type = SFcnParamSettings.Pin12_Type
+        %assign  Pin12_pupd = SFcnParamSettings.Pin12_PuPd
+        %assign  Pin12_af = SFcnParamSettings.Pin12_AF
+
+        %assign  Pin13_used = SFcnParamSettings.Pin13_Use
+        %assign  Pin13_speed = SFcnParamSettings.Pin13_Speed
+        %assign  Pin13_mode = SFcnParamSettings.Pin13_Mode
+        %assign  Pin13_type = SFcnParamSettings.Pin13_Type
+        %assign  Pin13_pupd = SFcnParamSettings.Pin13_PuPd
+        %assign  Pin13_af = SFcnParamSettings.Pin13_AF
+
+        %assign  Pin14_used = SFcnParamSettings.Pin14_Use
+        %assign  Pin14_speed = SFcnParamSettings.Pin14_Speed
+        %assign  Pin14_mode = SFcnParamSettings.Pin14_Mode
+        %assign  Pin14_type = SFcnParamSettings.Pin14_Type
+        %assign  Pin14_pupd = SFcnParamSettings.Pin14_PuPd
+        %assign  Pin14_af = SFcnParamSettings.Pin14_AF
+
+        %assign  Pin15_used = SFcnParamSettings.Pin15_Use
+        %assign  Pin15_speed = SFcnParamSettings.Pin15_Speed
+        %assign  Pin15_mode = SFcnParamSettings.Pin15_Mode
+        %assign  Pin15_type = SFcnParamSettings.Pin15_Type
+        %assign  Pin15_pupd = SFcnParamSettings.Pin15_PuPd
+        %assign  Pin15_af = SFcnParamSettings.Pin15_AF
+
+        %assign  Pin0_set = SFcnParamSettings.Pin0_Set
+        %assign  Pin1_set = SFcnParamSettings.Pin1_Set
+        %assign  Pin2_set = SFcnParamSettings.Pin2_Set
+        %assign  Pin3_set = SFcnParamSettings.Pin3_Set
+        %assign  Pin4_set = SFcnParamSettings.Pin4_Set
+        %assign  Pin5_set = SFcnParamSettings.Pin5_Set
+        %assign  Pin6_set = SFcnParamSettings.Pin6_Set
+        %assign  Pin7_set = SFcnParamSettings.Pin7_Set
+        %assign  Pin8_set = SFcnParamSettings.Pin8_Set
+        %assign  Pin9_set = SFcnParamSettings.Pin9_Set
+        %assign  Pin10_set = SFcnParamSettings.Pin10_Set
+        %assign  Pin11_set = SFcnParamSettings.Pin11_Set
+        %assign  Pin12_set = SFcnParamSettings.Pin12_Set
+        %assign  Pin13_set = SFcnParamSettings.Pin13_Set
+        %assign  Pin14_set = SFcnParamSettings.Pin14_Set
+        %assign  Pin15_set = SFcnParamSettings.Pin15_Set
+
+		
+        %openfile GPIOE_Buf
+        /*******************************************************************************
+        * Function Name  : GPIOE_Configuration
+        * Description    : GPIO PortE Configuration
+        * Input          : -
+        *******************************************************************************/
+        void GPIOE_Configuration(void)
+        {
+	    %if (ISEQUAL(Pin0_used, "on")||ISEQUAL(Pin1_used, "on")||ISEQUAL(Pin2_used, "on")||ISEQUAL(Pin3_used, "on")||ISEQUAL(Pin4_used, "on") \
+		||ISEQUAL(Pin5_used, "on")||ISEQUAL(Pin6_used, "on")||ISEQUAL(Pin7_used, "on")||ISEQUAL(Pin8_used, "on")||ISEQUAL(Pin9_used, "on") \
+		||ISEQUAL(Pin10_used, "on")||ISEQUAL(Pin11_used, "on")||ISEQUAL(Pin12_used, "on")||ISEQUAL(Pin13_used, "on")||ISEQUAL(Pin14_used, "on") \
+		||ISEQUAL(Pin15_used, "on"))	
+		
+		 %assign initVal  = 0
+			/* Enable GPIOE clock */
+			RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOE, ENABLE);
+			/* GPIO default Value */
+            GPIO_DeInit(GPIOE);
+		 	
+		 %if (ISEQUAL(Pin0_used, "on"))
+			GPIOE_InitStructure.GPIO_Pin = GPIO_Pin_0;
+			GPIOE_InitStructure.GPIO_Speed = %<Pin0_speed>;
+			GPIOE_InitStructure.GPIO_Mode = %<Pin0_mode>;			
+		 %if (ISEQUAL(Pin0_mode, "GPIO_Mode_IN"))
+			GPIOE_InitStructure.GPIO_PuPd = %<Pin0_pupd>;
+		 %elseif (ISEQUAL(Pin0_mode, "GPIO_Mode_OUT"))
+			GPIOE_InitStructure.GPIO_OType = %<Pin0_type>;
+			%if (ISEQUAL(Pin0_set, "on"))
+				%assign initVal  = %<initVal> | (1<<0)			
+			%endif
+		 %elseif (ISEQUAL(Pin0_mode, "GPIO_Mode_AN"))
+		 %elseif (ISEQUAL(Pin0_mode, "GPIO_Mode_AF"))		
+		 %else
+		 %error "ERROR: NOT SUPPORTED GPIO MODE"
+		 %endif		
+			GPIO_Init(GPIOE, &GPIOE_InitStructure);
+		 %if (ISEQUAL(Pin0_mode, "GPIO_Mode_AF"))	
+			/*Alternate function configuration */
+			GPIO_PinAFConfig(GPIOE, GPIO_PinSource0, %<Pin0_af>);	
+		  %if (ISEQUAL(Pin0_af, "GPIO_AF_TIM4"))	
+			RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM4, ENABLE);
+			%openfile TimerPortAndPin_Buf
+				#define GPIO_TIM4_PORT GPIOE
+				#define GPIO_TIM4_PIN GPIO_Pin_0
+			%closefile TimerPortAndPin_Buf
+			%<LibSetSourceFileSection(TimerPortAndPinModelH,"Includes",TimerPortAndPin_Buf)>			
+			
+		  %elseif (ISEQUAL(Pin0_af, "GPIO_AF_FSMC"))	
+			RCC_AHB3PeriphClockCmd(RCC_AHB3Periph_FSMC, ENABLE);
+		  %elseif (ISEQUAL(Pin0_af, "GPIO_AF_DCMI"))	
+			RCC_AHB2PeriphClockCmd(RCC_AHB2Periph_DCMI, ENABLE);
+		  %endif
+		 %endif
+		 %endif
+		 
+		 %if (ISEQUAL(Pin1_used, "on"))
+			GPIOE_InitStructure.GPIO_Pin = GPIO_Pin_1;
+			GPIOE_InitStructure.GPIO_Speed = %<Pin1_speed>;
+			GPIOE_InitStructure.GPIO_Mode = %<Pin1_mode>;			
+		 %if (ISEQUAL(Pin1_mode, "GPIO_Mode_IN"))
+			GPIOE_InitStructure.GPIO_PuPd = %<Pin1_pupd>;
+		 %elseif (ISEQUAL(Pin1_mode, "GPIO_Mode_OUT"))
+			GPIOE_InitStructure.GPIO_OType = %<Pin1_type>;
+			%if (ISEQUAL(Pin1_set, "on"))
+				%assign initVal  = %<initVal> | (1<<1)			
+			%endif
+		 %elseif (ISEQUAL(Pin1_mode, "GPIO_Mode_AN"))
+		 %elseif (ISEQUAL(Pin1_mode, "GPIO_Mode_AF"))		
+		 %else
+		 %error "ERROR: NOT SUPPORTED GPIO MODE"
+		 %endif		
+			GPIO_Init(GPIOE, &GPIOE_InitStructure);
+		 %if (ISEQUAL(Pin1_mode, "GPIO_Mode_AF"))	
+			/*Alternate function configuration */
+			GPIO_PinAFConfig(GPIOE, GPIO_PinSource1, %<Pin1_af>);	
+		  %if (ISEQUAL(Pin1_af, "GPIO_AF_FSMC"))	
+			RCC_AHB3PeriphClockCmd(RCC_AHB3Periph_FSMC, ENABLE);
+		  %elseif (ISEQUAL(Pin1_af, "GPIO_AF_DCMI"))	
+			RCC_AHB2PeriphClockCmd(RCC_AHB2Periph_DCMI, ENABLE);
+		  %endif
+		 %endif
+		 %endif
+		 
+		 %if (ISEQUAL(Pin2_used, "on"))
+			GPIOE_InitStructure.GPIO_Pin = GPIO_Pin_2;
+			GPIOE_InitStructure.GPIO_Speed = %<Pin2_speed>;
+			GPIOE_InitStructure.GPIO_Mode = %<Pin2_mode>;			
+		 %if (ISEQUAL(Pin2_mode, "GPIO_Mode_IN"))
+			GPIOE_InitStructure.GPIO_PuPd = %<Pin2_pupd>;
+		 %elseif (ISEQUAL(Pin2_mode, "GPIO_Mode_OUT"))
+			GPIOE_InitStructure.GPIO_OType = %<Pin2_type>;
+			%if (ISEQUAL(Pin2_set, "on"))
+				%assign initVal  = %<initVal> | (1<<2)			
+			%endif
+		 %elseif (ISEQUAL(Pin2_mode, "GPIO_Mode_AN"))
+		 %elseif (ISEQUAL(Pin2_mode, "GPIO_Mode_AF"))		
+		 %else
+		 %error "ERROR: NOT SUPPORTED GPIO MODE"
+		 %endif		
+			GPIO_Init(GPIOE, &GPIOE_InitStructure);
+		 %if (ISEQUAL(Pin2_mode, "GPIO_Mode_AF"))	
+			/*Alternate function configuration */
+			GPIO_PinAFConfig(GPIOE, GPIO_PinSource2, %<Pin2_af>);	
+		  %if (ISEQUAL(Pin2_af, "GPIO_AF_ETH"))	
+			RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_ETH_MAC_Tx, ENABLE);	
+		  %elseif (ISEQUAL(Pin2_af, "GPIO_AF_FSMC"))	
+			RCC_AHB3PeriphClockCmd(RCC_AHB3Periph_FSMC, ENABLE);
+		  %elseif (ISEQUAL(Pin2_af, "GPIO_AF_TRACE"))	
+		  %endif
+		 %endif
+		 %endif
+
+		 %if (ISEQUAL(Pin3_used, "on"))
+			GPIOE_InitStructure.GPIO_Pin = GPIO_Pin_3;
+			GPIOE_InitStructure.GPIO_Speed = %<Pin3_speed>;
+			GPIOE_InitStructure.GPIO_Mode = %<Pin3_mode>;			
+		 %if (ISEQUAL(Pin3_mode, "GPIO_Mode_IN"))
+			GPIOE_InitStructure.GPIO_PuPd = %<Pin3_pupd>;
+		 %elseif (ISEQUAL(Pin3_mode, "GPIO_Mode_OUT"))
+			GPIOE_InitStructure.GPIO_OType = %<Pin3_type>;
+			%if (ISEQUAL(Pin3_set, "on"))
+				%assign initVal  = %<initVal> | (1<<3)			
+			%endif
+		 %elseif (ISEQUAL(Pin3_mode, "GPIO_Mode_AN"))
+		 %elseif (ISEQUAL(Pin3_mode, "GPIO_Mode_AF"))		
+		 %else
+		 %error "ERROR: NOT SUPPORTED GPIO MODE"
+		 %endif		
+			GPIO_Init(GPIOE, &GPIOE_InitStructure);
+		 %if (ISEQUAL(Pin3_mode, "GPIO_Mode_AF"))	
+			/*Alternate function configuration */
+			GPIO_PinAFConfig(GPIOE, GPIO_PinSource3, %<Pin3_af>);	
+		  %if (ISEQUAL(Pin3_af, "GPIO_AF_FSMC"))	
+			RCC_AHB3PeriphClockCmd(RCC_AHB3Periph_FSMC, ENABLE);
+		  %elseif (ISEQUAL(Pin3_af, "GPIO_AF_TRACE"))	
+		  %endif
+		 %endif
+		 %endif
+
+		 %if (ISEQUAL(Pin4_used, "on"))
+			GPIOE_InitStructure.GPIO_Pin = GPIO_Pin_4;
+			GPIOE_InitStructure.GPIO_Speed = %<Pin4_speed>;
+			GPIOE_InitStructure.GPIO_Mode = %<Pin4_mode>;			
+		 %if (ISEQUAL(Pin4_mode, "GPIO_Mode_IN"))
+			GPIOE_InitStructure.GPIO_PuPd = %<Pin4_pupd>;
+		 %elseif (ISEQUAL(Pin4_mode, "GPIO_Mode_OUT"))
+		    %if (ISEQUAL(Pin4_set, "on"))
+				%assign initVal  = %<initVal> | (1<<4)			
+			%endif
+			GPIOE_InitStructure.GPIO_OType = %<Pin4_type>;
+		 %elseif (ISEQUAL(Pin4_mode, "GPIO_Mode_AN"))
+		 %elseif (ISEQUAL(Pin4_mode, "GPIO_Mode_AF"))		
+		 %else
+		 %error "ERROR: NOT SUPPORTED GPIO MODE"
+		 %endif		
+			GPIO_Init(GPIOE, &GPIOE_InitStructure);
+		 %if (ISEQUAL(Pin4_mode, "GPIO_Mode_AF"))	
+			/*Alternate function configuration */
+			GPIO_PinAFConfig(GPIOE, GPIO_PinSource4, %<Pin4_af>);	
+		  %if (ISEQUAL(Pin4_af, "GPIO_AF_FSMC"))	
+			RCC_AHB3PeriphClockCmd(RCC_AHB3Periph_FSMC, ENABLE);
+		  %elseif (ISEQUAL(Pin4_af, "GPIO_AF_DCMI"))	
+			RCC_AHB2PeriphClockCmd(RCC_AHB2Periph_DCMI, ENABLE);
+		  %elseif (ISEQUAL(Pin4_af, "GPIO_AF_TRACE"))	
+		  %endif
+		 %endif
+		 %endif
+
+		 %if (ISEQUAL(Pin5_used, "on"))
+			GPIOE_InitStructure.GPIO_Pin = GPIO_Pin_5;
+			GPIOE_InitStructure.GPIO_Speed = %<Pin5_speed>;
+			GPIOE_InitStructure.GPIO_Mode = %<Pin5_mode>;			
+		 %if (ISEQUAL(Pin5_mode, "GPIO_Mode_IN"))
+			GPIOE_InitStructure.GPIO_PuPd = %<Pin5_pupd>;
+		 %elseif (ISEQUAL(Pin5_mode, "GPIO_Mode_OUT"))
+			GPIOE_InitStructure.GPIO_OType = %<Pin5_type>;
+			%if (ISEQUAL(Pin5_set, "on"))
+				%assign initVal  = %<initVal> | (1<<5)			
+			%endif
+		 %elseif (ISEQUAL(Pin5_mode, "GPIO_Mode_AN"))
+		 %elseif (ISEQUAL(Pin5_mode, "GPIO_Mode_AF"))		
+		 %else
+		 %error "ERROR: NOT SUPPORTED GPIO MODE"
+		 %endif		
+			GPIO_Init(GPIOE, &GPIOE_InitStructure);
+		 %if (ISEQUAL(Pin5_mode, "GPIO_Mode_AF"))	
+			/*Alternate function configuration */
+			GPIO_PinAFConfig(GPIOE, GPIO_PinSource5, %<Pin5_af>);	
+		  %if (ISEQUAL(Pin5_af, "GPIO_AF_FSMC"))	
+			RCC_AHB3PeriphClockCmd(RCC_AHB3Periph_FSMC, ENABLE);
+		  %elseif (ISEQUAL(Pin5_af, "GPIO_AF_DCMI"))	
+			RCC_AHB2PeriphClockCmd(RCC_AHB2Periph_DCMI, ENABLE);
+		  %elseif (ISEQUAL(Pin5_af, "GPIO_AF_TIM9"))	
+			RCC_APB2PeriphClockCmd(RCC_APB2Periph_TIM9, ENABLE);
+			%openfile TimerPortAndPin_Buf
+				#define GPIO_TIM9_PORT GPIOE
+				#define GPIO_TIM9_PIN GPIO_Pin_5
+			%closefile TimerPortAndPin_Buf
+			%<LibSetSourceFileSection(TimerPortAndPinModelH,"Includes",TimerPortAndPin_Buf)>			
+			
+		  %elseif (ISEQUAL(Pin5_af, "GPIO_AF_TRACE"))	
+		  %endif
+		 %endif
+		 %endif
+
+		 %if (ISEQUAL(Pin6_used, "on"))
+			GPIOE_InitStructure.GPIO_Pin = GPIO_Pin_6;
+			GPIOE_InitStructure.GPIO_Speed = %<Pin6_speed>;
+			GPIOE_InitStructure.GPIO_Mode = %<Pin6_mode>;			
+		 %if (ISEQUAL(Pin6_mode, "GPIO_Mode_IN"))
+			GPIOE_InitStructure.GPIO_PuPd = %<Pin6_pupd>;
+		 %elseif (ISEQUAL(Pin6_mode, "GPIO_Mode_OUT"))
+			GPIOE_InitStructure.GPIO_OType = %<Pin6_type>;
+			%if (ISEQUAL(Pin6_set, "on"))
+				%assign initVal  = %<initVal> | (1<<6)			
+			%endif
+		 %elseif (ISEQUAL(Pin6_mode, "GPIO_Mode_AN"))
+		 %elseif (ISEQUAL(Pin6_mode, "GPIO_Mode_AF"))		
+		 %else
+		 %error "ERROR: NOT SUPPORTED GPIO MODE"
+		 %endif		
+			GPIO_Init(GPIOE, &GPIOE_InitStructure);
+		 %if (ISEQUAL(Pin6_mode, "GPIO_Mode_AF"))	
+			/*Alternate function configuration */
+			GPIO_PinAFConfig(GPIOE, GPIO_PinSource6, %<Pin6_af>);	
+		  %if (ISEQUAL(Pin6_af, "GPIO_AF_FSMC"))	
+			RCC_AHB3PeriphClockCmd(RCC_AHB3Periph_FSMC, ENABLE);
+		  %elseif (ISEQUAL(Pin6_af, "GPIO_AF_DCMI"))	
+			RCC_AHB2PeriphClockCmd(RCC_AHB2Periph_DCMI, ENABLE);
+		  %elseif (ISEQUAL(Pin6_af, "GPIO_AF_TIM9"))	
+			RCC_APB2PeriphClockCmd(RCC_APB2Periph_TIM9, ENABLE);
+			%openfile TimerPortAndPin_Buf
+				#define GPIO_TIM9_PORT GPIOE
+				#define GPIO_TIM9_PIN GPIO_Pin_6
+			%closefile TimerPortAndPin_Buf
+			%<LibSetSourceFileSection(TimerPortAndPinModelH,"Includes",TimerPortAndPin_Buf)>			
+			
+		  %elseif (ISEQUAL(Pin6_af, "GPIO_AF_TRACE"))	
+		  %endif
+		 %endif
+		 %endif
+
+		 %if (ISEQUAL(Pin7_used, "on"))
+			GPIOE_InitStructure.GPIO_Pin = GPIO_Pin_7;
+			GPIOE_InitStructure.GPIO_Speed = %<Pin7_speed>;
+			GPIOE_InitStructure.GPIO_Mode = %<Pin7_mode>;			
+		 %if (ISEQUAL(Pin7_mode, "GPIO_Mode_IN"))
+			GPIOE_InitStructure.GPIO_PuPd = %<Pin7_pupd>;
+		 %elseif (ISEQUAL(Pin7_mode, "GPIO_Mode_OUT"))
+			GPIOE_InitStructure.GPIO_OType = %<Pin7_type>;
+			%if (ISEQUAL(Pin7_set, "on"))
+				%assign initVal  = %<initVal> | (1<<7)			
+			%endif
+		 %elseif (ISEQUAL(Pin7_mode, "GPIO_Mode_AN"))
+		 %elseif (ISEQUAL(Pin7_mode, "GPIO_Mode_AF"))		
+		 %else
+		 %error "ERROR: NOT SUPPORTED GPIO MODE"
+		 %endif		
+			GPIO_Init(GPIOE, &GPIOE_InitStructure);
+		 %if (ISEQUAL(Pin7_mode, "GPIO_Mode_AF"))	
+			/*Alternate function configuration */
+			GPIO_PinAFConfig(GPIOE, GPIO_PinSource7, %<Pin7_af>);	
+		  %if (ISEQUAL(Pin7_af, "GPIO_AF_FSMC"))	
+			RCC_AHB3PeriphClockCmd(RCC_AHB3Periph_FSMC, ENABLE);
+		  %elseif (ISEQUAL(Pin7_af, "GPIO_AF_TIM1"))	
+			RCC_APB2PeriphClockCmd(RCC_APB2Periph_TIM1, ENABLE);
+			%openfile TimerPortAndPin_Buf
+				#define GPIO_TIM1_PORT GPIOE
+				#define GPIO_TIM1_PIN GPIO_Pin_7
+			%closefile TimerPortAndPin_Buf
+			%<LibSetSourceFileSection(TimerPortAndPinModelH,"Includes",TimerPortAndPin_Buf)>			
+			
+		  %endif
+		 %endif
+		 %endif
+
+		 %if (ISEQUAL(Pin8_used, "on"))
+			GPIOE_InitStructure.GPIO_Pin = GPIO_Pin_8;
+			GPIOE_InitStructure.GPIO_Speed = %<Pin8_speed>;
+			GPIOE_InitStructure.GPIO_Mode = %<Pin8_mode>;			
+		 %if (ISEQUAL(Pin8_mode, "GPIO_Mode_IN"))
+			GPIOE_InitStructure.GPIO_PuPd = %<Pin8_pupd>;
+		 %elseif (ISEQUAL(Pin8_mode, "GPIO_Mode_OUT"))
+			GPIOE_InitStructure.GPIO_OType = %<Pin8_type>;
+			%if (ISEQUAL(Pin8_set, "on"))
+				%assign initVal  = %<initVal> | (1<<8)			
+			%endif
+		 %elseif (ISEQUAL(Pin8_mode, "GPIO_Mode_AN"))
+		 %elseif (ISEQUAL(Pin8_mode, "GPIO_Mode_AF"))		
+		 %else
+		 %error "ERROR: NOT SUPPORTED GPIO MODE"
+		 %endif		
+			GPIO_Init(GPIOE, &GPIOE_InitStructure);
+		 %if (ISEQUAL(Pin8_mode, "GPIO_Mode_AF"))	
+			/*Alternate function configuration */
+			GPIO_PinAFConfig(GPIOE, GPIO_PinSource8, %<Pin8_af>);	
+		  %if (ISEQUAL(Pin8_af, "GPIO_AF_FSMC"))	
+			RCC_AHB3PeriphClockCmd(RCC_AHB3Periph_FSMC, ENABLE);
+		  %elseif (ISEQUAL(Pin8_af, "GPIO_AF_TIM1"))	
+			RCC_APB2PeriphClockCmd(RCC_APB2Periph_TIM1, ENABLE);
+			%openfile TimerPortAndPin_Buf
+				#define GPIO_TIM1_PORT GPIOE
+				#define GPIO_TIM1_PIN GPIO_Pin_8
+			%closefile TimerPortAndPin_Buf
+			%<LibSetSourceFileSection(TimerPortAndPinModelH,"Includes",TimerPortAndPin_Buf)>			
+			
+		  %endif
+		 %endif
+		 %endif
+
+		 %if (ISEQUAL(Pin9_used, "on"))
+			GPIOE_InitStructure.GPIO_Pin = GPIO_Pin_9;
+			GPIOE_InitStructure.GPIO_Speed = %<Pin9_speed>;
+			GPIOE_InitStructure.GPIO_Mode = %<Pin9_mode>;			
+		 %if (ISEQUAL(Pin9_mode, "GPIO_Mode_IN"))
+			GPIOE_InitStructure.GPIO_PuPd = %<Pin9_pupd>;
+		 %elseif (ISEQUAL(Pin9_mode, "GPIO_Mode_OUT"))
+			GPIOE_InitStructure.GPIO_OType = %<Pin9_type>;
+			%if (ISEQUAL(Pin9_set, "on"))
+				%assign initVal  = %<initVal> | (1<<9)			
+			%endif
+		 %elseif (ISEQUAL(Pin9_mode, "GPIO_Mode_AN"))
+		 %elseif (ISEQUAL(Pin9_mode, "GPIO_Mode_AF"))		
+		 %else
+		 %error "ERROR: NOT SUPPORTED GPIO MODE"
+		 %endif		
+			GPIO_Init(GPIOE, &GPIOE_InitStructure);
+		 %if (ISEQUAL(Pin9_mode, "GPIO_Mode_AF"))	
+			/*Alternate function configuration */
+			GPIO_PinAFConfig(GPIOE, GPIO_PinSource9, %<Pin9_af>);	
+		  %if (ISEQUAL(Pin9_af, "GPIO_AF_FSMC"))	
+			RCC_AHB3PeriphClockCmd(RCC_AHB3Periph_FSMC, ENABLE);
+		  %elseif (ISEQUAL(Pin9_af, "GPIO_AF_TIM1"))	
+			RCC_APB2PeriphClockCmd(RCC_APB2Periph_TIM1, ENABLE);
+			%openfile TimerPortAndPin_Buf
+				#define GPIO_TIM1_PORT GPIOE
+				#define GPIO_TIM1_PIN GPIO_Pin_9
+			%closefile TimerPortAndPin_Buf
+			%<LibSetSourceFileSection(TimerPortAndPinModelH,"Includes",TimerPortAndPin_Buf)>			
+			
+		  %endif
+		 %endif
+		 %endif
+
+		 %if (ISEQUAL(Pin10_used, "on"))
+			GPIOE_InitStructure.GPIO_Pin = GPIO_Pin_10;
+			GPIOE_InitStructure.GPIO_Speed = %<Pin10_speed>;
+			GPIOE_InitStructure.GPIO_Mode = %<Pin10_mode>;			
+		 %if (ISEQUAL(Pin10_mode, "GPIO_Mode_IN"))
+			GPIOE_InitStructure.GPIO_PuPd = %<Pin10_pupd>;
+		 %elseif (ISEQUAL(Pin10_mode, "GPIO_Mode_OUT"))
+			GPIOE_InitStructure.GPIO_OType = %<Pin10_type>;
+			%if (ISEQUAL(Pin10_set, "on"))
+				%assign initVal  = %<initVal> | (1<<10)			
+			%endif
+		 %elseif (ISEQUAL(Pin10_mode, "GPIO_Mode_AN"))
+		 %elseif (ISEQUAL(Pin10_mode, "GPIO_Mode_AF"))		
+		 %else
+		 %error "ERROR: NOT SUPPORTED GPIO MODE"
+		 %endif		
+			GPIO_Init(GPIOE, &GPIOE_InitStructure);
+		 %if (ISEQUAL(Pin10_mode, "GPIO_Mode_AF"))	
+			/*Alternate function configuration */
+			GPIO_PinAFConfig(GPIOE, GPIO_PinSource10, %<Pin10_af>);	
+		  %if (ISEQUAL(Pin10_af, "GPIO_AF_FSMC"))	
+			RCC_AHB3PeriphClockCmd(RCC_AHB3Periph_FSMC, ENABLE);
+		  %elseif (ISEQUAL(Pin10_af, "GPIO_AF_TIM1"))	
+			RCC_APB2PeriphClockCmd(RCC_APB2Periph_TIM1, ENABLE);
+			%openfile TimerPortAndPin_Buf
+				#define GPIO_TIM1_PORT GPIOE
+				#define GPIO_TIM1_PIN GPIO_Pin_10
+			%closefile TimerPortAndPin_Buf
+			%<LibSetSourceFileSection(TimerPortAndPinModelH,"Includes",TimerPortAndPin_Buf)>			
+			
+		  %endif
+		 %endif
+		 %endif
+
+		 %if (ISEQUAL(Pin11_used, "on"))
+			GPIOE_InitStructure.GPIO_Pin = GPIO_Pin_11;
+			GPIOE_InitStructure.GPIO_Speed = %<Pin11_speed>;
+			GPIOE_InitStructure.GPIO_Mode = %<Pin11_mode>;			
+		 %if (ISEQUAL(Pin11_mode, "GPIO_Mode_IN"))
+			GPIOE_InitStructure.GPIO_PuPd = %<Pin11_pupd>;
+		 %elseif (ISEQUAL(Pin11_mode, "GPIO_Mode_OUT"))
+			GPIOE_InitStructure.GPIO_OType = %<Pin11_type>;
+			%if (ISEQUAL(Pin11_set, "on"))
+				%assign initVal  = %<initVal> | (1<<11)			
+			%endif
+		 %elseif (ISEQUAL(Pin11_mode, "GPIO_Mode_AN"))
+		 %elseif (ISEQUAL(Pin11_mode, "GPIO_Mode_AF"))		
+		 %else
+		 %error "ERROR: NOT SUPPORTED GPIO MODE"
+		 %endif		
+			GPIO_Init(GPIOE, &GPIOE_InitStructure);
+		 %if (ISEQUAL(Pin11_mode, "GPIO_Mode_AF"))	
+			/*Alternate function configuration */
+			GPIO_PinAFConfig(GPIOE, GPIO_PinSource11, %<Pin11_af>);	
+		  %if (ISEQUAL(Pin11_af, "GPIO_AF_FSMC"))	
+			RCC_AHB3PeriphClockCmd(RCC_AHB3Periph_FSMC, ENABLE);
+		  %elseif (ISEQUAL(Pin11_af, "GPIO_AF_TIM1"))	
+			RCC_APB2PeriphClockCmd(RCC_APB2Periph_TIM1, ENABLE);
+			%openfile TimerPortAndPin_Buf
+				#define GPIO_TIM1_PORT GPIOE
+				#define GPIO_TIM1_PIN GPIO_Pin_11
+			%closefile TimerPortAndPin_Buf
+			%<LibSetSourceFileSection(TimerPortAndPinModelH,"Includes",TimerPortAndPin_Buf)>			
+			
+		  %endif
+		 %endif
+		 %endif
+
+		 %if (ISEQUAL(Pin12_used, "on"))
+			GPIOE_InitStructure.GPIO_Pin = GPIO_Pin_12;
+			GPIOE_InitStructure.GPIO_Speed = %<Pin12_speed>;
+			GPIOE_InitStructure.GPIO_Mode = %<Pin12_mode>;			
+		 %if (ISEQUAL(Pin12_mode, "GPIO_Mode_IN"))
+			GPIOE_InitStructure.GPIO_PuPd = %<Pin12_pupd>;
+		 %elseif (ISEQUAL(Pin12_mode, "GPIO_Mode_OUT"))
+			GPIOE_InitStructure.GPIO_OType = %<Pin12_type>;
+			%if (ISEQUAL(Pin12_set, "on"))
+				%assign initVal  = %<initVal> | (1<<12)			
+			%endif
+		 %elseif (ISEQUAL(Pin12_mode, "GPIO_Mode_AN"))
+		 %elseif (ISEQUAL(Pin12_mode, "GPIO_Mode_AF"))		
+		 %else
+		 %error "ERROR: NOT SUPPORTED GPIO MODE"
+		 %endif		
+			GPIO_Init(GPIOE, &GPIOE_InitStructure);
+		 %if (ISEQUAL(Pin12_mode, "GPIO_Mode_AF"))	
+			/*Alternate function configuration */
+			GPIO_PinAFConfig(GPIOE, GPIO_PinSource12, %<Pin12_af>);	
+		  %if (ISEQUAL(Pin12_af, "GPIO_AF_FSMC"))	
+			RCC_AHB3PeriphClockCmd(RCC_AHB3Periph_FSMC, ENABLE);
+		  %elseif (ISEQUAL(Pin12_af, "GPIO_AF_TIM1"))	
+			RCC_APB2PeriphClockCmd(RCC_APB2Periph_TIM1, ENABLE);
+			%openfile TimerPortAndPin_Buf
+				#define GPIO_TIM1_PORT GPIOE
+				#define GPIO_TIM1_PIN GPIO_Pin_12
+			%closefile TimerPortAndPin_Buf
+			%<LibSetSourceFileSection(TimerPortAndPinModelH,"Includes",TimerPortAndPin_Buf)>			
+			
+		  %endif
+		 %endif
+		 %endif
+
+		 %if (ISEQUAL(Pin13_used, "on"))
+			GPIOE_InitStructure.GPIO_Pin = GPIO_Pin_13;
+			GPIOE_InitStructure.GPIO_Speed = %<Pin13_speed>;
+			GPIOE_InitStructure.GPIO_Mode = %<Pin13_mode>;			
+		 %if (ISEQUAL(Pin13_mode, "GPIO_Mode_IN"))
+			GPIOE_InitStructure.GPIO_PuPd = %<Pin13_pupd>;
+		 %elseif (ISEQUAL(Pin13_mode, "GPIO_Mode_OUT"))
+			GPIOE_InitStructure.GPIO_OType = %<Pin13_type>;
+			%if (ISEQUAL(Pin13_set, "on"))
+				%assign initVal  = %<initVal> | (1<<13)			
+			%endif
+		 %elseif (ISEQUAL(Pin13_mode, "GPIO_Mode_AN"))
+		 %elseif (ISEQUAL(Pin13_mode, "GPIO_Mode_AF"))		
+		 %else
+		 %error "ERROR: NOT SUPPORTED GPIO MODE"
+		 %endif		
+			GPIO_Init(GPIOE, &GPIOE_InitStructure);
+		 %if (ISEQUAL(Pin13_mode, "GPIO_Mode_AF"))	
+			/*Alternate function configuration */
+			GPIO_PinAFConfig(GPIOE, GPIO_PinSource13, %<Pin13_af>);	
+		  %if (ISEQUAL(Pin13_af, "GPIO_AF_FSMC"))	
+			RCC_AHB3PeriphClockCmd(RCC_AHB3Periph_FSMC, ENABLE);
+		  %elseif (ISEQUAL(Pin13_af, "GPIO_AF_TIM1"))	
+			RCC_APB2PeriphClockCmd(RCC_APB2Periph_TIM1, ENABLE);
+			%openfile TimerPortAndPin_Buf
+				#define GPIO_TIM1_PORT GPIOE
+				#define GPIO_TIM1_PIN GPIO_Pin_13
+			%closefile TimerPortAndPin_Buf
+			%<LibSetSourceFileSection(TimerPortAndPinModelH,"Includes",TimerPortAndPin_Buf)>			
+			
+		  %endif
+		 %endif
+		 %endif
+
+		 %if (ISEQUAL(Pin14_used, "on"))
+			GPIOE_InitStructure.GPIO_Pin = GPIO_Pin_14;
+			GPIOE_InitStructure.GPIO_Speed = %<Pin14_speed>;
+			GPIOE_InitStructure.GPIO_Mode = %<Pin14_mode>;			
+		 %if (ISEQUAL(Pin14_mode, "GPIO_Mode_IN"))
+			GPIOE_InitStructure.GPIO_PuPd = %<Pin14_pupd>;
+		 %elseif (ISEQUAL(Pin14_mode, "GPIO_Mode_OUT"))
+			GPIOE_InitStructure.GPIO_OType = %<Pin14_type>;
+			%if (ISEQUAL(Pin14_set, "on"))
+				%assign initVal  = %<initVal> | (1<<14)			
+			%endif
+		 %elseif (ISEQUAL(Pin14_mode, "GPIO_Mode_AN"))
+		 %elseif (ISEQUAL(Pin14_mode, "GPIO_Mode_AF"))		
+		 %else
+		 %error "ERROR: NOT SUPPORTED GPIO MODE"
+		 %endif		
+			GPIO_Init(GPIOE, &GPIOE_InitStructure);
+		 %if (ISEQUAL(Pin14_mode, "GPIO_Mode_AF"))	
+			/*Alternate function configuration */
+			GPIO_PinAFConfig(GPIOE, GPIO_PinSource14, %<Pin14_af>);	
+		  %if (ISEQUAL(Pin14_af, "GPIO_AF_FSMC"))	
+			RCC_AHB3PeriphClockCmd(RCC_AHB3Periph_FSMC, ENABLE);
+		  %elseif (ISEQUAL(Pin14_af, "GPIO_AF_TIM1"))	
+			RCC_APB2PeriphClockCmd(RCC_APB2Periph_TIM1, ENABLE);
+			%openfile TimerPortAndPin_Buf
+				#define GPIO_TIM1_PORT GPIOE
+				#define GPIO_TIM1_PIN GPIO_Pin_14
+			%closefile TimerPortAndPin_Buf
+			%<LibSetSourceFileSection(TimerPortAndPinModelH,"Includes",TimerPortAndPin_Buf)>			
+			
+		  %endif
+		 %endif
+
+		%endif
+
+		 %if (ISEQUAL(Pin15_used, "on"))
+			GPIOE_InitStructure.GPIO_Pin = GPIO_Pin_15;
+			GPIOE_InitStructure.GPIO_Speed = %<Pin15_speed>;
+			GPIOE_InitStructure.GPIO_Mode = %<Pin15_mode>;			
+		 %if (ISEQUAL(Pin15_mode, "GPIO_Mode_IN"))
+			GPIOE_InitStructure.GPIO_PuPd = %<Pin15_pupd>;
+		 %elseif (ISEQUAL(Pin15_mode, "GPIO_Mode_OUT"))
+			GPIOE_InitStructure.GPIO_OType = %<Pin15_type>;
+			%if (ISEQUAL(Pin15_set, "on"))
+				%assign initVal  = %<initVal> | (1<<15)			
+			%endif
+		 %elseif (ISEQUAL(Pin15_mode, "GPIO_Mode_AN"))
+		 %elseif (ISEQUAL(Pin15_mode, "GPIO_Mode_AF"))		
+		 %else
+		 %error "ERROR: NOT SUPPORTED GPIO MODE"
+		 %endif		
+			GPIO_Init(GPIOE, &GPIOE_InitStructure);
+		 %if (ISEQUAL(Pin15_mode, "GPIO_Mode_AF"))	
+			/*Alternate function configuration */
+			GPIO_PinAFConfig(GPIOE, GPIO_PinSource15, %<Pin15_af>);	
+		  %if (ISEQUAL(Pin15_af, "GPIO_AF_FSMC"))	
+			RCC_AHB3PeriphClockCmd(RCC_AHB3Periph_FSMC, ENABLE);
+		  %elseif (ISEQUAL(Pin15_af, "GPIO_AF_TIM1"))	
+			RCC_APB2PeriphClockCmd(RCC_APB2Periph_TIM1, ENABLE);
+			%openfile TimerPortAndPin_Buf
+				#define GPIO_TIM1_PORT GPIOE
+				#define GPIO_TIM1_PIN GPIO_Pin_15
+			%closefile TimerPortAndPin_Buf
+			%<LibSetSourceFileSection(TimerPortAndPinModelH,"Includes",TimerPortAndPin_Buf)>			
+			
+		  %endif
+		 %endif
+		 %endif
+		%endif
+		GPIO_Write(GPIOE,%<initVal>);
+        }
+        %closefile GPIOE_Buf
+        %<LibSetSourceFileSection(modelC,"Functions",GPIOE_Buf)>
+
+		
+%% Code for the function's declaration:
+        %openfile GPIOE_Buf
+            /* Function Declaration for GPIOE Configuration */
+            void GPIOE_Configuration(void);
+        %closefile GPIOE_Buf
+        %<LibSetSourceFileSection(modelC,"Declarations",GPIOE_Buf)>
+
+%% Code for the necessary variable definition:
+        %openfile GPIOE_Buf
+			/* Global Variable Definition for GPIOE Configuration */
+			GPIO_InitTypeDef GPIOE_InitStructure;		
+        %closefile GPIOE_Buf
+        %<LibSetSourceFileSection(modelC,"Definitions",GPIOE_Buf)>
+
+%% Code for required GPIOE includes:
+        %if EXISTS(::InsertIncludes) && (::InsertIncludes == TLC_TRUE)
+            %assign ::InsertIncludes    = TLC_FALSE
+            %openfile GPIOE_Buf
+				#include "stm32f4xx.h"
+            %closefile GPIOE_Buf
+            %<LibSetSourceFileSection(modelH,"Includes",GPIOE_Buf)>
+        %endif
+
+    %endfunction
+%else
+%% ERROR GPIOE INIT MUST BE CALLED ONCE ONLY 
+   %trace ERROR GPIOE INIT MUST BE CALLED ONCE ONLY 
+
+%endif 
+
+%% [EOF] GPIOE_Config.tlc
+
+
+
+
+
+

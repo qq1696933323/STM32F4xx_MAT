@@ -1,0 +1,89 @@
+%% $RCSfile: GPIO_Read.tlc,v $
+%% $Revision: 1.0 $
+%% $Date: 2012/01/26 $
+%%
+%% Abstract: GPIO Read 
+%%    STM32F2xx GPIO Read input value to GPIOx selected port. (Pinx filtering)
+%%    Generated code is based on STM32 Library files.
+%%
+%% Copyright 1990-2009 The MathWorks, Inc.
+
+%implements GPIO_Read "C"
+
+%%warning "---------->Start GPIO_READ"
+
+%if !EXISTS(::CreateGPIO_Read)
+    %assign ::CreateGPIO_Read  = TLC_TRUE
+%endif
+
+%if !EXISTS(::InsertInitHeader)
+    %assign ::InsertInitHeader  = TLC_TRUE
+%endif
+%if !EXISTS(::InsertIncludes)
+    %assign ::InsertIncludes  = TLC_TRUE
+%endif 
+
+    %assign ::CreateGPIO_Read  = TLC_TRUE
+
+%trace CreateGPIO_Read  %<CreateGPIO_Read>
+
+
+%% Create function for GPIO Read:
+%if EXISTS(CreateGPIO_Read) && (CreateGPIO_Read == TLC_TRUE)
+
+    %%assign ::CreateGPIO_Read = TLC_FALSE
+
+%% Code for GPIO configuration call:
+%%    %function BlockTypeSetup(block, system) void
+    %function BlockInstanceSetup(block, system) void
+%%warning "---------->Start GPIO_READ_1"	
+        %assign SrcBaseName = LibGetMdlSrcBaseName()
+        %assign modelH      = LibCreateSourceFile("Header", "Simulink", SrcBaseName)
+        %assign modelC      = LibCreateSourceFile("Source", "Simulink", SrcBaseName)
+        %if EXISTS(::InsertInitHeader) && (::InsertInitHeader == TLC_TRUE)
+            %assign ::InsertInitHeader    = TLC_FALSE
+            /******************************************************
+                              GPIO  READ
+            *******************************************************/
+        %endif
+
+%% Code for required GPIO includes:
+        %if EXISTS(::InsertIncludes) && (::InsertIncludes == TLC_TRUE)
+            %assign ::InsertIncludes    = TLC_FALSE		
+            %openfile GPIO_Buf
+%%warning "---------->Start GPIO_READ_2"			
+				#include "stm32f4xx.h"
+            %closefile GPIO_Buf
+            %<LibSetSourceFileSection(modelH,"Includes",GPIO_Buf)>
+        %endif
+
+    %endfunction
+%else
+%% ERROR GPIO INIT MUST BE CALLED ONCE ONLY 
+   %trace ERROR GPIO INIT MUST BE CALLED ONCE ONLY 
+
+%endif 
+
+%% Function: Outputs ==========================================
+%% Abstract:
+%% GPIO_Read input value depending on pin config
+%%
+   %function Outputs(block, system) Output
+	/* %<Type> Block: %<Name> */  
+%%warning "---------->Start GPIO_READ_3"	
+		%assign y = LibBlockOutputSignal(0, "", "", 0) 
+        %assign Port =  SFcnParamSettings.Port_name
+ 		%openfile GPIO_Buf
+		%<y> = GPIO_ReadInputData(%<Port>);
+		%closefile GPIO_Buf
+        %<LibSystemOutputCustomCode(system,GPIO_Buf,"execution")>
+   %endfunction
+
+
+%% [EOF] GPIO_Read.tlc
+
+
+
+
+
+

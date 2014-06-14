@@ -1,0 +1,958 @@
+%% $RCSfile: TIMERS_Config.tlc,v $
+%% $Revision: 1.0 $
+%% $Date: 2012/01/26 $
+%%
+%% Abstract: TIMERS_Config 
+%%    STM32F4xx Timers 1 to 8 output or Input_Capture. CH1, CH2 and CH3
+%%    can be configured as PWM output or Input_Capture.
+%%    Generated code is based on STM32 Library files.
+%%
+%% Copyright 1990-2009 The MathWorks, Inc.
+%assign CodeFormat = "Embedded-C"
+%implements TIMERS_Config "C"
+
+%%warning "---------->Start Timers"
+
+%if !EXISTS(::CreateTimers)
+    %assign ::CreateTimers  = TLC_TRUE
+%endif
+
+%if !EXISTS(::InsertInitHeader)
+    %assign ::InsertInitHeader  = TLC_TRUE
+%endif
+%if !EXISTS(::InsertIncludes)
+    %assign ::InsertIncludes  = TLC_TRUE
+%endif 
+
+    %assign ::CreateTimers  = TLC_TRUE
+
+%trace CreateTimers  %<CreateTimers>
+
+
+%% Create function for Timers:
+%if EXISTS(CreateTimers) && (CreateTimers == TLC_TRUE)
+
+    %%assign ::CreateTimers = TLC_FALSE
+
+
+%% Code for system initialization:
+    %function Start(block,system) Output
+        %assign  Timer_name = SFcnParamSettings.Timer_name
+        %openfile Timer_Buf
+        %if EXISTS(::InsertInitHeader) && (::InsertInitHeader == TLC_TRUE)
+            %assign ::InsertInitHeader = TLC_FALSE
+            /******************************************************
+                              %<Timer_name> CONFIGURATION
+            *******************************************************/
+        %endif
+        /* %<Timer_name> Configuration */
+%warning "---------->TIMER_CONFIG: %<Timer_name>"
+       %<Timer_name>_Configuration();
+        %closefile Timer_Buf
+		%<LibMdlStartCustomCode(Timer_Buf,"trailer")>;		
+    %endfunction
+
+
+%% Code for Timers configuration call:
+%%    %function BlockTypeSetup(block, system) void
+    %function BlockInstanceSetup(block, system) void
+
+        %assign SrcBaseName = LibGetMdlSrcBaseName()
+        %assign modelH      = LibCreateSourceFile("Header", "Simulink", SrcBaseName)
+        %assign modelC      = LibCreateSourceFile("Source", "Simulink", SrcBaseName)
+
+        %assign  Timer_name = SFcnParamSettings.Timer_name
+        %assign  Timer_clock = SFcnParamSettings.Timer_clock				
+        %assign  Timer_mode = SFcnParamSettings.Timer_mode
+        %assign  Timer_inout = SFcnParamSettings.Timer_inout
+        %assign  Variable_frequency = SFcnParamSettings.Variable_frequency
+        %assign  Output_frequency = SFcnParamSettings.Output_frequency
+        %assign  CH1_enable = SFcnParamSettings.CH1_enable
+        %assign  CH1_type = SFcnParamSettings.CH1_type
+        %assign  CH1_int = SFcnParamSettings.CH1_int
+        %assign  CH1_variable_duty = SFcnParamSettings.CH1_variable_duty
+        %assign  CH1_output_duty = SFcnParamSettings.CH1_output_duty
+        %assign  CH1_output_polarity = SFcnParamSettings.CH1_output_polarity
+        %assign  CH1_output_comp_state = SFcnParamSettings.CH1_output_comp_state
+        %assign  CH1_output_comp_polarity = SFcnParamSettings.CH1_output_comp_polarity
+        %assign  CH1_output_idle = SFcnParamSettings.CH1_output_idle
+        %assign  CH1_output_comp_idle = SFcnParamSettings.CH1_output_comp_idle
+        %assign  CH1_input_polarity = SFcnParamSettings.CH1_input_polarity
+        %assign  CH1_input_prescaler = SFcnParamSettings.CH1_input_prescaler
+        %assign  CH1_input_filter = SFcnParamSettings.CH1_input_filter
+        %assign  CH1_input_it = SFcnParamSettings.CH1_input_it
+
+        %assign  CH2_enable = SFcnParamSettings.CH2_enable
+        %assign  CH2_type = SFcnParamSettings.CH2_type
+        %assign  CH2_int = SFcnParamSettings.CH2_int
+        %assign  CH2_variable_duty = SFcnParamSettings.CH2_variable_duty
+        %assign  CH2_output_duty = SFcnParamSettings.CH2_output_duty
+        %assign  CH2_output_polarity = SFcnParamSettings.CH2_output_polarity
+        %assign  CH2_output_comp_state = SFcnParamSettings.CH2_output_comp_state
+        %assign  CH2_output_comp_polarity = SFcnParamSettings.CH2_output_comp_polarity
+        %assign  CH2_output_idle = SFcnParamSettings.CH2_output_idle
+        %assign  CH2_output_comp_idle = SFcnParamSettings.CH2_output_comp_idle
+        %assign  CH2_input_polarity = SFcnParamSettings.CH2_input_polarity
+        %assign  CH2_input_prescaler = SFcnParamSettings.CH2_input_prescaler
+        %assign  CH2_input_filter = SFcnParamSettings.CH2_input_filter
+        %assign  CH2_input_it = SFcnParamSettings.CH2_input_it
+
+        %assign  CH3_enable = SFcnParamSettings.CH3_enable
+        %assign  CH3_type = SFcnParamSettings.CH3_type
+        %assign  CH3_int = SFcnParamSettings.CH3_int
+        %assign  CH3_variable_duty = SFcnParamSettings.CH3_variable_duty
+        %assign  CH3_output_duty = SFcnParamSettings.CH3_output_duty
+        %assign  CH3_output_polarity = SFcnParamSettings.CH3_output_polarity
+        %assign  CH3_output_comp_state = SFcnParamSettings.CH3_output_comp_state
+        %assign  CH3_output_comp_polarity = SFcnParamSettings.CH3_output_comp_polarity
+        %assign  CH3_output_idle = SFcnParamSettings.CH3_output_idle
+        %assign  CH3_output_comp_idle = SFcnParamSettings.CH3_output_comp_idle
+        %assign  CH3_input_polarity = SFcnParamSettings.CH3_input_polarity
+        %assign  CH3_input_prescaler = SFcnParamSettings.CH3_input_prescaler
+        %assign  CH3_input_filter = SFcnParamSettings.CH3_input_filter
+        %assign  CH3_input_it = SFcnParamSettings.CH3_input_it
+		%assign  ItRequest  = 0			
+		%assign  ItRequestCC1  = 0			
+		%assign  ItRequestCC2  = 0			
+		%assign  ItRequestCC3  = 0			
+		%assign  OutputRequest  = 0			
+		%assign  InputRequest  = 0			
+		%assign  OutputCC1  = 0			
+		%assign  OutputCC2  = 0			
+		%assign  OutputCC3  = 0			
+
+		%assign  Encoder_mode = SFcnParamSettings.Encoder_mode
+		%assign  Encoder_TI1_polarity = SFcnParamSettings.Encoder_TI1_polarity
+		%assign  Encoder_TI2_polarity = SFcnParamSettings.Encoder_TI2_polarity
+		%assign  Encoder_auto_reload = SFcnParamSettings.Encoder_auto_reload
+		%assign  TRGO_source = SFcnParamSettings.TRGO_source
+		%assign  Repetition_counter = SFcnParamSettings.Repetition_counter
+
+        %if EXISTS(::InsertInitHeader) && (::InsertInitHeader == TLC_TRUE)
+            %assign ::InsertInitHeader    = TLC_FALSE
+            /******************************************************
+                              %<Timer_name>  configuration
+            *******************************************************/
+        %endif
+        %openfile Timer_Buf
+        /*******************************************************************************
+        * Function Name  : %<Timer_name>_Configuration
+        * Description    : %<Timer_name> PWM output or Input_Capture Configuration
+        * Input          : -
+        *******************************************************************************/
+        void %<Timer_name>_Configuration(void)
+        {
+           /* Time base configuration */
+		%if (ISEQUAL(Timer_inout, "Encoder"))	
+		   %<Timer_name>_TimeBaseStructure.TIM_Prescaler = (uint16_t)0;
+		%else   
+		  %if (ISEQUAL(Timer_name, "TIM1") || ISEQUAL(Timer_name, "TIM8"))
+          switch(RCC_APB2_Prescaler) {
+            case RCC_HCLK_Div4:
+                %<Timer_name>_TimeBaseStructure.TIM_Prescaler = (uint16_t) ((SystemCoreClock /2) / %<Timer_clock>) - 1;
+            break;
+            case RCC_HCLK_Div8:
+                %<Timer_name>_TimeBaseStructure.TIM_Prescaler = (uint16_t) ((SystemCoreClock /4) / %<Timer_clock>) - 1;
+            break;
+            case RCC_HCLK_Div16:
+                %<Timer_name>_TimeBaseStructure.TIM_Prescaler = (uint16_t) ((SystemCoreClock /8) / %<Timer_clock>) - 1;
+            break;
+            default:
+                %<Timer_name>_TimeBaseStructure.TIM_Prescaler = (uint16_t)(SystemCoreClock / %<Timer_clock>) - 1;
+            break;
+          }
+          %else
+          switch(RCC_APB1_Prescaler) {
+            case RCC_HCLK_Div4:
+                %<Timer_name>_TimeBaseStructure.TIM_Prescaler = (uint16_t) ((SystemCoreClock /2) / %<Timer_clock>) - 1;
+            break;
+            case RCC_HCLK_Div8:
+                %<Timer_name>_TimeBaseStructure.TIM_Prescaler = (uint16_t) ((SystemCoreClock /4) / %<Timer_clock>) - 1;
+            break;
+            case RCC_HCLK_Div16:
+                %<Timer_name>_TimeBaseStructure.TIM_Prescaler = (uint16_t) ((SystemCoreClock /8) / %<Timer_clock>) - 1;
+            break;
+            default:
+                %<Timer_name>_TimeBaseStructure.TIM_Prescaler = (uint16_t)(SystemCoreClock / %<Timer_clock>) - 1;
+            break;
+          }
+		  %endif
+        %endif
+%if (ISEQUAL(Timer_inout, "Output_PWM"))			
+          %<Timer_name>_TimeBaseStructure.TIM_Period = %<Timer_clock> / %<Output_frequency> -1;
+  		  %if ISEQUAL(TRGO_source, "TIM_TRGOSource_Update")
+		  %<Timer_name>_TimeBaseStructure.TIM_RepetitionCounter = %<Repetition_counter>;
+		  %endif
+%else		  
+          %<Timer_name>_TimeBaseStructure.TIM_Period = 0xFFFF;
+%endif
+          %<Timer_name>_TimeBaseStructure.TIM_ClockDivision = TIM_CKD_DIV1;
+          %<Timer_name>_TimeBaseStructure.TIM_CounterMode = %<Timer_mode>;
+          TIM_TimeBaseInit(%<Timer_name>, &%<Timer_name>_TimeBaseStructure);
+
+%%Process encoder request		
+		%if (ISEQUAL(Timer_inout, "Encoder"))	
+		  /* Set Auto reload value = nb of encoder ticks/loop */
+		  %<Timer_name>->ARR = %<Encoder_auto_reload>;
+		  /* Timer %<Timer_name> is used as Encoder */
+		  TIM_EncoderInterfaceConfig(%<Timer_name>, %<Encoder_mode>,%<Encoder_TI1_polarity>,%<Encoder_TI2_polarity>);
+		%elseif (ISEQUAL(Timer_inout, "Output_PWM"))
+		  %if !ISEQUAL(TRGO_source, "not_used")
+		  /* %<Timer_name> TRGO selection */
+		  TIM_SelectOutputTrigger(%<Timer_name>, %<TRGO_source>); 
+		  %endif
+  		%endif
+	  
+%%Process channel1 (CH1)
+        %if (ISEQUAL(CH1_enable, "on"))
+%%warning "---------->TIMER_CH1Enable: %<Timer_name> %<CH1_type> interrupt:%<CH1_int>"
+        %if (ISEQUAL(CH1_type, "Output"))
+		%%Channel1 is Output
+        %if (ISEQUAL(CH1_int,"on"))
+		%%Reload interrupt request
+        %assign  ItRequest  = 1
+        %assign  ItRequestCC1  = 1
+        %endif
+		%assign  OutputCC1  = 1
+		%assign  OutputRequest  = 1					
+          /* PWM output mode configuration: Channel CH1*/
+		%if (ISEQUAL(Timer_name, "TIM1") || ISEQUAL(Timer_name, "TIM8"))
+          %<Timer_name>_OCInitStructure.TIM_OCMode = TIM_OCMode_PWM2;
+        %else
+          %<Timer_name>_OCInitStructure.TIM_OCMode = TIM_OCMode_PWM1;
+        %endif
+          %<Timer_name>_OCInitStructure.TIM_OutputState = TIM_OutputState_Enable;
+          %<Timer_name>_OCInitStructure.TIM_Pulse = %<CH1_output_duty> * %<Timer_name>_TimeBaseStructure.TIM_Period / 100;
+          %<Timer_name>_OCInitStructure.TIM_OCPolarity = %<CH1_output_polarity>;
+		%if (ISEQUAL(Timer_name, "TIM1") || ISEQUAL(Timer_name, "TIM8"))
+		%if (ISEQUAL(CH1_output_comp_state, "on"))
+          %<Timer_name>_OCInitStructure.TIM_OutputNState = TIM_OutputNState_Enable;
+        %else
+          %<Timer_name>_OCInitStructure.TIM_OutputNState = TIM_OutputNState_Disable;
+        %endif
+          %<Timer_name>_OCInitStructure.TIM_OCNPolarity = %<CH1_output_comp_polarity>;
+          %<Timer_name>_OCInitStructure.TIM_OCIdleState = %<CH1_output_idle>;
+          %<Timer_name>_OCInitStructure.TIM_OCNIdleState = %<CH1_output_comp_idle>;
+        %endif
+          TIM_OC1Init(%<Timer_name>, &%<Timer_name>_OCInitStructure);
+          TIM_OC1PreloadConfig(%<Timer_name>, TIM_OCPreload_Enable);		
+        %elseif (ISEQUAL(CH1_type, "Input_Capture"))
+		%assign  InputRequest  = 1		
+          /* Input_Capture mode configuration: Channel CH1*/
+          %<Timer_name>_ICInitStructure.TIM_Channel = TIM_Channel_1;
+          %<Timer_name>_ICInitStructure.TIM_ICPolarity = %<CH1_input_polarity>;
+          %<Timer_name>_ICInitStructure.TIM_ICSelection = TIM_ICSelection_DirectTI;
+          %<Timer_name>_ICInitStructure.TIM_ICPrescaler = %<CH1_input_prescaler>;
+          %<Timer_name>_ICInitStructure.TIM_ICFilter = %<CH1_input_filter>;		  
+%%          TIM_PWMIConfig(%<Timer_name>, &%<Timer_name>_ICInitStructure);
+          TIM_ICInit(%<Timer_name>, &%<Timer_name>_ICInitStructure);
+        %if (ISEQUAL(CH1_input_it,"Compute_duty_cycle")||ISEQUAL(CH1_input_it,"Compute_frequency"))
+        %assign  ItRequest  = 1
+        %assign  ItRequestCC1  = 1
+        %endif
+        %endif
+        %endif
+
+%%Process channel2 (CH2)
+        %if (ISEQUAL(CH2_enable, "on"))
+        %if (ISEQUAL(CH2_type, "Output"))
+		%%Channel2 is Output
+        %if (ISEQUAL(CH2_int,"on"))
+		%%Reload interrupt request
+        %assign  ItRequest  = 1
+        %assign  ItRequestCC2  = 1
+        %endif
+		%assign  OutputRequest  = 1			
+		%assign  OutputCC2  = 1
+          /* PWM output mode configuration: Channel CH2*/
+		%if (ISEQUAL(Timer_name, "TIM1") || ISEQUAL(Timer_name, "TIM8"))
+          %<Timer_name>_OCInitStructure.TIM_OCMode = TIM_OCMode_PWM2;
+        %else
+          %<Timer_name>_OCInitStructure.TIM_OCMode = TIM_OCMode_PWM1;
+        %endif
+          %<Timer_name>_OCInitStructure.TIM_OutputState = TIM_OutputState_Enable;
+          %<Timer_name>_OCInitStructure.TIM_Pulse = %<CH2_output_duty> * %<Timer_name>_TimeBaseStructure.TIM_Period / 100;
+          %<Timer_name>_OCInitStructure.TIM_OCPolarity = %<CH2_output_polarity>;
+		%if (ISEQUAL(Timer_name, "TIM1") || ISEQUAL(Timer_name, "TIM8"))
+		%if (ISEQUAL(CH2_output_comp_state, "on"))
+          %<Timer_name>_OCInitStructure.TIM_OutputNState = TIM_OutputNState_Enable;
+        %else
+          %<Timer_name>_OCInitStructure.TIM_OutputNState = TIM_OutputNState_Disable;
+        %endif
+          %<Timer_name>_OCInitStructure.TIM_OCNPolarity = %<CH2_output_comp_polarity>;
+          %<Timer_name>_OCInitStructure.TIM_OCIdleState = %<CH2_output_idle>;
+          %<Timer_name>_OCInitStructure.TIM_OCNIdleState = %<CH2_output_comp_idle>;
+        %endif
+          TIM_OC2Init(%<Timer_name>, &%<Timer_name>_OCInitStructure);
+          TIM_OC2PreloadConfig(%<Timer_name>, TIM_OCPreload_Enable);
+        %elseif (ISEQUAL(CH2_type, "Input_Capture"))
+		%assign  InputRequest  = 1					
+          /* Input_Capture mode configuration: Channel CH2*/
+          %<Timer_name>_ICInitStructure.TIM_Channel = TIM_Channel_2;
+          %<Timer_name>_ICInitStructure.TIM_ICPolarity = %<CH2_input_polarity>;
+          %<Timer_name>_ICInitStructure.TIM_ICSelection = TIM_ICSelection_DirectTI;
+          %<Timer_name>_ICInitStructure.TIM_ICPrescaler = %<CH2_input_prescaler>;
+          %<Timer_name>_ICInitStructure.TIM_ICFilter = %<CH2_input_filter>;
+          TIM_PWMIConfig(%<Timer_name>, &%<Timer_name>_ICInitStructure);
+        %if (ISEQUAL(CH2_input_it,"Compute_duty_cycle")||ISEQUAL(CH2_input_it,"Compute_frequency"))
+        %assign  ItRequest  = 1
+        %assign  ItRequestCC2  = 1
+        %endif
+        %endif
+        %endif
+
+%%Process channel3 (CH3)
+        %if (ISEQUAL(CH3_enable, "on"))
+        %if (ISEQUAL(CH3_type, "Output"))
+		%%Channel1 is Output
+        %if (ISEQUAL(CH3_int,"on"))
+		%%Reload interrupt request
+        %assign  ItRequest  = 1
+        %assign  ItRequestCC3  = 1
+        %endif
+		%assign  OutputRequest  = 1			
+		%assign  OutputCC3  = 1
+          /* PWM output mode configuration: Channel CH3*/
+		%if (ISEQUAL(Timer_name, "TIM1") || ISEQUAL(Timer_name, "TIM8"))
+          %<Timer_name>_OCInitStructure.TIM_OCMode = TIM_OCMode_PWM2;
+        %else
+          %<Timer_name>_OCInitStructure.TIM_OCMode = TIM_OCMode_PWM1;
+        %endif
+          %<Timer_name>_OCInitStructure.TIM_OutputState = TIM_OutputState_Enable;
+          %<Timer_name>_OCInitStructure.TIM_Pulse = %<CH3_output_duty> * %<Timer_name>_TimeBaseStructure.TIM_Period / 100;
+          %<Timer_name>_OCInitStructure.TIM_OCPolarity = %<CH3_output_polarity>;
+		%if (ISEQUAL(Timer_name, "TIM1") || ISEQUAL(Timer_name, "TIM8"))
+		%if (ISEQUAL(CH3_output_comp_state, "on"))
+          %<Timer_name>_OCInitStructure.TIM_OutputNState = TIM_OutputNState_Enable;
+        %else
+          %<Timer_name>_OCInitStructure.TIM_OutputNState = TIM_OutputNState_Disable;
+        %endif
+          %<Timer_name>_OCInitStructure.TIM_OCNPolarity = %<CH3_output_comp_polarity>;
+          %<Timer_name>_OCInitStructure.TIM_OCIdleState = %<CH3_output_idle>;
+          %<Timer_name>_OCInitStructure.TIM_OCNIdleState = %<CH3_output_comp_idle>;
+        %endif
+          TIM_OC3Init(%<Timer_name>, &%<Timer_name>_OCInitStructure);
+          TIM_OC3PreloadConfig(%<Timer_name>, TIM_OCPreload_Enable);
+        %elseif (ISEQUAL(CH3_type, "Input_Capture"))
+		%assign  InputRequest  = 1					
+          /* Input_Capture mode configuration: Channel CH3*/
+          %<Timer_name>_ICInitStructure.TIM_Channel = TIM_Channel_3;
+          %<Timer_name>_ICInitStructure.TIM_ICPolarity = %<CH3_input_polarity>;
+          %<Timer_name>_ICInitStructure.TIM_ICSelection = TIM_ICSelection_DirectTI;
+          %<Timer_name>_ICInitStructure.TIM_ICPrescaler = %<CH3_input_prescaler>;
+          %<Timer_name>_ICInitStructure.TIM_ICFilter = %<CH3_input_filter>;
+          TIM_PWMIConfig(%<Timer_name>, &%<Timer_name>_ICInitStructure);
+        %if (ISEQUAL(CH3_input_it,"Compute_duty_cycle")||ISEQUAL(CH3_input_it,"Compute_frequency"))
+        %assign  ItRequest  = 1
+        %assign  ItRequestCC3  = 1
+        %endif
+        %endif
+        %endif
+
+%%Process when Interrupt are requested (input compare channel with CHX_input_it not "No_interrupt")
+        %if (ISEQUAL(ItRequest, 1))          
+          /* Enable the %<Timer_name> global Interrupt */
+   		 %if (ISEQUAL(Timer_name, "TIM1") || ISEQUAL(Timer_name, "TIM8"))		  
+          %<Timer_name>_NVIC_InitStructure.NVIC_IRQChannel = %<Timer_name>_CC_IRQn;
+		 %else
+          %<Timer_name>_NVIC_InitStructure.NVIC_IRQChannel = %<Timer_name>_IRQn;
+		 %endif
+          %<Timer_name>_NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0;
+          %<Timer_name>_NVIC_InitStructure.NVIC_IRQChannelSubPriority = 1;
+          %<Timer_name>_NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
+          NVIC_Init(&%<Timer_name>_NVIC_InitStructure);
+        %endif
+
+%%At least one channel is configured as output.
+        %if (ISEQUAL(OutputRequest, 1))
+		%if (ISEQUAL(Timer_name, "TIM1") || ISEQUAL(Timer_name, "TIM8"))		  
+		  /* Automatic Output enable, Break, dead time and lock configuration*/
+		  %<Timer_name>_BDTRInitStructure.TIM_OSSRState = TIM_OSSRState_Enable;
+		  %<Timer_name>_BDTRInitStructure.TIM_OSSIState = TIM_OSSIState_Enable;
+		  %<Timer_name>_BDTRInitStructure.TIM_LOCKLevel = TIM_LOCKLevel_OFF;
+		  %<Timer_name>_BDTRInitStructure.TIM_DeadTime = 5;
+		  %<Timer_name>_BDTRInitStructure.TIM_Break = TIM_Break_Disable;
+		  %<Timer_name>_BDTRInitStructure.TIM_BreakPolarity = TIM_BreakPolarity_High;
+		  %<Timer_name>_BDTRInitStructure.TIM_AutomaticOutput = TIM_AutomaticOutput_Disable;
+		  TIM_BDTRConfig(%<Timer_name>, &%<Timer_name>_BDTRInitStructure);		
+		  /* Main Output Enable */
+		  TIM_CtrlPWMOutputs(%<Timer_name>, ENABLE);		  
+		%endif		
+          TIM_ARRPreloadConfig(%<Timer_name>, ENABLE);
+        %endif
+%%Timer enable.
+          /* %<Timer_name> enable counter */
+          TIM_Cmd(%<Timer_name>, ENABLE);
+
+%%Interrupt request for channel1
+		%if (ISEQUAL(ItRequestCC1, 1))
+          /* Enable the CC1 Interrupt Request */
+          TIM_ITConfig(%<Timer_name>, TIM_IT_CC1, ENABLE);
+        %endif
+%%Interrupt request for channel2
+		%if (ISEQUAL(ItRequestCC2, 1))
+          /* Enable the CC2 Interrupt Request */
+          TIM_ITConfig(%<Timer_name>, TIM_IT_CC2, ENABLE);
+        %endif
+%%Interrupt request for channel3
+		%if (ISEQUAL(ItRequestCC3, 1))
+          /* Enable the CC3 Interrupt Request */
+          TIM_ITConfig(%<Timer_name>, TIM_IT_CC3, ENABLE);
+        %endif
+        }
+        %closefile Timer_Buf
+        %<LibSetSourceFileSection(modelC,"Functions",Timer_Buf)>
+
+%%Interrupt handler generation when IT requested
+        %if (ISEQUAL(ItRequest, 1) && ISEQUAL(InputRequest, 1))          
+        %openfile Timer_Buf
+		%if (ISEQUAL(Timer_name, "TIM1") || ISEQUAL(Timer_name, "TIM8"))		  
+        /*******************************************************************************
+        * Function Name  : %<Timer_name>_CC_IRQHandler
+        * Description    : This function handles %<Timer_name> Input_Capture interrupt request.
+        * Input          : -
+        *******************************************************************************/
+        void %<Timer_name>_CC_IRQHandler(void)
+		%else
+        /*******************************************************************************
+        * Function Name  : %<Timer_name>_IRQHandler
+        * Description    : This function handles %<Timer_name> interrupt request.
+        * Input          : -
+        *******************************************************************************/
+        void %<Timer_name>_IRQHandler(void)
+		%endif
+        {
+          %if (ISEQUAL(ItRequestCC1, 1))    
+          /*Test if Input_Capture interrupt on channel 1*/
+          if(TIM_GetITStatus(%<Timer_name>, TIM_IT_CC1) == SET) 
+          {
+            /* Clear %<Timer_name> Capture compare interrupt pending bit */
+            TIM_ClearITPendingBit(%<Timer_name>, TIM_IT_CC1);
+            if(%<Timer_name>_ICC1CaptureNumber == 0)
+            {
+				/* Get the Input_Capture value */
+				%<Timer_name>_ICC1ReadValue1 = TIM_GetCapture1(%<Timer_name>);
+				%<Timer_name>_ICC1CaptureNumber = 1;
+			} else if(%<Timer_name>_ICC1CaptureNumber == 1) {
+				/* Get the Input_Capture value */
+				%<Timer_name>_ICC1ReadValue2 = TIM_GetCapture1(%<Timer_name>); 
+      
+				/* Capture computation */
+				if (%<Timer_name>_ICC1ReadValue2 > %<Timer_name>_ICC1ReadValue1)
+				{
+					%<Timer_name>_ICC1Capture = (%<Timer_name>_ICC1ReadValue2 - %<Timer_name>_ICC1ReadValue1); 
+				}
+				else if (%<Timer_name>_ICC1ReadValue2 < %<Timer_name>_ICC1ReadValue1)
+				{
+					%<Timer_name>_ICC1Capture = ((0xFFFF - %<Timer_name>_ICC1ReadValue1) + %<Timer_name>_ICC1ReadValue2); 
+				}
+				else
+				{
+					%<Timer_name>_ICC1Capture = 0;
+				}
+				/* Frequency computation */ 
+				if(%<Timer_name>_ICC1Capture){
+%%					%<Timer_name>_ICC1Freq = (uint32_t) (SystemCoreClock/4) / %<Timer_name>_ICC1Capture;
+					%<Timer_name>_ICC1Freq = (uint32_t) %<Timer_clock> / %<Timer_name>_ICC1Capture;					
+				}
+				%<Timer_name>_ICC1CaptureNumber = 0;
+			}
+		  }
+          %endif
+          %if (ISEQUAL(ItRequestCC2, 1))          
+          /*Test if Input_Capture interrupt on channel 2*/
+          if(TIM_GetITStatus(%<Timer_name>, TIM_IT_CC2) == SET) 
+          {
+            /* Clear %<Timer_name> Capture compare interrupt pending bit */
+            TIM_ClearITPendingBit(%<Timer_name>, TIM_IT_CC2);
+            if(%<Timer_name>_ICC2CaptureNumber == 0)
+            {
+				/* Get the Input_Capture value */
+				%<Timer_name>_ICC2ReadValue1 = TIM_GetCapture2(%<Timer_name>);
+				%<Timer_name>_ICC2CaptureNumber = 1;
+            } else if(%<Timer_name>_ICC2CaptureNumber == 1) {
+				/* Get the Input_Capture value */
+				%<Timer_name>_ICC2ReadValue2 = TIM_GetCapture2(%<Timer_name>); 
+      
+				/* Capture computation */
+				if (%<Timer_name>_ICC2ReadValue2 > %<Timer_name>_ICC2ReadValue1)
+				{
+					%<Timer_name>_ICC2Capture = (%<Timer_name>_ICC2ReadValue2 - %<Timer_name>_ICC2ReadValue1); 
+				}
+				else if (%<Timer_name>_ICC2ReadValue2 < %<Timer_name>_ICC2ReadValue1)
+				{
+					%<Timer_name>_ICC2Capture = ((0xFFFF - %<Timer_name>_ICC2ReadValue1) + %<Timer_name>_ICC2ReadValue2); 
+				}
+				else
+				{
+					%<Timer_name>_ICC2Capture = 0;
+				}
+				/* Frequency computation */ 
+				if(%<Timer_name>_ICC2Capture){
+					%<Timer_name>_ICC2Freq = (uint32_t) SystemCoreClock / %<Timer_name>_ICC2Capture;
+				}
+				%<Timer_name>_ICC2CaptureNumber = 0;
+			}
+		  }
+		  %endif
+          %if (ISEQUAL(ItRequestCC3, 1))          
+          /*Test if Input_Capture interrupt on channel 3*/
+          if(TIM_GetITStatus(%<Timer_name>, TIM_IT_CC3) == SET) 
+          {
+            /* Clear %<Timer_name> Capture compare interrupt pending bit */
+            TIM_ClearITPendingBit(%<Timer_name>, TIM_IT_CC3);
+            if(%<Timer_name>_ICC3CaptureNumber == 0)
+            {
+				/* Get the Input_Capture value */
+				%<Timer_name>_ICC3ReadValue1 = TIM_GetCapture3(%<Timer_name>);
+				%<Timer_name>_ICC3CaptureNumber = 1;
+            } else if(%<Timer_name>_ICC3CaptureNumber == 1) {
+				/* Get the Input_Capture value */
+				%<Timer_name>_ICC3ReadValue2 = TIM_GetCapture3(%<Timer_name>); 
+      
+				/* Capture computation */
+				if (%<Timer_name>_ICC3ReadValue2 > %<Timer_name>_ICC3ReadValue1)
+				{
+					%<Timer_name>_ICC3Capture = (%<Timer_name>_ICC3ReadValue2 - %<Timer_name>_ICC3ReadValue1); 
+				}
+				else if (%<Timer_name>_ICC3ReadValue2 < %<Timer_name>_ICC3ReadValue1)
+				{
+					%<Timer_name>_ICC3Capture = ((0xFFFF - %<Timer_name>_ICC3ReadValue1) + %<Timer_name>_ICC3ReadValue2); 
+				}
+				else
+				{
+					%<Timer_name>_ICC3Capture = 0;
+				}
+				/* Frequency computation */ 
+				if(%<Timer_name>_ICC3Capture){
+					%<Timer_name>_ICC3Freq = (uint32_t) SystemCoreClock / %<Timer_name>_ICC3Capture;
+				}
+				%<Timer_name>_ICC3CaptureNumber = 0;
+			}
+		  }
+		  %endif
+        }
+        %closefile Timer_Buf
+        %<LibSetSourceFileSection(modelC,"Functions",Timer_Buf)>
+        %endif
+
+%% Code for the function's declaration:
+        %openfile Timer_Buf
+            /* Function Declaration for %<Timer_name> Configuration */
+            void %<Timer_name>_Configuration(void);
+        %closefile Timer_Buf
+        %<LibSetSourceFileSection(modelC,"Declarations",Timer_Buf)>
+
+%% Code for the necessary variable definition:
+        %openfile Timer_Buf
+			/* Global Variable Definition for %<Timer_name> Configuration */
+            TIM_TimeBaseInitTypeDef %<Timer_name>_TimeBaseStructure;
+			%if (ISEQUAL(OutputRequest, 1))
+            TIM_OCInitTypeDef       %<Timer_name>_OCInitStructure;
+			%endif
+			%if (ISEQUAL(InputRequest, 1))
+			TIM_ICInitTypeDef       %<Timer_name>_ICInitStructure;
+            %endif
+			%if (ISEQUAL(Timer_name, "TIM1") || ISEQUAL(Timer_name, "TIM8"))
+			TIM_BDTRInitTypeDef		%<Timer_name>_BDTRInitStructure;
+			%endif
+            %if (ISEQUAL(ItRequest, 1))          
+            NVIC_InitTypeDef        %<Timer_name>_NVIC_InitStructure;
+            %endif
+            %if (ISEQUAL(ItRequestCC1, 1))          
+            __IO uint16_t %<Timer_name>_ICC1ReadValue1 = 0, %<Timer_name>_ICC1ReadValue2 = 0;
+            __IO uint16_t %<Timer_name>_ICC1CaptureNumber = 0;
+            __IO uint32_t %<Timer_name>_ICC1Capture = 0;
+            __IO uint32_t %<Timer_name>_ICC1Freq = 0;
+            %endif
+            %if (ISEQUAL(ItRequestCC2, 1))          
+            __IO uint16_t %<Timer_name>_ICC2ReadValue1 = 0, %<Timer_name>_ICC2ReadValue2 = 0;
+            __IO uint16_t %<Timer_name>_ICC2CaptureNumber = 0;
+            __IO uint32_t %<Timer_name>_ICC2Capture = 0;
+            __IO uint32_t %<Timer_name>_ICC2Freq = 0;
+            %endif
+            %if (ISEQUAL(ItRequestCC3, 1))          
+            __IO uint16_t %<Timer_name>_ICC3ReadValue1 = 0, %<Timer_name>_ICC3ReadValue2 = 0;
+            __IO uint16_t %<Timer_name>_ICC3CaptureNumber = 0;
+            __IO uint32_t %<Timer_name>_ICC3Capture = 0;
+            __IO uint32_t %<Timer_name>_ICC3Freq = 0;
+            %endif
+            /*Global variable for APB1/APB2 prescaler from RCC_Configuration.c file */
+            extern uint32_t RCC_APB1_Prescaler;
+            extern uint32_t RCC_APB2_Prescaler;			
+        %closefile Timer_Buf
+        %<LibSetSourceFileSection(modelC,"Definitions",Timer_Buf)>
+
+%% Code for required timers includes:
+        %if EXISTS(::InsertIncludes) && (::InsertIncludes == TLC_TRUE)
+            %assign ::InsertIncludes    = TLC_FALSE	
+            %openfile Timers_Buf
+				#include "stm32f4xx.h"
+            %closefile Timers_Buf
+            %<LibSetSourceFileSection(modelH,"Includes",Timers_Buf)>
+        %endif
+
+    %endfunction
+%else
+%% ERROR Timers INIT MUST BE CALLED ONCE ONLY 
+   %trace ERROR Timers INIT MUST BE CALLED ONCE ONLY 
+
+%endif 
+
+%% Function: Outputs ==========================================
+%% Abstract:
+%% Timers input value depending on pin config
+%%
+	%function Outputs(block, system) Output
+		%assign SrcBaseName = LibGetMdlSrcBaseName()
+		%assign modelH      = LibCreateSourceFile("Header", "Simulink", SrcBaseName)
+		%assign modelC      = LibCreateSourceFile("Source", "Simulink", SrcBaseName)
+        %assign  Timer_name = SFcnParamSettings.Timer_name
+        %assign  Timer_clock = SFcnParamSettings.Timer_clock				
+        %assign  Timer_inout = SFcnParamSettings.Timer_inout				
+        %assign  Variable_frequency = SFcnParamSettings.Variable_frequency
+        %assign  CH1_enable = SFcnParamSettings.CH1_enable
+        %assign  CH1_type = SFcnParamSettings.CH1_type
+        %assign  CH1_int = SFcnParamSettings.CH1_int
+        %assign  CH1_variable_duty = SFcnParamSettings.CH1_variable_duty
+        %assign  CH1_output_duty = SFcnParamSettings.CH1_output_duty		
+        %assign  CH1_input_it = SFcnParamSettings.CH1_input_it
+        %assign  CH2_enable = SFcnParamSettings.CH2_enable
+        %assign  CH2_type = SFcnParamSettings.CH2_type
+        %assign  CH2_int = SFcnParamSettings.CH2_int
+        %assign  CH2_variable_duty = SFcnParamSettings.CH2_variable_duty
+        %assign  CH2_output_duty = SFcnParamSettings.CH2_output_duty		
+        %assign  CH2_input_it = SFcnParamSettings.CH2_input_it
+        %assign  CH3_enable = SFcnParamSettings.CH3_enable
+        %assign  CH3_type = SFcnParamSettings.CH3_type
+        %assign  CH3_int = SFcnParamSettings.CH3_int
+        %assign  CH3_variable_duty = SFcnParamSettings.CH3_variable_duty
+        %assign  CH3_output_duty = SFcnParamSettings.CH3_output_duty		
+        %assign  CH3_input_it = SFcnParamSettings.CH3_input_it
+  	    %assign  InputNum = 0 
+  	    %assign  OutputNum = 0 
+		%assign  Encoder_mode = SFcnParamSettings.Encoder_mode
+		%assign  Encoder_TI1_polarity = SFcnParamSettings.Encoder_TI1_polarity
+		%assign  Encoder_TI2_polarity = SFcnParamSettings.Encoder_TI2_polarity
+		
+		
+%%warning "---------->TIMER_OUTPUT: %<Timer_name>"
+
+		%if (ISEQUAL(Timer_inout, "Output_PWM"))			
+        %openfile IT_Config_Buf
+ 		%if (ISEQUAL(Timer_name, "TIM1") || ISEQUAL(Timer_name, "TIM8"))		  
+        /*******************************************************************************
+        * Function Name  : %<Timer_name>_CC_IRQHandler
+        * Description    : This function handles %<Timer_name> interrupt request.
+        * Input          : -
+        *******************************************************************************/
+        void %<Timer_name>_CC_IRQHandler(void)
+		%else
+        /*******************************************************************************
+        * Function Name  : %<Timer_name>_IRQHandler
+        * Description    : This function handles %<Timer_name> interrupt request.
+        * Input          : -
+        *******************************************************************************/
+        void %<Timer_name>_IRQHandler(void)
+		%endif
+        {
+		%if (ISEQUAL(CH1_type, "Output")&&ISEQUAL(CH1_int,"on"))
+         if(TIM_GetITStatus(%<Timer_name>, TIM_IT_CC1) == SET)
+          {
+            /* Clear %<Timer_name> Capture compare interrupt pending bit */
+            TIM_ClearITPendingBit(%<Timer_name>, TIM_IT_CC1);	
+			%foreach callIdx = NumSFcnSysOutputCalls
+				%if (ISEQUAL(callIdx, 0))				
+					%if LibIsEqual(SFcnSystemOutputCall[callIdx].BlockToCall,"unconnected")
+						%assign wrnTxt = "No code will be generated for CH0 IRQ  "\
+						"since it is not connected to a system."
+						%<LibReportWarning(wrnTxt)>
+						%continue
+					%endif
+					%% call the downstream system
+					%<LibBlockExecuteFcnCall(block, callIdx)>\
+				%endif
+			%endforeach
+		  }
+		%endif
+		%if (ISEQUAL(CH2_type, "Output")&&ISEQUAL(CH2_int,"on"))
+         if(TIM_GetITStatus(%<Timer_name>, TIM_IT_CC2) == SET) 
+          {
+            /* Clear %<Timer_name> Capture compare interrupt pending bit */
+            TIM_ClearITPendingBit(%<Timer_name>, TIM_IT_CC2);
+			%foreach callIdx = NumSFcnSysOutputCalls
+				%if (ISEQUAL(CH1_int,"off") && ISEQUAL(callIdx, 0))				
+					%if LibIsEqual(SFcnSystemOutputCall[callIdx].BlockToCall,"unconnected")
+						%assign wrnTxt = "No code will be generated for CH1 IRQ  "\
+						"since it is not connected to a system."
+						%<LibReportWarning(wrnTxt)>
+						%continue
+					%endif
+					%% call the downstream system
+					%<LibBlockExecuteFcnCall(block, callIdx)>\
+				%elseif (ISEQUAL(CH1_int,"on") && ISEQUAL(callIdx, 1))				
+					%if LibIsEqual(SFcnSystemOutputCall[callIdx].BlockToCall,"unconnected")
+						%assign wrnTxt = "No code will be generated for CH1 IRQ  "\
+						"since it is not connected to a system."
+						%<LibReportWarning(wrnTxt)>
+						%continue
+					%endif
+					%% call the downstream system
+					%<LibBlockExecuteFcnCall(block, callIdx)>\
+				%endif
+			%endforeach
+		  }
+		%endif
+		%if (ISEQUAL(CH3_type, "Output")&&ISEQUAL(CH3_int,"on"))
+         if(TIM_GetITStatus(%<Timer_name>, TIM_IT_CC3) == SET) 
+          {
+            /* Clear %<Timer_name> Capture compare interrupt pending bit */
+            TIM_ClearITPendingBit(%<Timer_name>, TIM_IT_CC3);
+			%foreach callIdx = NumSFcnSysOutputCalls
+				%if (ISEQUAL(CH1_int,"off") && ISEQUAL(CH2_int,"off") && ISEQUAL(callIdx, 0))				
+					%if LibIsEqual(SFcnSystemOutputCall[callIdx].BlockToCall,"unconnected")
+						%assign wrnTxt = "No code will be generated for CH2 IRQ  "\
+						"since it is not connected to a system."
+						%<LibReportWarning(wrnTxt)>
+						%continue
+					%endif
+					%% call the downstream system
+					%<LibBlockExecuteFcnCall(block, callIdx)>\
+				%elseif  (ISEQUAL(CH1_int,"off") && ISEQUAL(CH2_int,"on") && ISEQUAL(callIdx, 1))				
+					%if LibIsEqual(SFcnSystemOutputCall[callIdx].BlockToCall,"unconnected")
+						%assign wrnTxt = "No code will be generated for CH2 IRQ  "\
+						"since it is not connected to a system."
+						%<LibReportWarning(wrnTxt)>
+						%continue
+					%endif
+					%% call the downstream system
+					%<LibBlockExecuteFcnCall(block, callIdx)>\
+				%elseif  (ISEQUAL(CH1_int,"on") && ISEQUAL(CH2_int,"off") && ISEQUAL(callIdx, 1))				
+					%if LibIsEqual(SFcnSystemOutputCall[callIdx].BlockToCall,"unconnected")
+						%assign wrnTxt = "No code will be generated for CH2 IRQ  "\
+						"since it is not connected to a system."
+						%<LibReportWarning(wrnTxt)>
+						%continue
+					%endif
+					%% call the downstream system
+					%<LibBlockExecuteFcnCall(block, callIdx)>\
+				%elseif  (ISEQUAL(CH1_int,"on") && ISEQUAL(CH2_int,"on") && ISEQUAL(callIdx, 2))				
+					%if LibIsEqual(SFcnSystemOutputCall[callIdx].BlockToCall,"unconnected")
+						%assign wrnTxt = "No code will be generated for CH2 IRQ  "\
+						"since it is not connected to a system."
+						%<LibReportWarning(wrnTxt)>
+						%continue
+					%endif
+					%% call the downstream system
+					%<LibBlockExecuteFcnCall(block, callIdx)>\
+				%endif
+			%endforeach
+		  }
+		%endif
+		}
+        %closefile IT_Config_Buf
+        %<LibSetSourceFileSection(modelC,"Functions",IT_Config_Buf)>
+		%endif
+    %endfunction
+
+
+%% Function: Update ==========================================
+%% Abstract:
+%% Timers input value depending on pin config
+%%
+	%function Update(block, system) Output
+        %assign  Timer_name = SFcnParamSettings.Timer_name
+        %assign  Timer_clock = SFcnParamSettings.Timer_clock				
+        %assign  Timer_inout = SFcnParamSettings.Timer_inout				
+        %assign  Variable_frequency = SFcnParamSettings.Variable_frequency
+        %assign  CH1_enable = SFcnParamSettings.CH1_enable
+        %assign  CH1_type = SFcnParamSettings.CH1_type
+        %assign  CH1_int = SFcnParamSettings.CH1_int
+        %assign  CH1_variable_duty = SFcnParamSettings.CH1_variable_duty
+        %assign  CH1_output_duty = SFcnParamSettings.CH1_output_duty		
+        %assign  CH1_input_it = SFcnParamSettings.CH1_input_it
+        %assign  CH2_enable = SFcnParamSettings.CH2_enable
+        %assign  CH2_type = SFcnParamSettings.CH2_type
+        %assign  CH2_int = SFcnParamSettings.CH2_int
+        %assign  CH2_variable_duty = SFcnParamSettings.CH2_variable_duty
+        %assign  CH2_output_duty = SFcnParamSettings.CH2_output_duty		
+        %assign  CH2_input_it = SFcnParamSettings.CH2_input_it
+        %assign  CH3_enable = SFcnParamSettings.CH3_enable
+        %assign  CH3_type = SFcnParamSettings.CH3_type
+        %assign  CH3_int = SFcnParamSettings.CH3_int
+        %assign  CH3_variable_duty = SFcnParamSettings.CH3_variable_duty
+        %assign  CH3_output_duty = SFcnParamSettings.CH3_output_duty		
+        %assign  CH3_input_it = SFcnParamSettings.CH3_input_it
+  	    %assign  InputNum = 0 
+  	    %assign  OutputNum = 0
+		%assign  Encoder_mode = SFcnParamSettings.Encoder_mode
+		%assign  Encoder_TI1_polarity = SFcnParamSettings.Encoder_TI1_polarity
+		%assign  Encoder_TI2_polarity = SFcnParamSettings.Encoder_TI2_polarity
+		
+%%warning "---------->TIMER_UPDATE: %<Timer_name>"
+
+		%if (ISEQUAL(Timer_inout, "Encoder"))	
+  	    %assign  ResetCpt = LibBlockInputSignal(InputNum, "", "", 0) 
+  	    %assign  InputNum = %<InputNum> + 1
+		%assign CounterValue = LibBlockOutputSignal(OutputNum, "", "", 0) 
+  	    %assign  OutputNum = %<OutputNum> + 1 
+ 		%assign Dir = LibBlockOutputSignal(OutputNum, "", "", 0) 
+  	    %assign  OutputNum = %<OutputNum> + 1 
+		
+		/* Reset cpt request when Reset CNT is not 0*/
+		if(%<ResetCpt> != 0 ) {
+			%<Timer_name>->CNT = 0;
+		}
+        %<CounterValue> = %<Timer_name>->CNT;
+		%<Dir> = (%<Timer_name>->CR1 & (uint16_t)(TIM_CR1_DIR)) >> 4;
+		%endif
+
+
+        %if (ISEQUAL(Variable_frequency, "on"))          
+  	    %assign  InputFreq = LibBlockInputSignal(InputNum, "", "", 0) 
+  	    %assign  InputNum = %<InputNum> + 1
+%%warning "---------->TIMER_UPDATE: %<Timer_name> num:%<InputNum> freq:%<InputFreq>"		
+          /* Timer frequency is an input port */
+          %<Timer_name>->ARR = %<Timer_clock> / %<InputFreq> -1;
+        %endif
+
+        %if (ISEQUAL(CH1_enable,"on")&&ISEQUAL(CH1_type, "Output"))
+		%if (ISEQUAL(CH1_variable_duty,"on"))          
+  	    %assign  DutyCC1 = LibBlockInputSignal(InputNum, "", "", 0) 
+  	    %assign  InputNum = %<InputNum> + 1
+%%warning "---------->TIMER_UPDATE: %<Timer_name> cc1 varDuty:%<DutyCC1>"		
+		%else
+  	    %assign  DutyCC1 = %<CH1_output_duty>		
+%%warning "---------->TIMER_UPDATE: %<Timer_name> cc1 FixDuty:%<DutyCC1>"		
+		%endif
+          if(%<DutyCC1> < 0) {
+            /* Disable output and complementary output */
+//            %<Timer_name>->BDTR &= 0x7FFF;  //MOE = 0
+			%<Timer_name>->BDTR |= 0x8000;  //MOE = 1
+            %<Timer_name>->BDTR &= 0xF7FF;   //OSSR = 0
+
+//            %<Timer_name>->CCER |= 0x4;     //CC1NE = 1
+//            %<Timer_name>->CCER &= 0xFFFE;  //CC1E = 0
+            %<Timer_name>->CCER &= 0xFFFA;  //CC1E = 0 CC1NE = 0
+            %<Timer_name>->CR2 &= 0xFCFF;  //OIS1 = 0 OIS1N = 0			
+          } else {
+            // Enable output and complementary output and update dutyCycle
+			%<Timer_name>->BDTR |= 0x8000;  //MOE = 1
+			
+            %<Timer_name>->CCER |= 0x5;     //CC1NE = 1 and CC1E = 1
+            // Channel1 duty cycle is an input port 
+            %<Timer_name>->CCR1 = %<DutyCC1> * %<Timer_name>->ARR / 100;
+          }
+        %endif
+
+        %if (ISEQUAL(CH2_enable,"on")&&ISEQUAL(CH2_type, "Output"))
+		%if (ISEQUAL(CH2_variable_duty,"on"))          
+  	    %assign  DutyCC2 = LibBlockInputSignal(InputNum, "", "", 0) 
+  	    %assign  InputNum = %<InputNum> + 1
+%%warning "---------->TIMER_UPDATE: %<Timer_name> cc2 varDuty:%<DutyCC2>"		
+		%else
+  	    %assign  DutyCC2 = %<CH2_output_duty>		
+%%warning "---------->TIMER_UPDATE: %<Timer_name> cc2 FixDuty:%<DutyCC2>"		
+		%endif
+          if(%<DutyCC2> < 0) {
+            /* Disable output and complementary output */
+//            %<Timer_name>->BDTR &= 0x7FFF;  //MOE = 0
+			%<Timer_name>->BDTR |= 0x8000;  //MOE = 1
+            %<Timer_name>->BDTR &= 0xF7FF;   //OSSR = 0
+
+//            %<Timer_name>->CCER |= 0x40;    //CC2NE = 1
+//            %<Timer_name>->CCER &= 0xFFEF;  //CC2E = 0
+            %<Timer_name>->CCER &= 0xFFAF;  //CC2E = 0 CC2NE = 0
+            %<Timer_name>->CR2 &= 0xF3FF;  //OIS2 = 0 OIS2N = 0			
+          } else {
+            /* Enable output and complementary output and update dutyCycle*/
+			%<Timer_name>->BDTR |= 0x8000;  //MOE = 1
+			
+            %<Timer_name>->CCER |= 0x50;    //CC2NE = 1 and CC2E = 1
+            /* Channel2 duty cycle is an input port */
+            %<Timer_name>->CCR2 = %<DutyCC2> * %<Timer_name>->ARR / 100;
+          }
+        %endif
+
+        %if (ISEQUAL(CH3_enable,"on")&&ISEQUAL(CH3_type, "Output"))
+		%if (ISEQUAL(CH3_variable_duty,"on"))          
+  	    %assign  DutyCC3 = LibBlockInputSignal(InputNum, "", "", 0) 
+%%warning "---------->TIMER_UPDATE: %<Timer_name> cc3 varDuty:%<DutyCC3>"		
+		%else
+  	    %assign  DutyCC3 = %<CH3_output_duty>		
+%%warning "---------->TIMER_UPDATE: %<Timer_name> cc3 FixDuty:%<DutyCC3>"		
+		%endif
+          if(%<DutyCC3> < 0) {
+            /* Disable output and complementary output */
+//            %<Timer_name>->BDTR &= 0x7FFF;  //MOE = 0
+			%<Timer_name>->BDTR |= 0x8000;  //MOE = 1
+            %<Timer_name>->BDTR &= 0xF7FF;   //OSSR = 0
+
+//            %<Timer_name>->CCER |= 0x400;   //CC3NE = 1
+//            %<Timer_name>->CCER &= 0xFEFF;  //CC3E = 0
+            %<Timer_name>->CCER &= 0xFAFF;  //CC3E = 0 CC3NE = 0
+            %<Timer_name>->CR2 &= 0xCFFF;  //OIS3 = 0 OIS3N = 0						
+          } else {
+            /* Enable output and complementary output and update dutyCycle*/
+			%<Timer_name>->BDTR |= 0x8000;  //MOE = 1
+			
+            %<Timer_name>->CCER |= 0x500;     //CC3NE = 1 and CC3E = 1
+            /* Channel3 duty cycle is an input port */
+            %<Timer_name>->CCR3 = %<DutyCC3> * %<Timer_name>->ARR / 100;
+          }
+        %endif
+
+        %if (ISEQUAL(CH1_enable,"on")&&ISEQUAL(CH1_type, "Input_Capture"))
+        %if (ISEQUAL(CH1_input_it,"Compute_duty_cycle"))
+		%assign y = LibBlockOutputSignal(OutputNum, "", "", 0) 
+  	    %assign  OutputNum = 1 
+        %<y> = %<Timer_name>_ICC1Capture;
+%%warning "---------->TIMER_UPDATE: %<Timer_name> capture_cc1 y:%<y>"		
+        %endif
+        %if (ISEQUAL(CH1_input_it,"Compute_frequency"))
+		%assign y = LibBlockOutputSignal(OutputNum, "", "", 0) 
+  	    %assign  OutputNum = 1 
+        %<y> = %<Timer_name>_ICC1Freq;
+%%warning "---------->TIMER_UPDATE: %<Timer_name> freq_cc1 y:%<y>"		
+        %endif
+        %endif
+
+        %if (ISEQUAL(CH2_enable,"on")&&ISEQUAL(CH2_type, "Input_Capture"))
+        %if (ISEQUAL(CH2_input_it,"Compute_duty_cycle"))
+		%assign y = LibBlockOutputSignal(OutputNum, "", "", 0) 
+  	    %assign  OutputNum = 2 
+        %<y> = %<Timer_name>_ICC2Capture;
+%%warning "---------->TIMER_UPDATE: %<Timer_name> capture_cc2 y:%<y>"		
+        %endif
+        %if (ISEQUAL(CH2_input_it,"Compute_frequency"))
+		%assign y = LibBlockOutputSignal(OutputNum, "", "", 0) 
+  	    %assign  OutputNum = 2 
+        %<y> = %<Timer_name>_ICC2Freq;
+%%warning "---------->TIMER_UPDATE: %<Timer_name> freq_cc2 y:%<y>"		
+        %endif
+        %endif
+
+        %if (ISEQUAL(CH3_enable,"on")&&ISEQUAL(CH3_type, "Input_Capture"))
+        %if (ISEQUAL(CH3_input_it,"Compute_duty_cycle"))
+		%assign y = LibBlockOutputSignal(OutputNum, "", "", 0) 
+        %<y> = %<Timer_name>_ICC3Capture;
+%%warning "---------->TIMER_UPDATE: %<Timer_name> capture_cc3 y:%<y>"		
+        %endif
+        %if (ISEQUAL(CH3_input_it,"Compute_frequency"))
+		%assign y = LibBlockOutputSignal(OutputNum, "", "", 0) 
+        %<y> = %<Timer_name>_ICC3Freq;
+%%warning "---------->TIMER_UPDATE: %<Timer_name> freq_cc3 y:%<y>"		
+        %endif
+        %endif
+
+	%endfunction
+	
+	
+	
+%% [EOF] TIMERS_Config.tlc
+
+
+
+
+
+

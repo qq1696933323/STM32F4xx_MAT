@@ -1,0 +1,355 @@
+%% $RCSfile: USART_Config.tlc,v $
+%% $Revision: 1.0 $
+%% $Date: 2012/01/26 $
+%%
+%% Abstract: PIL (processor-in-the-loop) setting
+%%    STM32F2xx USART selection for PIL RtioStream communication.
+%%    Generated code is based on STM32 Library files.
+%%
+%% Copyright 1990-2009 The MathWorks, Inc.
+
+%implements USART_Config "C"
+
+%if !EXISTS(::CreateUSART_Config)
+    %assign ::CreateUSART_Config  = TLC_TRUE
+%endif
+
+%if !EXISTS(::InsertInitHeader)
+    %assign ::InsertInitHeader  = TLC_TRUE
+%endif
+%if !EXISTS(::InsertIncludes)
+    %assign ::InsertIncludes  = TLC_TRUE
+%endif 
+
+    %assign ::CreateUSART_Config  = TLC_TRUE
+
+%trace CreateUSART_Config  %<CreateUSART_Config>
+
+
+%% Create function for PIL Setting:
+%if EXISTS(CreateUSART_Config) && (CreateUSART_Config == TLC_TRUE)
+
+    %%assign ::CreateUSART_Config = TLC_FALSE
+
+%% Code for system initialization:
+    %function Start(block,system) Output
+        %openfile USART_Buf		
+		%assign USART_name = SFcnParamSettings.USART_CONFIG	
+		%assign It_rcv = SFcnParamSettings.It_rcv
+		%assign It_send = SFcnParamSettings.It_send
+
+		%if EXISTS(::InsertInitHeader) && (::InsertInitHeader == TLC_TRUE)
+            %assign ::InsertInitHeader    = TLC_FALSE
+            /******************************************************
+                            %<USART_name> Configuration
+            *******************************************************/
+        %endif
+        /* Usart configuration */
+        %<USART_name>_Config();
+
+		%if (ISEQUAL(It_rcv, "on") || ISEQUAL(It_send, "on"))	
+        /* Enable %<USART_name> Rcv interrupt */
+		NVIC_%<USART_name>_InitStructure.NVIC_IRQChannel = %<USART_name>_IRQn ;
+		NVIC_%<USART_name>_InitStructure.NVIC_IRQChannelPreemptionPriority = 0;
+		NVIC_%<USART_name>_InitStructure.NVIC_IRQChannelSubPriority = 0;
+		NVIC_%<USART_name>_InitStructure.NVIC_IRQChannelCmd = ENABLE;
+		NVIC_Init(&NVIC_%<USART_name>_InitStructure);
+		%endif
+		
+		%if (ISEQUAL(It_rcv, "on"))	
+		USART_ITConfig(%<USART_name>, USART_IT_RXNE, ENABLE);
+		%endif
+				
+        %closefile USART_Buf
+		%<LibMdlStartCustomCode(USART_Buf,"execution")>;
+    %endfunction
+
+%% Code for USART configuration call:
+    %function BlockInstanceSetup(block, system) void
+        %assign SrcBaseName = LibGetMdlSrcBaseName()
+        %assign modelH      = LibCreateSourceFile("Header", "Simulink", SrcBaseName)
+        %assign modelC      = LibCreateSourceFile("Source", "Simulink", SrcBaseName)
+
+        %assign USART_name = SFcnParamSettings.USART_CONFIG	
+        %assign USART_PIN = SFcnParamSettings.USART_CONFIG_PIN	
+		%assign speed = SFcnParamSettings.USART_SPEED
+		%assign data = SFcnParamSettings.USART_DATA
+		%assign parity = SFcnParamSettings.USART_PARITY
+		%assign stop = SFcnParamSettings.USART_STOP
+		%assign flowControl = SFcnParamSettings.USART_FLOW 
+		%if (ISEQUAL(USART_PIN, "PA10/PA9 : (usart1)"))
+			%assign usart_config_pin_rx = "GPIO_Pin_10"
+			%assign usart_config_pin_tx = "GPIO_Pin_9"
+			%assign usart_config_pinSource_rx = "GPIO_PinSource10"
+			%assign usart_config_pinSource_tx = "GPIO_PinSource9"
+			%assign usart_config_port_rx = "GPIOA"
+			%assign usart_config_port_tx = "GPIOA"
+		%elseif (ISEQUAL(USART_PIN, "PB7/PB6 : (usart1)"))
+			%assign usart_config_pin_rx = "GPIO_Pin_7"
+			%assign usart_config_pin_tx = "GPIO_Pin_6"
+			%assign usart_config_pinSource_rx = "GPIO_PinSource7"
+			%assign usart_config_pinSource_tx = "GPIO_PinSource6"
+			%assign usart_config_port_rx = "GPIOB"
+			%assign usart_config_port_tx = "GPIOB"
+		%elseif (ISEQUAL(USART_PIN, "PA3/PA2 : (usart2)"))
+			%assign usart_config_pin_rx = "GPIO_Pin_3"
+			%assign usart_config_pin_tx = "GPIO_Pin_2"
+			%assign usart_config_pinSource_rx = "GPIO_PinSource3"
+			%assign usart_config_pinSource_tx = "GPIO_PinSource2"
+			%assign usart_config_port_rx = "GPIOA"
+			%assign usart_config_port_tx = "GPIOA"
+		%elseif (ISEQUAL(USART_PIN, "PD6/PD5 : (usart2)"))
+			%assign usart_config_pin_rx = "GPIO_Pin_6"
+			%assign usart_config_pin_tx = "GPIO_Pin_5"
+			%assign usart_config_pinSource_rx = "GPIO_PinSource6"
+			%assign usart_config_pinSource_tx = "GPIO_PinSource5"
+			%assign usart_config_port_rx = "GPIOD"
+			%assign usart_config_port_tx = "GPIOD"
+		%elseif (ISEQUAL(USART_PIN, "PB11/PB10 : (usart3)"))
+			%assign usart_config_pin_rx = "GPIO_Pin_11"
+			%assign usart_config_pin_tx = "GPIO_Pin_10"
+			%assign usart_config_pinSource_rx = "GPIO_PinSource11"
+			%assign usart_config_pinSource_tx = "GPIO_PinSource10"
+			%assign usart_config_port_rx = "GPIOB"
+			%assign usart_config_port_tx = "GPIOB"
+		%elseif (ISEQUAL(USART_PIN, "PD9/PD8 : (usart3)"))
+			%assign usart_config_pin_rx = "GPIO_Pin_9"
+			%assign usart_config_pin_tx = "GPIO_Pin_8"
+			%assign usart_config_pinSource_rx = "GPIO_PinSource9"
+			%assign usart_config_pinSource_tx = "GPIO_PinSource8"
+			%assign usart_config_port_rx = "GPIOD"
+			%assign usart_config_port_tx = "GPIOD"
+		%elseif (ISEQUAL(USART_PIN, "PC11/PC10 : (usart3 / uart4)"))
+			%assign usart_config_pin_rx = "GPIO_Pin_11"
+			%assign usart_config_pin_tx = "GPIO_Pin_10"
+			%assign usart_config_pinSource_rx = "GPIO_PinSource11"
+			%assign usart_config_pinSource_tx = "GPIO_PinSource10"
+			%assign usart_config_port_rx = "GPIOC"
+			%assign usart_config_port_tx = "GPIOC"
+		%elseif (ISEQUAL(USART_PIN, "PA1/PA0 : (uart4)"))
+			%assign usart_config_pin_rx = "GPIO_Pin_1"
+			%assign usart_config_pin_tx = "GPIO_Pin_0"
+			%assign usart_config_pinSource_rx = "GPIO_PinSource1"
+			%assign usart_config_pinSource_tx = "GPIO_PinSource0"
+			%assign usart_config_port_rx = "GPIOA"
+			%assign usart_config_port_tx = "GPIOA"
+		%elseif (ISEQUAL(USART_PIN, "PD2/PC12 : (uart5)"))
+			%assign usart_config_pin_rx = "GPIO_Pin_2"
+			%assign usart_config_pin_tx = "GPIO_Pin_12"
+			%assign usart_config_pinSource_rx = "GPIO_PinSource2"
+			%assign usart_config_pinSource_tx = "GPIO_PinSource12"
+			%assign usart_config_port_rx = "GPIOD"
+			%assign usart_config_port_tx = "GPIOC"
+		%elseif (ISEQUAL(USART_PIN, "PC7/PC6 : (usart6)"))
+			%assign usart_config_pin_rx = "GPIO_Pin_7"
+			%assign usart_config_pin_tx = "GPIO_Pin_6"
+			%assign usart_config_pinSource_rx = "GPIO_PinSource7"
+			%assign usart_config_pinSource_tx = "GPIO_PinSource6"
+			%assign usart_config_port_rx = "GPIOC"
+			%assign usart_config_port_tx = "GPIOC"
+		%elseif (ISEQUAL(USART_PIN, "PG9/PG14 : (usart6)"))
+			%assign usart_config_pin_rx = "GPIO_Pin_9"
+			%assign usart_config_pin_tx = "GPIO_Pin_14"
+			%assign usart_config_pinSource_rx = "GPIO_PinSource9"
+			%assign usart_config_pinSource_tx = "GPIO_PinSource14"
+			%assign usart_config_port_rx = "GPIOG"
+			%assign usart_config_port_tx = "GPIOG"
+		%endif
+		%assign It_rcv = SFcnParamSettings.It_rcv
+		%assign It_send = SFcnParamSettings.It_send
+		%assign Cust_handler = SFcnParamSettings.Cust_handler
+		
+        %openfile USART_Buf
+       /*******************************************************************************
+        * Function Name  : %<USART_name>_Config
+        * Description    : USART Configuration
+        * Input          : -
+        *******************************************************************************/		
+        void %<USART_name>_Config(void)
+        {	
+			// %<USART_name> IO configuration ------------------------------------//
+			// Enable GPIO clock
+			%<USART_name>_RCC_GPIORx_ClockCmd();
+			%<USART_name>_RCC_GPIOTx_ClockCmd();
+	
+			// Set USART_TX as PP AF 
+			GPIO_InitStructure.GPIO_Pin = %<USART_name>_CONFIG_PIN_TX;
+			GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF;
+			GPIO_InitStructure.GPIO_Speed = GPIO_Speed_2MHz;
+			GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
+			GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL;
+			GPIO_Init(%<USART_name>_CONFIG_PORT_TX, &GPIO_InitStructure);
+
+			// Set USART_RX as Pull-Up 
+			GPIO_InitStructure.GPIO_Pin = %<USART_name>_CONFIG_PIN_RX;
+			GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_UP;
+			GPIO_Init(%<USART_name>_CONFIG_PORT_RX, &GPIO_InitStructure);
+
+			// configure AFIO
+			%<USART_name>_GPIOTx_PinAFConfig();
+			%<USART_name>_GPIORx_PinAFConfig();
+			
+			//%<USART_name> clock enable
+			RCC_%<USART_name>_ClockCmd();
+%warning "---------->%<USART_name> : %<speed> %<data> %<stop> %<parity> %<flowControl>"
+			%<USART_name>_InitStructure.USART_BaudRate = %<speed>;
+			%<USART_name>_InitStructure.USART_WordLength = %<data>;
+			%<USART_name>_InitStructure.USART_StopBits = %<stop>;
+			%<USART_name>_InitStructure.USART_Parity = %<parity>;
+			%if (ISEQUAL(flowControl, "on"))
+			%<USART_name>_InitStructure.USART_HardwareFlowControl = USART_HardwareFlowControl_RTS_CTS;
+			%else
+			%<USART_name>_InitStructure.USART_HardwareFlowControl = USART_HardwareFlowControl_None;
+			%endif		
+				
+			%<USART_name>_InitStructure.USART_Mode = USART_Mode_Rx | USART_Mode_Tx;
+			%<USART_name>_ClockInitStructure.USART_Clock = USART_Clock_Disable;
+			%<USART_name>_ClockInitStructure.USART_CPOL = USART_CPOL_Low;
+			%<USART_name>_ClockInitStructure.USART_CPHA = USART_CPHA_2Edge;
+			%<USART_name>_ClockInitStructure.USART_LastBit = USART_LastBit_Disable;
+
+			USART_Init(%<USART_name>_CONFIG_NAME, &%<USART_name>_InitStructure);
+			USART_ClockInit(%<USART_name>_CONFIG_NAME, &%<USART_name>_ClockInitStructure);
+
+			// Enable %<USART_name> selected from PIL config model.
+			USART_Cmd(%<USART_name>_CONFIG_NAME, ENABLE);	
+		}	
+		
+        %closefile USART_Buf
+        %<LibSetSourceFileSection(modelC,"Functions",USART_Buf)>	
+		
+		
+%% Code for the function's declaration:
+        %openfile USART_Buf
+            /* Function Declaration for %<USART_name> Configuration */
+            void %<USART_name>_Config(void);
+        %closefile USART_Buf
+        %<LibSetSourceFileSection(modelC,"Declarations",USART_Buf)>
+
+%% Code for the necessary variable definition:
+        %openfile USART_Buf
+			#define %<USART_name>_CONFIG_NAME %<USART_name>
+			#define %<USART_name>_CONFIG_PIN_RX %<usart_config_pin_rx>
+			#define %<USART_name>_CONFIG_PIN_TX %<usart_config_pin_tx>
+			#define %<USART_name>_CONFIG_PORT_TX %<usart_config_port_tx>
+			#define %<USART_name>_CONFIG_PORT_RX %<usart_config_port_rx>
+			/* Enable usart peripheral clocks */
+			%if (ISEQUAL(USART_name, "USART1")||ISEQUAL(USART_name, "USART6"))				
+			#define	RCC_%<USART_name>_ClockCmd() RCC_APB2PeriphClockCmd(RCC_APB2Periph_%<USART_name>, ENABLE)
+            %else
+			#define	RCC_%<USART_name>_ClockCmd() RCC_APB1PeriphClockCmd(RCC_APB1Periph_%<USART_name>, ENABLE)
+            %endif
+			/* Enable GPIO clocks */
+			%if (ISEQUAL(USART_name, "UART5"))				
+			#define	%<USART_name>_RCC_GPIORx_ClockCmd() RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_%<usart_config_port_rx>, ENABLE)
+			#define	%<USART_name>_RCC_GPIOTx_ClockCmd() RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_%<usart_config_port_tx>, ENABLE)
+            %else
+			#define	%<USART_name>_RCC_GPIORx_ClockCmd() RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_%<usart_config_port_rx>, ENABLE)
+			#define	%<USART_name>_RCC_GPIOTx_ClockCmd() 
+            %endif
+            /* Configure AFIO Alternate fonction */
+            #define %<USART_name>_GPIOTx_PinAFConfig() GPIO_PinAFConfig(%<usart_config_port_tx>, %<usart_config_pinSource_tx>, GPIO_AF_%<USART_name>)
+            #define %<USART_name>_GPIORx_PinAFConfig() GPIO_PinAFConfig(%<usart_config_port_rx>, %<usart_config_pinSource_rx>, GPIO_AF_%<USART_name>)
+			/* Global Variable Definition for GPIO Configuration */
+			static GPIO_InitTypeDef GPIO_InitStructure;
+
+			/* Global Variable Definition for UART Configuration */
+			static USART_InitTypeDef %<USART_name>_InitStructure;
+			static USART_ClockInitTypeDef %<USART_name>_ClockInitStructure;
+
+			%if (ISEQUAL(It_rcv,"on"))
+			/* %<USART_name> interrupt receive */	
+			#define %<USART_name>_IT_RCV 1
+			%endif
+			%if (ISEQUAL(It_send,"on"))
+			/* %<USART_name> interrupt send */	
+			#define %<USART_name>_IT_SEND 1
+			%endif
+			%if (ISEQUAL(It_rcv, "on") || ISEQUAL(It_send, "on"))	
+			NVIC_InitTypeDef NVIC_%<USART_name>_InitStructure;
+			%endif
+			%if (ISEQUAL(It_rcv, "on"))
+			static volatile unsigned int %<USART_name>_NbrOfDataInBuff = 0;
+			static char %<USART_name>_RxBuffer[%<USART_name>_RX_BUFF_SIZE];
+			static char %<USART_name>_RxOutputDataBuffer[%<USART_name>_RX_STRING_SIZE] = {0};
+			static char* %<USART_name>_RxOutputDataBufferPt = %<USART_name>_RxOutputDataBuffer;
+			static char* %<USART_name>_ReadPt = %<USART_name>_RxBuffer;
+			static char* %<USART_name>_WritePt = %<USART_name>_RxBuffer;
+			%endif	
+			%if (ISEQUAL(It_send, "on"))	
+			static char* %<USART_name>_BufferSendPt;
+			static uint16_t %<USART_name>_NbCharToSend = 0;
+			static uint16_t %<USART_name>_NbCharSent = 0;			
+			%endif	
+			
+			%closefile USART_Buf
+        %<LibSetSourceFileSection(modelC,"Definitions",USART_Buf)>
+
+		%if (ISEQUAL(It_rcv, "on") || ISEQUAL(It_send, "on"))	
+        %openfile USART_Buf
+		/*******************************************************************************
+		* Function Name  : %<Cust_handler>
+		* Description    : USART interrupt reception management.
+		* Input          : -
+		*******************************************************************************/
+		void %<Cust_handler>(void)
+		{
+		%if (ISEQUAL(It_rcv, "on"))	
+		 if(USART_GetITStatus(%<USART_name>, USART_IT_RXNE) != RESET)
+		 { 
+			/* Read one byte from the receive data register */
+			if(%<USART_name>_NbrOfDataInBuff < %<USART_name>_RX_BUFF_SIZE){
+				*%<USART_name>_WritePt++ = %<USART_name>->DR;
+				%<USART_name>_NbrOfDataInBuff++;
+				if(%<USART_name>_WritePt > &%<USART_name>_RxBuffer[%<USART_name>_RX_BUFF_SIZE])
+					%<USART_name>_WritePt = %<USART_name>_RxBuffer;
+			} else {
+				/* Take care: Char is lost. Increase Buffer size.*/
+				(void)%<USART_name>->DR;
+			}			
+		 }
+		%endif
+  	    %if (ISEQUAL(It_send, "on"))	
+		 if(USART_GetITStatus(%<USART_name>, USART_IT_TXE) != RESET)
+		 { 
+			USART_SendData(%<USART_name>, *%<USART_name>_BufferSendPt++);
+			%<USART_name>_NbCharSent++;
+			if(--%<USART_name>_NbCharToSend <= 0)
+				USART_ITConfig(%<USART_name>, USART_IT_TXE, DISABLE);		 
+		 }
+		%endif		
+		}
+        %closefile USART_Buf
+        %<LibSetSourceFileSection(modelC,"Functions",USART_Buf)>
+		%endif
+
+    %endfunction
+	
+%% Code for USART interrupt receive/Send
+    %function BlockTypeSetup(block, system) void
+        %assign SrcBaseName = LibGetMdlSrcBaseName()
+        %assign modelH      = LibCreateSourceFile("Header", "Simulink", SrcBaseName)
+        %assign modelC      = LibCreateSourceFile("Source", "Simulink", SrcBaseName)
+ 
+%% Code for required USART includes:
+        %if EXISTS(::InsertIncludes) && (::InsertIncludes == TLC_TRUE)
+            %assign ::InsertIncludes    = TLC_FALSE
+            %openfile USART_Buf
+				#include "stm32f4xx.h"
+            %closefile USART_Buf
+            %<LibSetSourceFileSection(modelH,"Includes",USART_Buf)>
+        %endif
+    %endfunction
+	
+%else
+%% ERROR USART CONFIGURATION MUST BE CALLED ONCE ONLY 
+   %trace ERROR USART CONFIGURATION MUST BE CALLED ONCE ONLY 
+%endif 
+
+%% [EOF] USART_Config.tlc
+
+
+
+
+
+

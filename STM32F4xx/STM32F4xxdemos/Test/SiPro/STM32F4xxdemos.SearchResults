@@ -1,0 +1,28 @@
+---- STM32F4XX Matches (6 in 2 files) ----
+Stm32f4xx.h (d:\stmicroelectronics\...\include):62
+#if !defined (STM32F4XX) 
+  #define STM32F4XX
+#endif
+
+Stm32f4xx.h (d:\stmicroelectronics\...\include):70
+#if !defined (STM32F4XX)
+ #error "Please select first the target STM32F4XX device used in your application (in stm32f4xx.h file)"
+#endif
+
+Stm32f4xx.h (d:\stmicroelectronics\...\include):108
+ * @brief STM32F4XX Standard Peripherals Library version number V1.0.0
+   */
+#define __STM32F4XX_STDPERIPH_VERSION_MAIN   (0x01) /*!< [31:24] main version */                                  
+Stm32f4xx.h (d:\stmicroelectronics\...\include):131
+#define __MPU_PRESENT             1       /*!< STM32F4XX provides an MPU                     */
+#define __NVIC_PRIO_BITS          4       /*!< STM32F4XX uses 4 Bits for the Priority Levels */
+#define __Vendor_SysTickConfig    0       /*!< Set to 1 if different SysTick Config is used  */
+#define __FPU_PRESENT             1       /*!< FPU present                                   */
+Stm32f4xx.h (d:\stmicroelectronics\...\include):137
+ * @brief STM32F4XX Interrupt Number Definition, according to the selected device 
+ *        in @ref Library_configuration_section 
+ */
+Stm32f4xx_it.h (d:\stmicroelectronics\...\src):22
+#ifdef STM32F4XX
+#include "stm32f4xx.h"
+#else

@@ -1,0 +1,158 @@
+%% $RCSfile: USART_Receive.tlc,v $
+%% $Revision: 1.0 $
+%% $Date: 2012/01/26 $
+%%
+%% Abstract: USART Receive
+%%    STM32F4xx Receive string from selected USART
+%%    Generated code is based on STM32 Library files.
+%%
+%% Copyright 1990-2009 The MathWorks, Inc.
+%assign CodeFormat = "Embedded-C"
+%implements USART_Receive "C"
+
+
+%if !EXISTS(::CreateUSART_Receive)
+    %assign ::CreateUSART_Receive  = TLC_TRUE
+%endif
+
+%if !EXISTS(::InsertInitHeader)
+    %assign ::InsertInitHeader  = TLC_TRUE
+%endif
+%if !EXISTS(::InsertIncludes)
+    %assign ::InsertIncludes  = TLC_TRUE
+%endif 
+
+    %assign ::CreateUSART_Receive  = TLC_TRUE
+
+%trace CreateUSART_Receive  %<CreateUSART_Receive>
+
+%% Create function for USART Receive:
+%if EXISTS(CreateUSART_Receive) && (CreateUSART_Receive == TLC_TRUE)
+
+    %%assign ::CreateUSART_Receive = TLC_FALSE
+
+%% Code for USART RECEIVE configuration call:
+    %function BlockInstanceSetup(block, system) void
+        %assign SrcBaseName = LibGetMdlSrcBaseName()
+        %assign modelH      = LibCreateSourceFile("Header", "Simulink", SrcBaseName)
+        %assign modelC      = LibCreateSourceFile("Source", "Simulink", SrcBaseName)
+		%assign Buff_size = SFcnParamSettings.Buff_size
+        %assign USART_name =  SFcnParamSettings.USART_name		
+		%assign NbData_Size = SFcnParamSettings.NbData_Size
+
+		%openfile USART_Buf
+		#define %<USART_name>_RX_BUFF_SIZE %<Buff_size>
+		#define %<USART_name>_RX_STRING_SIZE %<NbData_Size>		
+		%closefile USART_Buf
+        %<LibSetSourceFileSection(modelC,"Definitions",USART_Buf)>
+    %endfunction
+%else
+%% ERROR USART RCV INIT MUST BE CALLED ONCE ONLY 
+   %trace ERROR USART INIT MUST BE CALLED ONCE ONLY 
+%endif 
+
+%% Function: Outputs ==========================================
+%% Abstract:
+%% USART_Receive input value depending on pin config
+%%
+    %function Outputs(block, system) Output
+		/* %<Type> Block: %<Name> */  
+        %assign USART_name =  SFcnParamSettings.USART_name		
+		%assign Buff_size = SFcnParamSettings.Buff_size
+		%assign Soft_it = SFcnParamSettings.Soft_it
+		%assign Soft_num = SFcnParamSettings.Soft_num
+		%assign NbData_Size = SFcnParamSettings.NbData_Size
+		%%block Output 
+		%assign NbRcv = LibBlockOutputSignal(0, "", "", 0)
+		
+ 		%openfile USART_Buf
+		u16 NbData_Read = 0; //Nb of data copied into the output data buffer
+		int i; //Loop counter
+		%closefile USART_Buf
+        %<LibSystemOutputCustomCode(system,USART_Buf,"header")>
+
+ 		%openfile USART_Buf		
+        		
+		#ifndef %<USART_name>_IT_RCV	
+		/* Pulling reception: Get received char while any and less than buff size*/		
+		while((%<USART_name>->SR & USART_FLAG_RXNE) != (uint16_t)RESET && %<USART_name>_NbrOfDataInBuff < %<Buff_size>) {
+			/* Read one byte from the receive data register */
+			*%<USART_name>_WritePt++ = %<USART_name>->DR;
+			%<USART_name>_NbrOfDataInBuff++;
+			if(%<USART_name>_WritePt > &%<USART_name>_RxBuffer[%<Buff_size>])
+				%<USART_name>_WritePt = %<USART_name>_RxBuffer;		
+		}
+		#endif
+		
+        /* Disable Rx interrupt during processing */
+		USART_ITConfig(%<USART_name>, USART_IT_RXNE, DISABLE);
+
+		%if (ISEQUAL(Soft_it, "on"))
+		/* Processing when output data string size nb of data has been received only*/ 
+		if(%<USART_name>_NbrOfDataInBuff >= %<NbData_Size>) {
+			for(i = 0; i< %<NbData_Size>;i++) {
+				%<USART_name>_RxOutputDataBuffer[i] =  *%<USART_name>_ReadPt++;
+				%<USART_name>_NbrOfDataInBuff--;
+				NbData_Read++;
+				if(%<USART_name>_ReadPt > &%<USART_name>_RxBuffer[%<Buff_size>]) {
+					%<USART_name>_ReadPt = %<USART_name>_RxBuffer;
+				}
+				if(%<USART_name>_NbrOfDataInBuff == 0){
+					break;
+				}
+			}
+		}
+		%else
+		/* Processing when data has been received only*/ 
+		if( %<USART_name>_NbrOfDataInBuff ) {		
+			for(i = 0; i< %<NbData_Size>;i++) {
+				%<USART_name>_RxOutputDataBuffer[i] =  *%<USART_name>_ReadPt++;
+				%<USART_name>_NbrOfDataInBuff--;
+				NbData_Read++;
+				if(%<USART_name>_ReadPt > &%<USART_name>_RxBuffer[%<Buff_size>]) {
+					%<USART_name>_ReadPt = %<USART_name>_RxBuffer;
+				}
+				if(%<USART_name>_NbrOfDataInBuff == 0){
+					break;
+				}
+			}
+		}		
+		%endif
+		
+			
+ 		%<NbRcv> = NbData_Read;
+		
+        /* Enable Rx interrupt after processing */
+		USART_ITConfig(%<USART_name>, USART_IT_RXNE, ENABLE);
+		
+		%<USART_name>_RxOutputDataBufferPt = %<USART_name>_RxOutputDataBuffer;
+		
+		%if (ISEQUAL(Soft_it, "on"))		
+		if(NbData_Read >= %<NbData_Size>) {
+			%assign rollVars = ["Y"]
+			%roll idx = RollRegions, lcv = RollThreshold, block, "Roller", rollVars
+				%<LibBlockOutputSignal(1, "", lcv, idx)> = *%<USART_name>_RxOutputDataBufferPt++;
+			%endroll
+		} else {
+			%<LibBlockOutputSignal(1, "", "", 0)> = *%<USART_name>_RxOutputDataBufferPt;
+		}
+		%else		
+		%assign rollVars = ["Y"]
+		%roll idx = RollRegions, lcv = RollThreshold, block, "Roller", rollVars
+			%<LibBlockOutputSignal(1, "", lcv, idx)> = *%<USART_name>_RxOutputDataBufferPt++;
+		%endroll
+		%endif		
+		%closefile USART_Buf
+        %<LibSystemOutputCustomCode(system,USART_Buf,"execution")>
+
+ 		%openfile USART_Buf
+		%if (ISEQUAL(Soft_it, "on"))		
+		if(NbData_Read >= %<NbData_Size>) {
+			/* Soft IT request*/
+			EXTI->SWIER |= 1 << (u16)%<Soft_num>;
+		} 
+		%endif
+		%closefile USART_Buf
+        %<LibSystemOutputCustomCode(system,USART_Buf,"trailer")>	
+		
+   %endfunction

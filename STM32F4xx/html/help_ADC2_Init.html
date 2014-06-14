@@ -1,0 +1,443 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>ADC2 Initialization model</title><meta name="generator" content="MATLAB 8.0"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2013-05-28"><meta name="DC.source" content="help_ADC2_Init.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, tt, code { font-size:12px; }
+pre { margin:0px 0px 20px; }
+pre.error { color:red; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>ADC2 Initialization model</h1><!--introduction--><p>Model used to configure STM32F4 Analog to Digital Conversion.</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#2">S-Function</a></li><li><a href="#4">ADC2 Channels parameters setting</a></li><li><a href="#6"><i>Channel</i></a></li><li><a href="#8"><i>Channel type</i></a></li><li><a href="#10"><i>Set to default initial values</i></a></li><li><a href="#12"><i>Guarded by the analog watchdog</i></a></li><li><a href="#14"><i>Resolution</i></a></li><li><a href="#16"><i>Scan mode</i></a></li><li><a href="#18"><i>Continuous conversion mode</i></a></li><li><a href="#20"><i>Ext Trig. conversion edge</i></a></li><li><a href="#22"><i>Ext Trig. conversion</i></a></li><li><a href="#24"><i>Data align</i></a></li><li><a href="#26"><i>Nbr of conversion</i></a></li><li><a href="#28"><i>Location</i></a></li><li><a href="#30">ADC2 Watchdog setting</a></li><li><a href="#32"><i>Number of regular channels</i></a></li><li><a href="#33"><i>Number of regular channels guarded by the analog watchdog</i></a></li><li><a href="#34"><i>Number of injected channels</i></a></li><li><a href="#35"><i>Number of injected channels guarded by the analog watchdog</i></a></li><li><a href="#36"><i>Watchdog enable</i></a></li><li><a href="#37"><i>Analog watchdog command</i></a></li><li><a href="#39"><i>Channel</i></a></li><li><a href="#40"><i>High threshold</i></a></li><li><a href="#41"><i>Low threshold</i></a></li><li><a href="#42">Example</a></li><li><a href="#47">Example with interrupt</a></li></ul></div><p>
+<A NAME="ANCRES"> </A>
+</p><h2>S-Function<a name="2"></a></h2><p><i>Nb Input:</i>  <b>0</b></p><p><i>Nb Output:</i> <b>0</b></p><p><img vspace="5" hspace="5" src="ADC2_Init.PNG" alt=""> </p><h2>ADC2 Channels parameters setting<a name="4"></a></h2><p><img vspace="5" hspace="5" src="ADC2-Channels.PNG" alt=""> </p><p>
+<A HREF="#ANCRES"><p align="right"> top </p></A>
+</p><h2><i>Channel</i><a name="6"></a></h2><p>Channel number selection. From 0 to 15.</p><p>
+See <A HREF="#location">Location</A> parameter for Pin configuration.
+</p><p><img vspace="5" hspace="5" src="ADC_P1.PNG" alt=""> </p><p>
+<A HREF="#ANCRES"><p align="right"> top </p></A>
+</p><h2><i>Channel type</i><a name="8"></a></h2><div><ol><li><i>Not_Used</i> (default): Channel is not used, parameters are not enable.</li><li><i>Regular</i> : Channel is periodically measured.</li><li><i>Injected</i> : Channel measured on demand.</li></ol></div><p><img vspace="5" hspace="5" src="ADC_P2.PNG" alt=""> </p><p>
+<A HREF="#ANCRES"><p align="right"> top </p></A>
+</p><h2><i>Set to default initial values</i><a name="10"></a></h2><p>Set selected channel default parameters value.</p><p>
+<A HREF="#ANCRES"><p align="right"> top </p></A>
+</p><h2><i>Guarded by the analog watchdog</i><a name="12"></a></h2><p>Increase/decrease number of channels guarded by analog watchdog.</p><p>
+<A HREF="#ANCRES"><p align="right"> top </p></A>
+</p><h2><i>Resolution</i><a name="14"></a></h2><p>Max number of bits (precision) for the acquisition. From 6bits (64 steps) to 12bits (4096 steps)</p><p><img vspace="5" hspace="5" src="ADC_P3.PNG" alt=""> </p><p>
+<A HREF="#ANCRES"><p align="right"> top </p></A>
+</p><h2><i>Scan mode</i><a name="16"></a></h2><pre>Specifies whether the conversion is performed in Scan or Single.</pre><p><img vspace="5" hspace="5" src="ADC_P4.PNG" alt=""> </p><p>
+<A HREF="#ANCRES"><p align="right"> top </p></A>
+</p><h2><i>Continuous conversion mode</i><a name="18"></a></h2><p>Specifies whether the conversion is performed in continuous mode. Conversion is performed in single mode when it is not selected.</p><p>
+<A HREF="#ANCRES"><p align="right"> top </p></A>
+</p><h2><i>Ext Trig. conversion edge</i><a name="20"></a></h2><p>Select the external trigger edge.</p><p><img vspace="5" hspace="5" src="ADC_P5.PNG" alt=""> </p><p>
+<A HREF="#ANCRES"><p align="right"> top </p></A>
+</p><h2><i>Ext Trig. conversion</i><a name="22"></a></h2><p>Select the external event used to trigger the start of conversion.</p><p><img vspace="5" hspace="5" src="ADC_P6.PNG" alt=""> </p><p>
+<A HREF="#ANCRES"><p align="right"> top </p></A>
+</p><h2><i>Data align</i><a name="24"></a></h2><p>Specifies whether the ADC data  alignment is left or right.</p><p><img vspace="5" hspace="5" src="ADC_P7.PNG" alt=""> </p><p>
+<A HREF="#ANCRES"><p align="right"> top </p></A>
+</p><h2><i>Nbr of conversion</i><a name="26"></a></h2><p>Specifies the number of ADC conversions that will be done (1 to 16). for Regular channel type only.</p><p><img vspace="5" hspace="5" src="ADC_P8.PNG" alt=""> </p><p>
+<A HREF="#ANCRES"><p align="right"> top </p></A>
+</p><p>
+<A NAME="location"> </A>
+</p><h2><i>Location</i><a name="28"></a></h2><p>Port name and Pin number selected channel is connected to. <b>Read only</b></p><p>
+<A HREF="#ANCRES"><p align="right"> top </p></A>
+</p><h2>ADC2 Watchdog setting<a name="30"></a></h2><p><img vspace="5" hspace="5" src="ADC2-Watchdog.PNG" alt=""> </p><h2><i>Number of regular channels</i><a name="32"></a></h2><p>Number of selected regular channels.</p><p><b>Read only</b></p><p>
+<A HREF="#ANCRES"><p align="right"> top </p></A>
+</p><h2><i>Number of regular channels guarded by the analog watchdog</i><a name="33"></a></h2><p>Number of regular channels triggered by watchdog.</p><p><b>Read only</b></p><p>
+<A HREF="#ANCRES"><p align="right"> top </p></A>
+</p><h2><i>Number of injected channels</i><a name="34"></a></h2><p>Number of selected injected channels.</p><p><b>Read only</b></p><p>
+<A HREF="#ANCRES"><p align="right"> top </p></A>
+</p><h2><i>Number of injected channels guarded by the analog watchdog</i><a name="35"></a></h2><p>Number of injected channels triggered by watchdog.</p><p><b>Read only</b></p><p>
+<A HREF="#ANCRES"><p align="right"> top </p></A>
+</p><h2><i>Watchdog enable</i><a name="36"></a></h2><p>Enable watchdog parameters.</p><p>
+<A HREF="#ANCRES"><p align="right"> top </p></A>
+</p><h2><i>Analog watchdog command</i><a name="37"></a></h2><p>Specifies channel type the watchdog is dedicated to.</p><p><img vspace="5" hspace="5" src="ADC_P9.PNG" alt=""> </p><p>
+<A HREF="#ANCRES"><p align="right"> top </p></A>
+</p><h2><i>Channel</i><a name="39"></a></h2><p>Number of the channel guarded by analog watchdog. Available when analog watchdog command is single.</p><p>
+<A HREF="#ANCRES"><p align="right"> top </p></A>
+</p><h2><i>High threshold</i><a name="40"></a></h2><p>Analog voltage converted by the ADC if it is above this threshold.</p><p>
+<A HREF="#ANCRES"><p align="right"> top </p></A>
+</p><h2><i>Low threshold</i><a name="41"></a></h2><p>Analog voltage converted by the ADC if it is below this threshold.</p><p>
+<A HREF="#ANCRES"><p align="right"> top </p></A>
+</p><h2>Example<a name="42"></a></h2><p>ADC configuration example.</p><p>This example is based on STM3240G-EVAL board. Analog-to-digital converter (ADC3) reads potentiometer value from PortF-Pin9.</p><p><a href="matlab:open_system('ADC3_IN7_Pot')">Open ADC3_IN7_pot</a></p><p><img vspace="5" hspace="5" src="ADC_EX.PNG" alt=""> </p><p><b>Channel 7 (portF-pin9) is Regular, Continuous conversion mode.</b></p><p><img vspace="5" hspace="5" src="ADC_EX1.PNG" alt=""> </p><p><img vspace="5" hspace="5" src="ADC_EX2.PNG" alt=""> </p><p><b>PortF Pin9 is analog mode configured.</b></p><p><img vspace="5" hspace="5" src="ADC_EX3.PNG" alt=""> </p><p>
+<A HREF="#ANCRES"><p align="right"> top </p></A>
+</p><h2>Example with interrupt<a name="47"></a></h2><p>Watchdog guarded ADC configuration example.</p><p>This example is based on STM3240G-EVAL board. Analog-to-digital converter (ADC3) reads potentiometer value from PortF-Pin9 and send it through USART when watchdog interrupt occures.</p><p><a href="matlab:open_system('ADC3_IN7_Pot_WD_int')">Open ADC3_IN7_pot_WD_int</a></p><p><img vspace="5" hspace="5" src="ADC_EX_IT.PNG" alt=""> </p><p><b>Channel 7 (portF-pin9) is Regular, Continuous conversion mode. Guarded by the analog watchdog.</b></p><p><img vspace="5" hspace="5" src="ADC_EX1_IT.PNG" alt=""> </p><p><b>Low and High threshold are configured for channel 7 single regular channel</b></p><p><img vspace="5" hspace="5" src="ADC_EX2_IT.PNG" alt=""> </p><p><b>PortF Pin9 is analog mode configured.</b></p><p><img vspace="5" hspace="5" src="ADC_EX3.PNG" alt=""> </p><p><b>Interrupt Watchdog and OVR are configured for ADC3</b></p><p><img vspace="5" hspace="5" src="IT_CONF_ADC.PNG" alt=""> </p><p><b>Default ADC handler function name is used. It is configured into the startupt file. It is possible that <i>stm32f4xx_it.c</i> file (/src) has to be modified.</b></p><p><img vspace="5" hspace="5" src="IT_CONF_HANDLER_ADC.PNG" alt=""> </p><p>
+<A HREF="#ANCRES"><p align="right"> top </p></A>
+</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2012b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% ADC2 Initialization model
+% Model used to configure STM32F4 Analog to Digital Conversion.
+%%
+%
+% <html>
+% <A NAME="ANCRES"> </A>
+% </html>
+% 
+%% S-Function
+% _Nb Input:_  *0*
+%
+% _Nb Output:_ *0*
+%%
+% 
+% <<ADC2_Init.PNG>>
+% 
+%% ADC2 Channels parameters setting
+%%
+% 
+% <<ADC2-Channels.PNG>>
+% 
+% <html>
+% <A HREF="#ANCRES"><p align="right"> top </p></A>
+% </html>
+%% _Channel_
+% Channel number selection. From 0 to 15.
+%
+% <html>
+% See <A HREF="#location">Location</A> parameter for Pin configuration.
+% </html>
+%
+%%
+% 
+% <<ADC_P1.PNG>>
+% 
+% <html>
+% <A HREF="#ANCRES"><p align="right"> top </p></A>
+% </html>
+%% _Channel type_
+% # _Not_Used_ (default): Channel is not used, parameters are not enable.
+% # _Regular_ : Channel is periodically measured.
+% # _Injected_ : Channel measured on demand.
+%%
+% 
+% <<ADC_P2.PNG>>
+% 
+% <html>
+% <A HREF="#ANCRES"><p align="right"> top </p></A>
+% </html>
+
+%% _Set to default initial values_
+% Set selected channel default parameters value. 
+%%
+% 
+% <html>
+% <A HREF="#ANCRES"><p align="right"> top </p></A>
+% </html>
+
+%% _Guarded by the analog watchdog_
+% Increase/decrease number of channels guarded by analog watchdog.
+%%
+% 
+% <html>
+% <A HREF="#ANCRES"><p align="right"> top </p></A>
+% </html>
+
+%% _Resolution_
+% Max number of bits (precision) for the acquisition. 
+% From 6bits (64 steps) to 12bits (4096 steps)   
+%%
+% 
+% <<ADC_P3.PNG>>
+% 
+% <html>
+% <A HREF="#ANCRES"><p align="right"> top </p></A>
+% </html>
+%
+
+%% _Scan mode_
+%  Specifies whether the conversion is performed in Scan or Single.
+%%
+% 
+% <<ADC_P4.PNG>>
+% 
+% <html>
+% <A HREF="#ANCRES"><p align="right"> top </p></A>
+% </html>
+%
+
+%% _Continuous conversion mode_
+% Specifies whether the conversion is performed in continuous mode.
+% Conversion is performed in single mode when it is not selected.
+%%
+% 
+% <html>
+% <A HREF="#ANCRES"><p align="right"> top </p></A>
+% </html>
+%
+
+%% _Ext Trig. conversion edge_
+% Select the external trigger edge.
+%
+%%
+% 
+% <<ADC_P5.PNG>>
+% 
+% <html>
+% <A HREF="#ANCRES"><p align="right"> top </p></A>
+% </html>
+%
+
+%% _Ext Trig. conversion_
+% Select the external event used to trigger the start of conversion.
+%
+%%
+% 
+% <<ADC_P6.PNG>>
+% 
+% <html>
+% <A HREF="#ANCRES"><p align="right"> top </p></A>
+% </html>
+%
+
+%% _Data align_
+% Specifies whether the ADC data  alignment is left or right. 
+%%
+% 
+% <<ADC_P7.PNG>>
+% 
+% <html>
+% <A HREF="#ANCRES"><p align="right"> top </p></A>
+% </html>
+%
+
+%% _Nbr of conversion_
+% Specifies the number of ADC conversions that will be done (1 to 16).
+% for Regular channel type only.
+%%
+% 
+% <<ADC_P8.PNG>>
+% 
+% <html>
+% <A HREF="#ANCRES"><p align="right"> top </p></A>
+% </html>
+%
+%
+% <html>
+% <A NAME="location"> </A>
+% </html>
+%
+%% _Location_
+% Port name and Pin number selected channel is connected to.
+% *Read only*
+% 
+% <html>
+% <A HREF="#ANCRES"><p align="right"> top </p></A>
+% </html>
+%
+%%
+%%  ADC2 Watchdog setting
+%%
+% 
+% <<ADC2-Watchdog.PNG>>
+%
+
+%% _Number of regular channels_
+% Number of selected regular channels.
+%
+% *Read only*
+% 
+% <html>
+% <A HREF="#ANCRES"><p align="right"> top </p></A>
+% </html>
+%
+%% _Number of regular channels guarded by the analog watchdog_
+% Number of regular channels triggered by watchdog.
+%
+% *Read only*
+% 
+% <html>
+% <A HREF="#ANCRES"><p align="right"> top </p></A>
+% </html>
+%
+%% _Number of injected channels_
+% Number of selected injected channels.
+%
+% *Read only*
+% 
+% <html>
+% <A HREF="#ANCRES"><p align="right"> top </p></A>
+% </html>
+%
+%% _Number of injected channels guarded by the analog watchdog_
+% Number of injected channels triggered by watchdog.
+%
+% *Read only*
+% 
+% <html>
+% <A HREF="#ANCRES"><p align="right"> top </p></A>
+% </html>
+%
+%% _Watchdog enable_
+% Enable watchdog parameters.
+% 
+% <html>
+% <A HREF="#ANCRES"><p align="right"> top </p></A>
+% </html>
+%
+%% _Analog watchdog command_
+% Specifies channel type the watchdog is dedicated to.
+%
+%%
+% 
+% <<ADC_P9.PNG>>
+% 
+% <html>
+% <A HREF="#ANCRES"><p align="right"> top </p></A>
+% </html>
+%
+%
+%% _Channel_
+% Number of the channel guarded by analog watchdog.
+% Available when analog watchdog command is single.
+%
+% 
+% <html>
+% <A HREF="#ANCRES"><p align="right"> top </p></A>
+% </html>
+%
+%% _High threshold_
+% Analog voltage converted by the ADC if it is above this threshold.
+%
+% 
+% <html>
+% <A HREF="#ANCRES"><p align="right"> top </p></A>
+% </html>
+%
+%% _Low threshold_
+% Analog voltage converted by the ADC if it is below this threshold.
+%
+% 
+% <html>
+% <A HREF="#ANCRES"><p align="right"> top </p></A>
+% </html>
+%
+%% Example
+% ADC configuration example.
+%
+% This example is based on STM3240G-EVAL board.
+% Analog-to-digital converter (ADC3) reads potentiometer value from 
+% PortF-Pin9. 
+%
+% <matlab:open_system('ADC3_IN7_Pot') Open ADC3_IN7_pot> 
+%
+%%
+% 
+% <<ADC_EX.PNG>>
+% 
+% *Channel 7 (portF-pin9) is Regular, Continuous conversion mode.*
+%%
+% 
+% <<ADC_EX1.PNG>>
+% 
+%%
+% 
+% <<ADC_EX2.PNG>>
+% 
+% *PortF Pin9 is analog mode configured.*
+%%
+% 
+% <<ADC_EX3.PNG>>
+% 
+% <html>
+% <A HREF="#ANCRES"><p align="right"> top </p></A>
+% </html>
+%
+%% Example with interrupt
+% Watchdog guarded ADC configuration example.
+%
+% This example is based on STM3240G-EVAL board.
+% Analog-to-digital converter (ADC3) reads potentiometer value from 
+% PortF-Pin9 and send it through USART when watchdog interrupt occures.  
+% 
+% <matlab:open_system('ADC3_IN7_Pot_WD_int') Open ADC3_IN7_pot_WD_int> 
+%
+%%
+% 
+% <<ADC_EX_IT.PNG>>
+% 
+% *Channel 7 (portF-pin9) is Regular, Continuous conversion mode. Guarded by the analog watchdog.*
+%%
+% 
+% <<ADC_EX1_IT.PNG>>
+% 
+% *Low and High threshold are configured for channel 7 single regular channel*
+%%
+% 
+% <<ADC_EX2_IT.PNG>>
+% 
+% *PortF Pin9 is analog mode configured.*
+%%
+% 
+% <<ADC_EX3.PNG>>
+% 
+% *Interrupt Watchdog and OVR are configured for ADC3*
+%%
+% 
+% <<IT_CONF_ADC.PNG>>
+% 
+% *Default ADC handler function name is used. It is configured into the startupt file. It is possible that _stm32f4xx_it.c_ file (/src) has to be modified.*
+%%
+% 
+% <<IT_CONF_HANDLER_ADC.PNG>>
+% 
+% <html>
+% <A HREF="#ANCRES"><p align="right"> top </p></A>
+% </html>
+%
+##### SOURCE END #####
+--></body></html>

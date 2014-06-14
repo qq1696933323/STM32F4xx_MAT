@@ -1,0 +1,120 @@
+%% $RCSfile: USART_Send.tlc,v $
+%% $Revision: 1.0 $
+%% $Date: 2012/01/26 $
+%%
+%% Abstract: USART Send
+%%    STM32F2xx Send string to selected USART
+%%    Generated code is based on STM32 Library files.
+%%
+%% Copyright 1990-2009 The MathWorks, Inc.
+%assign CodeFormat = "Embedded-C"
+%implements USART_Send "C"
+
+
+%if !EXISTS(::CreateUSART_Send)
+    %assign ::CreateUSART_Send  = TLC_TRUE
+%endif
+
+%if !EXISTS(::InsertInitHeader)
+    %assign ::InsertInitHeader  = TLC_TRUE
+%endif
+%if !EXISTS(::InsertIncludes)
+    %assign ::InsertIncludes  = TLC_TRUE
+%endif 
+
+    %assign ::CreateUSART_Send  = TLC_TRUE
+
+%trace CreateUSART_Send  %<CreateUSART_Send>
+
+
+%% Create function for USART Send:
+%if EXISTS(CreateUSART_Send) && (CreateUSART_Send == TLC_TRUE)
+
+    %%assign ::CreateUSART_Send = TLC_FALSE
+
+%% Code for USART SEND configuration call:
+%%    %function BlockTypeSetup(block, system) void
+    %function BlockInstanceSetup(block, system) void
+        %assign SrcBaseName = LibGetMdlSrcBaseName()
+        %assign modelH      = LibCreateSourceFile("Header", "Simulink", SrcBaseName)
+        %assign modelC      = LibCreateSourceFile("Source", "Simulink", SrcBaseName)
+        %if EXISTS(::InsertInitHeader) && (::InsertInitHeader == TLC_TRUE)
+            %assign ::InsertInitHeader    = TLC_FALSE
+            /******************************************************
+                              USART SEND
+            *******************************************************/
+        %endif
+
+%% Code for required USART includes:
+        %if EXISTS(::InsertIncludes) && (::InsertIncludes == TLC_TRUE)
+            %assign ::InsertIncludes    = TLC_FALSE	
+            %openfile USART_Buf
+				#include "stm32f4xx.h"
+            %closefile USART_Buf
+            %<LibSetSourceFileSection(modelH,"Includes",USART_Buf)>
+        %endif
+
+    %endfunction
+%else
+%% ERROR USART INIT MUST BE CALLED ONCE ONLY 
+   %trace ERROR USART INIT MUST BE CALLED ONCE ONLY 
+
+%endif 
+
+%% Function: Outputs ==========================================
+%% Abstract:
+%% USART_Send input value depending on pin config
+%%
+    %function Outputs(block, system) Output
+/* %<Type> Block: %<Name> */  
+        %assign USART_name =  SFcnParamSettings.USART_name		
+        %assign USART_buff =  SFcnParamSettings.USART_buff		
+		%assign nbChar = LibBlockInputSignal(0, "", "", 0) 
+		%assign nbSent = LibBlockOutputSignal(0, "", "", 0) 
+		
+		%assign uAddr = LibBlockInputSignalAddr(1, "", "", 0) 
+
+
+ 		%openfile USART_Buf
+		#ifndef %<USART_name>_IT_SEND	
+		u16 i = 0;
+		char* charToSend;
+		#endif
+		%closefile USART_Buf
+        %<LibSystemOutputCustomCode(system,USART_Buf,"header")>
+
+ 		%openfile USART_Buf		
+
+		#ifdef %<USART_name>_IT_SEND	
+		%<USART_name>_BufferSendPt = (char *)%<uAddr>;
+		%<USART_name>_NbCharToSend = %<nbChar>;
+		if(%<USART_name>_NbCharToSend) {
+		    /* Initialize nb of char sent to 0 */
+			%<USART_name>_NbCharSent = 0;
+			/* Send char is allowed */
+			USART_ITConfig(%<USART_name>, USART_IT_TXE, ENABLE);		
+		}
+		%<nbSent> = %<USART_name>_NbCharSent;
+		#endif
+		
+		#ifndef %<USART_name>_IT_SEND	
+		charToSend = (char *)%<uAddr>;
+		%<nbSent> = 0;
+		for (i=0; i<%<nbChar>; i++) {
+			while (USART_GetFlagStatus(%<USART_name>, USART_FLAG_TXE) == RESET) ;
+			USART_SendData(%<USART_name>, *charToSend++);
+			%<nbSent>++;
+		}
+		#endif
+		
+		%closefile USART_Buf
+        %<LibSystemOutputCustomCode(system,USART_Buf,"trailer")>
+   %endfunction
+   
+%% [EOF] USART_Send.tlc
+
+
+
+
+
+

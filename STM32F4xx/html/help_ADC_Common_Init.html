@@ -1,0 +1,245 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>ADC Common Initialization model</title><meta name="generator" content="MATLAB 8.2"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2013-09-27"><meta name="DC.source" content="help_ADC_Common_Init.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, tt, code { font-size:12px; }
+pre { margin:0px 0px 20px; }
+pre.error { color:red; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>ADC Common Initialization model</h1><!--introduction--><p>Model used to configure global parameters for STM32F4 Analog to Digital Conversion ADC1, ADC2 or ADC3.</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#2">S-Function</a></li><li><a href="#4">ADC parameters setting</a></li><li><a href="#6"><i>ADC operating mode</i></a></li><li><a href="#8"><i>Clock frequency prescaler</i></a></li><li><a href="#10"><i>Direct Memory Access mode</i></a></li><li><a href="#12"><i>Delay between 2 sampling phases</i></a></li><li><a href="#14">Example</a></li><li><a href="#20">Example with interrupt</a></li></ul></div><p>
+<A NAME="ANCRES"> </A>
+</p><h2>S-Function<a name="2"></a></h2><p><i>Nb Input:</i>  <b>0</b></p><p><i>Nb Output:</i> <b>0</b></p><p><img vspace="5" hspace="5" src="STM32_ADC_Common_Init.PNG" alt=""> </p><h2>ADC parameters setting<a name="4"></a></h2><p><img vspace="5" hspace="5" src="ADC_Common_Init.PNG" alt=""> </p><p>
+<A HREF="#ANCRES"><p align="right"> top </p></A>
+</p><h2><i>ADC operating mode</i><a name="6"></a></h2><p>Define how ADCs acquisitions are linked.</p><p><img vspace="5" hspace="5" src="ADC_OperatingMode.PNG" alt=""> </p><p>
+<A HREF="#ANCRES"><p align="right"> top </p></A>
+</p><h2><i>Clock frequency prescaler</i><a name="8"></a></h2><p>Clock frequency ADC acquisition division.</p><p><img vspace="5" hspace="5" src="ADC_Prescaler.PNG" alt=""> </p><p>
+<A HREF="#ANCRES"><p align="right"> top </p></A>
+</p><h2><i>Direct Memory Access mode</i><a name="10"></a></h2><p>DMA Access mode.</p><div><ol><li><i>Disable</i> : No DMA</li><li><i>mode1</i> : On each DMA request (one data item is available), a half-word representing an ADC-converted data item is transferred.</li><li><i>mode2</i> : On each DMA request (two data items are available) two half-words representing two ADC-converted data items are transferred as a word.</li><li><i>mode3</i> : This mode is similar to the DMA mode 2. The only differences are that the on each DMA request (two data items are available) two bytes representing two ADC converted data items are transferred as a half-word.</li></ol></div><p><img vspace="5" hspace="5" src="ADC_DMA_AccessMode.PNG" alt=""> </p><p>
+<A HREF="#ANCRES"><p align="right"> top </p></A>
+</p><h2><i>Delay between 2 sampling phases</i><a name="12"></a></h2><p>From 5 cycles to 20 cycles.</p><p>ADC convertion starts after a delay of several ADC clock cycles</p><p>
+<A HREF="#ANCRES"><p align="right"> top </p></A>
+</p><h2>Example<a name="14"></a></h2><p>ADC configuration example.</p><p>This example is based on STM3240G-EVAL board. Analog-to-digital converter (ADC3) reads potentiometer value from PortF-Pin9.</p><p><a href="matlab:open_system('ADC3_IN7_Pot')">Open ADC3_IN7_pot</a></p><p><img vspace="5" hspace="5" src="ADC_EX.PNG" alt=""> </p><p><b>ADC3 configuration for regular channels. One channel, Continuous conversion mode, No DMA.</b></p><p><img vspace="5" hspace="5" src="ADC_Setting.PNG" alt=""> </p><p><b>Channel 7 is regular configured</b></p><p><img vspace="5" hspace="5" src="ADC_Channel_Setting.PNG" alt=""> </p><p><b>PortF Pin9 is analog mode configured.</b></p><p><img vspace="5" hspace="5" src="GPIO_ADC_Config.PNG" alt=""> </p><p>
+<A HREF="#ANCRES"><p align="right"> top </p></A>
+</p><h2>Example with interrupt<a name="20"></a></h2><p>Watchdog guarded ADC configuration example.</p><p>This example is based on STM3240G-EVAL board. Analog-to-digital converter (ADC3) reads potentiometer value from PortF-Pin9 and send it through USART when watchdog interrupt occures.</p><p><a href="matlab:open_system('ADC3_IN7_Pot_WD_int')">Open ADC3_IN7_pot_WD_int</a></p><p><img vspace="5" hspace="5" src="ADC_EX_IT.PNG" alt=""> </p><p><b>ADC3 configuration for regular channels. One channel, Continuous conversion mode, No DMA.</b></p><p><img vspace="5" hspace="5" src="ADC_Setting.PNG" alt=""> </p><p><b>Low and High threshold are configured for channel 7 single regular channel</b></p><p><img vspace="5" hspace="5" src="ADC_WD_Setting.PNG" alt=""> </p><p><b>PortF Pin9 is analog mode configured.</b></p><p><img vspace="5" hspace="5" src="GPIO_ADC_Config.PNG" alt=""> </p><p><b>Interrupt Watchdog and OVR are configured for ADC3</b></p><p><img vspace="5" hspace="5" src="IT_CONF_ADC.PNG" alt=""> </p><p><b>Default ADC handler function name is used. It is configured into the startupt file. It is possible that <i>stm32f4xx_it.c</i> file (/src) has to be modified.</b></p><p><img vspace="5" hspace="5" src="IT_CONF_HANDLER_ADC.PNG" alt=""> </p><p>
+<A HREF="#ANCRES"><p align="right"> top </p></A>
+</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2013b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% ADC Common Initialization model
+% Model used to configure global parameters for STM32F4 Analog to Digital Conversion ADC1, ADC2 or ADC3.
+%%
+%
+% <html>
+% <A NAME="ANCRES"> </A>
+% </html>
+% 
+%% S-Function
+% _Nb Input:_  *0*
+%
+% _Nb Output:_ *0*
+%
+%%
+% 
+% <<STM32_ADC_Common_Init.PNG>>
+% 
+%% ADC parameters setting
+%%
+% 
+% <<ADC_Common_Init.PNG>>
+% 
+% <html>
+% <A HREF="#ANCRES"><p align="right"> top </p></A>
+% </html>
+%% _ADC operating mode_
+% Define how ADCs acquisitions are linked.
+%
+%%
+% 
+% <<ADC_OperatingMode.PNG>>
+% 
+% <html>
+% <A HREF="#ANCRES"><p align="right"> top </p></A>
+% </html>
+%% _Clock frequency prescaler_
+% Clock frequency ADC acquisition division.
+%
+%
+%%
+% 
+% <<ADC_Prescaler.PNG>>
+% 
+% <html>
+% <A HREF="#ANCRES"><p align="right"> top </p></A>
+% </html>
+
+%% _Direct Memory Access mode_
+% DMA Access mode.
+%
+% # _Disable_ : No DMA
+% # _mode1_ : On each DMA request (one data item is available), a half-word
+% representing an ADC-converted data item is transferred.
+% # _mode2_ : On each DMA request (two data items are available) two half-words
+% representing two ADC-converted data items are transferred as a word.
+% # _mode3_ : This mode is similar to the DMA mode 2. The only differences are
+% that the on each DMA request (two data items are available) two bytes
+% representing two ADC converted data items are transferred as a half-word.
+%
+%%
+% 
+% <<ADC_DMA_AccessMode.PNG>>
+% 
+% <html>
+% <A HREF="#ANCRES"><p align="right"> top </p></A>
+% </html>
+
+%% _Delay between 2 sampling phases_
+% 
+% From 5 cycles to 20 cycles. 
+%
+% ADC convertion starts after a delay of several ADC clock cycles  
+%%
+% 
+% <html>
+% <A HREF="#ANCRES"><p align="right"> top </p></A>
+% </html>
+%
+%
+%% Example
+% ADC configuration example.
+%
+% This example is based on STM3240G-EVAL board.
+% Analog-to-digital converter (ADC3) reads potentiometer value from 
+% PortF-Pin9. 
+%
+% <matlab:open_system('ADC3_IN7_Pot') Open ADC3_IN7_pot> 
+%
+%%
+% 
+% <<ADC_EX.PNG>>
+% 
+% *ADC3 configuration for regular channels. One channel, Continuous conversion mode, No DMA.*
+% 
+%%
+% 
+% <<ADC_Setting.PNG>>
+% 
+%%
+% 
+% *Channel 7 is regular configured*
+%
+% <<ADC_Channel_Setting.PNG>>
+% 
+%%
+% *PortF Pin9 is analog mode configured.*
+%%
+% 
+% <<GPIO_ADC_Config.PNG>>
+% 
+% <html>
+% <A HREF="#ANCRES"><p align="right"> top </p></A>
+% </html>
+%
+%% Example with interrupt
+% Watchdog guarded ADC configuration example.
+%
+% This example is based on STM3240G-EVAL board.
+% Analog-to-digital converter (ADC3) reads potentiometer value from 
+% PortF-Pin9 and send it through USART when watchdog interrupt occures.  
+% 
+% <matlab:open_system('ADC3_IN7_Pot_WD_int') Open ADC3_IN7_pot_WD_int> 
+%
+%%
+% 
+% <<ADC_EX_IT.PNG>>
+% 
+% *ADC3 configuration for regular channels. One channel, Continuous conversion mode, No DMA.*
+%%
+% 
+% <<ADC_Setting.PNG>>
+% 
+% *Low and High threshold are configured for channel 7 single regular channel*
+%%
+% 
+% <<ADC_WD_Setting.PNG>>
+% 
+% *PortF Pin9 is analog mode configured.*
+%%
+% 
+% <<GPIO_ADC_Config.PNG>>
+% 
+% *Interrupt Watchdog and OVR are configured for ADC3*
+%%
+% 
+% <<IT_CONF_ADC.PNG>>
+% 
+% *Default ADC handler function name is used. It is configured into the startupt file. It is possible that _stm32f4xx_it.c_ file (/src) has to be modified.*
+%%
+% 
+% <<IT_CONF_HANDLER_ADC.PNG>>
+% 
+% <html>
+% <A HREF="#ANCRES"><p align="right"> top </p></A>
+% </html>
+%
+
+
+##### SOURCE END #####
+--></body></html>

@@ -1,0 +1,242 @@
+%% SYSTLC: stm32F4xx (Embedded Target) TMF: stm32F4xx.tmf MAKE: make_rtw \
+%%    EXTMODE: ext_comm
+
+%selectfile NULL_FILE
+
+%%
+%% System Target File for stm32F4xx
+%%
+%% $ stm32F4xx.tlc 2009-05-14 dlange $
+%%
+
+%assign CodeFormat = "Embedded-C"
+%assign TargetType = "RT"
+%assign Language   = "C"
+
+%include "codegenentry.tlc"
+
+/%
+  BEGIN_RTW_OPTIONS
+
+  oIdx = 1;
+
+  rtwoptions(oIdx).prompt        = 'STM32F4xx Options';
+  rtwoptions(oIdx).type          = 'Category';
+  rtwoptions(oIdx).enable        = 'on';  
+  rtwoptions(oIdx).default       = 11;
+  rtwoptions(oIdx).popupstrings  = '';
+  rtwoptions(oIdx).tlcvariable   = '';
+  rtwoptions(oIdx).tooltip       = '';
+  rtwoptions(oIdx).callback      = '';
+  rtwoptions(oIdx).makevariable  = '';
+
+  oIdx = oIdx + 1;
+
+  rtwoptions(oIdx).prompt         = 'STM32F4xx Target';
+  rtwoptions(oIdx).type           = 'Popup';
+  rtwoptions(oIdx).popupstrings   = 'STM32F4xxx';
+  rtwoptions(oIdx).default        = 'STM32F4xxx';
+  rtwoptions(oIdx).tlcvariable    = 'stm32Target';
+  rtwoptions(oIdx).makevariable   = 'STM32TARGET';
+  rtwoptions(oIdx).enable         = 'on';
+  rtwoptions(oIdx).tooltip        = sprintf([...
+    'Select STM32F4xx target\n', ...
+     ]);	
+  rtwoptions(oIdx).callback      = '';
+
+  oIdx = oIdx + 1;
+
+  rtwoptions(oIdx).prompt         = 'STM32F4xx Series';
+  rtwoptions(oIdx).type           = 'Popup';
+  rtwoptions(oIdx).popupstrings   = 'STM32F40_41xxx|STM32F427_437xx|STM32F429_439xx|STM32F401xx';
+  rtwoptions(oIdx).default        = 'STM32F40_41xxx';
+  rtwoptions(oIdx).tlcvariable    = 'stm32Series';
+  rtwoptions(oIdx).makevariable   = 'STM32SERIES';
+  rtwoptions(oIdx).enable         = 'on';
+  rtwoptions(oIdx).tooltip        = sprintf([...
+    'Select STM32F4xx Series\n', ...
+	'STM32F40_41xxx: STM32F405xx STM32F415xx STM32F407xx STM32F417xx\n', ...
+    'STM32F427_437xx: STM32F427xx STM32F437xx\n', ...
+    'STM32F429_439xx: STM32F429xx STM32F439xx\n', ...
+	'STM32F401xx: STM32F401xx\n', ...
+     ]);	
+  rtwoptions(oIdx).callback      = 'getseries_callback(hDlg, hSrc, ''stm32Series'')';
+
+  oIdx = oIdx + 1;
+  
+  rtwoptions(oIdx).prompt         = 'STM32F4xx Device';
+  rtwoptions(oIdx).type           = 'Edit';
+  rtwoptions(oIdx).default        = 'STM32F407VG';
+  rtwoptions(oIdx).tlcvariable    = 'stm32Device';
+  rtwoptions(oIdx).makevariable   = 'STM32DEVICE';
+  rtwoptions(oIdx).enable         = 'on';
+  rtwoptions(oIdx).tooltip        = sprintf([...
+    'Select STM32F4xx device\n', ...
+	'------------------------------------------------------------------------------------------------\n', ...
+	'STM32F40_41xxx  : STM32F405RG, STM32F405VG, STM32F405ZG, STM32F415RG, STM32F415VG, STM32F415ZG, \n', ... 
+	'                  STM32F407VG, STM32F407VE, STM32F407ZG, STM32F407ZE, STM32F407IG, STM32F407IE, \n', ...
+	'                  STM32F417VG, STM32F417VE, STM32F417ZG, STM32F417ZE, STM32F417IG, STM32F417IE  \n', ...
+	'------------------------------------------------------------------------------------------------\n', ...
+	'STM32F427_437xx : STM32F427VG, STM32F427VI, STM32F427ZG, STM32F427ZI, STM32F427IG, STM32F427II, \n', ...
+	'                  STM32F437VG, STM32F437VI, STM32F437ZG, STM32F437ZI, STM32F437IG, STM32F437II  \n', ...
+	'------------------------------------------------------------------------------------------------\n', ...                                
+	'STM32F429_439xx : STM32F429VG, STM32F429VI, STM32F429ZG, STM32F429ZI, STM32F429BG, STM32F429BI, \n', ...
+	'                  STM32F429NG, STM32F439NI, STM32F429IG, STM32F429II, STM32F439VG, STM32F439VI, \n', ...
+	'                  STM32F439ZG, STM32F439ZI, STM32F439BG, STM32F439BI, STM32F439NG, STM32F439NI, \n', ...
+	'                  STM32F439IG, STM32F439II                                                      \n', ...
+	'------------------------------------------------------------------------------------------------\n', ...                             
+	'STM32F401xx     : STM32F401CB, STM32F401CC, STM32F401RB, STM32F401RC, STM32F401VB, STM32F401VC, \n', ...
+	'                  STM32F401CD, STM32F401RD, STM32F401VD, STM32F401CExx, STM32F401RE, STM32F401VE\n', ...
+	'------------------------------------------------------------------------------------------------\n', ...
+     ]);	
+  rtwoptions(oIdx).callback      = '';
+  
+  oIdx = oIdx + 1;
+
+  rtwoptions(oIdx).prompt         = 'STM32 ToolChain';
+  rtwoptions(oIdx).type           = 'Popup';
+  rtwoptions(oIdx).popupstrings   = 'IAR|KEIL|ATOLLIC';
+  rtwoptions(oIdx).default        = 'IAR';
+  rtwoptions(oIdx).tlcvariable    = 'ToolChain';
+  rtwoptions(oIdx).makevariable   = 'TOOLCHAIN';
+  rtwoptions(oIdx).enable         = 'on';
+  rtwoptions(oIdx).tooltip        = sprintf([...
+    'IAR: Ewarm Toolchain\n', ...
+    'KEIL: µVision4 Toolchain\n', ...
+    'ATOLLIC: TrueSTUDIO Toolchain\n', ...
+    ]);
+  rtwoptions(oIdx).callback      = 'getpath_callback(hDlg, hSrc, ''ToolChain'')';
+
+  oIdx = oIdx + 1;
+
+  rtwoptions(oIdx).prompt         = 'Get ToolPath automatically';
+  rtwoptions(oIdx).type           = 'Checkbox';
+  rtwoptions(oIdx).default        = 'off';
+  rtwoptions(oIdx).tlcvariable    = 'ToolPathFromRegistry';
+  rtwoptions(oIdx).makevariable   = 'TOOLPATHFROMREGISTRY';
+  rtwoptions(oIdx).tooltip        = ...
+    ['Get ToolChain path directly from registry. Uncheck to modify ToolChain path.'];
+  rtwoptions(oIdx).callback       = 'autopath_callback(hDlg, hSrc, ''ToolPathFromRegistry'')';
+
+    
+  oIdx = oIdx + 1;
+   
+  rtwoptions(oIdx).prompt         = 'ToolPath Installation Directory: ';
+  rtwoptions(oIdx).type           = 'Edit';
+  rtwoptions(oIdx).default        = '';
+  rtwoptions(oIdx).tlcvariable    = 'CompilerPath';
+  rtwoptions(oIdx).makevariable   = 'COMPILERPATH';
+  rtwoptions(oIdx).enable         = 'on';
+  rtwoptions(oIdx).tooltip        = ...
+    ['Path for installed tool. Used if not taken directly from registry. Use format C:\..\..'];
+  rtwoptions(oIdx).callback      = '';
+
+ 
+  oIdx = oIdx + 1;
+   
+  rtwoptions(oIdx).prompt         = 'Probe tool dongle:';
+  rtwoptions(oIdx).type           = 'Popup';
+  rtwoptions(oIdx).popupstrings   = 'J-Link|STLinkV2|ULINK2';
+  rtwoptions(oIdx).default        = 'STLinkV2';
+  rtwoptions(oIdx).tlcvariable    = 'Dongle';
+  rtwoptions(oIdx).makevariable   = 'DONGLE';
+  rtwoptions(oIdx).enable         = 'on';
+  rtwoptions(oIdx).tooltip        = sprintf([...
+    'Select connected probe :\n', ...
+    'IAR: J-Link or STLinkV2\n', ...
+    'KEIL: ULINK2 or STLinkV2\n', ...
+    'ATOLLIC: J-Link or STLinkV2\n', ...
+    ]);
+  rtwoptions(oIdx).callback      = '';
+
+ 
+  oIdx = oIdx + 1;
+
+  rtwoptions(oIdx).prompt         = 'Boot Mode';
+  rtwoptions(oIdx).type           = 'Popup';
+  rtwoptions(oIdx).popupstrings   = 'FLASH|RAM';
+  rtwoptions(oIdx).default        = 'FLASH';
+  rtwoptions(oIdx).tlcvariable    = 'flashRam';
+  rtwoptions(oIdx).makevariable   = 'FLASH_RAM';
+  rtwoptions(oIdx).enable         = 'on';
+  rtwoptions(oIdx).tooltip        = sprintf([...
+    'FLASH: Boot Flash mode\n', ...
+    'RAM: Boot Ram mode\n', ...
+    ]);
+  rtwoptions(oIdx).callback      = '';
+
+  oIdx = oIdx + 1;
+
+  rtwoptions(oIdx).prompt         = 'Compiler Settings: ';
+  rtwoptions(oIdx).type           = 'Edit';
+  rtwoptions(oIdx).default        = '--cpu Cortex-M4 --debug -D $(STM32_SERIES) -D ARM_MATH_CM4 -D USE_STDPERIPH_DRIVER --endian=little';
+  rtwoptions(oIdx).tlcvariable    = 'CompilerSettings';
+  rtwoptions(oIdx).makevariable   = 'COMPILERSETTINGS';
+  rtwoptions(oIdx).tooltip        = ...
+    ['Insert the Compiler settings, that should be used for compilation.'];
+  rtwoptions(oIdx).callback      = '';
+
+  		
+  oIdx = oIdx + 1;
+
+  rtwoptions(oIdx).prompt         = 'Linker Settings: ';
+  rtwoptions(oIdx).type           = 'Edit';
+  rtwoptions(oIdx).default        = '--map $(MODEL)_IAR_$(BOOT_MODE).map --config $(LDDIR)\$(STM32TARGET)_$(BOOT_MODE).icf --search .. --search $(TOOLPATH)\..\lib';
+  rtwoptions(oIdx).tlcvariable    = 'LinkerSettings';
+  rtwoptions(oIdx).makevariable   = 'LINKERSETTINGS';
+  rtwoptions(oIdx).tooltip        = ...
+    ['Insert the Linker settings, that should be used for linking.'];
+  rtwoptions(oIdx).callback      = '';
+
+  oIdx = oIdx + 1;
+
+  rtwoptions(oIdx).prompt         = 'Assembler Settings: ';
+  rtwoptions(oIdx).type           = 'Edit';
+  rtwoptions(oIdx).default        = '-s+ -w+ -r --cpu cortex-M3 --fpu None --endian little';
+  rtwoptions(oIdx).tlcvariable    = 'AssemblerSettings';
+  rtwoptions(oIdx).makevariable   = 'ASSEMBLERSETTINGS';
+  rtwoptions(oIdx).tooltip        = ...
+    ['Insert the Assembler settings.'];
+  rtwoptions(oIdx).callback      = '';
+
+
+  oIdx = oIdx + 1;
+
+  rtwoptions(oIdx).prompt         = 'Download Application';
+  rtwoptions(oIdx).type           = 'Checkbox';
+  rtwoptions(oIdx).default        = 'off';
+  rtwoptions(oIdx).tlcvariable    = 'DownloadApplication';
+  rtwoptions(oIdx).makevariable   = 'DOWNLOADAPPLICATION';
+  rtwoptions(oIdx).tooltip        = ...
+    ['Program or not STM32 target.'];
+  rtwoptions(oIdx).callback      = '';
+
+  oIdx = oIdx + 1;
+
+  rtwoptions(oIdx).prompt         = 'Installed Path';
+  rtwoptions(oIdx).type           = 'Edit';
+  rtwoptions(oIdx).default        = '';
+  rtwoptions(oIdx).tlcvariable    = 'Target_Inst_path';
+  rtwoptions(oIdx).makevariable   = 'TARGET_INST_PATH';
+  rtwoptions(oIdx).enable         = 'off';
+  rtwoptions(oIdx).tooltip        = '';
+  rtwoptions(oIdx).callback      = ''; 
+  %%'getinstallpath_callback(hDlg, hSrc)';
+
+  
+  %----------------------------------------%
+  % Configure RTW code generation settings %
+  %----------------------------------------%
+    
+  rtwgensettings.DerivedFrom = 'ert.tlc';
+  rtwgensettings.BuildDirSuffix = '_stm32F4xx';
+  rtwgensettings.Version = '1';
+  rtwgensettings.SelectCallback = ['stm32F4xx_SelectCallback(hDlg, hSrc)'];
+  %rtwgensettings.ActivateCallback = ['stm32F4xx_ActivateCallback(hDlg, hSrc)'];
+  rtwgensettings.PostApplyCallback = ['stm32F4xx_PostApplyCallback(hDlg, hSrc)'];
+ 
+
+  END_RTW_OPTIONS 
+ %/
+
+%% [EOF]: stm32F4xx.tlc
